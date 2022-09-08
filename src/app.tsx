@@ -1,8 +1,8 @@
+import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
 import { registerRootComponent } from "expo";
 import MapView from "react-native-maps";
 import * as Location from "expo-location";
-import { useState, useEffect } from "react";
 
 function App() {
   const [location, setLocation] = useState(null);
@@ -31,7 +31,16 @@ function App() {
   return (
     <View style={styles.container}>
       <Text>Berry picker tracker</Text>
-      <MapView style={styles.map} showsUserLocation={true} />
+      <MapView
+        style={styles.map}
+        showsUserLocation={true}
+        initialRegion={{
+          latitude: 60.204662,
+          longitude: 24.962535,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        }}
+      />
     </View>
   );
 }
