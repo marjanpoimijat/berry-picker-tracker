@@ -5,8 +5,9 @@ import MapView from "react-native-maps";
 import * as Location from "expo-location";
 
 function App() {
-  const [location, setLocation] = useState(null);
+  const [curLocation, setCurLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [lastLocation, setLastLocation] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -17,16 +18,27 @@ function App() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+      setCurLocation(location);
     })();
   }, []);
 
   let text = "Waiting..";
   if (errorMsg) {
     text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
+  } else if (curLocation) {
+    text = JSON.stringify(curLocation);
   }
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      let location = await Location.getLastKnownPositionAsync({});
+      setLastLocation(location);
+
+      console.log(lastLocation);
+    }, 10 * 1000);
+
+    return () => clearInterval(interval);
+  }, [lastLocation]);
 
   return (
     <View style={styles.container}>
