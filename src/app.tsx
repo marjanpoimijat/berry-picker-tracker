@@ -3,11 +3,13 @@ import { Text, View, StyleSheet, Dimensions } from "react-native";
 import { registerRootComponent } from "expo";
 import MapView from "react-native-maps";
 import * as Location from "expo-location";
+import * as Cellular from "expo-cellular";
 
 function App() {
   const [curLocation, setCurLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [lastLocation, setLastLocation] = useState(null);
+  const [mobileNetworkCode, setMobileNetworkCode] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -39,6 +41,23 @@ function App() {
 
     return () => clearInterval(interval);
   }, [lastLocation]);
+
+  /**
+   * Checks and sets cellular service providers MNC code every 3 second interval.
+   * MNC is null when outside of cellular service range or if SIM card is removed.
+   * @param {string} networkCode  Mobile network code of cellular service provider.
+   */
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      let networkCode = await Cellular.getMobileNetworkCodeAsync();
+      setMobileNetworkCode(networkCode);
+
+      console.log(mobileNetworkCode);
+      console.log(typeof mobileNetworkCode);
+    }, 3 * 1000);
+
+    return () => clearInterval(interval);
+  }, [mobileNetworkCode]);
 
   return (
     <View style={styles.container}>
