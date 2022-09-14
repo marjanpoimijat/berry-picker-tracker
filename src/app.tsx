@@ -35,11 +35,6 @@ function App() {
     return () => clearInterval(interval);
   }, [lastLocation]);
 
-  /**
-   * Checks and sets cellular service providers MNC code every 3 second interval.
-   * MNC is null when outside of cellular service range or if SIM card is removed.
-   * @param {string} networkCode  Mobile network code of cellular service provider.
-   */
   useEffect(() => {
     const interval = setInterval(async () => {
       const networkCode = await Cellular.getMobileNetworkCodeAsync();
