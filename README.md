@@ -23,4 +23,14 @@ npm start
 
 Install the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
 
-Open your user settings
+Open your user settings and add the following:
+
+```json
+{
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true
+	}
+}
+```
