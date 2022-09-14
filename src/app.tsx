@@ -6,34 +6,27 @@ import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 
 function App() {
-  const [curLocation, setCurLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [, setCurLocation] = useState(null);
+  const [, setErrorMsg] = useState(null);
   const [lastLocation, setLastLocation] = useState(null);
   const [mobileNetworkCode, setMobileNetworkCode] = useState(null);
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
+      const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         setErrorMsg("Permission to access location was denied");
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
+      const location = await Location.getCurrentPositionAsync({});
       setCurLocation(location);
     })();
   }, []);
 
-  let text = "Waiting..";
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (curLocation) {
-    text = JSON.stringify(curLocation);
-  }
-
   useEffect(() => {
     const interval = setInterval(async () => {
-      let location = await Location.getLastKnownPositionAsync({});
+      const location = await Location.getLastKnownPositionAsync({});
       setLastLocation(location);
 
       console.log(lastLocation);
@@ -49,7 +42,7 @@ function App() {
    */
   useEffect(() => {
     const interval = setInterval(async () => {
-      let networkCode = await Cellular.getMobileNetworkCodeAsync();
+      const networkCode = await Cellular.getMobileNetworkCodeAsync();
       setMobileNetworkCode(networkCode);
 
       console.log(mobileNetworkCode);
