@@ -7,6 +7,7 @@ import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import Text from "./components/Text";
 import Button from "./components/Button";
+import NavigatorTab from "./components/NavigatorTab";
 
 import theme from "./theme";
 
@@ -100,8 +101,34 @@ function App() {
 					text={showRoute === true ? "Hide route" : "Show route"}
 				/>
 			</View>
+			<View style={styles.infoContainer}>
+				<Text fontWeight="bold">Current location:</Text>
+				<Text>
+					-Latitude:{" "}
+					{lastLocation === null
+						? "not available"
+						: lastLocation.coords.latitude}
+				</Text>
+				<Text>
+					-Longitude:{" "}
+					{lastLocation === null
+						? "not available"
+						: lastLocation.coords.longitude}
+				</Text>
+				<Text fontWeight="bold">Cellular network:</Text>
+				<Text>
+					-NMC code:{" "}
+					{mobileNetworkCode === null
+						? "Network not available"
+						: mobileNetworkCode}
+				</Text>
+				<Text fontWeight="bold">
+					Route location points: {routeCoordinates.length}
+				</Text>
+			</View>
 			<View style={styles.navigator}>
-				<Text>Testing</Text>
+				<NavigatorTab text="Map" />
+				<NavigatorTab text="Setting" />
 			</View>
 		</View>
 	);
