@@ -89,8 +89,8 @@ function App() {
 				}}
 			>
 				<Polyline
-					coordinates={routeCoordinates}
-					strokeColor="black"
+					coordinates={showRoute === true ? routeCoordinates : []}
+					strokeColor="red"
 					strokeWidth={4}
 				/>
 			</MapView>
