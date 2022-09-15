@@ -1,4 +1,4 @@
-import { Text, View, Pressable, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
 import theme from "../theme";
 
@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
 const NavigatorTab = ({ text }: { text: string }) => {
 	return (
 		<View style={styles.navigatorIcon}>
-			<Pressable>
+			<TouchableOpacity>
 				<Text style={styles.textStyle}>{text}</Text>
-			</Pressable>
+			</TouchableOpacity>
 		</View>
 	);
 };

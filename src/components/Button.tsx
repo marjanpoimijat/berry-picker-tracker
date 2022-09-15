@@ -1,4 +1,4 @@
-import { Text, View, Pressable, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
 import theme from "../theme";
 
@@ -26,9 +26,9 @@ interface Props {
 const Button = ({ onPress, text }: Props): JSX.Element => {
 	return (
 		<View style={styles.buttonIcon}>
-			<Pressable onPress={onPress}>
+			<TouchableOpacity onPress={onPress}>
 				<Text style={{ fontWeight: "bold" }}>{text}</Text>
-			</Pressable>
+			</TouchableOpacity>
 		</View>
 	);
 };
