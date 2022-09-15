@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import Constants from "expo-constants";
 import { registerRootComponent } from "expo";
-import MapView, { Polyline } from "react-native-maps";
+import MapView, { LatLng, Polyline } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
+import { LocationObject } from "expo-location";
 import Text from "./components/Text";
 import Button from "./components/Button";
 import NavigatorTab from "./components/NavigatorTab";
@@ -12,12 +13,12 @@ import NavigatorTab from "./components/NavigatorTab";
 import theme from "./theme";
 
 function App() {
-	const [, setCurLocation] = useState(null);
-	const [, setErrorMsg] = useState(null);
-	const [lastLocation, setLastLocation] = useState(null);
-	const [mobileNetworkCode, setMobileNetworkCode] = useState(null);
-	const [routeCoordinates, setRouteCoordinates] = useState([]);
-	const [showRoute, setShowRoute] = useState(true);
+	const [, setCurLocation] = useState<LocationObject | null>(null);
+	const [, setErrorMsg] = useState<string | null>(null);
+	const [lastLocation, setLastLocation] = useState<LocationObject | null>(null);
+	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
+	const [routeCoordinates, setRouteCoordinates] = useState<Array<LatLng>>([]);
+	const [showRoute, setShowRoute] = useState<boolean>(true);
 
 	useEffect(() => {
 		(async () => {
@@ -47,18 +48,20 @@ function App() {
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
-			setMobileNetworkCode(networkCode);
+			setMobileNetCode(networkCode);
 		}, 3 * 1000);
 
 		return () => clearInterval(interval);
-	}, [mobileNetworkCode]);
+	}, [mobileNetCode]);
 
-	const addNewRouteCoordinate = (location) => {
-		const coordinate = {
-			latitude: location.coords.latitude,
-			longitude: location.coords.longitude,
-		};
-		setRouteCoordinates(routeCoordinates.concat(coordinate));
+	const addNewRouteCoordinate = (location: LocationObject | null) => {
+		if (location !== null) {
+			const coordinate = {
+				latitude: location.coords.latitude,
+				longitude: location.coords.longitude,
+			};
+			setRouteCoordinates(routeCoordinates.concat(coordinate));
+		}
 	};
 
 	const resetRouteCoordinates = () => {
@@ -118,9 +121,7 @@ function App() {
 				<Text fontWeight="bold">Cellular network:</Text>
 				<Text>
 					-NMC code:{" "}
-					{mobileNetworkCode === null
-						? "Network not available"
-						: mobileNetworkCode}
+					{mobileNetCode === null ? "Network not available" : mobileNetCode}
 				</Text>
 				<Text fontWeight="bold">
 					Route location points: {routeCoordinates.length}
