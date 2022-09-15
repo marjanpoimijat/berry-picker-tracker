@@ -1,5 +1,5 @@
-import { View, Pressable, StyleSheet } from "react-native";
-import Text from "./Text";
+import { Text, View, Pressable, StyleSheet } from "react-native";
+
 import theme from "../theme";
 
 const styles = StyleSheet.create({
@@ -27,7 +27,7 @@ const Button = ({ onPress, text }: Props): JSX.Element => {
 	return (
 		<View style={styles.buttonIcon}>
 			<Pressable onPress={onPress}>
-				<Text fontWeight="bold">{text}</Text>
+				<Text style={{ fontWeight: "bold" }}>{text}</Text>
 			</Pressable>
 		</View>
 	);

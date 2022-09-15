@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { Text, View, StyleSheet, Dimensions } from "react-native";
 import Constants from "expo-constants";
 import { registerRootComponent } from "expo";
 import MapView, { LatLng, Polyline } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
-import Text from "./components/Text";
 import Button from "./components/Button";
 import NavigatorTab from "./components/NavigatorTab";
 
@@ -77,9 +76,7 @@ function App() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.appHeader}>
-				<Text fontSize="header" fontWeight="bold" color="textSecondary">
-					Berry picker tracker
-				</Text>
+				<Text style={styles.textHeader}>Berry picker tracker</Text>
 			</View>
 			<MapView
 				style={styles.map}
@@ -105,7 +102,7 @@ function App() {
 				/>
 			</View>
 			<View style={styles.infoContainer}>
-				<Text fontWeight="bold">Current location:</Text>
+				<Text style={{ fontWeight: "bold" }}>Current location:</Text>
 				<Text>
 					-Latitude:{" "}
 					{lastLocation === null
@@ -118,12 +115,12 @@ function App() {
 						? "not available"
 						: lastLocation.coords.longitude}
 				</Text>
-				<Text fontWeight="bold">Cellular network:</Text>
+				<Text style={{ fontWeight: "bold" }}>Cellular network:</Text>
 				<Text>
 					-NMC code:{" "}
 					{mobileNetCode === null ? "Network not available" : mobileNetCode}
 				</Text>
-				<Text fontWeight="bold">
+				<Text style={{ fontWeight: "bold" }}>
 					Route location points: {routeCoordinates.length}
 				</Text>
 			</View>
@@ -195,6 +192,11 @@ const styles = StyleSheet.create({
 		paddingTop: 5,
 		bottom: 0,
 		backgroundColor: theme.colors.primaryBackgroundColor,
+	},
+	textHeader: {
+		fontSize: theme.fontSizes.header,
+		fontWeight: "bold",
+		color: theme.colors.textSecondary,
 	},
 });
 

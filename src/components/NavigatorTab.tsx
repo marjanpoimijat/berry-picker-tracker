@@ -1,5 +1,5 @@
-import { View, Pressable, StyleSheet } from "react-native";
-import Text from "./Text";
+import { Text, View, Pressable, StyleSheet } from "react-native";
+
 import theme from "../theme";
 
 const styles = StyleSheet.create({
@@ -17,15 +17,18 @@ const styles = StyleSheet.create({
 		elevation: 5,
 		margin: 5,
 	},
+	textStyle: {
+		fontSize: theme.fontSizes.header,
+		fontWeight: "bold",
+		color: theme.colors.textSecondary,
+	},
 });
 
 const NavigatorTab = ({ text }: { text: string }) => {
 	return (
 		<View style={styles.navigatorIcon}>
 			<Pressable>
-				<Text fontSize="header" fontWeight="bold" color="textSecondary">
-					{text}
-				</Text>
+				<Text style={styles.textStyle}>{text}</Text>
 			</Pressable>
 		</View>
 	);
