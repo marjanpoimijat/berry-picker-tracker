@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
+import Constants from "expo-constants";
 import { registerRootComponent } from "expo";
-import MapView from "react-native-maps";
+import MapView, { Polyline } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
+
+import theme from "./theme";
 
 function App() {
 	const [, setCurLocation] = useState(null);
 	const [, setErrorMsg] = useState(null);
 	const [lastLocation, setLastLocation] = useState(null);
 	const [mobileNetworkCode, setMobileNetworkCode] = useState(null);
+	const [routeCoordinates, setRouteCoordinates] = useState([]);
 
 	useEffect(() => {
 		(async () => {
@@ -28,6 +32,7 @@ function App() {
 		const interval = setInterval(async () => {
 			const location = await Location.getLastKnownPositionAsync({});
 			setLastLocation(location);
+			addNewRouteCoordinate(location);
 
 			console.log(lastLocation);
 		}, 10 * 1000);
@@ -39,17 +44,24 @@ function App() {
 		const interval = setInterval(async () => {
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
 			setMobileNetworkCode(networkCode);
-
-			console.log(mobileNetworkCode);
-			console.log(typeof mobileNetworkCode);
 		}, 3 * 1000);
 
 		return () => clearInterval(interval);
 	}, [mobileNetworkCode]);
 
+	const addNewRouteCoordinate = (location) => {
+		const coordinate = {
+			latitude: location.coords.latitude,
+			longitude: location.coords.longitude,
+		};
+		setRouteCoordinates(routeCoordinates.concat(coordinate));
+	};
+
 	return (
 		<View style={styles.container}>
-			<Text>Berry picker tracker</Text>
+			<View style={styles.appHeader}>
+				<Text>Berry picker tracker</Text>
+			</View>
 			<MapView
 				style={styles.map}
 				showsUserLocation={true}
@@ -59,7 +71,16 @@ function App() {
 					latitudeDelta: 0.01,
 					longitudeDelta: 0.01,
 				}}
-			/>
+			>
+				<Polyline
+					coordinates={routeCoordinates}
+					strokeColor="black"
+					strokeWidth={4}
+				/>
+			</MapView>
+			<View style={styles.navigator}>
+				<Text>Testing</Text>
+			</View>
 		</View>
 	);
 }
@@ -69,12 +90,61 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "flex-start",
+		flexDirection: "column",
 	},
 	map: {
 		width: Dimensions.get("window").width,
 		height: Dimensions.get("window").height,
-		marginTop: 50,
+		top: Constants.statusBarHeight + 50,
+	},
+	buttonContainer: {
+		display: "flex",
+		position: "absolute",
+		alignSelf: "flex-start",
+		marginLeft: 10,
+		flexDirection: "column",
+		bottom: 100,
+	},
+	infoContainer: {
+		display: "flex",
+		position: "absolute",
+		backgroundColor: theme.colors.buttonBackgroundColor,
+		top: 100,
+		alignSelf: "flex-start",
+		marginLeft: 10,
+		borderRadius: 20,
+		padding: 15,
+		textAlign: "center",
+		height: 130,
+		shadowColor: "black",
+		shadowOffset: { width: 3, height: 3 },
+		shadowOpacity: 0.8,
+		shadowRadius: 20,
+		elevation: 5,
+		margin: 5,
+	},
+	appHeader: {
+		height: 50,
+		position: "absolute",
+		width: "100%",
+		justifyContent: "center",
+		alignItems: "center",
+		top: Constants.statusBarHeight,
+		backgroundColor: theme.colors.primaryBackgroundColor,
+	},
+	navigator: {
+		display: "flex",
+		flexDirection: "row",
+		height: 85,
+		position: "absolute",
+		width: "100%",
+		justifyContent: "center",
+		alignItems: "flex-start",
+		marginTop: 20,
+		paddingTop: 5,
+		bottom: 0,
+		backgroundColor: theme.colors.primaryBackgroundColor,
 	},
 });
 
