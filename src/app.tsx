@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import Constants from "expo-constants";
 import { registerRootComponent } from "expo";
 import MapView, { Polyline } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
+import Text from "./components/Text";
+import Button from "./components/Button";
 
 import theme from "./theme";
 
@@ -14,6 +16,7 @@ function App() {
 	const [lastLocation, setLastLocation] = useState(null);
 	const [mobileNetworkCode, setMobileNetworkCode] = useState(null);
 	const [routeCoordinates, setRouteCoordinates] = useState([]);
+	const [showRoute, setShowRoute] = useState(true);
 
 	useEffect(() => {
 		(async () => {
@@ -57,10 +60,22 @@ function App() {
 		setRouteCoordinates(routeCoordinates.concat(coordinate));
 	};
 
+	const resetRouteCoordinates = () => {
+		setRouteCoordinates([]);
+		console.log("coordinates reseted");
+	};
+
+	const changeShowRoute = () => {
+		console.log(showRoute);
+		setShowRoute(showRoute === true ? false : true);
+	};
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.appHeader}>
-				<Text>Berry picker tracker</Text>
+				<Text fontSize="header" fontWeight="bold" color="textSecondary">
+					Berry picker tracker
+				</Text>
 			</View>
 			<MapView
 				style={styles.map}
@@ -78,6 +93,13 @@ function App() {
 					strokeWidth={4}
 				/>
 			</MapView>
+			<View style={styles.buttonContainer}>
+				<Button onPress={resetRouteCoordinates} text={"Reset route"} />
+				<Button
+					onPress={changeShowRoute}
+					text={showRoute === true ? "Hide route" : "Show route"}
+				/>
+			</View>
 			<View style={styles.navigator}>
 				<Text>Testing</Text>
 			</View>
