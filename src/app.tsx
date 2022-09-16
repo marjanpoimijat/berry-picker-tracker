@@ -1,15 +1,23 @@
 import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
+import Constants from "expo-constants";
 import { registerRootComponent } from "expo";
-import MapView from "react-native-maps";
+import MapView, { LatLng, Polyline } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
+import { LocationObject } from "expo-location";
+import Button from "./components/Button";
+import NavigatorTab from "./components/NavigatorTab";
+
+import theme from "./theme";
 
 function App() {
-	const [, setCurLocation] = useState(null);
-	const [, setErrorMsg] = useState(null);
-	const [lastLocation, setLastLocation] = useState(null);
-	const [mobileNetworkCode, setMobileNetworkCode] = useState(null);
+	const [, setCurLocation] = useState<LocationObject | null>(null);
+	const [, setErrorMsg] = useState<string | null>(null);
+	const [lastLocation, setLastLocation] = useState<LocationObject | null>(null);
+	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
+	const [routeCoordinates, setRouteCoordinates] = useState<Array<LatLng>>([]);
+	const [showRoute, setShowRoute] = useState<boolean>(true);
 
 	useEffect(() => {
 		(async () => {
@@ -28,6 +36,7 @@ function App() {
 		const interval = setInterval(async () => {
 			const location = await Location.getLastKnownPositionAsync({});
 			setLastLocation(location);
+			addNewRouteCoordinate(location);
 
 			console.log(lastLocation);
 		}, 10 * 1000);
@@ -38,18 +47,37 @@ function App() {
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
-			setMobileNetworkCode(networkCode);
-
-			console.log(mobileNetworkCode);
-			console.log(typeof mobileNetworkCode);
+			setMobileNetCode(networkCode);
 		}, 3 * 1000);
 
 		return () => clearInterval(interval);
-	}, [mobileNetworkCode]);
+	}, [mobileNetCode]);
+
+	const addNewRouteCoordinate = (location: LocationObject | null) => {
+		if (location !== null) {
+			const coordinate = {
+				latitude: location.coords.latitude,
+				longitude: location.coords.longitude,
+			};
+			setRouteCoordinates(routeCoordinates.concat(coordinate));
+		}
+	};
+
+	const resetRouteCoordinates = () => {
+		setRouteCoordinates([]);
+		console.log("coordinates reseted");
+	};
+
+	const changeShowRoute = () => {
+		console.log(showRoute);
+		setShowRoute(showRoute === true ? false : true);
+	};
 
 	return (
 		<View style={styles.container}>
-			<Text>Berry picker tracker</Text>
+			<View style={styles.appHeader}>
+				<Text style={styles.textHeader}>Berry picker tracker</Text>
+			</View>
 			<MapView
 				style={styles.map}
 				showsUserLocation={true}
@@ -59,7 +87,47 @@ function App() {
 					latitudeDelta: 0.01,
 					longitudeDelta: 0.01,
 				}}
-			/>
+			>
+				<Polyline
+					coordinates={showRoute === true ? routeCoordinates : []}
+					strokeColor="red"
+					strokeWidth={4}
+				/>
+			</MapView>
+			<View style={styles.buttonContainer}>
+				<Button onPress={resetRouteCoordinates} text={"Reset route"} />
+				<Button
+					onPress={changeShowRoute}
+					text={showRoute === true ? "Hide route" : "Show route"}
+				/>
+			</View>
+			<View style={styles.infoContainer}>
+				<Text style={{ fontWeight: "bold" }}>Current location:</Text>
+				<Text>
+					-Latitude:{" "}
+					{lastLocation === null
+						? "not available"
+						: lastLocation.coords.latitude}
+				</Text>
+				<Text>
+					-Longitude:{" "}
+					{lastLocation === null
+						? "not available"
+						: lastLocation.coords.longitude}
+				</Text>
+				<Text style={{ fontWeight: "bold" }}>Cellular network:</Text>
+				<Text>
+					-NMC code:{" "}
+					{mobileNetCode === null ? "Network not available" : mobileNetCode}
+				</Text>
+				<Text style={{ fontWeight: "bold" }}>
+					Route location points: {routeCoordinates.length}
+				</Text>
+			</View>
+			<View style={styles.navigator}>
+				<NavigatorTab text="Map" />
+				<NavigatorTab text="Setting" />
+			</View>
 		</View>
 	);
 }
@@ -69,12 +137,66 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "flex-start",
+		flexDirection: "column",
 	},
 	map: {
 		width: Dimensions.get("window").width,
 		height: Dimensions.get("window").height,
-		marginTop: 50,
+		top: Constants.statusBarHeight + 50,
+	},
+	buttonContainer: {
+		display: "flex",
+		position: "absolute",
+		alignSelf: "flex-start",
+		marginLeft: 10,
+		flexDirection: "column",
+		bottom: 100,
+	},
+	infoContainer: {
+		display: "flex",
+		position: "absolute",
+		backgroundColor: theme.colors.buttonBackgroundColor,
+		top: 100,
+		alignSelf: "flex-start",
+		marginLeft: 10,
+		borderRadius: 20,
+		padding: 15,
+		textAlign: "center",
+		height: 130,
+		shadowColor: "black",
+		shadowOffset: { width: 3, height: 3 },
+		shadowOpacity: 0.8,
+		shadowRadius: 20,
+		elevation: 5,
+		margin: 5,
+	},
+	appHeader: {
+		height: 50,
+		position: "absolute",
+		width: "100%",
+		justifyContent: "center",
+		alignItems: "center",
+		top: Constants.statusBarHeight,
+		backgroundColor: theme.colors.primaryBackgroundColor,
+	},
+	navigator: {
+		display: "flex",
+		flexDirection: "row",
+		height: 85,
+		position: "absolute",
+		width: "100%",
+		justifyContent: "center",
+		alignItems: "flex-start",
+		marginTop: 20,
+		paddingTop: 5,
+		bottom: 0,
+		backgroundColor: theme.colors.primaryBackgroundColor,
+	},
+	textHeader: {
+		fontSize: theme.fontSizes.header,
+		fontWeight: "bold",
+		color: theme.colors.textSecondary,
 	},
 });
 
