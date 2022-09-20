@@ -70,7 +70,7 @@ function App() {
 
 	const changeShowRoute = () => {
 		console.log(showRoute);
-		setShowRoute(showRoute === true ? false : true);
+		setShowRoute(!showRoute);
 	};
 
 	return (
@@ -89,7 +89,7 @@ function App() {
 				}}
 			>
 				<Polyline
-					coordinates={showRoute === true ? routeCoordinates : []}
+					coordinates={showRoute ? routeCoordinates : []}
 					strokeColor="red"
 					strokeWidth={4}
 				/>
@@ -98,7 +98,7 @@ function App() {
 				<Button onPress={resetRouteCoordinates} text={"Reset route"} />
 				<Button
 					onPress={changeShowRoute}
-					text={showRoute === true ? "Hide route" : "Show route"}
+					text={showRoute ? "Hide route" : "Show route"}
 				/>
 			</View>
 			<View style={styles.infoContainer}>
