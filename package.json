@@ -36,7 +36,7 @@
 	},
 	"private": true,
 	"lint-staged": {
-		"*": [
+		"./src/**/*": [
 			"prettier --ignore-unknown --write src",
 			"eslint --fix --max-warnings=0 src"
 		]
