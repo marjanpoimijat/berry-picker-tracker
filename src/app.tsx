@@ -45,7 +45,7 @@ function App() {
 		const interval = setInterval(async () => {
 			const location = await Location.getLastKnownPositionAsync({});
 			addNewRouteCoordinate(location);
-		}, 2 * 1000);
+		}, 10 * 1000);
 
 		return () => clearInterval(interval);
 	}, [routeCoordinates]);
