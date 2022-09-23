@@ -17,7 +17,15 @@ function App() {
 	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
 	const [routeCoordinates, setRouteCoordinates] = useState<Array<LatLng>>([]);
 	const [showRoute, setShowRoute] = useState<boolean>(true);
+	const [locationInterval, setLocationInterval] = useState<number>(10000);
+	const [netCodeInterval, setNetCodeInterval] = useState<number>(10000);
+	const [routeCoordInterval, setRouteCoordInterval] = useState<number>(3000);
 
+	/**
+	 * Requests permissions to use device location.
+	 * Gets device location and sets current location state if permissions is allowed.
+	 * Otherwise sets error message state which is not currently used anywhere.
+	 */
 	useEffect(() => {
 		(async () => {
 			const { status } = await Location.requestForegroundPermissionsAsync();
@@ -25,39 +33,57 @@ function App() {
 				setErrorMsg("Permission to access location was denied");
 				return;
 			}
-
 			const location = await Location.getCurrentPositionAsync({});
 			setCurLocation(location);
 		})();
 	}, []);
 
+	/**
+	 *Gets devices last known location and sets current location state using
+	 the interval according to the location interval state.
+	 */
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const location = await Location.getLastKnownPositionAsync({});
 			setCurLocation(location);
-		}, 10 * 1000);
+		}, locationInterval);
 
 		return () => clearInterval(interval);
 	}, [curLocation]);
 
+	/**
+	 * Gets devices last known location and appends the coordinate points (latitude/longitude)
+	 * into route coordinates state using the `AddNewRouteCoordinate()` function.
+	 * Uses interval according to the route coordinate interval state.
+	 */
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const location = await Location.getLastKnownPositionAsync({});
 			addNewRouteCoordinate(location);
-		}, 2 * 1000);
+		}, routeCoordInterval);
 
 		return () => clearInterval(interval);
 	}, [routeCoordinates]);
 
+	/**
+	 * Gets cellular network operators MNC (Mobile Network Code) and sets network code state
+	 * using the interval according to the network code interval state.
+	 * MNC code is a null if SIM card is not at the device or there is no cellular service available.
+	 */
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
 			setMobileNetCode(networkCode);
-		}, 3 * 1000);
+		}, netCodeInterval);
 
 		return () => clearInterval(interval);
 	}, [mobileNetCode]);
 
+	/**
+	 * Creates coordinate object from the location object and appends coordinate into
+	 * route coordinate state which contains list of previously stored coordinate objects.
+	 * @param location object which contains latitude and longitude values.
+	 */
 	const addNewRouteCoordinate = (location: LocationObject | null) => {
 		if (location !== null) {
 			const coordinate = {
@@ -69,11 +95,18 @@ function App() {
 		}
 	};
 
+	/**
+	 * Resets route coordinate state ie. sets state as empty list.
+	 */
 	const resetRouteCoordinates = () => {
 		setRouteCoordinates([]);
 		console.log("coordinates reseted");
 	};
 
+	/**
+	 * Changes show route state to opposite boolean ie. from true to false
+	 * and vice versa.
+	 */
 	const changeShowRoute = () => {
 		console.log(showRoute);
 		setShowRoute(!showRoute);
