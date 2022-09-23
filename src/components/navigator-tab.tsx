@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import NavigatorIcon from "./navigator-icon";
 
 import theme from "../theme";
@@ -19,11 +19,17 @@ const styles = StyleSheet.create({
 	},
 });
 
+/**
+ * Navigator tab located at the bottom of the screen which contains
+ * navigator icons to navigate into other views.
+ * Just preliminary styling at the moment.
+ * @returns a tree of React elements
+ */
 const NavigatorTab = (): JSX.Element => {
 	return (
 		<View style={styles.navigatorTab}>
-			<NavigatorIcon text="Map" route="map" />
-			<NavigatorIcon text="Setting" route="settings" />
+			<NavigatorIcon text="Map" />
+			<NavigatorIcon text="Setting" />
 		</View>
 	);
 };
