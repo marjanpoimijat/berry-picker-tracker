@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
 import Constants from "expo-constants";
 import { registerRootComponent } from "expo";
-import MapView, { LatLng, Polyline } from "react-native-maps";
+import MapView, { LatLng, Polyline, UrlTile } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
@@ -70,7 +70,7 @@ function App() {
 
 	const changeShowRoute = () => {
 		console.log(showRoute);
-		setShowRoute(showRoute === true ? false : true);
+		setShowRoute(!showRoute);
 	};
 
 	return (
@@ -88,8 +88,13 @@ function App() {
 					longitudeDelta: 0.01,
 				}}
 			>
+				<UrlTile
+					urlTemplate="http://192.168.8.112:8000/nlsapi/{z}/{y}/{x}"
+					tileSize={256}
+					maximumZ={19}
+				/>
 				<Polyline
-					coordinates={showRoute === true ? routeCoordinates : []}
+					coordinates={showRoute ? routeCoordinates : []}
 					strokeColor="red"
 					strokeWidth={4}
 				/>
@@ -98,7 +103,7 @@ function App() {
 				<Button onPress={resetRouteCoordinates} text={"Reset route"} />
 				<Button
 					onPress={changeShowRoute}
-					text={showRoute === true ? "Hide route" : "Show route"}
+					text={showRoute ? "Hide route" : "Show route"}
 				/>
 			</View>
 			<View style={styles.infoContainer}>

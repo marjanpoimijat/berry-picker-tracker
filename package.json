@@ -36,9 +36,7 @@
 	},
 	"private": true,
 	"lint-staged": {
-		"*": [
-			"prettier --ignore-unknown --write src",
-			"eslint --fix --max-warnings=0 src"
-		]
+		"*": "prettier --ignore-unknown --write src",
+		"*.{ts, tsx}": "eslint --fix --max-warnings=0 src"
 	}
 }
