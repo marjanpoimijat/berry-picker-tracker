@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import Constants from "expo-constants";
 import { registerRootComponent } from "expo";
 import MapView, { LatLng, Polyline, UrlTile } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
-import NavigatorTab from "./components/navigator-tab";
+import AppHeader from "./components/app-header";
 import RouteButtonContainer from "./components/route-button-container";
-
-import theme from "./theme";
+import InfoContainer from "./components/info-container";
+import NavigatorTab from "./components/navigator-tab";
 
 function App() {
 	const [, setErrorMsg] = useState<string | null>(null);
@@ -114,9 +114,7 @@ function App() {
 
 	return (
 		<View style={styles.container}>
-			<View style={styles.appHeader}>
-				<Text style={styles.textHeader}>Berry picker tracker</Text>
-			</View>
+			<AppHeader name={"Berry picker tracker"} />
 			<MapView
 				style={styles.map}
 				showsUserLocation={true}
@@ -144,31 +142,12 @@ function App() {
 				changeShowRoute={changeShowRoute}
 				showRoute={showRoute}
 			/>
-			<View style={styles.infoContainer}>
-				<Text style={{ fontWeight: "bold" }}>Current location:</Text>
-				<Text>
-					-Latitude:{" "}
-					{curLocation === null ? "not available" : curLocation.coords.latitude}
-				</Text>
-				<Text>
-					-Longitude:{" "}
-					{curLocation === null
-						? "not available"
-						: curLocation.coords.longitude}
-				</Text>
-				<Text style={{ fontWeight: "bold" }}>Cellular network:</Text>
-				<Text>
-					-NMC code:{" "}
-					{mobileNetCode === null ? "Network not available" : mobileNetCode}
-				</Text>
-				<Text style={{ fontWeight: "bold" }}>
-					Route location points: {routeCoordinates.length}
-				</Text>
-			</View>
-			<View style={styles.navigator}>
-				<NavigatorTab text="Map" />
-				<NavigatorTab text="Setting" />
-			</View>
+			<InfoContainer
+				curLocation={curLocation}
+				mobileNetCode={mobileNetCode}
+				routeCoordinates={routeCoordinates}
+			/>
+			<NavigatorTab />
 		</View>
 	);
 }
@@ -185,59 +164,6 @@ const styles = StyleSheet.create({
 		width: Dimensions.get("window").width,
 		height: Dimensions.get("window").height,
 		top: Constants.statusBarHeight + 50,
-	},
-	buttonContainer: {
-		display: "flex",
-		position: "absolute",
-		alignSelf: "flex-start",
-		marginLeft: 10,
-		flexDirection: "column",
-		bottom: 100,
-	},
-	infoContainer: {
-		display: "flex",
-		position: "absolute",
-		backgroundColor: theme.colors.buttonBackgroundColor,
-		top: 100,
-		alignSelf: "flex-start",
-		marginLeft: 10,
-		borderRadius: 20,
-		padding: 15,
-		textAlign: "center",
-		height: 130,
-		shadowColor: "black",
-		shadowOffset: { width: 3, height: 3 },
-		shadowOpacity: 0.8,
-		shadowRadius: 20,
-		elevation: 5,
-		margin: 5,
-	},
-	appHeader: {
-		height: 50,
-		position: "absolute",
-		width: "100%",
-		justifyContent: "center",
-		alignItems: "center",
-		top: Constants.statusBarHeight,
-		backgroundColor: theme.colors.primaryBackgroundColor,
-	},
-	navigator: {
-		display: "flex",
-		flexDirection: "row",
-		height: 85,
-		position: "absolute",
-		width: "100%",
-		justifyContent: "center",
-		alignItems: "flex-start",
-		marginTop: 20,
-		paddingTop: 5,
-		bottom: 0,
-		backgroundColor: theme.colors.primaryBackgroundColor,
-	},
-	textHeader: {
-		fontSize: theme.fontSizes.header,
-		fontWeight: "bold",
-		color: theme.colors.textSecondary,
 	},
 });
 

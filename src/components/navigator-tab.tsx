@@ -1,35 +1,29 @@
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import NavigatorIcon from "./navigator-icon";
 
 import theme from "../theme";
 
 const styles = StyleSheet.create({
-	navigatorIcon: {
+	navigatorTab: {
+		display: "flex",
+		flexDirection: "row",
+		height: 85,
+		position: "absolute",
+		width: "100%",
+		justifyContent: "center",
+		alignItems: "flex-start",
+		marginTop: 20,
+		paddingTop: 5,
+		bottom: 0,
 		backgroundColor: theme.colors.primaryBackgroundColor,
-		borderRadius: 20,
-		borderColor: "black",
-		padding: 15,
-		textAlign: "center",
-		height: 50,
-		shadowColor: "black",
-		shadowOffset: { width: 3, height: 3 },
-		shadowOpacity: 0.8,
-		shadowRadius: 20,
-		elevation: 5,
-		margin: 5,
-	},
-	textStyle: {
-		fontSize: theme.fontSizes.header,
-		fontWeight: "bold",
-		color: theme.colors.textSecondary,
 	},
 });
 
-const NavigatorTab = ({ text }: { text: string }) => {
+const NavigatorTab = () => {
 	return (
-		<View style={styles.navigatorIcon}>
-			<TouchableOpacity>
-				<Text style={styles.textStyle}>{text}</Text>
-			</TouchableOpacity>
+		<View style={styles.navigatorTab}>
+			<NavigatorIcon text="Map" />
+			<NavigatorIcon text="Setting" />
 		</View>
 	);
 };

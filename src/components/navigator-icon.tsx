@@ -3,9 +3,10 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import theme from "../theme";
 
 const styles = StyleSheet.create({
-	buttonIcon: {
-		backgroundColor: theme.colors.buttonBackgroundColor,
+	navigatorIcon: {
+		backgroundColor: theme.colors.primaryBackgroundColor,
 		borderRadius: 20,
+		borderColor: "black",
 		padding: 15,
 		textAlign: "center",
 		height: 50,
@@ -16,21 +17,21 @@ const styles = StyleSheet.create({
 		elevation: 5,
 		margin: 5,
 	},
+	textStyle: {
+		fontSize: theme.fontSizes.header,
+		fontWeight: "bold",
+		color: theme.colors.textSecondary,
+	},
 });
 
-interface Props {
-	onPress: () => void;
-	text: string;
-}
-
-const Button = ({ onPress, text }: Props): JSX.Element => {
+const NavigatorIcon = ({ text }: { text: string }) => {
 	return (
-		<View style={styles.buttonIcon}>
-			<TouchableOpacity onPress={onPress}>
-				<Text style={{ fontWeight: "bold" }}>{text}</Text>
+		<View style={styles.navigatorIcon}>
+			<TouchableOpacity>
+				<Text style={styles.textStyle}>{text}</Text>
 			</TouchableOpacity>
 		</View>
 	);
 };
 
-export default Button;
+export default NavigatorIcon;
