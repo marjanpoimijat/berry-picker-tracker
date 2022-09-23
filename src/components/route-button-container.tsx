@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import Button from "./Button";
+import Button from "./button";
 
 const styles = StyleSheet.create({
 	buttonContainer: {

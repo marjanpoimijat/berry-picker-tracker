@@ -6,7 +6,7 @@ import MapView, { LatLng, Polyline, UrlTile } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
-import NavigatorTab from "./components/NavigatorTab";
+import NavigatorTab from "./components/navigator-tab";
 import RouteButtonContainer from "./components/route-button-container";
 
 import theme from "./theme";
