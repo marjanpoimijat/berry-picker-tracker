@@ -6,8 +6,8 @@ import MapView, { LatLng, Polyline, UrlTile } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
-import Button from "./components/Button";
 import NavigatorTab from "./components/NavigatorTab";
+import RouteButtonContainer from "./components/route-button-container";
 
 import theme from "./theme";
 
@@ -36,13 +36,19 @@ function App() {
 		const interval = setInterval(async () => {
 			const location = await Location.getLastKnownPositionAsync({});
 			setLastLocation(location);
-			addNewRouteCoordinate(location);
-
-			console.log(lastLocation);
 		}, 10 * 1000);
 
 		return () => clearInterval(interval);
 	}, [lastLocation]);
+
+	useEffect(() => {
+		const interval = setInterval(async () => {
+			const location = await Location.getLastKnownPositionAsync({});
+			addNewRouteCoordinate(location);
+		}, 10 * 1000);
+
+		return () => clearInterval(interval);
+	}, [routeCoordinates]);
 
 	useEffect(() => {
 		const interval = setInterval(async () => {
@@ -60,6 +66,7 @@ function App() {
 				longitude: location.coords.longitude,
 			};
 			setRouteCoordinates(routeCoordinates.concat(coordinate));
+			console.log(routeCoordinates.length);
 		}
 	};
 
@@ -89,7 +96,7 @@ function App() {
 				}}
 			>
 				<UrlTile
-					urlTemplate="http://192.168.8.112:8000/nlsapi/{z}/{y}/{x}"
+					urlTemplate="http://192.168.0.111:8000/nlsapi/{z}/{y}/{x}"
 					tileSize={256}
 					maximumZ={19}
 				/>
@@ -99,13 +106,11 @@ function App() {
 					strokeWidth={4}
 				/>
 			</MapView>
-			<View style={styles.buttonContainer}>
-				<Button onPress={resetRouteCoordinates} text={"Reset route"} />
-				<Button
-					onPress={changeShowRoute}
-					text={showRoute ? "Hide route" : "Show route"}
-				/>
-			</View>
+			<RouteButtonContainer
+				resetRouteCoordinates={resetRouteCoordinates}
+				changeShowRoute={changeShowRoute}
+				showRoute={showRoute}
+			/>
 			<View style={styles.infoContainer}>
 				<Text style={{ fontWeight: "bold" }}>Current location:</Text>
 				<Text>
