@@ -12,9 +12,8 @@ import RouteButtonContainer from "./components/route-button-container";
 import theme from "./theme";
 
 function App() {
-	const [, setCurLocation] = useState<LocationObject | null>(null);
 	const [, setErrorMsg] = useState<string | null>(null);
-	const [lastLocation, setLastLocation] = useState<LocationObject | null>(null);
+	const [curLocation, setCurLocation] = useState<LocationObject | null>(null);
 	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
 	const [routeCoordinates, setRouteCoordinates] = useState<Array<LatLng>>([]);
 	const [showRoute, setShowRoute] = useState<boolean>(true);
@@ -35,17 +34,17 @@ function App() {
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const location = await Location.getLastKnownPositionAsync({});
-			setLastLocation(location);
+			setCurLocation(location);
 		}, 10 * 1000);
 
 		return () => clearInterval(interval);
-	}, [lastLocation]);
+	}, [curLocation]);
 
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const location = await Location.getLastKnownPositionAsync({});
 			addNewRouteCoordinate(location);
-		}, 10 * 1000);
+		}, 2 * 1000);
 
 		return () => clearInterval(interval);
 	}, [routeCoordinates]);
@@ -99,6 +98,7 @@ function App() {
 					urlTemplate="http://192.168.0.111:8000/nlsapi/{z}/{y}/{x}"
 					tileSize={256}
 					maximumZ={19}
+					zIndex={-3}
 				/>
 				<Polyline
 					coordinates={showRoute ? routeCoordinates : []}
@@ -115,15 +115,13 @@ function App() {
 				<Text style={{ fontWeight: "bold" }}>Current location:</Text>
 				<Text>
 					-Latitude:{" "}
-					{lastLocation === null
-						? "not available"
-						: lastLocation.coords.latitude}
+					{curLocation === null ? "not available" : curLocation.coords.latitude}
 				</Text>
 				<Text>
 					-Longitude:{" "}
-					{lastLocation === null
+					{curLocation === null
 						? "not available"
-						: lastLocation.coords.longitude}
+						: curLocation.coords.longitude}
 				</Text>
 				<Text style={{ fontWeight: "bold" }}>Cellular network:</Text>
 				<Text>
