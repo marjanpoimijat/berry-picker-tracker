@@ -1,4 +1,5 @@
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { Link } from "react-router-native";
 
 import theme from "../theme";
 
@@ -24,12 +25,24 @@ const styles = StyleSheet.create({
 	},
 });
 
-const NavigatorIcon = ({ text }: { text: string }) => {
+interface Props {
+	/** Navigator icon text */
+	text: string;
+	/** Route name */
+	route: string;
+}
+
+/**
+ * Navigator icon component
+ * @param param0
+ * @returns
+ */
+const NavigatorIcon = ({ text, route }: Props): JSX.Element => {
 	return (
 		<View style={styles.navigatorIcon}>
-			<TouchableOpacity>
+			<Link to={route}>
 				<Text style={styles.textStyle}>{text}</Text>
-			</TouchableOpacity>
+			</Link>
 		</View>
 	);
 };

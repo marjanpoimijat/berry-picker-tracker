@@ -19,11 +19,11 @@ const styles = StyleSheet.create({
 	},
 });
 
-const NavigatorTab = () => {
+const NavigatorTab = (): JSX.Element => {
 	return (
 		<View style={styles.navigatorTab}>
-			<NavigatorIcon text="Map" />
-			<NavigatorIcon text="Setting" />
+			<NavigatorIcon text="Map" route="map" />
+			<NavigatorIcon text="Setting" route="settings" />
 		</View>
 	);
 };

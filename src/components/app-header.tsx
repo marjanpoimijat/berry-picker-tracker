@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
  * @param {string} name application name
  * @returns a tree of React elements
  */
-const AppHeader = ({ name }: { name: string }) => {
+const AppHeader = ({ name }: { name: string }): JSX.Element => {
 	return (
 		<View style={styles.appHeader}>
 			<Text style={styles.textHeader}>{name}</Text>
