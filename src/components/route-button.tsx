@@ -19,11 +19,20 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
+	/** On press function */
 	onPress: () => void;
+	/** Button text */
 	text: string;
 }
 
-const Button = ({ onPress, text }: Props): JSX.Element => {
+/**
+ * Route button component which can perform on press functions
+ * such as toggle visibility on / off.
+ * Just preliminary styling and location on a screen.
+ * @param {string} text Button text
+ * @returns a tree of React elements
+ */
+const RouteButton = ({ onPress, text }: Props): JSX.Element => {
 	return (
 		<View style={styles.buttonIcon}>
 			<TouchableOpacity onPress={onPress}>
@@ -33,4 +42,4 @@ const Button = ({ onPress, text }: Props): JSX.Element => {
 	);
 };
 
-export default Button;
+export default RouteButton;

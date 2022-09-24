@@ -24,7 +24,14 @@ const styles = StyleSheet.create({
 	},
 });
 
-const NavigatorTab = ({ text }: { text: string }) => {
+/**
+ * Navigator icon component to indicate where to navigate.
+ * Icons are not currently forwarding anywhere.
+ * Just preliminary styling at the moment.
+ * @param {string} text Navigator icon name
+ * @returns a tree of React elements
+ */
+const NavigatorIcon = ({ text }: { text: string }): JSX.Element => {
 	return (
 		<View style={styles.navigatorIcon}>
 			<TouchableOpacity>
@@ -34,4 +41,4 @@ const NavigatorTab = ({ text }: { text: string }) => {
 	);
 };
 
-export default NavigatorTab;
+export default NavigatorIcon;
