@@ -13,29 +13,37 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-	/** Function to reset route coordinates */
-	resetRouteCoordinates: () => void;
+	/** Function to start and stop route tracking */
+	changeTracking: () => void;
 	/** Function to toggle show route state true or false */
 	changeShowRoute: () => void;
 	/** State to determine whether route is visible or not */
 	showRoute: boolean;
+	/** State to determine whether route tracking has started or not */
+	isTracking: boolean;
+	/**trip ID number */
+	tripId: string | null;
 }
 
 /**
  * Route button container component which contains buttons to
- * toggle route visibility on / off and to reset route tracking.
+ * start / end route tracking and to toggle route visibility on / off.
  * Just preliminary styling and location on a screen.
- * @param {boolean} showRoute indicates if route is visible or not.
  * @returns a tree of React elements
  */
 const RouteButtonContainer = ({
-	resetRouteCoordinates,
+	changeTracking,
 	changeShowRoute,
 	showRoute,
+	isTracking,
+	tripId,
 }: Props): JSX.Element => {
 	return (
 		<View style={styles.buttonContainer}>
-			<RouteButton onPress={resetRouteCoordinates} text={"Reset route"} />
+			<RouteButton
+				onPress={changeTracking}
+				text={isTracking ? "End trip - " + tripId : "Start trip"}
+			/>
 			<RouteButton
 				onPress={changeShowRoute}
 				text={showRoute ? "Hide route" : "Show route"}

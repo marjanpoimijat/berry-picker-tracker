@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import Constants from "expo-constants";
 import { registerRootComponent } from "expo";
@@ -17,14 +17,18 @@ function App() {
 	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
 	const [routeCoordinates, setRouteCoordinates] = useState<Array<LatLng>>([]);
 	const [showRoute, setShowRoute] = useState<boolean>(true);
-	const [locationInterval, setLocationInterval] = useState<number>(10000);
-	const [netCodeInterval, setNetCodeInterval] = useState<number>(10000);
-	const [routeCoordInterval, setRouteCoordInterval] = useState<number>(3000);
+	const [trackingInterval] = useState<number>(1000);
+	const [isTracking, setIsTracking] = useState<boolean>(false);
+	const [tripId, setTripId] = useState<string | null>(null);
+	const trackingInfoRef = useRef<() => void>();
 
 	/**
 	 * Requests permissions to use device location.
 	 * Gets device location and sets current location state if permissions is allowed.
 	 * Otherwise sets error message state which is not currently used anywhere.
+	 * Also cellular network operators MNC (Mobile Network Code) and sets network code state
+	 * using the interval according to the network code interval state.
+	 * MNC code is a null if SIM card is not at the device or there is no cellular service available.
 	 */
 	useEffect(() => {
 		(async () => {
@@ -35,49 +39,32 @@ function App() {
 			}
 			const location = await Location.getCurrentPositionAsync({});
 			setCurLocation(location);
+			const networkCode = await Cellular.getMobileNetworkCodeAsync();
+			setMobileNetCode(networkCode);
 		})();
 	}, []);
 
-	/**
-	 *Gets devices last known location and sets current location state using
-	 the interval according to the location interval state.
-	 */
+	const updateTrackingInfo: () => void = async () => {
+		const location = await Location.getLastKnownPositionAsync({});
+		setCurLocation(location);
+		addNewRouteCoordinate(location);
+		const networkCode = await Cellular.getMobileNetworkCodeAsync();
+		setMobileNetCode(networkCode);
+	};
+
 	useEffect(() => {
-		const interval = setInterval(async () => {
-			const location = await Location.getLastKnownPositionAsync({});
-			setCurLocation(location);
-		}, locationInterval);
+		trackingInfoRef.current = updateTrackingInfo;
+	}, [updateTrackingInfo]);
 
-		return () => clearInterval(interval);
-	}, [curLocation]);
-
-	/**
-	 * Gets devices last known location and appends the coordinate points (latitude/longitude)
-	 * into route coordinates state using the `AddNewRouteCoordinate()` function.
-	 * Uses interval according to the route coordinate interval state.
-	 */
 	useEffect(() => {
-		const interval = setInterval(async () => {
-			const location = await Location.getLastKnownPositionAsync({});
-			addNewRouteCoordinate(location);
-		}, routeCoordInterval);
-
-		return () => clearInterval(interval);
-	}, [routeCoordinates]);
-
-	/**
-	 * Gets cellular network operators MNC (Mobile Network Code) and sets network code state
-	 * using the interval according to the network code interval state.
-	 * MNC code is a null if SIM card is not at the device or there is no cellular service available.
-	 */
-	useEffect(() => {
-		const interval = setInterval(async () => {
-			const networkCode = await Cellular.getMobileNetworkCodeAsync();
-			setMobileNetCode(networkCode);
-		}, netCodeInterval);
-
-		return () => clearInterval(interval);
-	}, [mobileNetCode]);
+		function tick() {
+			trackingInfoRef.current();
+		}
+		if (isTracking) {
+			const id = setInterval(tick, trackingInterval);
+			return () => clearInterval(id);
+		}
+	}, [isTracking]);
 
 	/**
 	 * Creates coordinate object from the location object and appends coordinate into
@@ -91,16 +78,14 @@ function App() {
 				longitude: location.coords.longitude,
 			};
 			setRouteCoordinates(routeCoordinates.concat(coordinate));
-			console.log(routeCoordinates.length);
 		}
 	};
 
-	/**
-	 * Resets route coordinate state ie. sets state as empty list.
-	 */
-	const resetRouteCoordinates = () => {
+	const changeTracking = () => {
 		setRouteCoordinates([]);
-		console.log("coordinates reseted");
+		setIsTracking(!isTracking);
+		setTripId(tripId ? null : "non-unique-trip-id-1234");
+		console.log(isTracking ? "tracking started" : "tracking ended");
 	};
 
 	/**
@@ -138,9 +123,11 @@ function App() {
 				/>
 			</MapView>
 			<RouteButtonContainer
-				resetRouteCoordinates={resetRouteCoordinates}
+				changeTracking={changeTracking}
 				changeShowRoute={changeShowRoute}
 				showRoute={showRoute}
+				isTracking={isTracking}
+				tripId={tripId}
 			/>
 			<InfoContainer
 				curLocation={curLocation}
