@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import Constants from "expo-constants";
+import { View, StyleSheet } from "react-native";
+import { LatLng } from "react-native-maps";
 import { registerRootComponent } from "expo";
-import MapView, { LatLng, Polyline, UrlTile } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
 import AppHeader from "./components/app-header";
+import MapViewContainer from "./components/map-view-container";
 import RouteButtonContainer from "./components/route-button-container";
 import InfoContainer from "./components/info-container";
 import NavigatorTab from "./components/navigator-tab";
@@ -44,6 +44,11 @@ function App() {
 		})();
 	}, []);
 
+	/**
+	 * Gets devices last known location and MNC code, updates corresponding states and appends
+	 * the coordinate points (latitude/longitude) into route coordinates state using the
+	 * `AddNewRouteCoordinate()`function.
+	 */
 	const updateTrackingInfo: () => void = async () => {
 		const location = await Location.getLastKnownPositionAsync({});
 		setCurLocation(location);
@@ -52,6 +57,10 @@ function App() {
 		setMobileNetCode(networkCode);
 	};
 
+	/**
+	 * Updates tracking info using the interval of tracking interval state if
+	 * is tracking state has been set to true. Otherwise do not update.
+	 */
 	useEffect(() => {
 		trackingInfoRef.current = updateTrackingInfo;
 	}, [updateTrackingInfo]);
@@ -81,6 +90,11 @@ function App() {
 		}
 	};
 
+	/**
+	 * Changes tracking state, initializes route coordinate state with empty list
+	 * and sets trip id to string when tracking has started and to null when tracking
+	 * has ended.
+	 */
 	const changeTracking = () => {
 		setRouteCoordinates([]);
 		setIsTracking(!isTracking);
@@ -100,28 +114,10 @@ function App() {
 	return (
 		<View style={styles.container}>
 			<AppHeader name={"Berry picker tracker"} />
-			<MapView
-				style={styles.map}
-				showsUserLocation={true}
-				initialRegion={{
-					latitude: 60.204662,
-					longitude: 24.962535,
-					latitudeDelta: 0.01,
-					longitudeDelta: 0.01,
-				}}
-			>
-				<UrlTile
-					urlTemplate="http://192.168.0.111:8000/nlsapi/{z}/{y}/{x}"
-					tileSize={256}
-					maximumZ={19}
-					zIndex={-3}
-				/>
-				<Polyline
-					coordinates={showRoute ? routeCoordinates : []}
-					strokeColor="red"
-					strokeWidth={4}
-				/>
-			</MapView>
+			<MapViewContainer
+				showRoute={showRoute}
+				routeCoordinates={routeCoordinates}
+			/>
 			<RouteButtonContainer
 				changeTracking={changeTracking}
 				changeShowRoute={changeShowRoute}
@@ -146,11 +142,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "flex-start",
 		flexDirection: "column",
-	},
-	map: {
-		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height,
-		top: Constants.statusBarHeight + 50,
 	},
 });
 
