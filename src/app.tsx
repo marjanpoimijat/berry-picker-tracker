@@ -96,9 +96,11 @@ function App() {
 	 * has ended.
 	 */
 	const changeTracking = () => {
+		// Temporary solution. Waiting for backend connection and userID request.
+		const uid = "non-unique-trip-id-1234";
 		setRouteCoordinates([]);
 		setIsTracking(!isTracking);
-		setTripId(tripId ? null : "non-unique-trip-id-1234");
+		setTripId(tripId ? null : uid);
 		console.log(isTracking ? "tracking started" : "tracking ended");
 	};
 
