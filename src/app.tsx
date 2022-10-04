@@ -5,11 +5,16 @@ import { registerRootComponent } from "expo";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
+
 import AppHeader from "./components/app-header";
 import MapViewContainer from "./components/map-view-container";
 import RouteButtonContainer from "./components/route-button-container";
 import InfoContainer from "./components/info-container";
 import NavigatorTab from "./components/navigator-tab";
+import UserIdStorage from "./utils/user-id-storage";
+import UserIdStorageContext from "./contexts/user-id-context";
+
+const userIdStorage = new UserIdStorage();
 
 function App() {
 	const [, setErrorMsg] = useState<string | null>(null);
@@ -114,26 +119,28 @@ function App() {
 	};
 
 	return (
-		<View style={styles.container}>
-			<AppHeader name={"Berry picker tracker"} />
-			<MapViewContainer
-				showRoute={showRoute}
-				routeCoordinates={routeCoordinates}
-			/>
-			<RouteButtonContainer
-				changeTracking={changeTracking}
-				changeShowRoute={changeShowRoute}
-				showRoute={showRoute}
-				isTracking={isTracking}
-				tripId={tripId}
-			/>
-			<InfoContainer
-				curLocation={curLocation}
-				mobileNetCode={mobileNetCode}
-				routeCoordinates={routeCoordinates}
-			/>
-			<NavigatorTab />
-		</View>
+		<UserIdStorageContext.Provider value={userIdStorage}>
+			<View style={styles.container}>
+				<AppHeader name={"Berry picker tracker"} />
+				<MapViewContainer
+					showRoute={showRoute}
+					routeCoordinates={routeCoordinates}
+				/>
+				<RouteButtonContainer
+					changeTracking={changeTracking}
+					changeShowRoute={changeShowRoute}
+					showRoute={showRoute}
+					isTracking={isTracking}
+					tripId={tripId}
+				/>
+				<InfoContainer
+					curLocation={curLocation}
+					mobileNetCode={mobileNetCode}
+					routeCoordinates={routeCoordinates}
+				/>
+				<NavigatorTab />
+			</View>
+		</UserIdStorageContext.Provider>
 	);
 }
 
