@@ -3,8 +3,6 @@ import MapButton from "./map-button";
 import CoffeeButton from "./coffee-button";
 import SettingsButton from "./settings-button";
 
-import theme from "../theme";
-
 const styles = StyleSheet.create({
 	navigatorTab: {
 		display: "flex",
