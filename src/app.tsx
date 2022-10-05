@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import Constants from "expo-constants";
+import { useState, useEffect, useRef } from "react";
+import { View, StyleSheet } from "react-native";
+import { LatLng } from "react-native-maps";
 import { registerRootComponent } from "expo";
-import MapView, { LatLng, Polyline, UrlTile } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
 import AppHeader from "./components/app-header";
+import MapViewContainer from "./components/map-view-container";
 import RouteButtonContainer from "./components/route-button-container";
 import InfoContainer from "./components/info-container";
 import NavigatorTab from "./components/navigator-tab";
@@ -17,14 +17,18 @@ function App() {
 	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
 	const [routeCoordinates, setRouteCoordinates] = useState<Array<LatLng>>([]);
 	const [showRoute, setShowRoute] = useState<boolean>(true);
-	const [locationInterval, setLocationInterval] = useState<number>(10000);
-	const [netCodeInterval, setNetCodeInterval] = useState<number>(10000);
-	const [routeCoordInterval, setRouteCoordInterval] = useState<number>(3000);
+	const [trackingInterval] = useState<number>(1000);
+	const [isTracking, setIsTracking] = useState<boolean>(false);
+	const [tripId, setTripId] = useState<string | null>(null);
+	const trackingInfoRef = useRef<() => void>();
 
 	/**
 	 * Requests permissions to use device location.
 	 * Gets device location and sets current location state if permissions is allowed.
 	 * Otherwise sets error message state which is not currently used anywhere.
+	 * Also cellular network operators MNC (Mobile Network Code) and sets network code state
+	 * using the interval according to the network code interval state.
+	 * MNC code is a null if SIM card is not at the device or there is no cellular service available.
 	 */
 	useEffect(() => {
 		(async () => {
@@ -35,49 +39,41 @@ function App() {
 			}
 			const location = await Location.getCurrentPositionAsync({});
 			setCurLocation(location);
+			const networkCode = await Cellular.getMobileNetworkCodeAsync();
+			setMobileNetCode(networkCode);
 		})();
 	}, []);
 
 	/**
-	 *Gets devices last known location and sets current location state using
-	 the interval according to the location interval state.
+	 * Gets devices last known location and MNC code, updates corresponding states and appends
+	 * the coordinate points (latitude/longitude) into route coordinates state using the
+	 * `AddNewRouteCoordinate()`function.
 	 */
-	useEffect(() => {
-		const interval = setInterval(async () => {
-			const location = await Location.getLastKnownPositionAsync({});
-			setCurLocation(location);
-		}, locationInterval);
-
-		return () => clearInterval(interval);
-	}, [curLocation]);
+	const updateTrackingInfo: () => void = async () => {
+		const location = await Location.getLastKnownPositionAsync({});
+		setCurLocation(location);
+		addNewRouteCoordinate(location);
+		const networkCode = await Cellular.getMobileNetworkCodeAsync();
+		setMobileNetCode(networkCode);
+	};
 
 	/**
-	 * Gets devices last known location and appends the coordinate points (latitude/longitude)
-	 * into route coordinates state using the `AddNewRouteCoordinate()` function.
-	 * Uses interval according to the route coordinate interval state.
+	 * Updates tracking info using the interval of tracking interval state if
+	 * is tracking state has been set to true. Otherwise do not update.
 	 */
 	useEffect(() => {
-		const interval = setInterval(async () => {
-			const location = await Location.getLastKnownPositionAsync({});
-			addNewRouteCoordinate(location);
-		}, routeCoordInterval);
+		trackingInfoRef.current = updateTrackingInfo;
+	}, [updateTrackingInfo]);
 
-		return () => clearInterval(interval);
-	}, [routeCoordinates]);
-
-	/**
-	 * Gets cellular network operators MNC (Mobile Network Code) and sets network code state
-	 * using the interval according to the network code interval state.
-	 * MNC code is a null if SIM card is not at the device or there is no cellular service available.
-	 */
 	useEffect(() => {
-		const interval = setInterval(async () => {
-			const networkCode = await Cellular.getMobileNetworkCodeAsync();
-			setMobileNetCode(networkCode);
-		}, netCodeInterval);
-
-		return () => clearInterval(interval);
-	}, [mobileNetCode]);
+		function tick() {
+			trackingInfoRef.current();
+		}
+		if (isTracking) {
+			const id = setInterval(tick, trackingInterval);
+			return () => clearInterval(id);
+		}
+	}, [isTracking]);
 
 	/**
 	 * Creates coordinate object from the location object and appends coordinate into
@@ -91,16 +87,21 @@ function App() {
 				longitude: location.coords.longitude,
 			};
 			setRouteCoordinates(routeCoordinates.concat(coordinate));
-			console.log(routeCoordinates.length);
 		}
 	};
 
 	/**
-	 * Resets route coordinate state ie. sets state as empty list.
+	 * Changes tracking state, initializes route coordinate state with empty list
+	 * and sets trip id to string when tracking has started and to null when tracking
+	 * has ended.
 	 */
-	const resetRouteCoordinates = () => {
+	const changeTracking = () => {
+		// Temporary solution. Waiting for backend connection and userID request.
+		const uid = "non-unique-trip-id-1234";
 		setRouteCoordinates([]);
-		console.log("coordinates reseted");
+		setIsTracking(!isTracking);
+		setTripId(tripId ? null : uid);
+		console.log(isTracking ? "tracking started" : "tracking ended");
 	};
 
 	/**
@@ -115,32 +116,16 @@ function App() {
 	return (
 		<View style={styles.container}>
 			<AppHeader name={"Berry picker tracker"} />
-			<MapView
-				style={styles.map}
-				showsUserLocation={true}
-				initialRegion={{
-					latitude: 60.204662,
-					longitude: 24.962535,
-					latitudeDelta: 0.01,
-					longitudeDelta: 0.01,
-				}}
-			>
-				<UrlTile
-					urlTemplate="http://192.168.0.111:8000/nlsapi/{z}/{y}/{x}"
-					tileSize={256}
-					maximumZ={19}
-					zIndex={-3}
-				/>
-				<Polyline
-					coordinates={showRoute ? routeCoordinates : []}
-					strokeColor="red"
-					strokeWidth={4}
-				/>
-			</MapView>
+			<MapViewContainer
+				showRoute={showRoute}
+				routeCoordinates={routeCoordinates}
+			/>
 			<RouteButtonContainer
-				resetRouteCoordinates={resetRouteCoordinates}
+				changeTracking={changeTracking}
 				changeShowRoute={changeShowRoute}
 				showRoute={showRoute}
+				isTracking={isTracking}
+				tripId={tripId}
 			/>
 			<InfoContainer
 				curLocation={curLocation}
@@ -159,11 +144,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "flex-start",
 		flexDirection: "column",
-	},
-	map: {
-		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height,
-		top: Constants.statusBarHeight + 50,
 	},
 });
 
