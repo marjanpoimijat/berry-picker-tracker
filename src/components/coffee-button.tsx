@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const BurgerButton = ({ text }: { text: string }): JSX.Element => {
+const CoffeeButton = ({ text }: { text: string }): JSX.Element => {
 	return (
 		<View style={styles.buttonStyle}>
 			<TouchableOpacity>
@@ -47,4 +47,4 @@ const BurgerButton = ({ text }: { text: string }): JSX.Element => {
 	);
 };
 
-export default BurgerButton;
+export default CoffeeButton;

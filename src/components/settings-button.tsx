@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const NavigatorButton = ({ text }: { text: string }): JSX.Element => {
+const SettingsButton = ({ text }: { text: string }): JSX.Element => {
 	return (
 		<View style={styles.buttonStyle}>
 			<TouchableOpacity>
@@ -47,4 +47,4 @@ const NavigatorButton = ({ text }: { text: string }): JSX.Element => {
 	);
 };
 
-export default NavigatorButton;
+export default SettingsButton;
