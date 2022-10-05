@@ -1,5 +1,7 @@
 import { View, StyleSheet } from "react-native";
-import NavigatorIcon from "./navigator-icon";
+import MapButton from "./map-button";
+import CoffeeButton from "./coffee-button";
+import SettingsButton from "./settings-button";
 
 import theme from "../theme";
 
@@ -7,15 +9,16 @@ const styles = StyleSheet.create({
 	navigatorTab: {
 		display: "flex",
 		flexDirection: "row",
-		height: 85,
+		height: 70,
 		position: "absolute",
 		width: "100%",
 		justifyContent: "center",
 		alignItems: "flex-start",
-		marginTop: 20,
-		paddingTop: 5,
+		marginTop: 10,
+		paddingTop: 3,
+		paddingBottom: 3,
 		bottom: 0,
-		backgroundColor: theme.colors.primaryBackgroundColor,
+		backgroundColor: "#008b8b",
 	},
 });
 
@@ -28,8 +31,9 @@ const styles = StyleSheet.create({
 const NavigatorTab = (): JSX.Element => {
 	return (
 		<View style={styles.navigatorTab}>
-			<NavigatorIcon text="Map" />
-			<NavigatorIcon text="Setting" />
+			<MapButton text="Map" />
+			<CoffeeButton text="Coffee" />
+			<SettingsButton text="Settings" />
 		</View>
 	);
 };
