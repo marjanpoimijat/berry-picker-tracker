@@ -1,5 +1,9 @@
+import Constants from "expo-constants";
+
+const baseUrl = Constants.manifest.extra.uri;
+
 export const createNewUser = async () => {
-	const url = `http://192.168.0.111:8000/new-user/`;
+	const url = `${baseUrl}/new-user/`;
 	const settings = {
 		method: "POST",
 		headers: {
