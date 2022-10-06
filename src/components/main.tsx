@@ -10,6 +10,7 @@ import MapViewContainer from "./map-view-container";
 import RouteButtonContainer from "./route-button-container";
 import InfoContainer from "./info-container";
 import NavigatorTab from "./navigator-tab";
+import useIdentifyUser from "../hooks/use-identify-user";
 
 const Main = () => {
 	const [, setErrorMsg] = useState<string | null>(null);
@@ -21,6 +22,7 @@ const Main = () => {
 	const [isTracking, setIsTracking] = useState<boolean>(false);
 	const [tripId, setTripId] = useState<string | null>(null);
 	const trackingInfoRef = useRef<() => void>();
+	const identifyUser = useIdentifyUser();
 
 	/**
 	 * Requests permissions to use device location.
@@ -95,13 +97,11 @@ const Main = () => {
 	 * and sets trip id to string when tracking has started and to null when tracking
 	 * has ended.
 	 */
-	const changeTracking = () => {
-		// Temporary solution. Waiting for backend connection and userID request.
-		const uid = "non-unique-trip-id-1234";
+	const changeTracking = async () => {
+		const userId = await identifyUser();
 		setRouteCoordinates([]);
 		setIsTracking(!isTracking);
-		setTripId(tripId ? null : uid);
-		console.log(isTracking ? "tracking started" : "tracking ended");
+		setTripId(tripId ? null : userId);
 	};
 
 	/**
