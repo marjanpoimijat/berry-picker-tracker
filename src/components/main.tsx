@@ -11,6 +11,7 @@ import RouteButtonContainer from "./route-button-container";
 import InfoContainer from "./info-container";
 import NavigatorTab from "./navigator-tab";
 import useIdentifyUser from "../hooks/use-identify-user";
+import useRoutes from "../hooks/use-routes";
 
 const Main = () => {
 	const [, setErrorMsg] = useState<string | null>(null);
@@ -23,6 +24,9 @@ const Main = () => {
 	const [tripId, setTripId] = useState<string | null>(null);
 	const trackingInfoRef = useRef<() => void>();
 	const identifyUser = useIdentifyUser();
+
+	//Incomplete, just for testing
+	const { startRoute } = useRoutes();
 
 	/**
 	 * Requests permissions to use device location.
@@ -98,10 +102,12 @@ const Main = () => {
 	 * has ended.
 	 */
 	const changeTracking = async () => {
+		//Incomplete, just for testing
 		const userId = await identifyUser();
+		const routeId = await startRoute(userId);
 		setRouteCoordinates([]);
 		setIsTracking(!isTracking);
-		setTripId(tripId ? null : userId);
+		setTripId(routeId);
 	};
 
 	/**
