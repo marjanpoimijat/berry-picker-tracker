@@ -21,14 +21,23 @@ const styles = StyleSheet.create({
 
 /**
  * Application header component which displays application name
- * on top of the screen. Just preliminary styling at the moment.
+ * and user ID on top of the screen. Just preliminary styling at the moment.
  * @param {string} name application name
  * @returns a tree of React elements
  */
-const AppHeader = ({ name }: { name: string }): JSX.Element => {
+const AppHeader = ({
+	name,
+	userId,
+}: {
+	name: string;
+	userId: string | null;
+}): JSX.Element => {
 	return (
 		<View style={styles.appHeader}>
 			<Text style={styles.textHeader}>{name}</Text>
+			<Text style={{ color: "white" }}>{`User ID: ${
+				userId ? userId : "not stored yet"
+			}`}</Text>
 		</View>
 	);
 };
