@@ -21,8 +21,6 @@ interface Props {
 	showRoute: boolean;
 	/** State to determine whether route tracking has started or not */
 	isTracking: boolean;
-	/**trip ID number */
-	tripId: string | null;
 }
 
 /**
@@ -36,13 +34,12 @@ const RouteButtonContainer = ({
 	changeShowRoute,
 	showRoute,
 	isTracking,
-	tripId,
 }: Props): JSX.Element => {
 	return (
 		<View style={styles.buttonContainer}>
 			<RouteButton
 				onPress={changeTracking}
-				text={isTracking ? "End trip - " + tripId : "Start trip"}
+				text={isTracking ? "End route" : "Start route"}
 			/>
 			<RouteButton
 				onPress={changeShowRoute}
