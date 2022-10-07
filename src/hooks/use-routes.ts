@@ -1,26 +1,32 @@
 import { startNewRoute, deactivateExistingRoute } from "../requests";
 import useRouteIdStorage from "./use-route-id-storage";
 
-//Incomplete, just for testing
+/**
+ * Custom hook to use route operations.
+ * @returns startRoute and deactivateRoute functions
+ */
 const useRoutes = () => {
 	const routeIdStorage = useRouteIdStorage();
 
+	/**
+	 * Function to start new route. Makes http request
+	 * to create new route and stores route ID into devices local storage.
+	 * @returns route id
+	 */
 	const startRoute = async (userId: string) => {
-		//This logic needs to be changed...
-		const routeFromStorage = await routeIdStorage.getId();
-
-		if (routeFromStorage !== null) {
-			console.log(`id found from storage ${routeFromStorage}`);
-			return routeFromStorage;
-		} else {
-			console.log(`id not found from storage, creating new user`);
-			const data = await startNewRoute(userId);
-			await routeIdStorage.setId(data.id);
-			return data.id;
-		}
+		console.log("Starting new route");
+		const data = await startNewRoute(userId);
+		await routeIdStorage.setId(data.id);
+		return data.id;
 	};
 
-	const deactivateRoute = async (routeId: string) => {
+	/**
+	 * Function to deactivate route. Makes http request
+	 * to deactivate active route and removes route ID from devices local storage.
+	 */
+	const deactivateRoute = async () => {
+		console.log("Deactivating route");
+		const routeId = await routeIdStorage.getId();
 		await deactivateExistingRoute(routeId);
 		await routeIdStorage.removeId();
 	};
