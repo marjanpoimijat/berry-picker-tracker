@@ -17,6 +17,8 @@ const useIdentifyUser = () => {
 		console.log("Identifying user...");
 		const idFromStorage = await userIdStorage.getId();
 
+		// Should we also consider situation when user ID has stored into local storage
+		// but it has been removed from the server??
 		if (idFromStorage !== null) {
 			console.log(`user id found from storage ${idFromStorage}`);
 			return idFromStorage;
