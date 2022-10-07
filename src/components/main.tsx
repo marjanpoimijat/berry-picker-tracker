@@ -21,19 +21,17 @@ const Main = () => {
 	const [showRoute, setShowRoute] = useState<boolean>(true);
 	const [trackingInterval] = useState<number>(1000);
 	const [isTracking, setIsTracking] = useState<boolean>(false);
-	const [tripId, setTripId] = useState<string | null>(null);
-	const trackingInfoRef = useRef<() => void>();
+	const [userId, setUserId] = useState<string | null>(null);
+	const [routeId, setRouteId] = useState<string | null>(null);
+	const waypointRef = useRef<() => void>();
 	const identifyUser = useIdentifyUser();
-
-	//Incomplete, just for testing
-	const { startRoute } = useRoutes();
+	const { startRoute, deactivateRoute } = useRoutes();
 
 	/**
 	 * Requests permissions to use device location.
 	 * Gets device location and sets current location state if permissions is allowed.
 	 * Otherwise sets error message state which is not currently used anywhere.
-	 * Also cellular network operators MNC (Mobile Network Code) and sets network code state
-	 * using the interval according to the network code interval state.
+	 * Also gets cellular network operators MNC (Mobile Network Code), identifies user and sets user ID state.
 	 * MNC code is a null if SIM card is not at the device or there is no cellular service available.
 	 */
 	useEffect(() => {
@@ -47,15 +45,17 @@ const Main = () => {
 			setCurLocation(location);
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
 			setMobileNetCode(networkCode);
+			const uid = await identifyUser();
+			setUserId(uid);
 		})();
 	}, []);
 
 	/**
 	 * Gets devices last known location and MNC code, updates corresponding states and appends
 	 * the coordinate points (latitude/longitude) into route coordinates state using the
-	 * `AddNewRouteCoordinate()`function.
+	 * `AddNewRouteCoordinate()` function.
 	 */
-	const updateTrackingInfo: () => void = async () => {
+	const updateWaypoint: () => void = async () => {
 		const location = await Location.getLastKnownPositionAsync({});
 		setCurLocation(location);
 		addNewRouteCoordinate(location);
@@ -64,16 +64,16 @@ const Main = () => {
 	};
 
 	/**
-	 * Updates tracking info using the interval of tracking interval state if
+	 * Updates waypoint using the interval of tracking interval state if
 	 * is tracking state has been set to true. Otherwise do not update.
 	 */
 	useEffect(() => {
-		trackingInfoRef.current = updateTrackingInfo;
-	}, [updateTrackingInfo]);
+		waypointRef.current = updateWaypoint;
+	}, [updateWaypoint]);
 
 	useEffect(() => {
 		function tick() {
-			trackingInfoRef.current();
+			waypointRef.current();
 		}
 		if (isTracking) {
 			const id = setInterval(tick, trackingInterval);
@@ -97,17 +97,21 @@ const Main = () => {
 	};
 
 	/**
-	 * Changes tracking state, initializes route coordinate state with empty list
-	 * and sets trip id to string when tracking has started and to null when tracking
-	 * has ended.
+	 * Changes tracking state and initializes route coordinate state with empty list.
+	 * Needs to be reinvented later...
 	 */
 	const changeTracking = async () => {
-		//Incomplete, just for testing
-		const userId = await identifyUser();
-		const routeId = await startRoute(userId);
+		// Just to test storage / http request functionalities.
+		if (!isTracking) {
+			const uid = userId ? userId : await identifyUser();
+			const rid = await startRoute(uid);
+			setRouteId(rid);
+		} else {
+			await deactivateRoute();
+			setRouteId(null);
+		}
 		setRouteCoordinates([]);
 		setIsTracking(!isTracking);
-		setTripId(routeId);
 	};
 
 	/**
@@ -121,7 +125,7 @@ const Main = () => {
 
 	return (
 		<View style={styles.container}>
-			<AppHeader name={"Berry picker tracker"} />
+			<AppHeader name={"Berry picker tracker"} userId={userId} />
 			<MapViewContainer
 				showRoute={showRoute}
 				routeCoordinates={routeCoordinates}
@@ -131,12 +135,12 @@ const Main = () => {
 				changeShowRoute={changeShowRoute}
 				showRoute={showRoute}
 				isTracking={isTracking}
-				tripId={tripId}
 			/>
 			<InfoContainer
 				curLocation={curLocation}
 				mobileNetCode={mobileNetCode}
 				routeCoordinates={routeCoordinates}
+				routeId={routeId}
 			/>
 			<NavigatorTab />
 		</View>
