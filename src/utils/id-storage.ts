@@ -16,7 +16,7 @@ class IdStorage {
 	}
 
 	async setId(id: string) {
-		console.log(`${this.namespace} stored into the storage...`);
+		console.log(`${this.namespace} ${id} stored into the storage...`);
 		try {
 			await AsyncStorage.setItem(`${this.namespace}.id`, id);
 		} catch (error) {
