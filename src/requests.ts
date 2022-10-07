@@ -53,7 +53,7 @@ export const deactivateExistingRoute = async (routeId: string) => {
 	try {
 		const response = await fetch(url, settings);
 		const data = await response.json();
-		console.log(data);
+		console.log(`Route id ${data.id} active status set to: ${data.active}`);
 	} catch (error) {
 		console.log(error);
 	}
