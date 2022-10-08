@@ -25,7 +25,7 @@ const Main = () => {
 	const [routeId, setRouteId] = useState<string | null>(null);
 	const waypointRef = useRef<() => void>();
 	const identifyUser = useIdentifyUser();
-	const { startRoute, deactivateRoute } = useRoutes();
+	const { startRoute, sendWaypoint, deactivateRoute } = useRoutes();
 
 	/**
 	 * Requests permissions to use device location.
@@ -54,6 +54,7 @@ const Main = () => {
 	 * Gets devices last known location and MNC code, updates corresponding states and appends
 	 * the coordinate points (latitude/longitude) into route coordinates state using the
 	 * `AddNewRouteCoordinate()` function.
+	 * Currently also sends these waypoints to the server.
 	 */
 	const updateWaypoint: () => void = async () => {
 		const location = await Location.getLastKnownPositionAsync({});
@@ -61,6 +62,8 @@ const Main = () => {
 		addNewRouteCoordinate(location);
 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
 		setMobileNetCode(networkCode);
+		// Subject to change:
+		sendWaypoint(userId, location, networkCode);
 	};
 
 	/**

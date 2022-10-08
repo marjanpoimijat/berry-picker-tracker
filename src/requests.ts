@@ -1,4 +1,5 @@
 import Constants from "expo-constants";
+import { LocationObject } from "expo-location";
 
 const baseUrl = Constants.manifest.extra.uri;
 
@@ -30,6 +31,35 @@ export const startNewRoute = async (userId: string) => {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({ user_id: userId, active: true }),
+	};
+	try {
+		const response = await fetch(url, settings);
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const sendNewWaypoint = async (
+	routeId: string,
+	location: LocationObject,
+	mnc: string
+) => {
+	const url = `${baseUrl}/create-waypoint/`;
+	const settings = {
+		method: "POST",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			route_id: routeId,
+			latitude: location.coords.latitude,
+			longitude: location.coords.longitude,
+			mnc: mnc,
+			//ts: -,
+		}),
 	};
 	try {
 		const response = await fetch(url, settings);
