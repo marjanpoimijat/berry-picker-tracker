@@ -47,23 +47,25 @@ export const sendNewWaypoint = async (
 	mnc: string
 ) => {
 	const url = `${baseUrl}/create-waypoint/`;
+	const waypoint_info = [
+		{
+			route_id: routeId,
+			latitude: location.coords.latitude,
+			longitude: location.coords.longitude,
+			mnc: mnc,
+		},
+	];
 	const settings = {
 		method: "POST",
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({
-			route_id: routeId,
-			latitude: location.coords.latitude,
-			longitude: location.coords.longitude,
-			mnc: mnc,
-			//ts: -,
-		}),
+		body: JSON.stringify(waypoint_info),
 	};
 	try {
 		const response = await fetch(url, settings);
-		const data = await response.json();
+		const data = await response.status;
 		return data;
 	} catch (error) {
 		console.log(error);
