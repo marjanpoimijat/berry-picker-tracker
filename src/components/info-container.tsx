@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		padding: 15,
 		textAlign: "center",
-		height: 130,
+		height: 150,
 		shadowColor: "black",
 		shadowOffset: { width: 3, height: 3 },
 		shadowOpacity: 0.8,
@@ -28,16 +28,18 @@ interface Props {
 	curLocation: LocationObject | null;
 	mobileNetCode: string | null;
 	routeCoordinates: Array<LatLng>;
+	routeId: string;
 }
 
 /**
  * Info container component to show information primarily for debugging
- * purposes. Should be deleted later...
+ * purposes. Some of the info should be deleted later, but perhaps keep the coordinates?
  */
 const InfoContainer = ({
 	curLocation,
 	mobileNetCode,
 	routeCoordinates,
+	routeId,
 }: Props): JSX.Element => {
 	return (
 		<View style={styles.infoContainer}>
@@ -57,6 +59,10 @@ const InfoContainer = ({
 			</Text>
 			<Text style={{ fontWeight: "bold" }}>
 				Route location points: {routeCoordinates.length}
+			</Text>
+			<Text style={{ fontWeight: "bold" }}>
+				Route ID:{" "}
+				{routeId ? `${routeId.substring(0, 11)}...` : "route not active"}
 			</Text>
 		</View>
 	);

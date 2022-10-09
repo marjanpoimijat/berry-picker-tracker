@@ -12,7 +12,6 @@ describe("RouteButtonContainer", () => {
 				changeShowRoute={changeShowRoute}
 				showRoute={true}
 				isTracking={false}
-				tripId={null}
 			/>
 		);
 
@@ -34,7 +33,6 @@ describe("RouteButtonContainer", () => {
 				changeShowRoute={changeShowRoute}
 				showRoute={false}
 				isTracking={false}
-				tripId={null}
 			/>
 		);
 
@@ -46,7 +44,7 @@ describe("RouteButtonContainer", () => {
 		});
 	});
 
-	it("Has 'Start trip' text visible when is tracking has been set to false", async () => {
+	it("Has 'Start route' text visible when is tracking has been set to false", async () => {
 		const changeTracking = jest.fn();
 		const changeShowRoute = jest.fn();
 
@@ -56,22 +54,20 @@ describe("RouteButtonContainer", () => {
 				changeShowRoute={changeShowRoute}
 				showRoute={true}
 				isTracking={false}
-				tripId={null}
 			/>
 		);
 
-		fireEvent.press(getByText("Start trip"));
+		fireEvent.press(getByText("Start route"));
 
 		await waitFor(() => {
 			expect(changeTracking).toHaveBeenCalledTimes(1);
-			expect(getByText("Start trip")).toBeDefined();
+			expect(getByText("Start route")).toBeDefined();
 		});
 	});
 
-	it("Has 'End trip + trip ID' text visible when is tracking has been set to true", async () => {
+	it("Has 'End route' text visible when is tracking has been set to true", async () => {
 		const changeTracking = jest.fn();
 		const changeShowRoute = jest.fn();
-		const tripId = "test-trip-ID";
 
 		const { getByText } = render(
 			<RouteButtonContainer
@@ -79,15 +75,14 @@ describe("RouteButtonContainer", () => {
 				changeShowRoute={changeShowRoute}
 				showRoute={true}
 				isTracking={true}
-				tripId={tripId}
 			/>
 		);
 
-		fireEvent.press(getByText("End trip - " + tripId));
+		fireEvent.press(getByText("End route"));
 
 		await waitFor(() => {
 			expect(changeTracking).toHaveBeenCalledTimes(1);
-			expect(getByText("End trip - " + tripId)).toBeDefined();
+			expect(getByText("End route")).toBeDefined();
 		});
 	});
 });

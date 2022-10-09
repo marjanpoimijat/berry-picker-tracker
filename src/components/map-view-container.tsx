@@ -2,6 +2,8 @@ import { View, StyleSheet, Dimensions } from "react-native";
 import MapView, { LatLng, Polyline, UrlTile } from "react-native-maps";
 import Constants from "expo-constants";
 
+const baseUrl = Constants.manifest.extra.uri;
+
 const styles = StyleSheet.create({
 	map: {
 		width: Dimensions.get("window").width,
@@ -39,7 +41,7 @@ const MapViewContainer = ({
 				}}
 			>
 				<UrlTile
-					urlTemplate="http://192.168.0.111:8000/nlsapi/{z}/{y}/{x}"
+					urlTemplate={`${baseUrl}/nlsapi/{z}/{y}/{x}`}
 					tileSize={256}
 					maximumZ={19}
 					zIndex={-3}
