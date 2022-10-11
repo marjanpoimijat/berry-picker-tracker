@@ -65,7 +65,7 @@ export const sendNewWaypoint = async (
 	};
 	try {
 		const response = await fetch(url, settings);
-		const data = await response.status;
+		const data = await response.json();
 		return data;
 	} catch (error) {
 		console.log(error);
