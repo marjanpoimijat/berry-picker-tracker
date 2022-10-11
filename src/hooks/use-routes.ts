@@ -29,16 +29,14 @@ const useRoutes = () => {
 	 * Function to add now waypoints to current route. Makes http request
 	 * to add location and mnc-code to given routeId.
 	 * TODO: Add timestamps to http request.
-	 * @returns request statuscode
+	 * @returns request response
 	 */
 	const sendWaypoint = async (
 		routeId: string,
 		location: LocationObject,
 		mnc: string
 	) => {
-		// const ts = new Date()
 		const data = await sendNewWaypoint(routeId, location, mnc);
-		console.log("New waypoint sent to server, status:", data);
 		return data;
 	};
 
