@@ -63,7 +63,7 @@ const Main = () => {
 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
 		setMobileNetCode(networkCode);
 		// Will be moved to a different interval:
-		sendWaypoint(userId, location, networkCode);
+		sendWaypoint(routeId, location, networkCode);
 	};
 
 	/**
