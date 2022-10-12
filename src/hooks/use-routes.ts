@@ -1,4 +1,9 @@
-import { startNewRoute, deactivateExistingRoute } from "../requests";
+import { LocationObject } from "expo-location";
+import {
+	startNewRoute,
+	sendNewWaypoint,
+	deactivateExistingRoute,
+} from "../requests";
 import useRouteIdStorage from "./use-route-id-storage";
 
 /**
@@ -21,6 +26,21 @@ const useRoutes = () => {
 	};
 
 	/**
+	 * Function to add now waypoints to current route. Makes http request
+	 * to add location and mnc-code to given routeId.
+	 * TODO: Add timestamps to http request.
+	 * @returns request response
+	 */
+	const sendWaypoint = async (
+		routeId: string,
+		location: LocationObject,
+		mnc: string
+	) => {
+		const data = await sendNewWaypoint(routeId, location, mnc);
+		return data;
+	};
+
+	/**
 	 * Function to deactivate route. Makes http request
 	 * to deactivate active route and removes route ID from devices local storage.
 	 */
@@ -31,7 +51,7 @@ const useRoutes = () => {
 		await routeIdStorage.removeId();
 	};
 
-	return { startRoute, deactivateRoute };
+	return { startRoute, sendWaypoint, deactivateRoute };
 };
 
 export default useRoutes;
