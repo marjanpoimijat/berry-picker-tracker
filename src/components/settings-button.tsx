@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { Link } from "react-router-native";
 
 const styles = StyleSheet.create({
 	buttonStyle: {
@@ -10,14 +11,14 @@ const styles = StyleSheet.create({
 		paddingRight: 1,
 		textAlign: "center",
 		height: "100%",
-		width: "25%",
+		width: "100%",
 		shadowColor: "black",
 		shadowOffset: { width: 3, height: 1 },
 		shadowOpacity: 0.8,
 		shadowRadius: 10,
 		elevation: 10,
-		marginLeft: 3,
-		marginRight: 3,
+		marginLeft: 10,
+		marginRight: 10,
 		flexDirection: "column",
 	},
 	iconStyle: {
@@ -38,12 +39,12 @@ const styles = StyleSheet.create({
 
 const SettingsButton = ({ text }: { text: string }): JSX.Element => {
 	return (
-		<View style={styles.buttonStyle}>
-			<TouchableOpacity>
+		<Link to="/settings">
+			<View style={styles.buttonStyle}>
 				<Icon name="cog" style={styles.iconStyle} />
 				<Text style={styles.textStyle}>{text}</Text>
-			</TouchableOpacity>
-		</View>
+			</View>
+		</Link>
 	);
 };
 
