@@ -5,7 +5,7 @@ import NaviTabStyles from "../navi-tab-styles";
 
 const SettingsButton = ({ text }: { text: string }): JSX.Element => {
 	return (
-		<Link to="/settings">
+		<Link to="/settings" underlayColor="#ffffff00">
 			<View style={NaviTabStyles.buttonStyle}>
 				<Icon name="cog" style={NaviTabStyles.iconStyle} />
 				<Text style={NaviTabStyles.textStyle}>{text}</Text>

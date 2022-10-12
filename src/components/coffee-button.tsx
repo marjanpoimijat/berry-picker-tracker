@@ -5,7 +5,7 @@ import NaviTabStyles from "../navi-tab-styles";
 
 const CoffeeButton = ({ text }: { text: string }): JSX.Element => {
 	return (
-		<Link to="/coffee">
+		<Link to="/coffee" underlayColor="#ffffff00">
 			<View style={NaviTabStyles.buttonStyle}>
 				<Icon name="coffee" style={NaviTabStyles.iconStyle} />
 				<Text style={NaviTabStyles.textStyle}>{text}</Text>
