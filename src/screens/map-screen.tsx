@@ -8,9 +8,9 @@ import AppHeader from "../components/app-header";
 import MapViewContainer from "../components/map-view-container";
 import RouteButtonContainer from "../components/route-button-container";
 import InfoContainer from "../components/info-container";
-import NavigatorTab from "../components/navigator-tab";
 import useIdentifyUser from "../hooks/use-identify-user";
 import useRoutes from "../hooks/use-routes";
+import NavigatorTab from "../components/navigator-tab";
 
 const MapScreen = () => {
 	const [, setErrorMsg] = useState<string | null>(null);
