@@ -18,7 +18,7 @@ const MapScreen = () => {
 	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
 	const [routeCoordinates, setRouteCoordinates] = useState<Array<LatLng>>([]);
 	const [showRoute, setShowRoute] = useState<boolean>(true);
-	const [trackingInterval] = useState<number>(1000);
+	const [trackingInterval] = useState<number>(2500);
 	const [isTracking, setIsTracking] = useState<boolean>(false);
 	const [userId, setUserId] = useState<string | null>(null);
 	const [routeId, setRouteId] = useState<string | null>(null);
