@@ -17,12 +17,21 @@ const MapScreen = () => {
 	const [curLocation, setCurLocation] = useState<LocationObject | null>(null);
 	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
 	const [routeCoordinates, setRouteCoordinates] = useState<Array<LatLng>>([]);
+	const [tempWaypoints, setTempWaypoints] = useState<
+		Array<null | {
+			routeId: string;
+			location: Location.LocationObject;
+			mobileNetCode: string;
+		}>
+	>([]);
 	const [showRoute, setShowRoute] = useState<boolean>(true);
 	const [trackingInterval] = useState<number>(2500);
+	const [sendingInterval] = useState<number>(15000);
 	const [isTracking, setIsTracking] = useState<boolean>(false);
 	const [userId, setUserId] = useState<string | null>(null);
 	const [routeId, setRouteId] = useState<string | null>(null);
-	const waypointRef = useRef<() => void>();
+	const waypointUpdateRef = useRef<() => void>();
+	const waypointSendRef = useRef<() => void>();
 	const identifyUser = useIdentifyUser();
 	const { startRoute, sendWaypoint, deactivateRoute } = useRoutes();
 
@@ -52,8 +61,8 @@ const MapScreen = () => {
 	/**
 	 * Gets devices last known location and MNC code, updates corresponding states and appends
 	 * the coordinate points (latitude/longitude) into route coordinates state using the
-	 * `AddNewRouteCoordinate()` function.*
-	 * Currently also sends these waypoints to the server.
+	 * `AddNewRouteCoordinate()` function. Creates a waypoint constant and adds it to the temporary
+	 * list of waypoints ready to be sent to the server.
 	 */
 	const updateWaypoint: () => void = async () => {
 		const location = await Location.getLastKnownPositionAsync({});
@@ -61,25 +70,61 @@ const MapScreen = () => {
 		addNewRouteCoordinate(location);
 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
 		setMobileNetCode(networkCode);
-		// Will be moved to a different interval:
-		sendWaypoint(routeId, location, networkCode);
+		const waypoint = {
+			routeId,
+			location,
+			mobileNetCode,
+		};
+		setTempWaypoints((tempWaypoints) => tempWaypoints.concat(waypoint));
+		console.log("temporary waypoints:", tempWaypoints.length);
+	};
+
+	/**
+	 * Function to send waypointlist to the server. Sending is done with a set interval: @sendingInterval
+	 * Current functionality: Checks if device is connected, resets waypointlist.
+	 * TODO: Send waypointlist if connectivity is becoming bad.
+	 */
+	const sendWaypointToServer: () => void = async () => {
+		if (mobileNetCode != null) {
+			await sendWaypoint(tempWaypoints);
+			console.log("sent waypoints to server");
+			setTempWaypoints([]);
+		}
 	};
 
 	/**
 	 * Updates waypoint using the interval of tracking interval state if
-	 * is tracking state has been set to true. Otherwise do not update.
+	 * @isTracking has been set to true. Otherwise do not update.
 	 */
 	useEffect(() => {
-		waypointRef.current = updateWaypoint;
+		waypointUpdateRef.current = updateWaypoint;
 	}, [updateWaypoint]);
 
 	useEffect(() => {
 		function tick() {
-			waypointRef.current();
+			waypointUpdateRef.current();
 		}
 		if (isTracking) {
-			const id = setInterval(tick, trackingInterval);
-			return () => clearInterval(id);
+			const upd_id = setInterval(tick, trackingInterval);
+			return () => clearInterval(upd_id);
+		}
+	}, [isTracking]);
+
+	/**
+	 * Sets a ticking interval for sending waypoint to the server if
+	 * @isTracking has been set to true.
+	 */
+	useEffect(() => {
+		waypointSendRef.current = sendWaypointToServer;
+	}, [sendWaypointToServer]);
+
+	useEffect(() => {
+		function tick() {
+			waypointSendRef.current();
+		}
+		if (isTracking) {
+			const send_id = setInterval(tick, sendingInterval);
+			return () => clearInterval(send_id);
 		}
 	}, [isTracking]);
 
@@ -113,6 +158,7 @@ const MapScreen = () => {
 			setRouteId(null);
 		}
 		setRouteCoordinates([]);
+		setTempWaypoints([]);
 		setIsTracking(!isTracking);
 	};
 

@@ -26,7 +26,7 @@ class WaypointStorage {
 	}
 
 	async addWaypoint(waypointObject: Waypoint) {
-		console.log(`storing new waypoint into the storage...`);
+		console.log(`storing new waypointlist into the storage...`);
 		try {
 			const existingWaypoints = await this.getWaypoints();
 			const updatedWaypoints = [...existingWaypoints, waypointObject];

@@ -1,5 +1,4 @@
 import Constants from "expo-constants";
-import { LocationObject } from "expo-location";
 
 const baseUrl = Constants.manifest.extra.uri;
 
@@ -41,20 +40,17 @@ export const startNewRoute = async (userId: string) => {
 	}
 };
 
-export const sendNewWaypoint = async (
-	routeId: string,
-	location: LocationObject,
-	mnc: string
-) => {
+export const sendNewWaypoint = async (waypointList) => {
 	const url = `${baseUrl}/create-waypoint/`;
-	const waypoint_info = [
-		{
-			route_id: routeId,
-			latitude: location.coords.latitude,
-			longitude: location.coords.longitude,
-			mnc: mnc,
-		},
-	];
+	const waypoint_info = waypointList.map((waypoint) => {
+		return {
+			route_id: waypoint.routeId,
+			latitude: waypoint.location.coords.latitude,
+			longitude: waypoint.location.coords.longitude,
+			mnc: waypoint.mobileNetCode,
+			ts: new Date(waypoint.location.timestamp),
+		};
+	});
 	const settings = {
 		method: "POST",
 		headers: {
