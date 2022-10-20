@@ -1,4 +1,3 @@
-import { LocationObject } from "expo-location";
 import {
 	startNewRoute,
 	sendNewWaypoint,
@@ -31,22 +30,11 @@ const useRoutes = () => {
 	/**
 	 * Function to add new waypoints to current route. Makes http request
 	 * to add location and mnc-code to given routeId and stores waypoint into local device.
-	 * TODO: Add timestamps to http request.
 	 * @returns request response
 	 */
-	const sendWaypoint = async (
-		routeId: string,
-		location: LocationObject,
-		mnc: string
-	) => {
-		const data = await sendNewWaypoint(routeId, location, mnc);
-		// Needs timestamp as well
-		const waypoint = {
-			routeId,
-			location,
-			mnc,
-		};
-		await waypointStorage.addWaypoint(waypoint);
+	const sendWaypoint = async (waypointList) => {
+		const data = await sendNewWaypoint(waypointList);
+		await waypointStorage.addWaypoint(waypointList);
 		return data;
 	};
 
