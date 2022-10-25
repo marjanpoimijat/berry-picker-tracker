@@ -4,15 +4,23 @@ import { LatLng } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { LocationObject } from "expo-location";
+
 import AppHeader from "../components/app-header";
 import MapViewContainer from "../components/map-view-container";
 import RouteButtonContainer from "../components/route-button-container";
 import InfoContainer from "../components/info-container";
-import useIdentifyUser from "../hooks/use-identify-user";
 import useRoutes from "../hooks/use-routes";
 import NavigatorTab from "../components/navigator-tab";
+import { identifyUser } from "../reducers/user-reducer";
+import { startRoute, deactivateRoute } from "../reducers/route-reducer";
+import { useTypedDispatch, useTypedSelector } from "../store";
 
 const MapScreen = () => {
+	const userId: string | null = useTypedSelector((state) => state.user);
+	const routeId: string | null = useTypedSelector((state) => state.route);
+	const dispatch = useTypedDispatch();
+
+	// To be replaced...
 	const [, setErrorMsg] = useState<string | null>(null);
 	const [curLocation, setCurLocation] = useState<LocationObject | null>(null);
 	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
@@ -28,12 +36,12 @@ const MapScreen = () => {
 	const [trackingInterval] = useState<number>(2500);
 	const [sendingInterval] = useState<number>(15000);
 	const [isTracking, setIsTracking] = useState<boolean>(false);
-	const [userId, setUserId] = useState<string | null>(null);
-	const [routeId, setRouteId] = useState<string | null>(null);
+	//const [routeId, setRouteId] = useState<string | null>(null);
 	const waypointUpdateRef = useRef<() => void>();
 	const waypointSendRef = useRef<() => void>();
-	const identifyUser = useIdentifyUser();
-	const { startRoute, sendWaypoint, deactivateRoute } = useRoutes();
+
+	// to be changed
+	const { sendWaypoint } = useRoutes();
 
 	/**
 	 * Requests permissions to use device location.
@@ -53,8 +61,7 @@ const MapScreen = () => {
 			setCurLocation(location);
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
 			setMobileNetCode(networkCode);
-			const uid = await identifyUser();
-			setUserId(uid);
+			dispatch(identifyUser(userId));
 		})();
 	}, []);
 
@@ -150,12 +157,9 @@ const MapScreen = () => {
 	const changeTracking = async () => {
 		// Just to test storage / http request functionalities.
 		if (!isTracking) {
-			const uid = userId ? userId : await identifyUser();
-			const rid = await startRoute(uid);
-			setRouteId(rid);
+			dispatch(startRoute(userId));
 		} else {
-			await deactivateRoute();
-			setRouteId(null);
+			dispatch(deactivateRoute(routeId));
 		}
 		setRouteCoordinates([]);
 		setTempWaypoints([]);
