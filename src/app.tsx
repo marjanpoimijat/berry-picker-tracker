@@ -2,7 +2,7 @@ import { registerRootComponent } from "expo";
 import { NativeRouter } from "react-router-native";
 import { Provider } from "react-redux";
 
-import Main from "./components/main";
+import Main from "./main";
 import WaypointStorage from "./utils/waypoint-storage";
 import WaypointStorageContext from "./contexts/waypoint-context";
 
