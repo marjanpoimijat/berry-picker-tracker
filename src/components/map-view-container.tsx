@@ -1,6 +1,8 @@
 import { View, StyleSheet, Dimensions } from "react-native";
-import MapView, { LatLng, Polyline, UrlTile } from "react-native-maps";
+import MapView, { Polyline, UrlTile } from "react-native-maps";
 import Constants from "expo-constants";
+
+import { useTypedSelector } from "../store";
 
 const baseUrl = Constants.manifest.extra.uri;
 
@@ -12,22 +14,18 @@ const styles = StyleSheet.create({
 	},
 });
 
-interface Props {
-	/** State to determine whether route is visible or not */
-	showRoute: boolean;
-	/** List of route coordinate objects with latitude / longitude numbers */
-	routeCoordinates: Array<LatLng>;
-}
-
 /**
  * Visualizes topomap using NLS tiles and draws a route between
  * route coordinate points if show route state has been set to true.
  * @returns a tree of React elements
  */
-const MapViewContainer = ({
-	showRoute,
-	routeCoordinates,
-}: Props): JSX.Element => {
+const MapViewContainer = (): JSX.Element => {
+	const routeInfo = useTypedSelector((state) => state.route);
+	const waypoints = useTypedSelector((state) => state.waypoints);
+	const routeCoordinates = waypoints.map((waypoint) => ({
+		latitude: waypoint.location.coords.latitude,
+		longitude: waypoint.location.coords.longitude,
+	}));
 	return (
 		<View>
 			<MapView
@@ -47,13 +45,13 @@ const MapViewContainer = ({
 					zIndex={-3}
 				/>
 				<Polyline
-					coordinates={showRoute ? routeCoordinates : []}
+					coordinates={routeInfo.showRoute ? routeCoordinates : []}
 					strokeColor="red"
 					strokeWidth={4}
 					zIndex={2}
 				/>
 				<Polyline
-					coordinates={showRoute ? routeCoordinates : []}
+					coordinates={routeInfo.showRoute ? routeCoordinates : []}
 					strokeColor="black"
 					strokeWidth={8}
 					zIndex={1}
