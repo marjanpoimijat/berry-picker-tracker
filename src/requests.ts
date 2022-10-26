@@ -47,7 +47,7 @@ export const sendNewWaypoint = async (waypointList) => {
 			route_id: waypoint.routeId,
 			latitude: waypoint.location.coords.latitude,
 			longitude: waypoint.location.coords.longitude,
-			mnc: waypoint.mobileNetCode,
+			mnc: waypoint.mnc,
 			ts: new Date(waypoint.location.timestamp),
 		};
 	});
