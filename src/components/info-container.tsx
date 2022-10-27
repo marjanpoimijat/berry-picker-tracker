@@ -58,16 +58,15 @@ const InfoContainer = (): JSX.Element => {
 			<Text style={{ fontWeight: "bold" }}>Current location:</Text>
 			<Text>
 				-Latitude:{" "}
-				{curLocation === null ? "not available" : curLocation.coords.latitude}
+				{curLocation === null ? "disabled" : curLocation.coords.latitude}
 			</Text>
 			<Text>
 				-Longitude:{" "}
-				{curLocation === null ? "not available" : curLocation.coords.longitude}
+				{curLocation === null ? "disabled" : curLocation.coords.longitude}
 			</Text>
 			<Text style={{ fontWeight: "bold" }}>Cellular network:</Text>
 			<Text>
-				-NMC code:{" "}
-				{mobileNetCode === null ? "Network not available" : mobileNetCode}
+				-NMC code: {mobileNetCode === null ? "disabled" : mobileNetCode}
 			</Text>
 			<Text style={{ fontWeight: "bold" }}>
 				Local waypoints: {waypoints.localWaypoints.length}
