@@ -1,7 +1,13 @@
 import { useEffect, useRef } from "react";
 
-function useInterval(callback, delay) {
-	const savedCallback = useRef();
+/**
+ * Calls function using the interval determined as a param
+ * which can be dynamically changed.
+ * @param callback function to be called in certain intervals
+ * @param interval as a number in milliseconds
+ */
+function useInterval(callback: () => void, interval: number) {
+	const savedCallback = useRef<() => void>();
 
 	useEffect(() => {
 		savedCallback.current = callback;
@@ -11,11 +17,11 @@ function useInterval(callback, delay) {
 		function tick() {
 			savedCallback.current();
 		}
-		if (delay !== null) {
-			const id = setInterval(tick, delay);
+		if (interval !== null) {
+			const id = setInterval(tick, interval);
 			return () => clearInterval(id);
 		}
-	}, [delay]);
+	}, [interval]);
 }
 
 export default useInterval;
