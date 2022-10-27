@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { LocationObject } from "expo-location";
-import * as Location from "expo-location";
-import * as Cellular from "expo-cellular";
+// import * as Location from "expo-location";
+// import * as Cellular from "expo-cellular";
 
 import { useTypedSelector } from "../store";
 import theme from "../theme";
@@ -33,19 +33,25 @@ const styles = StyleSheet.create({
  * purposes. Some of the info should be deleted later, but perhaps keep the coordinates?
  */
 const InfoContainer = (): JSX.Element => {
-	const [curLocation, setCurLocation] = useState<LocationObject | null>(null);
-	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
+	const [curLocation] = useState<LocationObject | null>(null);
+	const [mobileNetCode] = useState<string | null>(null);
 	const waypoints = useTypedSelector((state) => state.waypoints);
 	const routeId = useTypedSelector((state) => state.route.routeId);
 
-	useEffect(() => {
-		(async () => {
-			const location = await Location.getCurrentPositionAsync({});
-			setCurLocation(location);
-			const networkCode = await Cellular.getMobileNetworkCodeAsync();
-			setMobileNetCode(networkCode);
-		})();
-	}, []);
+	/**
+	 * These are not updating currently. The problem is that the params this container
+	 * at this container can not be updated unless the MapView component is active.
+	 * Therefore changing to different views will cause memory leak warning.
+	 * At the moment I don't see much reasons to fix this component.
+	 */
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const location = await Location.getCurrentPositionAsync({});
+	// 		setCurLocation(location);
+	// 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
+	// 		setMobileNetCode(networkCode);
+	// 	})();
+	// }, []);
 
 	return (
 		<View style={styles.infoContainer}>
