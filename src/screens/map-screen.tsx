@@ -12,13 +12,6 @@ import { useTypedSelector } from "../store";
 const MapScreen = () => {
 	const userId = useTypedSelector((state) => state.user.userId);
 
-	/**
-	 * Requests permissions to use device location.
-	 * Gets device location and sets current location state if permissions is allowed.
-	 * Otherwise sets error message state which is not currently used anywhere.
-	 * Also gets cellular network operators MNC (Mobile Network Code), identifies user and sets user ID state.
-	 * MNC code is a null if SIM card is not at the device or there is no cellular service available.
-	 */
 	useEffect(() => {
 		(async () => {
 			await Location.requestForegroundPermissionsAsync();

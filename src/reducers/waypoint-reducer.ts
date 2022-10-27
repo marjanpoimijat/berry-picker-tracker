@@ -46,6 +46,12 @@ const waypointSlice = createSlice({
 export const { setWaypoints, appendWaypoint, resetPendingWaypoints } =
 	waypointSlice.actions;
 
+/**
+ * Gets location and MNC code and creates a new waypoint object
+ * which will stored into localdevices `WaypointState`
+ * @param routeId
+ * @returns dispatch method to update `WaypointState`
+ */
 export const storeWaypoint = (routeId: string) => {
 	return async (dispatch: AppDispatch) => {
 		console.log(`Storing new waypoint...`);
@@ -66,6 +72,12 @@ export const storeWaypoint = (routeId: string) => {
 	};
 };
 
+/**
+ * Recieves list is pending waypoints and send them into the server.
+ * After that the pending waypoint state will be reseted.
+ * @param pendingWaypoints
+ * @returns dispatch method to send and reset pending waypoints
+ */
 export const sendPendingWaypoints = (pendingWaypoints: Array<Waypoint>) => {
 	return async (dispatch: AppDispatch) => {
 		console.log(`${pendingWaypoints.length} waypoints send to the server`);
@@ -74,6 +86,10 @@ export const sendPendingWaypoints = (pendingWaypoints: Array<Waypoint>) => {
 	};
 };
 
+/**
+ * Initializes local and pending waypoints lists with empty lists.
+ * @returns dispatch method to initialize `WaypointState`
+ */
 export const resetWaypoints = () => {
 	return async (dispatch: AppDispatch) => {
 		console.log("Reseting stored waypoints");

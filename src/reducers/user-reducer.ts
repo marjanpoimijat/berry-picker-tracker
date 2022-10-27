@@ -18,7 +18,6 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser(state, action: PayloadAction<string>) {
-			console.log(`Setting user: ${action.payload}`);
 			return { ...state, userId: action.payload };
 		},
 	},
@@ -28,7 +27,7 @@ export const { setUser } = userSlice.actions;
 
 /**
  * Function to identify user. Creates new user by using http request unless
- * user has already created and the user id has been stored into the device.
+ * user has been already created and stored into the device.
  * @param userId
  * @returns dispatch method to update user state
  */
@@ -47,7 +46,7 @@ export const identifyUser = (userId: string | null) => {
 };
 
 /**
- * For testing to easily reset reset user ID which is already stored into device.
+ * For testing to easily reset reset user state which is already stored into device.
  * @returns dispatch method to update user state
  */
 export const resetUser = () => {

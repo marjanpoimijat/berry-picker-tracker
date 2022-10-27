@@ -29,14 +29,14 @@ export const { setRoute } = routeSlice.actions;
 
 /**
  * Function to start new route. Makes http request
- * to create new route and stores route object into devices local storage.
+ * to create new route and stores route object into the devices storage.
+ * Route object `showRoute` and `active` params will be se to true.
  * @param userId
  * @returns dispatch method to update route state
  */
 export const startRoute = (userId: string) => {
 	return async (dispatch: AppDispatch) => {
-		console.log("Starting new route");
-		// Consider to clear waypoints?
+		console.log("Starting a new route");
 		const data = await startNewRoute(userId);
 		const updatedRoute = {
 			routeId: data.id,
@@ -49,7 +49,8 @@ export const startRoute = (userId: string) => {
 
 /**
  * Function to deactivate route. Makes http request
- * to deactivate active route and removes route ID and waypoints from devices local storage.
+ * to deactivate active route and initializes route state.
+ * Route object `active`param will be se to false.
  * @param routeId
  * @returns dispatch method to reset route state
  */
@@ -61,6 +62,11 @@ export const deactivateRoute = (routeId: string) => {
 	};
 };
 
+/**
+ * Function to change show route status to opposite boolean.
+ * @param routeObject
+ * @returns dispatch method to change route show route
+ */
 export const changeShowRoute = (routeObject: Route) => {
 	return async (dispatch: AppDispatch) => {
 		console.log(`route visibility set to ${!routeObject.showRoute}`);
