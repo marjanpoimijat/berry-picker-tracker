@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import * as Location from "expo-location";
 
@@ -6,28 +6,11 @@ import AppHeader from "../components/app-header";
 import MapViewContainer from "../components/map-view-container";
 import RouteButtonContainer from "../components/route-button-container";
 import InfoContainer from "../components/info-container";
-import useRoutes from "../hooks/use-routes";
 import NavigatorTab from "../components/navigator-tab";
 import { useTypedSelector } from "../store";
 
 const MapScreen = () => {
-	const userId: string | null = useTypedSelector((state) => state.user);
-	const routeInfo = useTypedSelector((state) => state.route);
-
-	// To be replaced...
-	const [, setErrorMsg] = useState<string | null>(null);
-	const [tempWaypoints, setTempWaypoints] = useState<
-		Array<null | {
-			routeId: string;
-			location: Location.LocationObject;
-			mobileNetCode: string;
-		}>
-	>([]);
-	const [sendingInterval] = useState<number>(15000);
-	const waypointSendRef = useRef<() => void>();
-
-	// to be changed
-	const { sendWaypoint } = useRoutes();
+	const userId = useTypedSelector((state) => state.user.userId);
 
 	/**
 	 * Requests permissions to use device location.
@@ -38,43 +21,9 @@ const MapScreen = () => {
 	 */
 	useEffect(() => {
 		(async () => {
-			const { status } = await Location.requestForegroundPermissionsAsync();
-			if (status !== "granted") {
-				setErrorMsg("Permission to access location was denied");
-				return;
-			}
+			await Location.requestForegroundPermissionsAsync();
 		})();
 	}, []);
-
-	/**
-	 * Function to send waypointlist to the server. Sending is done with a set interval: @sendingInterval
-	 * Current functionality: Checks if device is connected, resets waypointlist.
-	 * TODO: Send waypointlist if connectivity is becoming bad.
-	 */
-	const sendWaypointToServer: () => void = async () => {
-		//check connections...
-		await sendWaypoint(tempWaypoints);
-		console.log("sent waypoints to server");
-		setTempWaypoints([]);
-	};
-
-	/**
-	 * Sets a ticking interval for sending waypoint to the server if
-	 * @isTracking has been set to true.
-	 */
-	useEffect(() => {
-		waypointSendRef.current = sendWaypointToServer;
-	}, [sendWaypointToServer]);
-
-	useEffect(() => {
-		function tick() {
-			waypointSendRef.current();
-		}
-		if (routeInfo.active) {
-			const send_id = setInterval(tick, sendingInterval);
-			return () => clearInterval(send_id);
-		}
-	}, [routeInfo]);
 
 	return (
 		<View style={styles.container}>

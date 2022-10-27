@@ -4,31 +4,37 @@ import { useEffect } from "react";
 
 import { useTypedDispatch, useTypedSelector } from "./store";
 import { identifyUser } from "./reducers/user-reducer";
-import { storeWaypoint } from "./reducers/waypoint-reducer";
+import {
+	storeWaypoint,
+	sendPendingWaypoints,
+} from "./reducers/waypoint-reducer";
 import MapScreen from "./screens/map-screen";
 import SettingsScreen from "./screens/settings-screen";
 import CoffeeScreen from "./screens/coffee-screen";
 import NavigatorTab from "./components/navigator-tab";
+import useInterval from "./hooks/use-interval";
 
 const Main = () => {
-	const userId: string | null = useTypedSelector((state) => state.user);
+	const user = useTypedSelector((state) => state.user);
 	const routeInfo = useTypedSelector((state) => state.route);
-	const trackingInterval = 2500; //to be changed
+	const waypoints = useTypedSelector((state) => state.waypoints);
 	const dispatch = useTypedDispatch();
 
 	useEffect(() => {
-		dispatch(identifyUser(userId));
+		dispatch(identifyUser(user.userId));
 	}, [dispatch]);
 
-	useEffect(() => {
-		function tick() {
+	useInterval(() => {
+		if (routeInfo.active) {
 			dispatch(storeWaypoint(routeInfo.routeId));
 		}
+	}, user.trackingInterval);
+
+	useInterval(() => {
 		if (routeInfo.active) {
-			const interval = setInterval(tick, trackingInterval);
-			return () => clearInterval(interval);
+			dispatch(sendPendingWaypoints(waypoints.pendingWaypoints));
 		}
-	}, [routeInfo]);
+	}, user.sendingInterval);
 
 	return (
 		<View style={styles.container}>
