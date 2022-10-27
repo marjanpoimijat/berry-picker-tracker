@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
 const MapViewContainer = (): JSX.Element => {
 	const routeInfo = useTypedSelector((state) => state.route);
 	const waypoints = useTypedSelector((state) => state.waypoints);
-	const routeCoordinates = waypoints.map((waypoint) => ({
-		latitude: waypoint.location.coords.latitude,
-		longitude: waypoint.location.coords.longitude,
+	const routeCoordinates = waypoints.localWaypoints.map((waypoint) => ({
+		latitude: waypoint.latitude,
+		longitude: waypoint.longitude,
 	}));
 	return (
 		<View>

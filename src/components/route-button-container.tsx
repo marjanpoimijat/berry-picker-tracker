@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
  * @returns a tree of React elements
  */
 const RouteButtonContainer = (): JSX.Element => {
-	const userId: string | null = useTypedSelector((state) => state.user);
+	const userId: string | null = useTypedSelector((state) => state.user.userId);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const dispatch = useTypedDispatch();
 

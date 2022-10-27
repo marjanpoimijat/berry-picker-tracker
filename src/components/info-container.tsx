@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		padding: 15,
 		textAlign: "center",
-		height: 150,
+		height: 175,
 		shadowColor: "black",
 		shadowOffset: { width: 3, height: 3 },
 		shadowOpacity: 0.8,
@@ -64,7 +64,10 @@ const InfoContainer = (): JSX.Element => {
 				{mobileNetCode === null ? "Network not available" : mobileNetCode}
 			</Text>
 			<Text style={{ fontWeight: "bold" }}>
-				Route location points: {waypoints.length}
+				Local waypoints: {waypoints.localWaypoints.length}
+			</Text>
+			<Text style={{ fontWeight: "bold" }}>
+				Pending waypoints: {waypoints.pendingWaypoints.length}
 			</Text>
 			<Text style={{ fontWeight: "bold" }}>
 				Route ID:{" "}
