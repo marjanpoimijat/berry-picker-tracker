@@ -2,6 +2,14 @@ import Constants from "expo-constants";
 
 const baseUrl = Constants.manifest.extra.uri;
 
+interface Waypoint {
+	route_id: string;
+	latitude: number;
+	longitude: number;
+	mnc: string | null;
+	ts: number;
+}
+
 export const createNewUser = async () => {
 	const url = `${baseUrl}/new-user/`;
 	const settings = {
@@ -40,24 +48,15 @@ export const startNewRoute = async (userId: string) => {
 	}
 };
 
-export const sendNewWaypoint = async (waypointList) => {
+export const sendNewWaypoint = async (pendingWaypoints: Array<Waypoint>) => {
 	const url = `${baseUrl}/create-waypoint/`;
-	const waypoint_info = waypointList.map((waypoint) => {
-		return {
-			route_id: waypoint.routeId,
-			latitude: waypoint.location.coords.latitude,
-			longitude: waypoint.location.coords.longitude,
-			mnc: waypoint.mnc,
-			ts: new Date(waypoint.location.timestamp),
-		};
-	});
 	const settings = {
 		method: "POST",
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(waypoint_info),
+		body: JSON.stringify(pendingWaypoints),
 	};
 	try {
 		const response = await fetch(url, settings);
