@@ -66,14 +66,13 @@ export const storeWaypoint = (routeId: string) => {
 				mnc: networkCode,
 				ts: new Date().getTime(),
 			};
-			console.log(waypoint.latitude);
 			dispatch(appendWaypoint(waypoint));
 		}
 	};
 };
 
 /**
- * Recieves list is pending waypoints and send them into the server.
+ * Recieves list of pending waypoints and send them into the server.
  * After that the pending waypoint state will be reseted.
  * @param pendingWaypoints
  * @returns dispatch method to send and reset pending waypoints
