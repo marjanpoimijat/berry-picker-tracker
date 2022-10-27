@@ -3,47 +3,74 @@ import type { AppDispatch } from "../store";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { sendNewWaypoint } from "../requests";
-import { LocationObject } from "expo-location";
 
 interface Waypoint {
-	routeId: string;
-	location: LocationObject;
+	route_id: string;
+	latitude: number;
+	longitude: number;
 	mnc: string | null;
+	ts: number;
 }
 
-const initialState: Array<Waypoint> = [];
+interface WaypointState {
+	localWaypoints: Array<Waypoint>;
+	pendingWaypoints: Array<Waypoint>;
+}
+
+const initialState: WaypointState = {
+	localWaypoints: [],
+	pendingWaypoints: [],
+};
 
 const waypointSlice = createSlice({
 	name: "waypoints",
 	initialState,
 	reducers: {
-		setWaypoints(state, action: PayloadAction<Array<Waypoint>>) {
+		setWaypoints(state, action: PayloadAction<WaypointState>) {
 			console.log(`Setting waypoints`);
 			return action.payload;
 		},
 		appendWaypoint(state, action: PayloadAction<Waypoint>) {
-			state.push(action.payload);
+			return {
+				localWaypoints: state.localWaypoints.concat(action.payload),
+				pendingWaypoints: state.pendingWaypoints.concat(action.payload),
+			};
+		},
+		resetPendingWaypoints(state) {
+			console.log("reseting pending waypoints");
+			return { ...state, pendingWaypoints: [] };
 		},
 	},
 });
 
-export const { setWaypoints, appendWaypoint } = waypointSlice.actions;
+export const { setWaypoints, appendWaypoint, resetPendingWaypoints } =
+	waypointSlice.actions;
 
 export const storeWaypoint = (routeId: string) => {
 	return async (dispatch: AppDispatch) => {
-		console.log(`Storing new waypoint with route ID: ${routeId}`);
+		console.log(`Storing new waypoint...`);
 		const location = await Location.getLastKnownPositionAsync({});
 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
 
 		if (location !== null) {
 			const waypoint: Waypoint = {
-				routeId: routeId,
-				location: location,
+				route_id: routeId,
+				latitude: location.coords.latitude,
+				longitude: location.coords.longitude,
 				mnc: networkCode,
+				ts: new Date().getTime(),
 			};
-			await sendNewWaypoint([waypoint]);
+			console.log(waypoint.latitude);
 			dispatch(appendWaypoint(waypoint));
 		}
+	};
+};
+
+export const sendPendingWaypoints = (pendingWaypoints: Array<Waypoint>) => {
+	return async (dispatch: AppDispatch) => {
+		console.log(`${pendingWaypoints.length} waypoints send to the server`);
+		await sendNewWaypoint(pendingWaypoints);
+		dispatch(resetPendingWaypoints());
 	};
 };
 
