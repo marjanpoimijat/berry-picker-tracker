@@ -3,14 +3,7 @@ import type { AppDispatch } from "../store";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { sendNewWaypoint } from "../requests";
-
-interface Waypoint {
-	route_id: string;
-	latitude: number;
-	longitude: number;
-	mnc: string | null;
-	ts: number;
-}
+import { Waypoint } from "../types";
 
 interface WaypointState {
 	localWaypoints: Array<Waypoint>;

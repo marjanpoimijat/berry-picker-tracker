@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch } from "../store";
 import { startNewRoute, deactivateExistingRoute } from "../requests";
-
-interface Route {
-	routeId: string;
-	showRoute: boolean;
-	active: boolean;
-}
+import { Route } from "../types";
 
 const initialState: Route = {
 	routeId: null,

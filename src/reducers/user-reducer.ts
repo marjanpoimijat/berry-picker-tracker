@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch } from "../store";
 import { createNewUser } from "../requests";
-
-interface User {
-	userId: string | null;
-	trackingInterval: number;
-	sendingInterval: number;
-}
+import { User } from "../types";
 
 const initialState: User = {
 	userId: null,
