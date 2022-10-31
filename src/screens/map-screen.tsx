@@ -13,9 +13,7 @@ const MapScreen = () => {
 	const userId = useTypedSelector((state) => state.user.userId);
 
 	useEffect(() => {
-		(async () => {
-			await Location.requestForegroundPermissionsAsync();
-		})();
+		Location.requestForegroundPermissionsAsync();
 	}, []);
 
 	return (
