@@ -13,6 +13,12 @@
 npm install
 ```
 
+Create a .env-file to the project root with following:
+```bash
+URI=<backend-address>
+```
+e.g. `URI=http://berry-picker-tracker.cs.helsinki.fi` / `URI=http://localhost:8000`
+
 ### Running
 
 ```bash
