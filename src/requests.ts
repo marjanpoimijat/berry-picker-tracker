@@ -43,13 +43,19 @@ export const startNewRoute = async (userId: string) => {
 
 export const sendNewWaypoint = async (pendingWaypoints: Array<Waypoint>) => {
 	const url = `${baseUrl}/create-waypoint/`;
+	const waypoints = pendingWaypoints.map((waypoint) => {
+		return {
+			route_id: waypoint.routeId,
+			...waypoint,
+		};
+	});
 	const settings = {
 		method: "POST",
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(pendingWaypoints),
+		body: JSON.stringify(waypoints),
 	};
 	try {
 		const response = await fetch(url, settings);

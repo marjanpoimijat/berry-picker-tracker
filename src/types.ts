@@ -1,9 +1,14 @@
 export interface Waypoint {
-	route_id: string;
+	routeId: string | null;
 	latitude: number;
 	longitude: number;
 	mnc: string | null;
 	ts: number;
+}
+
+export interface WaypointState {
+	localWaypoints: Array<Waypoint>;
+	pendingWaypoints: Array<Waypoint>;
 }
 
 export interface Route {

@@ -3,12 +3,7 @@ import type { AppDispatch } from "../store";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { sendNewWaypoint } from "../requests";
-import { Waypoint } from "../types";
-
-interface WaypointState {
-	localWaypoints: Array<Waypoint>;
-	pendingWaypoints: Array<Waypoint>;
-}
+import { Waypoint, WaypointState } from "../types";
 
 const initialState: WaypointState = {
 	localWaypoints: [],
@@ -53,7 +48,7 @@ export const storeWaypoint = (routeId: string) => {
 
 		if (location !== null) {
 			const waypoint: Waypoint = {
-				route_id: routeId,
+				routeId: routeId,
 				latitude: location.coords.latitude,
 				longitude: location.coords.longitude,
 				mnc: networkCode,
