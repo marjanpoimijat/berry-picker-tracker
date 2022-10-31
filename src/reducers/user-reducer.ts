@@ -3,7 +3,7 @@ import type { AppDispatch } from "../store";
 import { createNewUser } from "../requests";
 
 interface User {
-	userId: string;
+	userId: string | null;
 	trackingInterval: number;
 	sendingInterval: number;
 }
