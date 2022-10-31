@@ -17,10 +17,8 @@ function useInterval(callback: () => void, interval: number) {
 		function tick() {
 			savedCallback.current();
 		}
-		if (interval !== null) {
-			const id = setInterval(tick, interval);
-			return () => clearInterval(id);
-		}
+		const id = setInterval(tick, interval);
+		return () => clearInterval(id);
 	}, [interval]);
 }
 
