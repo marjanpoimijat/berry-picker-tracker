@@ -12,7 +12,7 @@ import {
 	REGISTER,
 } from "redux-persist";
 
-import rootReducer from "./reducers/root-reducer";
+import rootReducer from "./reducers";
 
 const persistConfig = {
 	key: "root",
