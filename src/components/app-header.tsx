@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
  * Application header component which displays application name
  * and user ID on top of the screen. Just preliminary styling at the moment.
  * @param {string} name application name
- * @returns a tree of React elements
  */
 const AppHeader = ({
 	name,

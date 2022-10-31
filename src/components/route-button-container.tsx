@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
  * Route button container component which contains buttons to
  * start / end route tracking and to toggle route visibility on / off.
  * Just preliminary styling and location on a screen.
- * @returns a tree of React elements
  */
 const RouteButtonContainer = (): JSX.Element => {
 	const userId: string | null = useTypedSelector((state) => state.user.userId);

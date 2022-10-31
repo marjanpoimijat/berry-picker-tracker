@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
 /**
  * Visualizes topomap using NLS tiles and draws a route between
  * route coordinate points if show route state has been set to true.
- * @returns a tree of React elements
  */
 const MapViewContainer = (): JSX.Element => {
 	const routeInfo = useTypedSelector((state) => state.route);

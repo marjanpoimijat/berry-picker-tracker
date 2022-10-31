@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
 /**
  * Navigator tab located at the bottom of the screen which contains
  * navigator buttons to navigate into other views.
- * @returns a tree of React elements
  */
 const NavigatorTab = (): JSX.Element => {
 	return (
