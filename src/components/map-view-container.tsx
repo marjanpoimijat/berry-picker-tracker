@@ -18,11 +18,9 @@ const styles = StyleSheet.create({
  */
 const MapViewContainer = (): JSX.Element => {
 	const routeInfo = useTypedSelector((state) => state.route);
-	const waypoints = useTypedSelector((state) => state.waypoints);
-	const routeCoordinates = waypoints.localWaypoints.map((waypoint) => ({
-		latitude: waypoint.latitude,
-		longitude: waypoint.longitude,
-	}));
+	const localWaypoints = useTypedSelector(
+		(state) => state.waypoints.localWaypoints
+	);
 
 	return (
 		<View>
@@ -43,13 +41,13 @@ const MapViewContainer = (): JSX.Element => {
 					zIndex={-3}
 				/>
 				<Polyline
-					coordinates={routeInfo.showRoute ? routeCoordinates : []}
+					coordinates={routeInfo.showRoute ? localWaypoints : []}
 					strokeColor="red"
 					strokeWidth={4}
 					zIndex={2}
 				/>
 				<Polyline
-					coordinates={routeInfo.showRoute ? routeCoordinates : []}
+					coordinates={routeInfo.showRoute ? localWaypoints : []}
 					strokeColor="black"
 					strokeWidth={8}
 					zIndex={1}
