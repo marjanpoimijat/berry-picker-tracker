@@ -1,16 +1,14 @@
 import { View, StyleSheet, Dimensions } from "react-native";
 import MapView, { Polyline, UrlTile } from "react-native-maps";
-import Constants from "expo-constants";
 
+import { baseUrl, statusBarHeight } from "../constants";
 import { useTypedSelector } from "../store";
-
-const baseUrl = Constants.manifest.extra.uri;
 
 const styles = StyleSheet.create({
 	map: {
 		width: Dimensions.get("window").width,
 		height: Dimensions.get("window").height,
-		top: Constants.statusBarHeight + 50,
+		top: statusBarHeight + 50,
 	},
 });
 
@@ -25,6 +23,7 @@ const MapViewContainer = (): JSX.Element => {
 		latitude: waypoint.latitude,
 		longitude: waypoint.longitude,
 	}));
+
 	return (
 		<View>
 			<MapView

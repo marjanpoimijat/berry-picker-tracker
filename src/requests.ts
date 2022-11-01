@@ -1,7 +1,5 @@
-import Constants from "expo-constants";
 import { Waypoint } from "./types";
-
-const baseUrl = Constants.manifest.extra.uri;
+import { baseUrl } from "./constants";
 
 export const createNewUser = async () => {
 	const url = `${baseUrl}/new-user/`;
