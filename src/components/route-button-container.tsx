@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
  * Just preliminary styling and location on a screen.
  */
 const RouteButtonContainer = (): JSX.Element => {
-	const userId: string | null = useTypedSelector((state) => state.user.userId);
+	const userId = useTypedSelector((state) => state.user.userId);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const dispatch = useTypedDispatch();
 

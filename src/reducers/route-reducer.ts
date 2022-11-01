@@ -23,37 +23,41 @@ const routeSlice = createSlice({
 export const { setRoute } = routeSlice.actions;
 
 /**
- * Function to start new route. Makes http request
+ * Function to start new route. Validates that user ID is not null and makes http request
  * to create new route and stores route object into the devices storage.
  * Route object `showRoute` and `active` params will be se to true.
  * @param userId
  * @returns dispatch method to update route state
  */
-export const startRoute = (userId: string) => {
+export const startRoute = (userId: string | null) => {
 	return async (dispatch: AppDispatch) => {
-		console.log("Starting a new route");
-		const data = await startNewRoute(userId);
-		const updatedRoute = {
-			routeId: data.id,
-			showRoute: true,
-			active: true,
-		};
-		dispatch(setRoute(updatedRoute));
+		if (userId !== null) {
+			console.log("Starting a new route");
+			const data = await startNewRoute(userId);
+			const updatedRoute = {
+				routeId: data.id,
+				showRoute: true,
+				active: true,
+			};
+			dispatch(setRoute(updatedRoute));
+		}
 	};
 };
 
 /**
- * Function to deactivate route. Makes http request
- * to deactivate active route and initializes route state.
+ * Function to deactivate route. Validates that user ID is not null and
+ * makes http request to deactivate active route and initializes route state.
  * Route object `active`param will be se to false.
  * @param routeId
  * @returns dispatch method to reset route state
  */
-export const deactivateRoute = (routeId: string) => {
+export const deactivateRoute = (routeId: string | null) => {
 	return async (dispatch: AppDispatch) => {
-		console.log(`Deactivating route with id: ${routeId}`);
-		await deactivateExistingRoute(routeId);
-		dispatch(setRoute(initialState));
+		if (routeId !== null) {
+			console.log(`Deactivating route with id: ${routeId}`);
+			await deactivateExistingRoute(routeId);
+			dispatch(setRoute(initialState));
+		}
 	};
 };
 
