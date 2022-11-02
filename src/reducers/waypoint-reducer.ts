@@ -40,21 +40,23 @@ export const { setWaypoints, appendWaypoint, resetPendingWaypoints } =
  * @param routeId
  * @returns dispatch method to update `WaypointState`
  */
-export const storeWaypoint = (routeId: string) => {
+export const storeWaypoint = (routeId: string | null) => {
 	return async (dispatch: AppDispatch) => {
-		console.log(`Storing new waypoint...`);
-		const location = await Location.getLastKnownPositionAsync({});
-		const networkCode = await Cellular.getMobileNetworkCodeAsync();
+		if (routeId !== null) {
+			console.log(`Storing new waypoint...`);
+			const location = await Location.getLastKnownPositionAsync({});
+			const networkCode = await Cellular.getMobileNetworkCodeAsync();
 
-		if (location !== null) {
-			const waypoint: Waypoint = {
-				routeId: routeId,
-				latitude: location.coords.latitude,
-				longitude: location.coords.longitude,
-				mnc: networkCode,
-				ts: new Date().getTime(),
-			};
-			dispatch(appendWaypoint(waypoint));
+			if (location !== null) {
+				const waypoint: Waypoint = {
+					routeId: routeId,
+					latitude: location.coords.latitude,
+					longitude: location.coords.longitude,
+					mnc: networkCode,
+					ts: new Date().getTime(),
+				};
+				dispatch(appendWaypoint(waypoint));
+			}
 		}
 	};
 };
