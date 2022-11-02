@@ -1,4 +1,4 @@
-import { Text, View, Switch, StyleSheet } from "react-native";
+import { Switch } from "react-native";
 import { useState } from "react";
 
 const settingsToggle = (): JSX.Element => {

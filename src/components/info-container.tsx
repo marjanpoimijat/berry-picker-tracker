@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { LocationObject } from "expo-location";
-import { LatLng } from "react-native-maps";
+
+import { useTypedSelector } from "../store";
 import theme from "../theme";
 
 const styles = StyleSheet.create({
@@ -14,7 +16,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		padding: 15,
 		textAlign: "center",
-		height: 150,
+		height: 175,
 		shadowColor: "black",
 		shadowOffset: { width: 3, height: 3 },
 		shadowOpacity: 0.8,
@@ -24,41 +26,36 @@ const styles = StyleSheet.create({
 	},
 });
 
-interface Props {
-	curLocation: LocationObject | null;
-	mobileNetCode: string | null;
-	routeCoordinates: Array<LatLng>;
-	routeId: string;
-}
-
 /**
  * Info container component to show information primarily for debugging
  * purposes. Some of the info should be deleted later, but perhaps keep the coordinates?
  */
-const InfoContainer = ({
-	curLocation,
-	mobileNetCode,
-	routeCoordinates,
-	routeId,
-}: Props): JSX.Element => {
+const InfoContainer = (): JSX.Element => {
+	const [curLocation] = useState<LocationObject | null>(null);
+	const [mobileNetCode] = useState<string | null>(null);
+	const waypoints = useTypedSelector((state) => state.waypoints);
+	const routeId = useTypedSelector((state) => state.route.routeId);
+
 	return (
 		<View style={styles.infoContainer}>
 			<Text style={{ fontWeight: "bold" }}>Current location:</Text>
 			<Text>
 				-Latitude:{" "}
-				{curLocation === null ? "not available" : curLocation.coords.latitude}
+				{curLocation === null ? "disabled" : curLocation.coords.latitude}
 			</Text>
 			<Text>
 				-Longitude:{" "}
-				{curLocation === null ? "not available" : curLocation.coords.longitude}
+				{curLocation === null ? "disabled" : curLocation.coords.longitude}
 			</Text>
 			<Text style={{ fontWeight: "bold" }}>Cellular network:</Text>
 			<Text>
-				-NMC code:{" "}
-				{mobileNetCode === null ? "Network not available" : mobileNetCode}
+				-NMC code: {mobileNetCode === null ? "disabled" : mobileNetCode}
 			</Text>
 			<Text style={{ fontWeight: "bold" }}>
-				Route location points: {routeCoordinates.length}
+				Local waypoints: {waypoints.localWaypoints.length}
+			</Text>
+			<Text style={{ fontWeight: "bold" }}>
+				Pending waypoints: {waypoints.pendingWaypoints.length}
 			</Text>
 			<Text style={{ fontWeight: "bold" }}>
 				Route ID:{" "}
