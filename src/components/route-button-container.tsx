@@ -1,4 +1,5 @@
 import { View, StyleSheet } from "react-native";
+
 import {
 	startRoute,
 	deactivateRoute,
@@ -6,7 +7,6 @@ import {
 } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import RouteButton from "./route-button";
-import { resetWaypoints } from "../reducers/waypoint-reducer";
 
 const styles = StyleSheet.create({
 	buttonContainer: {
@@ -25,20 +25,19 @@ const styles = StyleSheet.create({
  * Just preliminary styling and location on a screen.
  */
 const RouteButtonContainer = (): JSX.Element => {
-	const userId = useTypedSelector((state) => state.user.userId);
+	const user = useTypedSelector((state) => state.user);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const dispatch = useTypedDispatch();
 
 	const changeRouteVisibility = () => {
-		dispatch(changeShowRoute(routeInfo));
+		dispatch(changeShowRoute());
 	};
 
 	const changeTracking = () => {
 		if (routeInfo.active) {
 			dispatch(deactivateRoute(routeInfo.routeId));
-			dispatch(resetWaypoints());
 		} else {
-			dispatch(startRoute(userId));
+			dispatch(startRoute(user));
 		}
 	};
 
