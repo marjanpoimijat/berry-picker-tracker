@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { AppDispatch } from "../store";
+import type { AppDispatch, ReduxState } from "../store";
 import { createNewUser } from "../requests";
 import { User } from "../types";
 
@@ -23,18 +23,18 @@ export const { setUser } = userSlice.actions;
 /**
  * Function to identify user. Creates new user by using http request unless
  * user has been already created and stored into the device.
- * @param userId
  * @returns dispatch method to update user state
  */
-export const identifyUser = (userId: string | null) => {
-	return async (dispatch: AppDispatch) => {
+export const identifyUser = () => {
+	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		console.log("Identifying user...");
+		const userId = getState().user.userId;
 		if (userId !== null) {
-			console.log(`user id found from storage ${userId}`);
+			console.log(`user id found from storage ${userId}\n`);
 		} else {
 			console.log(`user id not found from storage, creating new user`);
 			const data = await createNewUser();
-			console.log(`recieved user id for a new user ${data.id}`);
+			console.log(`recieved user id for a new user ${data.id}\n`);
 			dispatch(setUser(data.id));
 		}
 	};
