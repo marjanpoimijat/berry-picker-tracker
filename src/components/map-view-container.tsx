@@ -1,5 +1,5 @@
 import { View, StyleSheet, Dimensions } from "react-native";
-import MapView, { Polyline, UrlTile } from "react-native-maps";
+import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
 
 import { baseUrl, statusBarHeight } from "../constants";
 import { useTypedSelector } from "../store";
@@ -52,6 +52,16 @@ const MapViewContainer = (): JSX.Element => {
 					strokeWidth={8}
 					zIndex={1}
 				/>
+				{localWaypoints.map((waypoint, index) => (
+					<Circle
+						key={index}
+						center={{
+							latitude: waypoint.latitude,
+							longitude: waypoint.longitude,
+						}}
+						radius={1}
+					/>
+				))}
 			</MapView>
 		</View>
 	);

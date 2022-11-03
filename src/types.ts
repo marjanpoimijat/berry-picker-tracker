@@ -3,6 +3,7 @@ export interface Waypoint {
 	latitude: number;
 	longitude: number;
 	mnc: string | null;
+	connection: string | null;
 	ts: number;
 }
 
