@@ -1,6 +1,6 @@
 import * as TaskManager from "expo-task-manager";
 import * as Location from "expo-location";
-import { storeWaypoint } from "../reducers/waypoint-reducer";
+import { storeAndSendWaypoints } from "../reducers/waypoint-reducer";
 import { AppDispatch } from "../store";
 
 const TRACK_WAYPOINTS = "track_waypoints";
@@ -21,7 +21,7 @@ export const defineBackgroundLocationTask = (dispatch: AppDispatch) => {
 			return;
 		}
 		if (data) {
-			dispatch(storeWaypoint());
+			dispatch(storeAndSendWaypoints());
 		}
 	});
 };
