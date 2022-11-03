@@ -18,6 +18,9 @@ export default {
 	assetBundlePatterns: ["**/*"],
 	ios: {
 		supportsTablet: true,
+		infoPlist: {
+			UIBackgroundModes: ["location", "fetch"],
+		},
 	},
 	android: {
 		adaptiveIcon: {
@@ -27,13 +30,6 @@ export default {
 	},
 	web: {
 		favicon: "./assets/favicon.png",
-	},
-	expo: {
-		ios: {
-			infoPlist: {
-				UIBackgroundModes: ["location", "fetch"],
-			},
-		},
 	},
 	extra: {
 		uri: process.env.URI,
