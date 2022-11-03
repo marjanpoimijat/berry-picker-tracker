@@ -35,7 +35,7 @@ const RouteButtonContainer = (): JSX.Element => {
 
 	const changeTracking = () => {
 		if (routeInfo.active) {
-			dispatch(deactivateRoute(routeInfo.routeId));
+			dispatch(deactivateRoute());
 		} else {
 			dispatch(startRoute(user));
 		}
