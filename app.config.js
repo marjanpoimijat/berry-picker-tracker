@@ -28,6 +28,13 @@ export default {
 	web: {
 		favicon: "./assets/favicon.png",
 	},
+	expo: {
+		ios: {
+			infoPlist: {
+				UIBackgroundModes: ["location", "fetch"],
+			},
+		},
+	},
 	extra: {
 		uri: process.env.URI,
 	},
