@@ -62,22 +62,10 @@ const RouteButtonContainer = (): JSX.Element => {
 		);
 	};
 
-	/**
-	 * On RouteButton onPress, chooses function pending on
-	 * whether tracking active or not.
-	 */
-	const endRouteSelector = () => {
-		if (routeInfo.active) {
-			alertOnEndRoute();
-		} else {
-			changeTracking();
-		}
-	};
-
 	return (
 		<View style={styles.buttonContainer}>
 			<RouteButton
-				onPress={endRouteSelector}
+				onPress={routeInfo.active ? alertOnEndRoute : changeTracking}
 				text={routeInfo.active ? "End route" : "Start route"}
 			/>
 			<RouteButton
