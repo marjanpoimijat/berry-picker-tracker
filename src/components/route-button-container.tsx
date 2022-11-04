@@ -1,5 +1,4 @@
-import { View, StyleSheet } from "react-native";
-
+import { View, StyleSheet, Alert } from "react-native";
 import {
 	startRoute,
 	deactivateRoute,
@@ -41,10 +40,44 @@ const RouteButtonContainer = (): JSX.Element => {
 		}
 	};
 
+	/**
+	 * Shows alert on pressing End route.
+	 * Pressing OK ends route, CANCEL cancels operation.
+	 */
+	const alertOnEndRoute = () => {
+		Alert.alert(
+			"End tracking this route?",
+			"Do you really want to end tracking?",
+			[
+				{
+					text: "Cancel",
+				},
+				{
+					text: "OK",
+					onPress: () => {
+						changeTracking();
+					},
+				},
+			]
+		);
+	};
+
+	/**
+	 * On RouteButton onPress, chooses function pending on
+	 * whether tracking active or not.
+	 */
+	const endRouteSelector = () => {
+		if (routeInfo.active) {
+			alertOnEndRoute();
+		} else {
+			changeTracking();
+		}
+	};
+
 	return (
 		<View style={styles.buttonContainer}>
 			<RouteButton
-				onPress={changeTracking}
+				onPress={endRouteSelector}
 				text={routeInfo.active ? "End route" : "Start route"}
 			/>
 			<RouteButton
