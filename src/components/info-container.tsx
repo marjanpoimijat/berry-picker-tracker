@@ -44,7 +44,7 @@ const InfoContainer = (): JSX.Element => {
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
 			setMobileNetCode(networkCode);
 		})();
-	}, []);
+	}, [curLocation]);
 
 	return (
 		<View style={styles.infoContainer}>
