@@ -6,7 +6,6 @@ import {
 } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import RouteButton from "./route-button";
-import { resetWaypoints } from "../reducers/waypoint-reducer";
 
 const styles = StyleSheet.create({
 	buttonContainer: {
@@ -25,20 +24,19 @@ const styles = StyleSheet.create({
  * Just preliminary styling and location on a screen.
  */
 const RouteButtonContainer = (): JSX.Element => {
-	const userId = useTypedSelector((state) => state.user.userId);
+	const user = useTypedSelector((state) => state.user);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const dispatch = useTypedDispatch();
 
 	const changeRouteVisibility = () => {
-		dispatch(changeShowRoute(routeInfo));
+		dispatch(changeShowRoute());
 	};
 
 	const changeTracking = () => {
 		if (routeInfo.active) {
-			dispatch(deactivateRoute(routeInfo.routeId));
-			dispatch(resetWaypoints());
+			dispatch(deactivateRoute());
 		} else {
-			dispatch(startRoute(userId));
+			dispatch(startRoute(user));
 		}
 	};
 
@@ -64,22 +62,10 @@ const RouteButtonContainer = (): JSX.Element => {
 		);
 	};
 
-	/**
-	 * On RouteButton onPress, chooses function pending on
-	 * whether tracking active or not.
-	 */
-	const endRouteSelector = () => {
-		if (routeInfo.active) {
-			alertOnEndRoute();
-		} else {
-			changeTracking();
-		}
-	};
-
 	return (
 		<View style={styles.buttonContainer}>
 			<RouteButton
-				onPress={endRouteSelector}
+				onPress={routeInfo.active ? alertOnEndRoute : changeTracking}
 				text={routeInfo.active ? "End route" : "Start route"}
 			/>
 			<RouteButton

@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
-import * as Location from "expo-location";
 
 import AppHeader from "../components/app-header";
 import MapViewContainer from "../components/map-view-container";
@@ -11,10 +9,6 @@ import { useTypedSelector } from "../store";
 
 const MapScreen = () => {
 	const userId = useTypedSelector((state) => state.user.userId);
-
-	useEffect(() => {
-		Location.requestForegroundPermissionsAsync();
-	}, []);
 
 	return (
 		<View style={styles.container}>
