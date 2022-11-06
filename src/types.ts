@@ -8,6 +8,7 @@ export interface Waypoint {
 }
 
 export interface WaypointState {
+	routeId: string | null;
 	localWaypoints: Array<Waypoint>;
 	pendingWaypoints: Array<Waypoint>;
 }
