@@ -53,7 +53,6 @@ export const storeWaypoint = (routeId: string | null) => {
 			const netInfo = getNetworkCellularGeneration(
 				await NetworkConnectionInformation()
 			);
-			console.log(netInfo);
 			if (location !== null) {
 				const waypoint: Waypoint = {
 					routeId: routeId,
@@ -64,7 +63,6 @@ export const storeWaypoint = (routeId: string | null) => {
 					ts: new Date().getTime(),
 				};
 				dispatch(appendWaypoint(waypoint));
-				console.log(waypoint);
 			}
 		}
 	};
