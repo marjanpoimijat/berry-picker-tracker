@@ -40,3 +40,7 @@ Open your user settings and add the following:
 	}
 }
 ```
+
+## Licenses
+
+[Licenses](https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker/tree/main/licenses)
