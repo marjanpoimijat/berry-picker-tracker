@@ -1,0 +1,110 @@
+{
+	"@react-native-async-storage/async-storage@1.15.17": {
+		"licenses": "MIT",
+		"repository": "https://github.com/react-native-async-storage/async-storage",
+		"licenseUrl": "https://github.com/react-native-async-storage/async-storage/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"@reduxjs/toolkit@1.8.6": {
+		"licenses": "MIT",
+		"repository": "https://github.com/reduxjs/redux-toolkit",
+		"licenseUrl": "https://github.com/reduxjs/redux-toolkit/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"dotenv@16.0.3": {
+		"licenses": "BSD-2-Clause",
+		"repository": "https://github.com/motdotla/dotenv",
+		"licenseUrl": "https://github.com/motdotla/dotenv/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"expo-cellular@4.1.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/expo/expo",
+		"licenseUrl": "https://github.com/expo/expo",
+		"parents": "berry-picker-tracker"
+	},
+	"expo-location@14.0.2": {
+		"licenses": "MIT",
+		"repository": "https://github.com/expo/expo",
+		"licenseUrl": "https://github.com/expo/expo",
+		"parents": "berry-picker-tracker"
+	},
+	"expo-status-bar@1.2.0": {
+		"licenses": "MIT",
+		"repository": "https://github.com/expo/expo",
+		"licenseUrl": "https://github.com/expo/expo",
+		"parents": "berry-picker-tracker"
+	},
+	"expo-task-manager@10.1.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/expo/expo",
+		"licenseUrl": "https://github.com/expo/expo",
+		"parents": "berry-picker-tracker"
+	},
+	"expo@44.0.6": {
+		"licenses": "MIT",
+		"repository": "https://github.com/expo/expo",
+		"licenseUrl": "https://github.com/expo/expo",
+		"parents": "berry-picker-tracker"
+	},
+	"react-dom@17.0.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/facebook/react",
+		"licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"react-native-maps@0.29.4": {
+		"licenses": "MIT*",
+		"repository": "https://github.com/react-native-maps/react-native-maps",
+		"licenseUrl": "https://github.com/react-native-maps/react-native-maps/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"react-native-vector-icons@9.2.0": {
+		"licenses": "MIT",
+		"repository": "https://github.com/oblador/react-native-vector-icons",
+		"licenseUrl": "https://github.com/oblador/react-native-vector-icons/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"react-native-web@0.17.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/necolas/react-native-web",
+		"licenseUrl": "https://github.com/necolas/react-native-web",
+		"parents": "berry-picker-tracker"
+	},
+	"react-native@0.64.3": {
+		"licenses": "MIT",
+		"repository": "github:facebook/react-native",
+		"licenseUrl": "github:facebook/react-native",
+		"parents": "berry-picker-tracker"
+	},
+	"react-redux@8.0.4": {
+		"licenses": "MIT",
+		"repository": "github:reduxjs/react-redux",
+		"licenseUrl": "github:reduxjs/react-redux",
+		"parents": "berry-picker-tracker"
+	},
+	"react-router-native@6.4.2": {
+		"licenses": "MIT",
+		"repository": "https://github.com/remix-run/react-router",
+		"licenseUrl": "https://github.com/remix-run/react-router/raw/master/LICENSE.md",
+		"parents": "berry-picker-tracker"
+	},
+	"react@17.0.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/facebook/react",
+		"licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"redux-persist@6.0.0": {
+		"licenses": "MIT",
+		"repository": "https://github.com/rt2zz/redux-persist",
+		"licenseUrl": "https://github.com/rt2zz/redux-persist/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"redux@4.2.0": {
+		"licenses": "MIT",
+		"repository": "github:reduxjs/redux",
+		"licenseUrl": "github:reduxjs/redux",
+		"parents": "berry-picker-tracker"
+	}
+}
