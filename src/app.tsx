@@ -1,4 +1,3 @@
-import { registerRootComponent } from "expo";
 import { NativeRouter } from "react-router-native";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store";
@@ -18,4 +17,4 @@ const App = () => {
 	);
 };
 
-export default registerRootComponent(App);
+export default App;
