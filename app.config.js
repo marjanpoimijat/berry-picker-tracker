@@ -1,9 +1,9 @@
 import "dotenv/config";
 
 export default {
-	name: "berry-picker-tracker",
+	name: "Berry picker tracker",
 	slug: "berry-picker-tracker",
-	entryPoint: "./src/app.tsx",
+	entryPoint: "./index.js",
 	version: "1.0.0",
 	orientation: "portrait",
 	icon: "./assets/icon.png",
@@ -17,12 +17,16 @@ export default {
 	},
 	assetBundlePatterns: ["**/*"],
 	ios: {
+		bundleIdentifier: "com.berry.picker.tracker",
 		supportsTablet: true,
 		infoPlist: {
 			UIBackgroundModes: ["location", "fetch"],
+			NSLocationAlwaysAndWhenInUseUsageDescription: "App requires geolocation",
 		},
 	},
 	android: {
+		package: "com.berry.picker.tracker",
+		versionCode: 1,
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#FFFFFF",
@@ -33,5 +37,8 @@ export default {
 	},
 	extra: {
 		uri: process.env.URI,
+		eas: {
+			projectId: process.env.PROJECT_ID,
+		},
 	},
 };
