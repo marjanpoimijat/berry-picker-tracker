@@ -25,6 +25,7 @@ const MapViewContainer = (): JSX.Element => {
 	return (
 		<View>
 			<MapView
+				mapType={"none"}
 				style={styles.map}
 				showsUserLocation={true}
 				initialRegion={{
