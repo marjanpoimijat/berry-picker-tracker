@@ -5,20 +5,10 @@ import MapViewContainer from "../components/map-view-container";
 import RouteButtonContainer from "../components/route-button-container";
 import InfoContainer from "../components/info-container";
 import NavigatorTab from "../components/navigator-tab";
-import * as FileSystem from "expo-file-system";
-import { tileCacheDirectory } from "../constants";
 import { useTypedSelector } from "../store";
 
 const MapScreen = () => {
 	const userId = useTypedSelector((state) => state.user.userId);
-
-	FileSystem.makeDirectoryAsync(tileCacheDirectory)
-		.then(function () {
-			console.log("Created tile cache directory at " + tileCacheDirectory);
-		})
-		.catch(function (err) {
-			console.log(err);
-		});
 
 	return (
 		<View style={styles.container}>

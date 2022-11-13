@@ -13,6 +13,7 @@ import {
 	defineBackgroundLocationTask,
 	requestPermissions,
 } from "./utils/location-tracking";
+import { makeTileCacheDirectory } from "./utils/file-system";
 
 const Main = () => {
 	const dispatch = useTypedDispatch();
@@ -24,6 +25,8 @@ const Main = () => {
 			await dispatch(identifyUser());
 		})();
 	}, [dispatch]);
+
+	makeTileCacheDirectory();
 
 	return (
 		<View style={styles.container}>
