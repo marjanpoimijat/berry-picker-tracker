@@ -13,11 +13,13 @@ import {
 	defineBackgroundLocationTask,
 	requestPermissions,
 } from "./utils/location-tracking";
+import { makeTileCacheDirectory } from "./utils/file-system";
 
 const Main = () => {
 	const dispatch = useTypedDispatch();
 
 	useEffect(() => {
+		makeTileCacheDirectory();
 		(async () => {
 			defineBackgroundLocationTask(dispatch);
 			await requestPermissions();

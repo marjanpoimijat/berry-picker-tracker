@@ -1,0 +1,110 @@
+{
+	"@babel/core@7.19.0": {
+		"licenses": "MIT",
+		"repository": "https://github.com/babel/babel",
+		"licenseUrl": "https://github.com/babel/babel/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"@testing-library/jest-native@4.0.12": {
+		"licenses": "MIT",
+		"repository": "https://github.com/testing-library/jest-native",
+		"licenseUrl": "https://github.com/testing-library/jest-native/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"@testing-library/react-native@11.1.0": {
+		"licenses": "MIT",
+		"repository": "https://wwwhub.com/callstack/react-native-testing-library",
+		"licenseUrl": "https://wwwhub.com/callstack/react-native-testing-library",
+		"parents": "berry-picker-tracker"
+	},
+	"@types/jest@29.0.3": {
+		"licenses": "MIT",
+		"repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+		"licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"@types/react-native@0.64.27": {
+		"licenses": "MIT",
+		"repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+		"licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"@types/react@17.0.49": {
+		"licenses": "MIT",
+		"repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+		"licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"@typescript-eslint/eslint-plugin@5.37.0": {
+		"licenses": "MIT",
+		"repository": "https://github.com/typescript-eslint/typescript-eslint",
+		"licenseUrl": "https://github.com/typescript-eslint/typescript-eslint/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"@typescript-eslint/parser@5.37.0": {
+		"licenses": "BSD-2-Clause",
+		"repository": "https://github.com/typescript-eslint/typescript-eslint",
+		"licenseUrl": "https://github.com/typescript-eslint/typescript-eslint/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"eslint-plugin-jest@27.1.0": {
+		"licenses": "MIT",
+		"repository": "https://github.com/jest-community/eslint-plugin-jest",
+		"licenseUrl": "https://github.com/jest-community/eslint-plugin-jest/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"eslint-plugin-react@7.31.8": {
+		"licenses": "MIT",
+		"repository": "https://github.com/jsx-eslint/eslint-plugin-react",
+		"licenseUrl": "https://github.com/jsx-eslint/eslint-plugin-react/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"eslint@8.23.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/eslint/eslint",
+		"licenseUrl": "https://github.com/eslint/eslint/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"husky@8.0.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/typicode/husky",
+		"licenseUrl": "https://github.com/typicode/husky/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"jest-expo@46.0.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/expo/expo",
+		"licenseUrl": "https://github.com/expo/expo",
+		"parents": "berry-picker-tracker"
+	},
+	"jest@29.2.2": {
+		"licenses": "MIT",
+		"repository": "https://github.com/facebook/jest",
+		"licenseUrl": "https://github.com/facebook/jest/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"lint-staged@13.0.3": {
+		"licenses": "MIT",
+		"repository": "https://github.com/okonet/lint-staged",
+		"licenseUrl": "https://github.com/okonet/lint-staged/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"prettier@2.7.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/prettier/prettier",
+		"licenseUrl": "https://github.com/prettier/prettier/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"react-test-renderer@17.0.1": {
+		"licenses": "MIT",
+		"repository": "https://github.com/facebook/react",
+		"licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+		"parents": "berry-picker-tracker"
+	},
+	"typescript@4.3.5": {
+		"licenses": "Apache-2.0",
+		"repository": "https://github.com/Microsoft/TypeScript",
+		"licenseUrl": "https://github.com/Microsoft/TypeScript/raw/master/LICENSE.txt",
+		"parents": "berry-picker-tracker"
+	}
+}
