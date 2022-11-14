@@ -19,14 +19,13 @@ const Main = () => {
 	const dispatch = useTypedDispatch();
 
 	useEffect(() => {
+		makeTileCacheDirectory();
 		(async () => {
 			defineBackgroundLocationTask(dispatch);
 			await requestPermissions();
 			await dispatch(identifyUser());
 		})();
 	}, [dispatch]);
-
-	makeTileCacheDirectory();
 
 	return (
 		<View style={styles.container}>

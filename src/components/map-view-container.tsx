@@ -40,7 +40,7 @@ const MapViewContainer = (): JSX.Element => {
 					maximumZ={19}
 					zIndex={-3}
 					tileCachePath={tileCacheDirectory}
-					tileCacheMaxAge={1800}
+					tileCacheMaxAge={172800}
 					offlineMode={false}
 				/>
 				<Polyline

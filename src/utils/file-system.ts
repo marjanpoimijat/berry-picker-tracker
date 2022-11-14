@@ -11,5 +11,7 @@ export const makeTileCacheDirectory = () => {
 		.then(function () {
 			console.log("Created tile cache directory at " + tileCacheDirectory);
 		})
-		.catch();
+		.catch(function () {
+			//console.log("Tile directory already exists");
+		});
 };
