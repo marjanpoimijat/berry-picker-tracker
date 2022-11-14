@@ -1,7 +1,7 @@
 import { View, StyleSheet, Dimensions } from "react-native";
 import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
 
-import { baseUrl, statusBarHeight } from "../constants";
+import { baseUrl, statusBarHeight, tileCacheDirectory } from "../constants";
 import { useTypedSelector } from "../store";
 
 const styles = StyleSheet.create({
@@ -56,6 +56,9 @@ const MapViewContainer = (): JSX.Element => {
 					tileSize={256}
 					maximumZ={19}
 					zIndex={-3}
+					tileCachePath={tileCacheDirectory}
+					tileCacheMaxAge={172800}
+					offlineMode={false}
 				/>
 				<Polyline
 					coordinates={routeInfo.showRoute ? localWaypoints : []}
