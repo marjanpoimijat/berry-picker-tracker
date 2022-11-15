@@ -14,9 +14,11 @@ npm install
 ```
 
 Create a .env-file to the project root with following:
+
 ```bash
 URI=<backend-address>
 ```
+
 e.g. `URI="http://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2:8000"` (address for Android emulator)
 
 ### Running
