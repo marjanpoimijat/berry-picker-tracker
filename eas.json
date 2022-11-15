@@ -10,13 +10,13 @@
 		},
 		"development": {
 			"developmentClient": true,
-			"distribution": "internal"
-		},
-		"preview": {
-			"distribution": "internal"
+			"distribution": "internal",
+			"env": {
+				"URI": "http://berry-picker-tracker.cs.helsinki.fi:88"
+			}
 		},
 		"apk": {
-			"extends": "preview",
+			"extends": "development",
 			"android": {
 				"buildType": "apk"
 			}
