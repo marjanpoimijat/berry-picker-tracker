@@ -38,12 +38,14 @@ const InfoContainer = (): JSX.Element => {
 	const waypoints = useTypedSelector((state) => state.waypoints);
 
 	useEffect(() => {
-		(async () => {
-			const location = await Location.getCurrentPositionAsync({});
+		const interval = setInterval(async () => {
+			const location = await Location.getLastKnownPositionAsync({});
 			setCurLocation(location);
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
 			setMobileNetCode(networkCode);
-		})();
+		}, 3000);
+
+		return () => clearInterval(interval);
 	}, [curLocation]);
 
 	return (
