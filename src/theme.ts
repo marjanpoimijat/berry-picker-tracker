@@ -3,7 +3,7 @@ const theme = {
 		textPrimary: "black",
 		textSecondary: "white",
 		buttonBackgroundColor: "white",
-		primaryBackgroundColor: "grey",
+		primaryBackgroundColor: "#008b8b",
 	},
 	fontSizes: {
 		body: 14,
