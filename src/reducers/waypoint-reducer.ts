@@ -68,7 +68,7 @@ export const storeAndSendWaypoints = () => {
 				await NetworkConnectionInformation()
 			);
 			console.log(
-				`Storing wp - lat: ${location?.coords.latitude} lon: ${location?.coords.longitude} mnc: ${networkCode}`
+				`Storing wp - lat: ${location?.coords.latitude} lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`
 			);
 
 			if (location !== null) {
