@@ -38,7 +38,6 @@ export default {
 			},
 		},
 	},
-	androidStatusBarColor: "#333C4A",
 	androidStatusBar: {
 		barStyle: "light-content",
 		backgroundColor: "#333C4A",
