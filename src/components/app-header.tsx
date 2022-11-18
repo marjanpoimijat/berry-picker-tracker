@@ -34,9 +34,7 @@ const AppHeader = ({
 	return (
 		<View style={styles.appHeader}>
 			<Text style={styles.textHeader}>{name}</Text>
-			<Text
-				style={{ color: "white" }}
-			>{`User ID: ${userId} -${statusBarHeight}`}</Text>
+			<Text style={{ color: "white" }}>{`User ID: ${userId}`}</Text>
 		</View>
 	);
 };
