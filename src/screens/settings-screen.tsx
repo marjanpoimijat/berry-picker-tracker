@@ -1,40 +1,189 @@
-import { Text, View, StyleSheet } from "react-native";
 import SettingsToggle from "../components/settings-toggle";
 import theme from "../theme";
+import { useState } from "react";
+import {
+	StyleSheet,
+	Text,
+	View,
+	StatusBar,
+	Image,
+	Platform,
+	RefreshControl,
+	Switch,
+} from "react-native";
 
-/** Primitive Settings Screen implementation
- * Light colored separator and hairline ruler to separate content
- * Primitive layout with flex
- */
+import { SettingsScreen, SettingsData } from "react-native-settings-screen";
+import ModalSelector from "react-native-modal-selector";
 
-const Ruler = () => <View style={styles.rulerStyle} />;
-const Separator = () => <View style={styles.separatorStyle} />;
+export const SettingScreen = () => {
+	const [refreshing, setRefreshing] = useState(false);
 
-const SettingsScreen = () => {
+	let index = 0;
+	const frequencies = [
+		{ key: index++, label: 1 },
+		{ key: index++, label: 2 },
+		{ key: index++, label: 3 },
+		{ key: index++, label: 4 },
+	];
+
+	const settingsData: SettingsData = [
+		{
+			type: "SECTION",
+			header: "Navigation".toUpperCase(),
+			footer: "Change tracking and sending frequencies to save on battery life",
+			rows: [
+				{
+					title: "Waypoint storing frequency",
+					renderAccessory: () => (
+						<ModalSelector
+							data={frequencies}
+							initValue="Hey"
+							onChange={() => {}}
+						/>
+					),
+				},
+				{
+					title: "Switch",
+					renderAccessory: () => <SettingsToggle />,
+				},
+				{
+					title: "Text",
+					renderAccessory: () => (
+						<Text style={{ color: "#999", marginRight: 6, fontSize: 18 }}>
+							Maybe
+						</Text>
+					),
+				},
+			],
+		},
+		{
+			type: "SECTION",
+			header: "My Other Section".toUpperCase(),
+			rows: [
+				{
+					title: "Dolor Nullam",
+					showDisclosureIndicator: true,
+				},
+				{
+					title: "Nulla vitae elit libero",
+					renderAccessory: () => (
+						<Text style={{ color: "#999", marginRight: 6, fontSize: 18 }}>
+							Dapibus
+						</Text>
+					),
+				},
+				{
+					title: "Ipsum Lorem Venenatis",
+					subtitle: "Vestibulum Inceptos Fusce Justo",
+					renderAccessory: () => (
+						<Text style={{ color: "#999", marginRight: 6, fontSize: 18 }}>
+							Yes
+						</Text>
+					),
+					showDisclosureIndicator: true,
+				},
+				{
+					title: "Cras Euismod",
+					showDisclosureIndicator: true,
+				},
+			],
+		},
+		{
+			type: "SECTION",
+			header: "User information".toUpperCase(),
+			rows: [
+				{
+					title: "Reset user-ID",
+					showDisclosureIndicator: true,
+					titleStyle: {
+						color: "red",
+					},
+				},
+			],
+		},
+		{
+			type: "CUSTOM_VIEW",
+			render: () => <Text style={styles.textStyle}>v1.2.3</Text>,
+		},
+	];
+
 	return (
 		<View style={styles.container}>
-			<Text style={styles.screenHeadertext}>Settings</Text>
-			<Separator />
-			<Text style={styles.headerStyle}>TRACKING SETTINGS</Text>
-			<Text style={styles.subheaderStyle}>Accuracy</Text>
-			<Text style={styles.textStyle}>Set waypoint frequency</Text>
-			<Text style={styles.subheaderStyle}>Enable Network Localization</Text>
-			<View style={styles.toggleStyle}>
-				<SettingsToggle />
+			<StatusBar barStyle="light-content" backgroundColor="#8c231a" />
+			<View style={styles.titleContainer}>
+				<Text style={styles.headerStyle}>Settings</Text>
 			</View>
-			<Ruler />
-			<Text style={styles.headerStyle}>APP SETTINGS</Text>
-			<Text style={styles.subheaderStyle}>App Theme</Text>
-			<Text style={styles.textStyle}>Select Light or Dark Mode</Text>
-			<View style={styles.toggleStyle}>
-				<SettingsToggle />
-			</View>
-			<Ruler />
-			<Text style={styles.headerStyle}>MORE SETTINGS</Text>
-			<Text style={styles.subheaderStyle}>More...</Text>
+			<SettingsScreen
+				data={settingsData}
+				globalTextStyle={styles.textStyle}
+				scrollViewProps={{
+					refreshControl: (
+						<RefreshControl
+							refreshing={refreshing}
+							onRefresh={() => {
+								setRefreshing(true);
+								setTimeout(() => setRefreshing(false), 3000);
+							}}
+						/>
+					),
+				}}
+			/>
 		</View>
 	);
 };
+
+/*
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  navBar: {
+    backgroundColor: '#8c231c',
+    height: 44 + statusBarHeight,
+    alignSelf: 'stretch',
+    paddingTop: statusBarHeight,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  navBarTitle: {
+    color: 'white',
+    fontFamily,
+    fontSize: 17,
+  },
+  heroContainer: {
+    marginTop: 40,
+    marginBottom: 50,
+    paddingVertical: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: '#ccc',
+    flexDirection: 'row',
+  },
+  heroImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    borderWidth: 3,
+    borderColor: 'black',
+    marginHorizontal: 20,
+  },
+  heroTitle: {
+    fontFamily,
+    color: 'black',
+    fontSize: 24,
+  },
+  heroSubtitle: {
+    fontFamily,
+    color: '#999',
+    fontSize: 14,
+  },
+})
+*/
 
 const styles = StyleSheet.create({
 	container: {
@@ -42,6 +191,14 @@ const styles = StyleSheet.create({
 		width: "90%",
 		height: "90%",
 		alignItems: "flex-start",
+		justifyContent: "center",
+		flexDirection: "column",
+	},
+	titleContainer: {
+		flex: 0.15,
+		width: "90%",
+		height: "20%",
+		alignItems: "flex-end",
 		justifyContent: "center",
 		flexDirection: "column",
 	},
@@ -55,9 +212,9 @@ const styles = StyleSheet.create({
 		alignSelf: "flex-start",
 	},
 	headerStyle: {
-		fontSize: 13,
+		fontSize: 18,
 		color: "dimgrey",
-		paddingTop: 10,
+		paddingTop: 20,
 		paddingBottom: 2,
 		paddingHorizontal: 0,
 		alignSelf: "flex-start",
@@ -96,4 +253,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default SettingsScreen;
+export default SettingScreen;
