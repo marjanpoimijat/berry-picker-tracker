@@ -15,10 +15,17 @@ const userSlice = createSlice({
 		setUser(state, action: PayloadAction<string | null>) {
 			return { ...state, userId: action.payload };
 		},
+		setTrackingInterval(state, action: PayloadAction<number>) {
+			return { ...state, trackingInterval: action.payload };
+		},
+		setSendingInterval(state, action: PayloadAction<number>) {
+			return { ...state, sendingInterval: action.payload };
+		},
 	},
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setTrackingInterval, setSendingInterval } =
+	userSlice.actions;
 
 /**
  * Function to identify user. Creates new user by using http request unless
@@ -48,6 +55,24 @@ export const resetUser = () => {
 	return async (dispatch: AppDispatch) => {
 		console.log("Reseting user...");
 		dispatch(setUser(null));
+	};
+};
+
+/**
+ * Changing tracking/sedning interval in the settings (src/screens/settings-screen.tsx).
+ * Props: newInterval and if the change is the sending or tracking interval
+ * @returns dispatch method to update tracking/sending interval.
+ */
+export const setInterval = (newInterval: number, isTracking: boolean) => {
+	if (isTracking) {
+		return async (dispatch: AppDispatch) => {
+			console.log("Setting new trackingInterval to", newInterval);
+			dispatch(setTrackingInterval(newInterval));
+		};
+	}
+	return async (dispatch: AppDispatch) => {
+		console.log("Setting new sendingInterval to", newInterval);
+		dispatch(setSendingInterval(newInterval));
 	};
 };
 

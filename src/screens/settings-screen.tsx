@@ -6,85 +6,107 @@ import {
 	Text,
 	View,
 	StatusBar,
-	Image,
-	Platform,
 	RefreshControl,
-	Switch,
 } from "react-native";
+import { useTypedDispatch, useTypedSelector } from "../store";
 
 import { SettingsScreen, SettingsData } from "react-native-settings-screen";
 import ModalSelector from "react-native-modal-selector";
+import { setInterval } from "../reducers/user-reducer";
 
 export const SettingScreen = () => {
 	const [refreshing, setRefreshing] = useState(false);
 
+	const dispatch = useTypedDispatch();
+	const userId = useTypedSelector((state) => state.user.userId);
+	const currTrack = useTypedSelector((state) => state.user.trackingInterval);
+	const currSend = useTypedSelector((state) => state.user.sendingInterval);
+
 	let index = 0;
-	const frequencies = [
-		{ key: index++, label: 1 },
-		{ key: index++, label: 2 },
-		{ key: index++, label: 3 },
-		{ key: index++, label: 4 },
+	const trackFreq = [
+		{ key: index++, component: <Text>1 second</Text>, label: 1 },
+		{ key: index++, component: <Text>5 seconds</Text>, label: 5 },
+		{ key: index++, component: <Text>10 seconds</Text>, label: 10 },
+		{ key: index++, component: <Text>30 seconds</Text>, label: 30 },
+		{ key: index++, component: <Text>1 minute</Text>, label: 60 },
+	];
+
+	index = 0;
+	const sendFreq = [
+		{ key: index++, component: <Text>10 seconds</Text>, label: 10 },
+		{ key: index++, component: <Text>30 seconds</Text>, label: 30 },
+		{ key: index++, component: <Text>1 minute</Text>, label: 60 },
+		{ key: index++, component: <Text>5 minutes</Text>, label: 300 },
+		{ key: index++, component: <Text>10 minutes</Text>, label: 600 },
+	];
+
+	index = 0;
+	const tileLifetime = [
+		{ key: index++, component: <Text>12 hours</Text>, label: 43200 },
+		{ key: index++, component: <Text>24 hours</Text>, label: 86400 },
+		{ key: index++, component: <Text>48 hours</Text>, label: 172800 },
 	];
 
 	const settingsData: SettingsData = [
 		{
 			type: "SECTION",
 			header: "Navigation".toUpperCase(),
-			footer: "Change tracking and sending frequencies to save on battery life",
+			footer:
+				"Change tracking and sending frequencies to save battery life and turn the app to offline mode",
 			rows: [
 				{
-					title: "Waypoint storing frequency",
+					title: "Waypoint tracking frequency",
 					renderAccessory: () => (
 						<ModalSelector
-							data={frequencies}
-							initValue="Hey"
-							onChange={() => {}}
+							data={trackFreq}
+							initValue={currTrack.toString()}
+							onModalClose={async (option) => {
+								await dispatch(setInterval(option.label, true));
+							}}
 						/>
 					),
 				},
 				{
-					title: "Switch",
-					renderAccessory: () => <SettingsToggle />,
+					title: "Waypoint sending frequency",
+					renderAccessory: () => (
+						<ModalSelector
+							data={sendFreq}
+							initValue={currSend.toString()}
+							onModalClose={async (option) => {
+								await dispatch(setInterval(option.label, true));
+							}}
+						/>
+					),
 				},
 				{
-					title: "Text",
-					renderAccessory: () => (
-						<Text style={{ color: "#999", marginRight: 6, fontSize: 18 }}>
-							Maybe
-						</Text>
-					),
+					title: "Offline mode",
+					renderAccessory: () => <SettingsToggle />,
 				},
 			],
 		},
 		{
 			type: "SECTION",
-			header: "My Other Section".toUpperCase(),
+			header: "Map cache".toUpperCase(),
+			footer: "Delete all cached map tiles to clear space",
 			rows: [
 				{
-					title: "Dolor Nullam",
-					showDisclosureIndicator: true,
-				},
-				{
-					title: "Nulla vitae elit libero",
+					title: "Maptile lifetime",
 					renderAccessory: () => (
-						<Text style={{ color: "#999", marginRight: 6, fontSize: 18 }}>
-							Dapibus
-						</Text>
+						<ModalSelector
+							data={tileLifetime}
+							initValue="Lifetime"
+							onModalClose={(option) => {
+								alert(option.component);
+							}}
+						/>
 					),
 				},
 				{
-					title: "Ipsum Lorem Venenatis",
-					subtitle: "Vestibulum Inceptos Fusce Justo",
-					renderAccessory: () => (
-						<Text style={{ color: "#999", marginRight: 6, fontSize: 18 }}>
-							Yes
-						</Text>
-					),
+					title: "Delete map cache",
 					showDisclosureIndicator: true,
-				},
-				{
-					title: "Cras Euismod",
-					showDisclosureIndicator: true,
+					titleStyle: {
+						color: "red",
+					},
 				},
 			],
 		},
@@ -93,7 +115,15 @@ export const SettingScreen = () => {
 			header: "User information".toUpperCase(),
 			rows: [
 				{
-					title: "Reset user-ID",
+					title: "UserID",
+					renderAccessory: () => (
+						<Text style={{ color: "dimgrey", fontSize: 12 }}>
+							{`${userId ? userId : "not stored yet"}`}
+						</Text>
+					),
+				},
+				{
+					title: "Reset UserID",
 					showDisclosureIndicator: true,
 					titleStyle: {
 						color: "red",
@@ -188,7 +218,7 @@ const styles = StyleSheet.create({
 const styles = StyleSheet.create({
 	container: {
 		flex: 0,
-		width: "90%",
+		width: "95%",
 		height: "90%",
 		alignItems: "flex-start",
 		justifyContent: "center",

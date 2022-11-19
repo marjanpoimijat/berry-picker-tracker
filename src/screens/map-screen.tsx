@@ -5,14 +5,11 @@ import MapViewContainer from "../components/map-view-container";
 import RouteButtonContainer from "../components/route-button-container";
 import InfoContainer from "../components/info-container";
 import NavigatorTab from "../components/navigator-tab";
-import { useTypedSelector } from "../store";
 
 const MapScreen = () => {
-	const userId = useTypedSelector((state) => state.user.userId);
-
 	return (
 		<View style={styles.container}>
-			<AppHeader name={"Berry picker tracker"} userId={userId} />
+			<AppHeader name={"Berry picker tracker"} />
 			<MapViewContainer />
 			<RouteButtonContainer />
 			<InfoContainer />
