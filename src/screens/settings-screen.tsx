@@ -108,7 +108,8 @@ export const SettingScreen = () => {
 		{
 			type: "SECTION",
 			header: "Map cache".toUpperCase(),
-			footer: "Delete all cached map tiles to clear space",
+			footer:
+				"Delete cached map tiles to clear space and change their lifetime",
 			rows: [
 				{
 					title: "Maptile lifetime",
@@ -140,6 +141,7 @@ export const SettingScreen = () => {
 		{
 			type: "SECTION",
 			header: "User information".toUpperCase(),
+			footer: "Check, copy and reset your UserID",
 			rows: [
 				{
 					title: "UserID",
