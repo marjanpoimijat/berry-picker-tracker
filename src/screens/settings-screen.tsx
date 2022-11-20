@@ -1,50 +1,71 @@
-import SettingsToggle from "../components/settings-toggle";
-import theme from "../theme";
-import { useState } from "react";
-import {
-	StyleSheet,
-	Text,
-	View,
-	StatusBar,
-	RefreshControl,
-} from "react-native";
+import { Alert, Button, StyleSheet, Text, View } from "react-native";
 import { useTypedDispatch, useTypedSelector } from "../store";
-
+import { identifyUser, resetUser, setInterval } from "../reducers/user-reducer";
+import {
+	deleteTileCacheDirectory,
+	makeTileCacheDirectory,
+} from "../utils/file-system";
 import { SettingsScreen, SettingsData } from "react-native-settings-screen";
+import SettingsToggle from "../components/settings-toggle";
 import ModalSelector from "react-native-modal-selector";
-import { setInterval } from "../reducers/user-reducer";
 
 export const SettingScreen = () => {
-	const [refreshing, setRefreshing] = useState(false);
+	const [userId, currTrack, currSend] = useTypedSelector((state) => [
+		state.user.userId,
+		state.user.trackingInterval / 1000,
+		state.user.sendingInterval / 1000,
+	]);
 
 	const dispatch = useTypedDispatch();
-	const userId = useTypedSelector((state) => state.user.userId);
-	const currTrack = useTypedSelector((state) => state.user.trackingInterval);
-	const currSend = useTypedSelector((state) => state.user.sendingInterval);
+
+	const alertOnReset = (target: string) => {
+		Alert.alert(
+			`Resetting ${target}`,
+			`Do you really want to reset ${target}?`,
+			[
+				{
+					text: "Cancel",
+				},
+				{
+					text: "Reset",
+					onPress: async () => {
+						if (target === "UserID") {
+							await dispatch(resetUser());
+							await dispatch(identifyUser());
+						}
+						if (target === "maptile cache") {
+							deleteTileCacheDirectory();
+							makeTileCacheDirectory();
+						}
+					},
+				},
+			]
+		);
+	};
 
 	let index = 0;
 	const trackFreq = [
-		{ key: index++, component: <Text>1 second</Text>, label: 1 },
-		{ key: index++, component: <Text>5 seconds</Text>, label: 5 },
-		{ key: index++, component: <Text>10 seconds</Text>, label: 10 },
-		{ key: index++, component: <Text>30 seconds</Text>, label: 30 },
-		{ key: index++, component: <Text>1 minute</Text>, label: 60 },
+		{ key: index++, component: <Text>1 second</Text>, label: 1000 },
+		{ key: index++, component: <Text>5 seconds</Text>, label: 5000 },
+		{ key: index++, component: <Text>10 seconds</Text>, label: 10000 },
+		{ key: index++, component: <Text>30 seconds</Text>, label: 30000 },
+		{ key: index++, component: <Text>1 minute</Text>, label: 60000 },
 	];
 
 	index = 0;
 	const sendFreq = [
-		{ key: index++, component: <Text>10 seconds</Text>, label: 10 },
-		{ key: index++, component: <Text>30 seconds</Text>, label: 30 },
-		{ key: index++, component: <Text>1 minute</Text>, label: 60 },
-		{ key: index++, component: <Text>5 minutes</Text>, label: 300 },
-		{ key: index++, component: <Text>10 minutes</Text>, label: 600 },
+		{ key: index++, component: <Text>10 seconds</Text>, label: 10000 },
+		{ key: index++, component: <Text>30 seconds</Text>, label: 30000 },
+		{ key: index++, component: <Text>1 minute</Text>, label: 60000 },
+		{ key: index++, component: <Text>5 minutes</Text>, label: 300000 },
+		{ key: index++, component: <Text>10 minutes</Text>, label: 600000 },
 	];
 
 	index = 0;
 	const tileLifetime = [
-		{ key: index++, component: <Text>12 hours</Text>, label: 43200 },
-		{ key: index++, component: <Text>24 hours</Text>, label: 86400 },
-		{ key: index++, component: <Text>48 hours</Text>, label: 172800 },
+		{ key: index++, component: <Text>12 hours</Text>, label: 43200000 },
+		{ key: index++, component: <Text>24 hours</Text>, label: 86400000 },
+		{ key: index++, component: <Text>48 hours</Text>, label: 172800000 },
 	];
 
 	const settingsData: SettingsData = [
@@ -60,7 +81,7 @@ export const SettingScreen = () => {
 						<ModalSelector
 							data={trackFreq}
 							initValue={currTrack.toString()}
-							onModalClose={async (option) => {
+							onChange={async (option) => {
 								await dispatch(setInterval(option.label, true));
 							}}
 						/>
@@ -72,8 +93,8 @@ export const SettingScreen = () => {
 						<ModalSelector
 							data={sendFreq}
 							initValue={currSend.toString()}
-							onModalClose={async (option) => {
-								await dispatch(setInterval(option.label, true));
+							onChange={async (option) => {
+								await dispatch(setInterval(option.label, false));
 							}}
 						/>
 					),
@@ -95,18 +116,24 @@ export const SettingScreen = () => {
 						<ModalSelector
 							data={tileLifetime}
 							initValue="Lifetime"
-							onModalClose={(option) => {
+							onChange={(option) => {
 								alert(option.component);
 							}}
 						/>
 					),
 				},
 				{
-					title: "Delete map cache",
-					showDisclosureIndicator: true,
+					title: "Delete maptile cache",
 					titleStyle: {
 						color: "red",
 					},
+					renderAccessory: () => (
+						<Button
+							title="RESET"
+							onPress={() => alertOnReset("maptile cache")}
+							color="red"
+						/>
+					),
 				},
 			],
 		},
@@ -124,96 +151,34 @@ export const SettingScreen = () => {
 				},
 				{
 					title: "Reset UserID",
-					showDisclosureIndicator: true,
 					titleStyle: {
 						color: "red",
 					},
+					renderAccessory: () => (
+						<Button
+							title="RESET"
+							onPress={() => alertOnReset("UserID")}
+							color="red"
+						/>
+					),
 				},
 			],
 		},
 		{
 			type: "CUSTOM_VIEW",
-			render: () => <Text style={styles.textStyle}>v1.2.3</Text>,
+			render: () => <Text style={styles.textStyle}>v1.0.0</Text>,
 		},
 	];
 
 	return (
 		<View style={styles.container}>
-			<StatusBar barStyle="light-content" backgroundColor="#8c231a" />
 			<View style={styles.titleContainer}>
 				<Text style={styles.headerStyle}>Settings</Text>
 			</View>
-			<SettingsScreen
-				data={settingsData}
-				globalTextStyle={styles.textStyle}
-				scrollViewProps={{
-					refreshControl: (
-						<RefreshControl
-							refreshing={refreshing}
-							onRefresh={() => {
-								setRefreshing(true);
-								setTimeout(() => setRefreshing(false), 3000);
-							}}
-						/>
-					),
-				}}
-			/>
+			<SettingsScreen data={settingsData} globalTextStyle={styles.textStyle} />
 		</View>
 	);
 };
-
-/*
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  navBar: {
-    backgroundColor: '#8c231c',
-    height: 44 + statusBarHeight,
-    alignSelf: 'stretch',
-    paddingTop: statusBarHeight,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  navBarTitle: {
-    color: 'white',
-    fontFamily,
-    fontSize: 17,
-  },
-  heroContainer: {
-    marginTop: 40,
-    marginBottom: 50,
-    paddingVertical: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#ccc',
-    flexDirection: 'row',
-  },
-  heroImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    borderWidth: 3,
-    borderColor: 'black',
-    marginHorizontal: 20,
-  },
-  heroTitle: {
-    fontFamily,
-    color: 'black',
-    fontSize: 24,
-  },
-  heroSubtitle: {
-    fontFamily,
-    color: '#999',
-    fontSize: 14,
-  },
-})
-*/
 
 const styles = StyleSheet.create({
 	container: {
@@ -232,15 +197,6 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		flexDirection: "column",
 	},
-	subheaderStyle: {
-		fontSize: 14,
-		fontWeight: "bold",
-		color: "dimgrey",
-		paddingTop: 10,
-		paddingBottom: 2,
-		paddingLeft: 10,
-		alignSelf: "flex-start",
-	},
 	headerStyle: {
 		fontSize: 18,
 		color: "dimgrey",
@@ -255,30 +211,6 @@ const styles = StyleSheet.create({
 		paddingTop: 5,
 		paddingBottom: 0,
 		paddingLeft: 20,
-		alignSelf: "flex-start",
-	},
-	rulerStyle: {
-		borderBottomColor: "dimgrey",
-		borderBottomWidth: StyleSheet.hairlineWidth,
-		alignSelf: "stretch",
-		marginVertical: 8,
-	},
-	separatorStyle: {
-		borderBottomColor: "#eaeff6",
-		borderBottomWidth: 8,
-		alignSelf: "stretch",
-		marginBottom: 8,
-	},
-	toggleStyle: {
-		alignSelf: "flex-end",
-	},
-	screenHeadertext: {
-		fontSize: theme.fontSizes.header,
-		fontWeight: "bold",
-		color: "black",
-		marginBottom: 20,
-		paddingBottom: 8,
-		paddingLeft: 10,
 		alignSelf: "flex-start",
 	},
 });

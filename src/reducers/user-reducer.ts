@@ -16,9 +16,11 @@ const userSlice = createSlice({
 			return { ...state, userId: action.payload };
 		},
 		setTrackingInterval(state, action: PayloadAction<number>) {
+			console.log("Setting new trackingInterval to", action.payload);
 			return { ...state, trackingInterval: action.payload };
 		},
 		setSendingInterval(state, action: PayloadAction<number>) {
+			console.log("Setting new sendingInterval to", action.payload);
 			return { ...state, sendingInterval: action.payload };
 		},
 	},
@@ -66,12 +68,10 @@ export const resetUser = () => {
 export const setInterval = (newInterval: number, isTracking: boolean) => {
 	if (isTracking) {
 		return async (dispatch: AppDispatch) => {
-			console.log("Setting new trackingInterval to", newInterval);
 			dispatch(setTrackingInterval(newInterval));
 		};
 	}
 	return async (dispatch: AppDispatch) => {
-		console.log("Setting new sendingInterval to", newInterval);
 		dispatch(setSendingInterval(newInterval));
 	};
 };

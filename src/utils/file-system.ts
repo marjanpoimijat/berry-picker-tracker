@@ -8,10 +8,20 @@ import { tileCacheDirectory } from "../constants";
  */
 export const makeTileCacheDirectory = () => {
 	FileSystem.makeDirectoryAsync(tileCacheDirectory)
-		.then(function () {
+		.then(() => {
 			console.log("Created tile cache directory at " + tileCacheDirectory);
 		})
-		.catch(function () {
+		.catch(() => {
 			//console.log("Tile directory already exists");
+		});
+};
+
+export const deleteTileCacheDirectory = () => {
+	FileSystem.deleteAsync(tileCacheDirectory)
+		.then(() => {
+			console.log("Deleted tile cache directory");
+		})
+		.catch((err) => {
+			console.log("Map tile deletion error:", err);
 		});
 };
