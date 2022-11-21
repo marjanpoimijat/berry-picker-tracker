@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet } from "react-native";
-import Constants from "expo-constants";
+import { statusBarHeight } from "../constants";
 import theme from "../theme";
 
 const styles = StyleSheet.create({
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		justifyContent: "center",
 		alignItems: "center",
-		top: Constants.statusBarHeight,
+		top: statusBarHeight,
 		backgroundColor: theme.colors.primaryBackgroundColor,
 	},
 	textHeader: {
