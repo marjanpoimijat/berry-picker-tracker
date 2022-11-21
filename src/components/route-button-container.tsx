@@ -6,7 +6,6 @@ import {
 } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import RouteButton from "./route-button";
-import { identifyUser, resetUser } from "../reducers/user-reducer";
 
 const styles = StyleSheet.create({
 	buttonContainer: {
@@ -69,11 +68,6 @@ const RouteButtonContainer = (): JSX.Element => {
 				onPress={() => dispatch(changeShowRoute())}
 				text={routeInfo.showRoute ? "Hide route" : "Show route"}
 			/>
-			<RouteButton
-				onPress={() => dispatch(identifyUser())}
-				text={"Identify user"}
-			/>
-			<RouteButton onPress={() => dispatch(resetUser())} text={"Clear user"} />
 		</View>
 	);
 };
