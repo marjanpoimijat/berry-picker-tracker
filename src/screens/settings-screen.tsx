@@ -12,7 +12,8 @@ import {
 	changeMapLifetime,
 	identifyUser,
 	resetUser,
-	setInterval,
+	changeTrackingInterval,
+	changeSendingInterval,
 } from "../reducers/user-reducer";
 import {
 	deleteTileCacheDirectory,
@@ -32,6 +33,7 @@ export const SettingScreen = () => {
 			state.user.mapLifetime,
 		]
 	);
+	const routeActive = useTypedSelector((state) => state.route.active);
 
 	const dispatch = useTypedDispatch();
 
@@ -55,6 +57,18 @@ export const SettingScreen = () => {
 							makeTileCacheDirectory();
 						}
 					},
+				},
+			]
+		);
+	};
+
+	const alertRouteIsActive = () => {
+		Alert.alert(
+			"Route is currently active",
+			"UserID can not be reseted while route is active. End route route first and try again",
+			[
+				{
+					text: "OK",
 				},
 			]
 		);
@@ -101,7 +115,7 @@ export const SettingScreen = () => {
 							initValue={currTrack.toString() + " s"}
 							initValueTextStyle={styles.initValueStyle}
 							onChange={async (option: { label: number }) => {
-								await dispatch(setInterval(option.label, true));
+								await dispatch(changeTrackingInterval(option.label));
 							}}
 						/>
 					),
@@ -114,7 +128,7 @@ export const SettingScreen = () => {
 							initValue={currSend.toString() + " s"}
 							initValueTextStyle={styles.initValueStyle}
 							onChange={async (option: { label: number }) => {
-								await dispatch(setInterval(option.label, false));
+								await dispatch(changeSendingInterval(option.label));
 							}}
 						/>
 					),
@@ -190,7 +204,9 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<Button
 							title="RESET"
-							onPress={() => alertOnReset("UserID")}
+							onPress={() =>
+								routeActive ? alertRouteIsActive() : alertOnReset("UserID")
+							}
 							color="red"
 						/>
 					),
