@@ -7,6 +7,8 @@ const initialState: User = {
 	userId: null,
 	trackingInterval: 2500,
 	sendingInterval: 15000,
+	mapLifetime: 48,
+	offlineMode: false,
 };
 const userSlice = createSlice({
 	name: "user",
@@ -23,11 +25,24 @@ const userSlice = createSlice({
 			console.log("Setting new sendingInterval to", action.payload);
 			return { ...state, sendingInterval: action.payload };
 		},
+		setMapLifetime(state, action: PayloadAction<number>) {
+			console.log("Map lifetime changed into", action.payload);
+			return { ...state, mapLifetime: action.payload };
+		},
+		setDefaultSettings(_state, action: PayloadAction<string | null>) {
+			console.log("Setting reseted", action.payload);
+			return { ...initialState, userId: action.payload };
+		},
 	},
 });
 
-export const { setUser, setTrackingInterval, setSendingInterval } =
-	userSlice.actions;
+export const {
+	setUser,
+	setTrackingInterval,
+	setSendingInterval,
+	setMapLifetime,
+	setDefaultSettings,
+} = userSlice.actions;
 
 /**
  * Function to identify user. Creates new user by using http request unless
@@ -61,7 +76,7 @@ export const resetUser = () => {
 };
 
 /**
- * Changing tracking/sedning interval in the settings (src/screens/settings-screen.tsx).
+ * Changing tracking/sending interval in the settings (src/screens/settings-screen.tsx).
  * Props: newInterval and if the change is the sending or tracking interval
  * @returns dispatch method to update tracking/sending interval.
  */
@@ -73,6 +88,29 @@ export const setInterval = (newInterval: number, isTracking: boolean) => {
 	}
 	return async (dispatch: AppDispatch) => {
 		dispatch(setSendingInterval(newInterval));
+	};
+};
+
+/**
+ * Change map tile cache lifetime in the settings
+ * @param newLifetime in hours
+ * @returns dispatch method to update map life time
+ */
+export const changeMapLifetime = (newLifetime: number) => {
+	return async (dispatch: AppDispatch) => {
+		dispatch(setMapLifetime(newLifetime));
+	};
+};
+
+/**
+ * Change default user settings such as intervals and map life time in the settings.
+ * User ID remains the same.
+ * @returns dispatch method to change default settings
+ */
+export const changeDefaultSettings = () => {
+	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
+		const userId = getState().user.userId;
+		dispatch(setDefaultSettings(userId));
 	};
 };
 
