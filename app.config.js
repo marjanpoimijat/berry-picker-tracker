@@ -32,6 +32,11 @@ export default {
 			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#FFFFFF",
 		},
+		permissions: [
+			"ACCESS_COARSE_LOCATION",
+			"ACCESS_FINE_LOCATION",
+			"ACCESS_BACKGROUND_LOCATION",
+		],
 		config: {
 			googleMaps: {
 				apiKey: process.env.MAPS_API,
