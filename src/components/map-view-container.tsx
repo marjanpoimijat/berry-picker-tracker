@@ -1,14 +1,13 @@
 import { View, StyleSheet, Dimensions } from "react-native";
 import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
 
-import { baseUrl, statusBarHeight, tileCacheDirectory } from "../constants";
+import { baseUrl, tileCacheDirectory } from "../constants";
 import { useTypedSelector } from "../store";
 
 const styles = StyleSheet.create({
 	map: {
 		width: Dimensions.get("window").width,
 		height: Dimensions.get("window").height,
-		top: statusBarHeight + 50,
 	},
 });
 

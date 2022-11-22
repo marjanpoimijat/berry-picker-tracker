@@ -1,8 +1,8 @@
 const theme = {
 	colors: {
-		textPrimary: "black",
+		textPrimary: "dimgrey",
 		textSecondary: "white",
-		buttonBackgroundColor: "white",
+		buttonBackgroundColor: "#b0c4de",
 		primaryBackgroundColor: "#008b8b",
 	},
 	fontSizes: {
