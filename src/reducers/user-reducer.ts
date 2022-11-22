@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch, ReduxState } from "../store";
 import { createNewUser } from "../requests";
 import { User } from "../types";
+import { restartBackgroundUpdate } from "../utils/location-tracking";
 
 const initialState: User = {
 	userId: null,
@@ -18,7 +19,6 @@ const userSlice = createSlice({
 			return { ...state, userId: action.payload };
 		},
 		setTrackingInterval(state, action: PayloadAction<number>) {
-			console.log("Setting new trackingInterval to", action.payload);
 			return { ...state, trackingInterval: action.payload };
 		},
 		setSendingInterval(state, action: PayloadAction<number>) {
@@ -74,17 +74,26 @@ export const resetUser = () => {
 };
 
 /**
- * Changing tracking/sending interval in the settings (src/screens/settings-screen.tsx).
- * Props: newInterval and if the change is the sending or tracking interval
- * @returns dispatch method to update tracking/sending interval.
+ * Changing waypoint tracking interval in the settings (src/screens/settings-screen.tsx).
+ * @param newInterval new tracking interval in seconds
+ * @returns dispatch method to update tracking interval.
  */
-export const setInterval = (newInterval: number, isTracking: boolean) => {
-	if (isTracking) {
-		return async (dispatch: AppDispatch) => {
-			dispatch(setTrackingInterval(newInterval));
-		};
-	}
+export const changeTrackingInterval = (newInterval: number) => {
 	return async (dispatch: AppDispatch) => {
+		console.log(`\nSetting new trackingInterval to ${newInterval / 1000} s`);
+		dispatch(setTrackingInterval(newInterval));
+		restartBackgroundUpdate(newInterval);
+	};
+};
+
+/**
+ * Changing waypoint sending interval to server in the settings (src/screens/settings-screen.tsx).
+ * @param newInterval new sending interval in seconds
+ * @returns dispatch method to update sending interval.
+ */
+export const changeSendingInterval = (newInterval: number) => {
+	return async (dispatch: AppDispatch) => {
+		console.log(`\nSetting new sendingInterval to ${newInterval / 1000} s\n`);
 		dispatch(setSendingInterval(newInterval));
 	};
 };
@@ -111,6 +120,8 @@ export const changeDefaultSettings = () => {
 		const userId = getState().user.userId;
 		console.log("Setting reseted to default");
 		dispatch(setDefaultSettings(userId));
+		const trackingInterval = getState().user.trackingInterval;
+		restartBackgroundUpdate(trackingInterval);
 	};
 };
 
