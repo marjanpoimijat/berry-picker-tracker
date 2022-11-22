@@ -10,8 +10,7 @@ const locationTaskOptions = {
 	showsBackgroundLocationIndicator: true,
 	foregroundService: {
 		notificationTitle: "Berry picker tracker is running on a background",
-		notificationBody:
-			"You must end current route tracking in order to close the application",
+		notificationBody: "End current route tracking in order to close the app",
 		notificationColor: "#008b8b",
 	},
 };
