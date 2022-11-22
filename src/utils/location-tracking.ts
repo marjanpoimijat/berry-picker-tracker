@@ -59,8 +59,9 @@ export const startBackgroundUpdate = async (trackingInterval: number) => {
 		timeInterval: trackingInterval,
 		showsBackgroundLocationIndicator: true,
 		foregroundService: {
-			notificationTitle: "Route tracking is active",
-			notificationBody: "Your current location will be tracked on a background",
+			notificationTitle: "Berry picker tracker is running on a background",
+			notificationBody:
+				"You must end current route tracking in order to close the application",
 			notificationColor: "#008b8b",
 		},
 	});
