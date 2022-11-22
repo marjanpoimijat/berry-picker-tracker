@@ -5,7 +5,7 @@ import { User } from "../types";
 
 const initialState: User = {
 	userId: null,
-	trackingInterval: 2500,
+	trackingInterval: 5000,
 	sendingInterval: 15000,
 	mapLifetime: 48,
 	offlineMode: false,
@@ -26,11 +26,9 @@ const userSlice = createSlice({
 			return { ...state, sendingInterval: action.payload };
 		},
 		setMapLifetime(state, action: PayloadAction<number>) {
-			console.log("Map lifetime changed into", action.payload);
 			return { ...state, mapLifetime: action.payload };
 		},
 		setDefaultSettings(_state, action: PayloadAction<string | null>) {
-			console.log("Setting reseted", action.payload);
 			return { ...initialState, userId: action.payload };
 		},
 	},
@@ -98,6 +96,7 @@ export const setInterval = (newInterval: number, isTracking: boolean) => {
  */
 export const changeMapLifetime = (newLifetime: number) => {
 	return async (dispatch: AppDispatch) => {
+		console.log(`Map cache lifetime changed into ${newLifetime} hours`);
 		dispatch(setMapLifetime(newLifetime));
 	};
 };
@@ -110,6 +109,7 @@ export const changeMapLifetime = (newLifetime: number) => {
 export const changeDefaultSettings = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		const userId = getState().user.userId;
+		console.log("Setting reseted to default");
 		dispatch(setDefaultSettings(userId));
 	};
 };
