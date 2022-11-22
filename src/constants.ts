@@ -10,3 +10,5 @@ export const statusBarHeight: number =
 	StatusBar.currentHeight ?? Constants.statusBarHeight;
 
 export const tileCacheDirectory = FileSystem.cacheDirectory + "tiles/";
+
+export const version = Constants?.manifest?.version ?? "1.0.0";
