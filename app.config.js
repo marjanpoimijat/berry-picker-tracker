@@ -4,7 +4,7 @@ export default {
 	name: "Berry picker tracker",
 	slug: "berry-picker-tracker",
 	entryPoint: "./index.js",
-	version: "1.0.8",
+	version: "1.0.9",
 	orientation: "portrait",
 	icon: "./assets/icon.png",
 	splash: {
@@ -19,7 +19,7 @@ export default {
 	ios: {
 		bundleIdentifier: "com.berry.picker.tracker",
 		supportsTablet: true,
-		buildNumber: "9",
+		buildNumber: "10",
 		infoPlist: {
 			UIBackgroundModes: ["location", "fetch"],
 			NSLocationAlwaysAndWhenInUseUsageDescription: "App requires geolocation",
@@ -27,16 +27,11 @@ export default {
 	},
 	android: {
 		package: "com.berry.picker.tracker",
-		versionCode: 9,
+		versionCode: 10,
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#FFFFFF",
 		},
-		permissions: [
-			"ACCESS_COARSE_LOCATION",
-			"ACCESS_FINE_LOCATION",
-			"ACCESS_BACKGROUND_LOCATION",
-		],
 		config: {
 			googleMaps: {
 				apiKey: process.env.MAPS_API,
