@@ -56,6 +56,9 @@ export const SettingScreen = () => {
 							deleteTileCacheDirectory();
 							makeTileCacheDirectory();
 						}
+						if (target === "settings") {
+							await dispatch(changeDefaultSettings());
+						}
 					},
 				},
 			]
@@ -187,16 +190,6 @@ export const SettingScreen = () => {
 					),
 				},
 				{
-					title: "Reset default settings",
-					renderAccessory: () => (
-						<Button
-							title="RESET"
-							onPress={() => dispatch(changeDefaultSettings())}
-							color="dimgrey"
-						/>
-					),
-				},
-				{
 					title: "Reset UserID",
 					titleStyle: {
 						color: "red",
@@ -208,6 +201,16 @@ export const SettingScreen = () => {
 								routeActive ? alertRouteIsActive() : alertOnReset("UserID")
 							}
 							color="red"
+						/>
+					),
+				},
+				{
+					title: "Reset settings to default",
+					renderAccessory: () => (
+						<Button
+							title="RESET"
+							onPress={() => alertOnReset("settings")}
+							color="dimgrey"
 						/>
 					),
 				},
