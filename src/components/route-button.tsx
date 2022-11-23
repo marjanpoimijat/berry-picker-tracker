@@ -5,7 +5,7 @@ import theme from "../theme";
 const styles = StyleSheet.create({
 	buttonIcon: {
 		backgroundColor: theme.colors.buttonBackgroundColor,
-		borderRadius: 20,
+		borderRadius: 10,
 		padding: 15,
 		textAlign: "center",
 		height: 50,
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 		shadowOffset: { width: 3, height: 3 },
 		shadowOpacity: 0.8,
 		shadowRadius: 20,
-		elevation: 5,
+		elevation: 10,
 		margin: 5,
 	},
 });

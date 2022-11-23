@@ -1,6 +1,20 @@
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import {
+	Alert,
+	Button,
+	Dimensions,
+	StyleSheet,
+	Text,
+	View,
+} from "react-native";
 import { useTypedDispatch, useTypedSelector } from "../store";
-import { identifyUser, resetUser, setInterval } from "../reducers/user-reducer";
+import {
+	changeDefaultSettings,
+	changeMapLifetime,
+	identifyUser,
+	resetUser,
+	changeTrackingInterval,
+	changeSendingInterval,
+} from "../reducers/user-reducer";
 import {
 	deleteTileCacheDirectory,
 	makeTileCacheDirectory,
@@ -8,13 +22,18 @@ import {
 import { SettingsScreen, SettingsData } from "react-native-settings-screen";
 import SettingsToggle from "../components/settings-toggle";
 import ModalSelector from "react-native-modal-selector";
+import { statusBarHeight, version } from "../constants";
 
 export const SettingScreen = () => {
-	const [userId, currTrack, currSend] = useTypedSelector((state) => [
-		state.user.userId,
-		state.user.trackingInterval / 1000,
-		state.user.sendingInterval / 1000,
-	]);
+	const [userId, currTrack, currSend, mapLifetime] = useTypedSelector(
+		(state) => [
+			state.user.userId,
+			state.user.trackingInterval / 1000,
+			state.user.sendingInterval / 1000,
+			state.user.mapLifetime,
+		]
+	);
+	const routeActive = useTypedSelector((state) => state.route.active);
 
 	const dispatch = useTypedDispatch();
 
@@ -37,7 +56,22 @@ export const SettingScreen = () => {
 							deleteTileCacheDirectory();
 							makeTileCacheDirectory();
 						}
+						if (target === "settings") {
+							await dispatch(changeDefaultSettings());
+						}
 					},
+				},
+			]
+		);
+	};
+
+	const alertRouteIsActive = () => {
+		Alert.alert(
+			"Route is currently active",
+			"UserID can not be reseted while route is active. End route route first and try again",
+			[
+				{
+					text: "OK",
 				},
 			]
 		);
@@ -63,9 +97,10 @@ export const SettingScreen = () => {
 
 	index = 0;
 	const tileLifetime = [
-		{ key: index++, component: <Text>12 hours</Text>, label: 43200000 },
-		{ key: index++, component: <Text>24 hours</Text>, label: 86400000 },
-		{ key: index++, component: <Text>48 hours</Text>, label: 172800000 },
+		{ key: index++, component: <Text>12 hours</Text>, label: 12 },
+		{ key: index++, component: <Text>24 hours</Text>, label: 24 },
+		{ key: index++, component: <Text>48 hours</Text>, label: 48 },
+		{ key: index++, component: <Text>72 hours</Text>, label: 72 },
 	];
 
 	const settingsData: SettingsData = [
@@ -80,9 +115,10 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<ModalSelector
 							data={trackFreq}
-							initValue={currTrack.toString()}
-							onChange={async (option) => {
-								await dispatch(setInterval(option.label, true));
+							initValue={currTrack.toString() + " s"}
+							initValueTextStyle={styles.initValueStyle}
+							onChange={async (option: { label: number }) => {
+								await dispatch(changeTrackingInterval(option.label));
 							}}
 						/>
 					),
@@ -92,9 +128,10 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<ModalSelector
 							data={sendFreq}
-							initValue={currSend.toString()}
-							onChange={async (option) => {
-								await dispatch(setInterval(option.label, false));
+							initValue={currSend.toString() + " s"}
+							initValueTextStyle={styles.initValueStyle}
+							onChange={async (option: { label: number }) => {
+								await dispatch(changeSendingInterval(option.label));
 							}}
 						/>
 					),
@@ -116,9 +153,10 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<ModalSelector
 							data={tileLifetime}
-							initValue="Lifetime"
-							onChange={(option) => {
-								alert(option.component);
+							initValue={mapLifetime.toString() + " h"}
+							initValueTextStyle={styles.initValueStyle}
+							onChange={async (option: { label: number }) => {
+								await dispatch(changeMapLifetime(option.label));
 							}}
 						/>
 					),
@@ -141,7 +179,7 @@ export const SettingScreen = () => {
 		{
 			type: "SECTION",
 			header: "User information".toUpperCase(),
-			footer: "Check, copy and reset your UserID",
+			footer: "Check, copy and reset your UserID or restore default settings",
 			rows: [
 				{
 					title: "UserID",
@@ -159,8 +197,20 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<Button
 							title="RESET"
-							onPress={() => alertOnReset("UserID")}
+							onPress={() =>
+								routeActive ? alertRouteIsActive() : alertOnReset("UserID")
+							}
 							color="red"
+						/>
+					),
+				},
+				{
+					title: "Reset settings to default",
+					renderAccessory: () => (
+						<Button
+							title="RESET"
+							onPress={() => alertOnReset("settings")}
+							color="dimgrey"
 						/>
 					),
 				},
@@ -168,7 +218,11 @@ export const SettingScreen = () => {
 		},
 		{
 			type: "CUSTOM_VIEW",
-			render: () => <Text style={styles.textStyle}>v1.0.0</Text>,
+			render: () => (
+				<Text style={{ ...styles.textStyle, padding: 15 }}>
+					Version: {version}
+				</Text>
+			),
 		},
 	];
 
@@ -186,34 +240,45 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 0,
 		width: "95%",
-		height: "90%",
+		height: Dimensions.get("window").height - 75,
 		alignItems: "flex-start",
 		justifyContent: "center",
 		flexDirection: "column",
+		top: statusBarHeight,
+		paddingLeft: 10,
+		paddingRight: 10,
 	},
 	titleContainer: {
-		flex: 0.15,
-		width: "90%",
-		height: "20%",
-		alignItems: "flex-end",
+		flex: 0,
+		width: "100%",
+		height: "6%",
 		justifyContent: "center",
-		flexDirection: "column",
+		flexDirection: "row",
+		borderBottomColor: "lightgrey",
+		borderBottomWidth: 1.5,
 	},
 	headerStyle: {
-		fontSize: 18,
+		fontSize: 20,
 		color: "dimgrey",
-		paddingTop: 20,
-		paddingBottom: 2,
-		paddingHorizontal: 0,
-		alignSelf: "flex-start",
+		alignContent: "center",
+		alignSelf: "center",
 	},
 	textStyle: {
 		fontSize: 13,
 		color: "dimgrey",
 		paddingTop: 5,
-		paddingBottom: 0,
-		paddingLeft: 20,
 		alignSelf: "flex-start",
+	},
+	initValueStyle: {
+		width: 43,
+		alignContent: "center",
+	},
+	buttonStyle: {
+		width: 43,
+		alignContent: "center",
+		borderRadius: 10,
+		height: 30,
+		backgroundColor: "white",
 	},
 });
 

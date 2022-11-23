@@ -4,6 +4,16 @@ import { storeAndSendWaypoints } from "../reducers/waypoint-reducer";
 import { AppDispatch } from "../store";
 
 const TRACK_WAYPOINTS = "track_waypoints";
+const locationTaskOptions = {
+	accuracy: Location.Accuracy.BestForNavigation, //NB! Altering this may affect for the interval
+	activityType: Location.ActivityType.Fitness,
+	showsBackgroundLocationIndicator: true,
+	foregroundService: {
+		notificationTitle: "Berry picker tracker is running on a background",
+		notificationBody: "End current route tracking in order to close the app",
+		notificationColor: "#008b8b",
+	},
+};
 
 /**
  * Defines background task for location tracking. When task is running
@@ -54,16 +64,27 @@ export const requestPermissions = async () => {
  */
 export const startBackgroundUpdate = async (trackingInterval: number) => {
 	await Location.startLocationUpdatesAsync(TRACK_WAYPOINTS, {
-		accuracy: Location.Accuracy.BestForNavigation, //NB! Altering this may affect for the interval
-		activityType: Location.ActivityType.Fitness,
+		...locationTaskOptions,
 		timeInterval: trackingInterval,
-		showsBackgroundLocationIndicator: true,
-		foregroundService: {
-			notificationTitle: "Route tracking is active",
-			notificationBody: "Your current location will be tracked on a background",
-			notificationColor: "#008b8b",
-		},
 	});
+};
+
+export const restartBackgroundUpdate = async (trackingInterval: number) => {
+	const trackingActive = await Location.hasStartedLocationUpdatesAsync(
+		TRACK_WAYPOINTS
+	);
+	if (trackingActive) {
+		console.log(
+			`Restarting background location updates with new tracking interval ${
+				trackingInterval / 1000
+			} s\n`
+		);
+		await Location.stopLocationUpdatesAsync(TRACK_WAYPOINTS);
+		await Location.startLocationUpdatesAsync(TRACK_WAYPOINTS, {
+			...locationTaskOptions,
+			timeInterval: trackingInterval,
+		});
+	}
 };
 
 /**

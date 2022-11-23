@@ -6,25 +6,28 @@ import * as Cellular from "expo-cellular";
 
 import { useTypedSelector } from "../store";
 import theme from "../theme";
+import { statusBarHeight } from "../constants";
 
 const styles = StyleSheet.create({
 	infoContainer: {
 		display: "flex",
 		position: "absolute",
 		backgroundColor: theme.colors.buttonBackgroundColor,
-		top: 100,
+		top: statusBarHeight,
 		alignSelf: "flex-start",
-		marginLeft: 10,
-		borderRadius: 20,
-		padding: 15,
-		textAlign: "center",
-		height: 150,
+		borderRadius: 10,
+		padding: 10,
 		shadowColor: "black",
 		shadowOffset: { width: 3, height: 3 },
 		shadowOpacity: 0.8,
 		shadowRadius: 20,
-		elevation: 5,
-		margin: 5,
+		elevation: 10,
+		margin: 15,
+	},
+	textStyle: {
+		fontSize: 13,
+		fontWeight: "bold",
+		color: "dimgrey",
 	},
 });
 
@@ -50,21 +53,19 @@ const InfoContainer = (): JSX.Element => {
 
 	return (
 		<View style={styles.infoContainer}>
-			<Text style={{ fontWeight: "bold" }}>Current location:</Text>
-			<Text>
-				-Latitude: {curLocation === null ? "NA" : curLocation.coords.latitude}
+			<Text style={styles.textStyle}>
+				Lat: {curLocation === null ? "NA" : curLocation.coords.latitude}
 			</Text>
-			<Text>
-				-Longitude: {curLocation === null ? "NA" : curLocation.coords.longitude}
+			<Text style={styles.textStyle}>
+				Lon: {curLocation === null ? "NA" : curLocation.coords.longitude}
 			</Text>
-			<Text style={{ fontWeight: "bold" }}>Cellular network:</Text>
-			<Text>
-				-NMC code: {mobileNetCode === null ? "No network" : mobileNetCode}
+			<Text style={styles.textStyle}>
+				NMC code: {mobileNetCode === null ? "No network" : mobileNetCode}
 			</Text>
-			<Text style={{ fontWeight: "bold" }}>
+			<Text style={styles.textStyle}>
 				Local waypoints: {waypoints.localWaypoints.length}
 			</Text>
-			<Text style={{ fontWeight: "bold" }}>
+			<Text style={styles.textStyle}>
 				Pending waypoints: {waypoints.pendingWaypoints.length}
 			</Text>
 		</View>

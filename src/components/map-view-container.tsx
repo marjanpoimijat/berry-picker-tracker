@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
 	map: {
 		width: Dimensions.get("window").width,
 		height: Dimensions.get("window").height,
-		top: statusBarHeight + 50,
+		top: statusBarHeight,
 	},
 });
 
@@ -35,6 +35,7 @@ function getCircleColor(color: string): string {
  */
 const MapViewContainer = (): JSX.Element => {
 	const routeInfo = useTypedSelector((state) => state.route);
+	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
 	const localWaypoints = useTypedSelector(
 		(state) => state.waypoints.localWaypoints
 	);
@@ -58,7 +59,7 @@ const MapViewContainer = (): JSX.Element => {
 					maximumZ={19}
 					zIndex={-3}
 					tileCachePath={tileCacheDirectory}
-					tileCacheMaxAge={172800}
+					tileCacheMaxAge={mapLifetime * 3600}
 					offlineMode={false}
 				/>
 				<Polyline

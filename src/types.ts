@@ -23,4 +23,6 @@ export interface User {
 	userId: string | null;
 	trackingInterval: number;
 	sendingInterval: number;
+	mapLifetime: number;
+	offlineMode: boolean;
 }
