@@ -29,6 +29,7 @@ import { statusBarHeight, version } from "../constants";
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
 	// so warnings are disabled. Enable by commenting:
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	console.warn = () => {};
 
 	const [userId, currTrack, currSend, mapLifetime] = useTypedSelector(
