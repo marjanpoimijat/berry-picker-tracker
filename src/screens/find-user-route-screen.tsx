@@ -6,7 +6,7 @@ import { getUsersLatestRoute } from "../requests";
 import { Waypoint, WaypointFromServer } from "../types";
 import { statusBarHeight } from "../constants";
 
-const FindRouteScreen = () => {
+const FindUserRouteScreen = () => {
 	const [userId, setUserId] = useState<string>("");
 	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
 	const [infoText, setInfoText] = useState<string>(
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default FindRouteScreen;
+export default FindUserRouteScreen;

@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import MapButton from "./map-button";
-import CoffeeButton from "./coffee-button";
+import FindUserRouteButton from "./find-user-route-button";
 import SettingsButton from "./settings-button";
 
 const styles = StyleSheet.create({
@@ -28,7 +28,7 @@ const NavigatorTab = (): JSX.Element => {
 	return (
 		<View style={styles.navigatorTab}>
 			<MapButton text="Map" />
-			<CoffeeButton text="Coffee" />
+			<FindUserRouteButton text="Find" />
 			<SettingsButton text="Settings" />
 		</View>
 	);
