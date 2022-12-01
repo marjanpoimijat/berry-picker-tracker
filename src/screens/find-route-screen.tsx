@@ -6,15 +6,20 @@ import { getUsersLatestRoute } from "../requests";
 import { Waypoint, WaypointFromServer } from "../types";
 import { statusBarHeight } from "../constants";
 
-const CoffeeScreen = () => {
+const FindRouteScreen = () => {
 	const [userId, setUserId] = useState<string>("");
 	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
 	const [infoText, setInfoText] = useState<string>(
-		"Search users latest route by typing user ID"
+		"Search users latest route by typing userID"
 	);
 
+	/**
+	 * Searches users latest route from the server with user ID.
+	 * Updates `usersWaypoint` state with list of latest route waypoints
+	 * sets corresponding info text depending wheter latest route is active or not.
+	 */
 	const findUserRoute = async () => {
-		// Just temporary quick fix to re-adjust initial map region while updating the search
+		// To re-adjust initial map region while updating the search
 		setUsersWaypoints(null);
 
 		console.log(`Finding user with id ${userId}...`);
@@ -33,7 +38,7 @@ const CoffeeScreen = () => {
 			);
 			setUsersWaypoints(waypoints);
 			console.log(
-				`...Users route id: ${data.routeId} found. Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`
+				`...Users route ID: ${data.routeId} found. Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`
 			);
 		} else {
 			console.log("...Failed");
@@ -50,7 +55,7 @@ const CoffeeScreen = () => {
 					style={styles.input}
 					onChangeText={setUserId}
 					value={userId}
-					placeholder="user-ID"
+					placeholder="userID"
 				/>
 				<RouteButton
 					onPress={findUserRoute}
@@ -125,4 +130,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default CoffeeScreen;
+export default FindRouteScreen;
