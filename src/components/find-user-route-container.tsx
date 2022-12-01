@@ -13,7 +13,10 @@ const styles = StyleSheet.create({
 });
 
 /**
- * To be added.
+ * Visualizes topomap using NLS tiles and draws a users route between
+ * latest route waypoints. Show marker at the latest waypoint location.
+ * Timestamp will be shown when the marker has been pressed.
+ * Initial region will be shown at the Kumpula kampus if list of users waypoint is empty.
  */
 const FindUserRouteContainer = ({
 	usersWaypoints,
