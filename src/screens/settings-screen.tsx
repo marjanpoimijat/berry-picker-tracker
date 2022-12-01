@@ -5,6 +5,9 @@ import {
 	StyleSheet,
 	Text,
 	View,
+	Linking,
+	TouchableHighlight,
+	TouchableOpacity,
 } from "react-native";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import {
@@ -23,6 +26,7 @@ import { SettingsScreen, SettingsData } from "react-native-settings-screen";
 import SettingsToggle from "../components/settings-toggle";
 import ModalSelector from "react-native-modal-selector";
 import { statusBarHeight, version } from "../constants";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 export const SettingScreen = () => {
 	const [userId, currTrack, currSend, mapLifetime] = useTypedSelector(
@@ -211,6 +215,52 @@ export const SettingScreen = () => {
 							title="RESET"
 							onPress={() => alertOnReset("settings")}
 							color="dimgrey"
+						/>
+					),
+				},
+			],
+		},
+		{
+			type: "SECTION",
+			header: "Legal information".toUpperCase(),
+			footer: "Links to privacy policy and licenses",
+			rows: [
+				{
+					title: "Front end licenses",
+					renderAccessory: () => (
+						<Icon
+							name="chevron-right"
+							onPress={() =>
+								Linking.openURL(
+									"https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker/tree/main/licenses"
+								)
+							}
+						/>
+					),
+				},
+				{
+					title: "Back end licenses",
+					renderAccessory: () => (
+						<Icon
+							name="chevron-right"
+							onPress={() =>
+								Linking.openURL(
+									"https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker-server/tree/main/licenses"
+								)
+							}
+						/>
+					),
+				},
+				{
+					title: "Privacy policy",
+					renderAccessory: () => (
+						<Icon
+							name="chevron-right"
+							onPress={() =>
+								Linking.openURL(
+									"https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker-docs/blob/main/privacy_policies.md"
+								)
+							}
 						/>
 					),
 				},
