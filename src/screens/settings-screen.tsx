@@ -6,8 +6,9 @@ import {
 	Text,
 	View,
 	Linking,
-	TouchableHighlight,
 	TouchableOpacity,
+	Clipboard,
+
 } from "react-native";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import {
@@ -29,6 +30,10 @@ import { statusBarHeight, version } from "../constants";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 export const SettingScreen = () => {
+	// Some of the components are old and give unnecessary warnings,
+	// so warnings are disabled. Enable by commenting:
+	console.warn = () => {};
+
 	const [userId, currTrack, currSend, mapLifetime] = useTypedSelector(
 		(state) => [
 			state.user.userId,
@@ -81,6 +86,15 @@ export const SettingScreen = () => {
 		);
 	};
 
+	const copyToClipboard = (target: string | null) => {
+		if (target !== null) {
+			console.log(`Copied ${target} to clipboard`);
+			Clipboard.setString(target);
+		} else {
+			console.log(`Empty userID`);
+		}
+	};
+
 	let index = 0;
 	const trackFreq = [
 		{ key: index++, component: <Text>1 second</Text>, label: 1000 },
@@ -111,8 +125,7 @@ export const SettingScreen = () => {
 		{
 			type: "SECTION",
 			header: "Navigation".toUpperCase(),
-			footer:
-				"Change tracking and sending frequencies to save battery life and turn the app to offline mode",
+			footer: "Change frequencies to save battery life",
 			rows: [
 				{
 					title: "Waypoint tracking frequency",
@@ -149,8 +162,7 @@ export const SettingScreen = () => {
 		{
 			type: "SECTION",
 			header: "Map cache".toUpperCase(),
-			footer:
-				"Delete cached map tiles to clear space and change their lifetime",
+			footer: "Delete cached map tiles to clear space",
 			rows: [
 				{
 					title: "Maptile lifetime",
@@ -183,14 +195,14 @@ export const SettingScreen = () => {
 		{
 			type: "SECTION",
 			header: "User information".toUpperCase(),
-			footer: "Check, copy and reset your UserID or restore default settings",
+			footer: "Click your UserID to copy it",
 			rows: [
 				{
 					title: "UserID",
 					renderAccessory: () => (
-						<Text style={{ color: "dimgrey", fontSize: 12 }}>
-							{`${userId ? userId : "not stored yet"}`}
-						</Text>
+						<TouchableOpacity onPress={() => copyToClipboard(userId)}>
+							<Text style={{ color: "dimgrey", fontSize: 12 }}>{userId}</Text>
+						</TouchableOpacity>
 					),
 				},
 				{
@@ -208,13 +220,21 @@ export const SettingScreen = () => {
 						/>
 					),
 				},
+			],
+		},
+		{
+			type: "SECTION",
+			rows: [
 				{
 					title: "Reset settings to default",
+					titleStyle: {
+						color: "red",
+					},
 					renderAccessory: () => (
 						<Button
 							title="RESET"
 							onPress={() => alertOnReset("settings")}
-							color="dimgrey"
+							color="red"
 						/>
 					),
 				},
