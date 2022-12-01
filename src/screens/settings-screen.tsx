@@ -8,7 +8,6 @@ import {
 	Linking,
 	TouchableOpacity,
 	Clipboard,
-
 } from "react-native";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import {
@@ -225,6 +224,7 @@ export const SettingScreen = () => {
 		},
 		{
 			type: "SECTION",
+			header: "Default settings".toUpperCase(),
 			rows: [
 				{
 					title: "Reset settings to default",
@@ -280,6 +280,27 @@ export const SettingScreen = () => {
 							onPress={() =>
 								Linking.openURL(
 									"https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker-docs/blob/main/privacy_policies.md"
+								)
+							}
+						/>
+					),
+				},
+			],
+		},
+		{
+			type: "SECTION",
+			header: "Map legend".toUpperCase(),
+			footer:
+				"Download link to National Land Survey of Finland map legend information",
+			rows: [
+				{
+					title: "Download map legends",
+					renderAccessory: () => (
+						<Icon
+							name="chevron-right"
+							onPress={() =>
+								Linking.openURL(
+									"https://www.maanmittauslaitos.fi/sites/maanmittauslaitos.fi/files/attachments/2020/01/karttamerkkien_selitys.pdf"
 								)
 							}
 						/>
