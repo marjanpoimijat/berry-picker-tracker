@@ -6,7 +6,7 @@ import { useTypedDispatch } from "./store";
 import { identifyUser } from "./reducers/user-reducer";
 import MapScreen from "./screens/map-screen";
 import SettingsScreen from "./screens/settings-screen";
-import CoffeeScreen from "./screens/coffee-screen";
+import FindUserRouteScreen from "./screens/find-user-route-screen";
 import NavigatorTab from "./components/navigator-tab";
 
 import {
@@ -33,7 +33,7 @@ const Main = () => {
 			<Routes>
 				<Route path="/" element={<MapScreen />} />
 				<Route path="/settings" element={<SettingsScreen />} />
-				<Route path="/coffee" element={<CoffeeScreen />} />
+				<Route path="/findroute" element={<FindUserRouteScreen />} />
 				<Route path="*" element={<Navigate to="/" replace />} />
 			</Routes>
 		</View>

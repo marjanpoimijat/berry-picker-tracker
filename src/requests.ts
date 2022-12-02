@@ -1,4 +1,4 @@
-import { Waypoint } from "./types";
+import { Waypoint, WaypointFromServer } from "./types";
 import { baseUrl } from "./constants";
 
 export const createNewUser = async () => {
@@ -78,6 +78,28 @@ export const deactivateExistingRoute = async (routeId: string) => {
 		const response = await fetch(url, settings);
 		const data = await response.json();
 		console.log(`Route id ${data.id} active status set to: ${data.active}`);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getUsersLatestRoute = async (userId: string) => {
+	const url = `${baseUrl}/get-users-latest-route/`;
+	const settings = {
+		method: "GET",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			"user-id": userId,
+		},
+	};
+	try {
+		const response = await fetch(url, settings);
+		const data = await response.json();
+		const routeId: string = data[0];
+		const active: boolean = data[1];
+		const waypoints: WaypointFromServer[] = data[2];
+		return { routeId, active, waypoints };
 	} catch (error) {
 		console.log(error);
 	}
