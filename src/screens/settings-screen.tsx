@@ -28,6 +28,8 @@ import ModalSelector from "react-native-modal-selector";
 import { statusBarHeight, version } from "../constants";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
+import { baseUrl } from "../constants";
+
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
 	// so warnings are disabled. Enable by commenting:
@@ -298,11 +300,7 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
-							onPress={() =>
-								Linking.openURL(
-									"https://www.maanmittauslaitos.fi/sites/maanmittauslaitos.fi/files/attachments/2020/01/karttamerkkien_selitys.pdf"
-								)
-							}
+							onPress={() => Linking.openURL(`${baseUrl}/get-legend/`)}
 						/>
 					),
 				},
