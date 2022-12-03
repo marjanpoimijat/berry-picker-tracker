@@ -54,13 +54,15 @@ export const {
 /**
  * Checks wheter route ID has been initialized. If so, gets location and MNC code and creates
  * a new waypoint object which will stored into localdevices `WaypointState`
- * Sends also waypoints to the server, if there are more than 5 pending waypoints
+ * Sends waypoints to server according to the sending interval.
  * @returns dispatch method to update `WaypointState`
  */
 export const storeAndSendWaypoints = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		const routeId = getState().waypoints.routeId;
 		const pendingWaypoints = getState().waypoints.pendingWaypoints;
+		const sendingInterval = getState().user.sendingInterval;
+		const trackingInterval = getState().user.trackingInterval;
 		if (routeId !== null) {
 			const location = await Location.getLastKnownPositionAsync({});
 			const networkCode = await Cellular.getMobileNetworkCodeAsync();
@@ -83,8 +85,8 @@ export const storeAndSendWaypoints = () => {
 				dispatch(appendWaypoint(waypoint));
 			}
 		}
-		if (pendingWaypoints.length > 5) {
-			console.log(`\n${pendingWaypoints.length} waypoints send to the server`);
+		if (pendingWaypoints.length > ~~(sendingInterval / trackingInterval)) {
+			console.log(`\n${pendingWaypoints.length} waypoints sent to the server`);
 			await sendNewWaypoint(pendingWaypoints);
 			dispatch(resetPendingWaypoints());
 		}
