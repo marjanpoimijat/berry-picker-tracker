@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch, ReduxState } from "../store";
-import { startNewRoute, deactivateExistingRoute } from "../requests";
+import {
+	startNewRoute,
+	deactivateExistingRoute,
+	sendNewWaypoint,
+} from "../requests";
 import { Route, User } from "../types";
 import { setRouteId, initializeWaypoints } from "./waypoint-reducer";
 import {
@@ -62,8 +66,8 @@ export const startRoute = (user: User) => {
 
 /**
  * Function to deactivate route. Validates that user ID is not null and
- * makes http request to deactivate active route, initializes route state
- * and stops background location tracking.
+ * makes http request to send last waypoints, deactivate active route,
+ * initializes route state and stops background location tracking.
  * Route object `active`param will be se to false.
  * @param routeId
  * @returns dispatch method to reset route state
@@ -71,8 +75,10 @@ export const startRoute = (user: User) => {
 export const deactivateRoute = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		const routeId = getState().route.routeId;
+		const pendingWaypoints = getState().waypoints.pendingWaypoints;
 		if (routeId !== null) {
 			console.log(`\nDeactivating route with id: ${routeId}`);
+			await sendNewWaypoint(pendingWaypoints);
 			await deactivateExistingRoute(routeId);
 			dispatch(setRoute(initialState));
 			dispatch(initializeWaypoints());
