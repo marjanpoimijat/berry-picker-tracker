@@ -57,6 +57,7 @@ export const {
  * Sends waypoints to server according to the sending interval.
  * @returns dispatch method to update `WaypointState`
  */
+let isOffline = false;
 let sendTicker = 0;
 export const storeAndSendWaypoints = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
@@ -64,12 +65,12 @@ export const storeAndSendWaypoints = () => {
 		const pendingWaypoints = getState().waypoints.pendingWaypoints;
 		const sendingInterval = getState().user.sendingInterval;
 		const trackingInterval = getState().user.trackingInterval;
+		const location = await Location.getLastKnownPositionAsync({});
+		const networkCode = await Cellular.getMobileNetworkCodeAsync();
+		const netInfo = getNetworkCellularGeneration(
+			await NetworkConnectionInformation()
+		);
 		if (routeId !== null) {
-			const location = await Location.getLastKnownPositionAsync({});
-			const networkCode = await Cellular.getMobileNetworkCodeAsync();
-			const netInfo = getNetworkCellularGeneration(
-				await NetworkConnectionInformation()
-			);
 			console.log(
 				`Storing wp - lat: ${location?.coords.latitude} lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`
 			);
@@ -86,9 +87,15 @@ export const storeAndSendWaypoints = () => {
 				dispatch(appendWaypoint(waypoint));
 			}
 		}
+
+		if (networkCode !== null || netInfo !== null) {
+			isOffline = true;
+		}
+
 		if (
 			pendingWaypoints.length >
-			~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4
+				~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4 ||
+			(isOffline && (networkCode !== null || netInfo !== null))
 		) {
 			const response: Response = (await sendNewWaypoint(
 				pendingWaypoints
@@ -98,11 +105,14 @@ export const storeAndSendWaypoints = () => {
 					`\n${pendingWaypoints.length} waypoints sent to the server`
 				);
 				dispatch(resetPendingWaypoints());
+				isOffline = false;
 				sendTicker = 0;
 			} else {
 				console.log("Sending waypoints to server failed");
 				sendTicker++;
 			}
+		} else {
+			console.log("No connection, not sending waypoints");
 		}
 	};
 };
