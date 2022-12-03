@@ -57,6 +57,7 @@ export const {
  * Sends waypoints to server according to the sending interval.
  * @returns dispatch method to update `WaypointState`
  */
+let sendTicker = 0;
 export const storeAndSendWaypoints = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		const routeId = getState().waypoints.routeId;
@@ -85,10 +86,23 @@ export const storeAndSendWaypoints = () => {
 				dispatch(appendWaypoint(waypoint));
 			}
 		}
-		if (pendingWaypoints.length > ~~(sendingInterval / trackingInterval)) {
-			console.log(`\n${pendingWaypoints.length} waypoints sent to the server`);
-			await sendNewWaypoint(pendingWaypoints);
-			dispatch(resetPendingWaypoints());
+		if (
+			pendingWaypoints.length >
+			~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4
+		) {
+			const response: Response = (await sendNewWaypoint(
+				pendingWaypoints
+			)) as Response;
+			if (response.status === 200) {
+				console.log(
+					`\n${pendingWaypoints.length} waypoints sent to the server`
+				);
+				dispatch(resetPendingWaypoints());
+				sendTicker = 0;
+			} else {
+				console.log("Sending waypoints to server failed");
+				sendTicker++;
+			}
 		}
 	};
 };

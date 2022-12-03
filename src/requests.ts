@@ -57,8 +57,8 @@ export const sendNewWaypoint = async (pendingWaypoints: Array<Waypoint>) => {
 	};
 	try {
 		const response = await fetch(url, settings);
-		const data = await response.json();
-		return data;
+		//const data = await response.json();
+		return response;
 	} catch (error) {
 		console.log(error);
 	}
