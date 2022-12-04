@@ -1,14 +1,23 @@
 import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Link } from "react-router-native";
-import NaviTabStyles from "../navi-tab-styles";
+import Styles from "../styles";
+import theme from "../styles/theme";
 
-const MapButton = ({ text }: { text: string }): JSX.Element => {
+const MapButton = ({
+	text,
+	iconName,
+	path,
+}: {
+	text: string;
+	iconName: string;
+	path: string;
+}): JSX.Element => {
 	return (
-		<Link to="/" underlayColor="#ffffff00">
-			<View style={NaviTabStyles.buttonStyle}>
-				<Icon name="map" style={NaviTabStyles.iconStyle} />
-				<Text style={NaviTabStyles.textStyle}>{text}</Text>
+		<Link to={path} underlayColor={theme.colors.buttonUnderlayColor}>
+			<View style={Styles.navigatorButton}>
+				<Icon name={iconName} style={Styles.iconStyle} />
+				<Text style={Styles.textStyle}>{text}</Text>
 			</View>
 		</Link>
 	);
