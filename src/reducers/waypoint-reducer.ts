@@ -51,6 +51,8 @@ export const {
 	resetPendingWaypoints,
 } = waypointSlice.actions;
 
+let wasOffline = false;
+let sendTicker = 0;
 /**
  * Checks wheter route ID has been initialized. If so, gets location and MNC code and creates
  * a new waypoint object which will stored into localdevices `WaypointState`
@@ -58,8 +60,6 @@ export const {
  * was disconnected and is connected.
  * @returns dispatch method to update `WaypointState`
  */
-let wasOffline = false;
-let sendTicker = 0;
 export const storeAndSendWaypoints = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		const routeId = getState().waypoints.routeId;
@@ -71,9 +71,7 @@ export const storeAndSendWaypoints = () => {
 		const netInfo = getNetworkCellularGeneration(
 			await NetworkConnectionInformation()
 		);
-		const isConnected = await (
-			await NetworkConnectionInformation()
-		).isConnected;
+		const isConnected = (await NetworkConnectionInformation()).isConnected;
 		if (routeId !== null) {
 			console.log(
 				`Storing wp - lat: ${location?.coords.latitude} lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`
