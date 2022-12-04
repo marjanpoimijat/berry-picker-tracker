@@ -54,10 +54,11 @@ export const {
 /**
  * Checks wheter route ID has been initialized. If so, gets location and MNC code and creates
  * a new waypoint object which will stored into localdevices `WaypointState`
- * Sends waypoints to server according to the sending interval.
+ * Sends waypoints to server according to the sending interval or immediately if
+ * was disconnected and is connected.
  * @returns dispatch method to update `WaypointState`
  */
-let isOffline = false;
+let wasOffline = false;
 let sendTicker = 0;
 export const storeAndSendWaypoints = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
@@ -70,6 +71,9 @@ export const storeAndSendWaypoints = () => {
 		const netInfo = getNetworkCellularGeneration(
 			await NetworkConnectionInformation()
 		);
+		const isConnected = await (
+			await NetworkConnectionInformation()
+		).isConnected;
 		if (routeId !== null) {
 			console.log(
 				`Storing wp - lat: ${location?.coords.latitude} lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`
@@ -88,14 +92,10 @@ export const storeAndSendWaypoints = () => {
 			}
 		}
 
-		if (networkCode !== null || netInfo !== null) {
-			isOffline = true;
-		}
-
 		if (
 			pendingWaypoints.length >
 				~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4 ||
-			(isOffline && (networkCode !== null || netInfo !== null))
+			(wasOffline && isConnected)
 		) {
 			const response: Response = (await sendNewWaypoint(
 				pendingWaypoints
@@ -105,15 +105,13 @@ export const storeAndSendWaypoints = () => {
 					`\n${pendingWaypoints.length} waypoints sent to the server`
 				);
 				dispatch(resetPendingWaypoints());
-				isOffline = false;
 				sendTicker = 0;
 			} else {
 				console.log("Sending waypoints to server failed");
 				sendTicker++;
 			}
-		} else {
-			console.log("No connection, not sending waypoints");
 		}
+		wasOffline = !isConnected;
 	};
 };
 
