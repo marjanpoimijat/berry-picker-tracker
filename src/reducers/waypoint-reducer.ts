@@ -51,22 +51,28 @@ export const {
 	resetPendingWaypoints,
 } = waypointSlice.actions;
 
+let wasOffline = false;
+let sendTicker = 0;
 /**
  * Checks wheter route ID has been initialized. If so, gets location and MNC code and creates
  * a new waypoint object which will stored into localdevices `WaypointState`
- * Sends also waypoints to the server, if there are more than 5 pending waypoints
+ * Sends waypoints to server according to the sending interval or immediately if
+ * was disconnected and is connected.
  * @returns dispatch method to update `WaypointState`
  */
 export const storeAndSendWaypoints = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		const routeId = getState().waypoints.routeId;
 		const pendingWaypoints = getState().waypoints.pendingWaypoints;
+		const sendingInterval = getState().user.sendingInterval;
+		const trackingInterval = getState().user.trackingInterval;
+		const location = await Location.getLastKnownPositionAsync({});
+		const networkCode = await Cellular.getMobileNetworkCodeAsync();
+		const netInfo = getNetworkCellularGeneration(
+			await NetworkConnectionInformation()
+		);
+		const isConnected = (await NetworkConnectionInformation()).isConnected;
 		if (routeId !== null) {
-			const location = await Location.getLastKnownPositionAsync({});
-			const networkCode = await Cellular.getMobileNetworkCodeAsync();
-			const netInfo = getNetworkCellularGeneration(
-				await NetworkConnectionInformation()
-			);
 			console.log(
 				`Storing wp - lat: ${location?.coords.latitude} lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`
 			);
@@ -83,11 +89,28 @@ export const storeAndSendWaypoints = () => {
 				dispatch(appendWaypoint(waypoint));
 			}
 		}
-		if (pendingWaypoints.length > 5) {
-			console.log(`\n${pendingWaypoints.length} waypoints send to the server`);
-			await sendNewWaypoint(pendingWaypoints);
-			dispatch(resetPendingWaypoints());
+
+		if (
+			isConnected &&
+			(pendingWaypoints.length >
+				~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4 ||
+				wasOffline)
+		) {
+			const response: Response = (await sendNewWaypoint(
+				pendingWaypoints
+			)) as Response;
+			if (response.status === 200) {
+				console.log(
+					`\n${pendingWaypoints.length} waypoints sent to the server`
+				);
+				dispatch(resetPendingWaypoints());
+				sendTicker = 0;
+			} else {
+				console.log("Sending waypoints to server failed");
+				sendTicker++;
+			}
 		}
+		wasOffline = !isConnected;
 	};
 };
 
