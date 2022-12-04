@@ -93,9 +93,10 @@ export const storeAndSendWaypoints = () => {
 		}
 
 		if (
-			pendingWaypoints.length >
+			isConnected &&
+			(pendingWaypoints.length >
 				~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4 ||
-			(wasOffline && isConnected)
+				wasOffline)
 		) {
 			const response: Response = (await sendNewWaypoint(
 				pendingWaypoints
