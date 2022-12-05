@@ -8,8 +8,9 @@ const theme = {
 		buttonUnderlayColor: "#ffffff00",
 	},
 	fontSizes: {
-		body: 14,
-		header: 18,
+		default: 13,
+		navi: 11,
+		header: 20,
 	},
 };
 
