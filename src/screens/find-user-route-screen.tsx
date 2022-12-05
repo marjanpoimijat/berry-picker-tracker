@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Dimensions } from "react-native";
+import { View, Text, TextInput } from "react-native";
 import FindUserRouteContainer from "../components/find-user-route-container";
 import RouteButton from "../components/route-button";
 import { getUsersLatestRoute } from "../requests";
 import { Waypoint, WaypointFromServer } from "../types";
-import { statusBarHeight } from "../constants";
+import Styles from "../styles";
 
 const FindUserRouteScreen = () => {
 	const [userId, setUserId] = useState<string>("");
@@ -46,13 +46,13 @@ const FindUserRouteScreen = () => {
 	};
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.titleContainer}>
-				<Text style={styles.headerStyle}>Find users latest route</Text>
+		<View style={Styles.screenContainer}>
+			<View style={Styles.headerContainer}>
+				<Text style={Styles.headerText}>Find users latest route</Text>
 			</View>
-			<View style={styles.inputContainer}>
+			<View style={Styles.inputContainer}>
 				<TextInput
-					style={styles.input}
+					style={Styles.inputField}
 					onChangeText={setUserId}
 					value={userId}
 					placeholder="userID"
@@ -62,72 +62,18 @@ const FindUserRouteScreen = () => {
 					text={usersWaypoints ? "Update" : "Search"}
 				/>
 			</View>
-			<Text style={styles.textStyle}>{infoText}</Text>
+			<Text style={Styles.infoText}>{infoText}</Text>
 			{usersWaypoints ? (
 				<FindUserRouteContainer
 					usersWaypoints={usersWaypoints}
 					usersLatestWaypoint={usersWaypoints[usersWaypoints.length - 1]}
 				/>
 			) : (
-				<View style={styles.mapBox} />
+				<View style={Styles.smallMapView} />
 			)}
+			<View style={Styles.hideLogo} />
 		</View>
 	);
 };
-const styles = StyleSheet.create({
-	container: {
-		flex: 0,
-		width: "95%",
-		height: Dimensions.get("window").height - 75,
-		alignItems: "center",
-		justifyContent: "center",
-		flexDirection: "column",
-		top: statusBarHeight,
-		paddingLeft: 10,
-		paddingRight: 10,
-	},
-	titleContainer: {
-		flex: 1,
-		width: "100%",
-
-		justifyContent: "center",
-		flexDirection: "row",
-		borderBottomColor: "lightgrey",
-		borderBottomWidth: 1.5,
-	},
-	headerStyle: {
-		fontSize: 20,
-		color: "dimgrey",
-		alignContent: "center",
-		alignSelf: "center",
-	},
-	input: {
-		width: "70%",
-		borderWidth: 1,
-		padding: 15,
-		borderRadius: 10,
-		textAlign: "center",
-		height: 50,
-		margin: 5,
-	},
-	inputContainer: {
-		alignSelf: "center",
-		flexDirection: "row",
-		padding: 10,
-		width: "95%",
-	},
-	textStyle: {
-		fontSize: 15,
-		color: "dimgrey",
-		padding: 10,
-		alignSelf: "center",
-	},
-	mapBox: {
-		width: Dimensions.get("window").width * 0.9,
-		height: Dimensions.get("window").height * 0.6,
-		backgroundColor: "lightgrey",
-		opacity: 0.7,
-	},
-});
 
 export default FindUserRouteScreen;

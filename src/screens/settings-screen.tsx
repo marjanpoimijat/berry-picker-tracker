@@ -1,8 +1,6 @@
 import {
 	Alert,
 	Button,
-	Dimensions,
-	StyleSheet,
 	Text,
 	View,
 	Linking,
@@ -25,10 +23,9 @@ import {
 import { SettingsScreen, SettingsData } from "react-native-settings-screen";
 import SettingsToggle from "../components/settings-toggle";
 import ModalSelector from "react-native-modal-selector";
-import { statusBarHeight, version } from "../constants";
+import { version, baseUrl } from "../constants";
 import Icon from "react-native-vector-icons/FontAwesome5";
-
-import { baseUrl } from "../constants";
+import Styles from "../styles";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
@@ -135,7 +132,7 @@ export const SettingScreen = () => {
 						<ModalSelector
 							data={trackFreq}
 							initValue={currTrack.toString() + " s"}
-							initValueTextStyle={styles.initValueStyle}
+							initValueTextStyle={Styles.initValueTextStyle}
 							onChange={async (option: { label: number }) => {
 								await dispatch(changeTrackingInterval(option.label));
 							}}
@@ -148,7 +145,7 @@ export const SettingScreen = () => {
 						<ModalSelector
 							data={sendFreq}
 							initValue={currSend.toString() + " s"}
-							initValueTextStyle={styles.initValueStyle}
+							initValueTextStyle={Styles.initValueTextStyle}
 							onChange={async (option: { label: number }) => {
 								await dispatch(changeSendingInterval(option.label));
 							}}
@@ -172,7 +169,7 @@ export const SettingScreen = () => {
 						<ModalSelector
 							data={tileLifetime}
 							initValue={mapLifetime.toString() + " h"}
-							initValueTextStyle={styles.initValueStyle}
+							initValueTextStyle={Styles.initValueTextStyle}
 							onChange={async (option: { label: number }) => {
 								await dispatch(changeMapLifetime(option.label));
 							}}
@@ -309,7 +306,7 @@ export const SettingScreen = () => {
 		{
 			type: "CUSTOM_VIEW",
 			render: () => (
-				<Text style={{ ...styles.textStyle, padding: 15 }}>
+				<Text style={{ ...Styles.defaultText, padding: 15 }}>
 					Version: {version}
 				</Text>
 			),
@@ -317,59 +314,16 @@ export const SettingScreen = () => {
 	];
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.titleContainer}>
-				<Text style={styles.headerStyle}>Settings</Text>
+		<View style={Styles.screenContainer}>
+			<View style={Styles.headerContainer}>
+				<Text style={Styles.headerText}>Settings</Text>
 			</View>
-			<SettingsScreen data={settingsData} globalTextStyle={styles.textStyle} />
+			<SettingsScreen
+				data={settingsData}
+				globalTextStyle={Styles.defaultText}
+			/>
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 0,
-		width: "95%",
-		height: Dimensions.get("window").height - 75,
-		alignItems: "flex-start",
-		justifyContent: "center",
-		flexDirection: "column",
-		top: statusBarHeight,
-		paddingLeft: 10,
-		paddingRight: 10,
-	},
-	titleContainer: {
-		flex: 0,
-		width: "100%",
-		height: "6%",
-		justifyContent: "center",
-		flexDirection: "row",
-		borderBottomColor: "lightgrey",
-		borderBottomWidth: 1.5,
-	},
-	headerStyle: {
-		fontSize: 20,
-		color: "dimgrey",
-		alignContent: "center",
-		alignSelf: "center",
-	},
-	textStyle: {
-		fontSize: 13,
-		color: "dimgrey",
-		paddingTop: 5,
-		alignSelf: "flex-start",
-	},
-	initValueStyle: {
-		width: 43,
-		alignContent: "center",
-	},
-	buttonStyle: {
-		width: 43,
-		alignContent: "center",
-		borderRadius: 10,
-		height: 30,
-		backgroundColor: "white",
-	},
-});
 
 export default SettingScreen;

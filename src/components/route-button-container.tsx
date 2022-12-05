@@ -1,22 +1,12 @@
-import { View, StyleSheet, Alert } from "react-native";
+import { View, Alert } from "react-native";
 import {
 	startRoute,
 	deactivateRoute,
 	changeShowRoute,
 } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
+import Styles from "../styles";
 import RouteButton from "./route-button";
-
-const styles = StyleSheet.create({
-	buttonContainer: {
-		display: "flex",
-		position: "absolute",
-		alignSelf: "flex-start",
-		marginLeft: 10,
-		flexDirection: "column",
-		bottom: 100,
-	},
-});
 
 /**
  * Route button container component which contains buttons to
@@ -59,7 +49,7 @@ const RouteButtonContainer = (): JSX.Element => {
 	};
 
 	return (
-		<View style={styles.buttonContainer}>
+		<View style={Styles.routeButtonContainer}>
 			<RouteButton
 				onPress={routeInfo.active ? alertOnEndRoute : changeTracking}
 				text={routeInfo.active ? "End route" : "Start route"}

@@ -1,16 +1,10 @@
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View } from "react-native";
 import MapView, { Marker, Polyline, UrlTile } from "react-native-maps";
 
 import { baseUrl, tileCacheDirectory } from "../constants";
 import { useTypedSelector } from "../store";
+import Styles from "../styles";
 import { usersLocationInfo } from "../types";
-
-const styles = StyleSheet.create({
-	map: {
-		width: Dimensions.get("window").width * 0.9,
-		height: Dimensions.get("window").height * 0.6,
-	},
-});
 
 /**
  * Visualizes topomap using NLS tiles and draws a users route between
@@ -28,7 +22,7 @@ const FindUserRouteContainer = ({
 		<View>
 			<MapView
 				mapType={"none"}
-				style={styles.map}
+				style={Styles.smallMapView}
 				showsUserLocation={true}
 				initialRegion={{
 					latitude: usersLatestWaypoint

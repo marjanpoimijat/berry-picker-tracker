@@ -16,8 +16,8 @@ const MapButton = ({
 	return (
 		<Link to={path} underlayColor={theme.colors.buttonUnderlayColor}>
 			<View style={Styles.navigatorButton}>
-				<Icon name={iconName} style={Styles.iconStyle} />
-				<Text style={Styles.textStyle}>{text}</Text>
+				<Icon name={iconName} style={Styles.navigatorIcon} />
+				<Text style={Styles.navigatorText}>{text}</Text>
 			</View>
 		</Link>
 	);
