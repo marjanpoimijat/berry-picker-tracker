@@ -32,16 +32,17 @@ export default {
 			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#FFFFFF",
 		},
+		softwareKeyboardLayoutMode: "pan",
 		config: {
 			googleMaps: {
 				apiKey: process.env.MAPS_API,
 			},
 		},
 	},
-	androidStatusBar: {
-		barStyle: "light-content",
-		backgroundColor: "#333C4A",
-	},
+	// androidStatusBar: {
+	// 	barStyle: "light-content",
+	// 	backgroundColor: "#333C4A",
+	// },
 	web: {
 		favicon: "./assets/favicon.png",
 	},
