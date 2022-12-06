@@ -4,7 +4,7 @@ import { Link } from "react-router-native";
 import Styles from "../styles";
 import theme from "../styles/theme";
 
-const MapButton = ({
+const NavigatorButton = ({
 	text,
 	iconName,
 	path,
@@ -23,4 +23,4 @@ const MapButton = ({
 	);
 };
 
-export default MapButton;
+export default NavigatorButton;
