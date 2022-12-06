@@ -26,6 +26,7 @@ import ModalSelector from "react-native-modal-selector";
 import { version, baseUrl } from "../constants";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Styles from "../styles";
+import AppHeader from "../components/app-header";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
@@ -315,9 +316,7 @@ export const SettingScreen = () => {
 
 	return (
 		<View style={Styles.screenContainer}>
-			<View style={Styles.headerContainer}>
-				<Text style={Styles.headerText}>Settings</Text>
-			</View>
+			<AppHeader text={"Settings"} />
 			<SettingsScreen
 				data={settingsData}
 				globalTextStyle={Styles.defaultText}

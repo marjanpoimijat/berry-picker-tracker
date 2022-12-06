@@ -1,33 +1,14 @@
-import { Text, View, StyleSheet } from "react-native";
-import { statusBarHeight } from "../constants";
-import theme from "../theme";
-
-const styles = StyleSheet.create({
-	appHeader: {
-		height: 50,
-		position: "absolute",
-		width: "100%",
-		justifyContent: "center",
-		alignItems: "center",
-		top: statusBarHeight,
-		backgroundColor: theme.colors.primaryBackgroundColor,
-	},
-	textHeader: {
-		fontSize: theme.fontSizes.header,
-		fontWeight: "bold",
-		color: theme.colors.textSecondary,
-	},
-});
+import { Text, View } from "react-native";
+import Styles from "../styles";
 
 /**
- * Application header component which displays application name on top of the screen.
- * Just preliminary styling at the moment.
- * @param {string} name application name
+ * Application header to display header text at find-user-route-screen and settings-screen.
+ * @param {string} name header text
  */
-const AppHeader = ({ name }: { name: string }): JSX.Element => {
+const AppHeader = ({ text }: { text: string }): JSX.Element => {
 	return (
-		<View style={styles.appHeader}>
-			<Text style={styles.textHeader}>{name}</Text>
+		<View style={Styles.headerContainer}>
+			<Text style={Styles.headerText}>{text}</Text>
 		</View>
 	);
 };

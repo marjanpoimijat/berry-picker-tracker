@@ -5,6 +5,7 @@ import { getUsersLatestRoute } from "../requests";
 import { Waypoint, WaypointFromServer } from "../types";
 import Styles from "../styles";
 import InputContainer from "../components/input-container";
+import AppHeader from "../components/app-header";
 
 const FindUserRouteScreen = () => {
 	const [userId, setUserId] = useState<string>("");
@@ -47,9 +48,7 @@ const FindUserRouteScreen = () => {
 
 	return (
 		<View style={Styles.screenContainer}>
-			<View style={Styles.headerContainer}>
-				<Text style={Styles.headerText}>Find users latest route</Text>
-			</View>
+			<AppHeader text={"Find users latest route"} />
 			<InputContainer
 				setUserId={setUserId}
 				userId={userId}
