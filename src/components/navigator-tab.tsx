@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import MapButton from "./map-button";
+import NavigatorButton from "./navigator-button";
 import Styles from "../styles";
 
 /**
@@ -9,9 +9,13 @@ import Styles from "../styles";
 const NavigatorTab = (): JSX.Element => {
 	return (
 		<View style={Styles.navigatorTab}>
-			<MapButton text="Map" iconName="map" path="/" />
-			<MapButton text="Find" iconName="location-arrow" path="/findroute" />
-			<MapButton text="Settings" iconName="cog" path="/settings" />
+			<NavigatorButton text="Map" iconName="map" path="/" />
+			<NavigatorButton
+				text="Find"
+				iconName="location-arrow"
+				path="/findroute"
+			/>
+			<NavigatorButton text="Settings" iconName="cog" path="/settings" />
 		</View>
 	);
 };
