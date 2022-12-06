@@ -2,7 +2,7 @@ import * as TaskManager from "expo-task-manager";
 import * as Location from "expo-location";
 import { storeAndSendWaypoints } from "../reducers/waypoint-reducer";
 import { AppDispatch } from "../store";
-import theme from "../theme";
+import theme from "../styles/theme";
 
 const TRACK_WAYPOINTS = "track_waypoints";
 const locationTaskOptions = {
