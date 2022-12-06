@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text } from "react-native";
 import FindUserRouteContainer from "../components/find-user-route-container";
-import RouteButton from "../components/route-button";
 import { getUsersLatestRoute } from "../requests";
 import { Waypoint, WaypointFromServer } from "../types";
 import Styles from "../styles";
+import InputContainer from "../components/input-container";
 
 const FindUserRouteScreen = () => {
 	const [userId, setUserId] = useState<string>("");
@@ -50,18 +50,12 @@ const FindUserRouteScreen = () => {
 			<View style={Styles.headerContainer}>
 				<Text style={Styles.headerText}>Find users latest route</Text>
 			</View>
-			<View style={Styles.inputContainer}>
-				<TextInput
-					style={Styles.inputField}
-					onChangeText={setUserId}
-					value={userId}
-					placeholder="userID"
-				/>
-				<RouteButton
-					onPress={findUserRoute}
-					text={usersWaypoints ? "Update" : "Search"}
-				/>
-			</View>
+			<InputContainer
+				setUserId={setUserId}
+				userId={userId}
+				findUserRoute={findUserRoute}
+				buttonText={usersWaypoints ? "Update" : "Search"}
+			/>
 			<Text style={Styles.infoText}>{infoText}</Text>
 			{usersWaypoints ? (
 				<FindUserRouteContainer
