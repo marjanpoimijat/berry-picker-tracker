@@ -56,15 +56,7 @@ const FindUserRouteScreen = () => {
 				buttonText={usersWaypoints ? "Update" : "Search"}
 			/>
 			<Text style={Styles.infoText}>{infoText}</Text>
-			{usersWaypoints ? (
-				<FindUserRouteContainer
-					usersWaypoints={usersWaypoints}
-					usersLatestWaypoint={usersWaypoints[usersWaypoints.length - 1]}
-				/>
-			) : (
-				<View style={Styles.smallMapView} />
-			)}
-			<View style={Styles.hideLogo} />
+			<FindUserRouteContainer usersWaypoints={usersWaypoints} />
 		</View>
 	);
 };
