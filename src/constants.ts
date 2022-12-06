@@ -4,7 +4,7 @@ import * as FileSystem from "expo-file-system";
 
 export const baseUrl: string =
 	Constants?.manifest?.extra?.uri ??
-	"http://berry-picker-tracker.cs.helsinki.fi:88";
+	"https://berry-picker-tracker.cs.helsinki.fi:4443";
 
 // This one is needed for the android build
 // export const statusBarHeight: number =
