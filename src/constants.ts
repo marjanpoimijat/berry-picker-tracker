@@ -1,6 +1,6 @@
 import Constants from "expo-constants";
 import * as FileSystem from "expo-file-system";
-//import { Platform } from "react-native";
+// import { Platform } from "react-native";
 
 export const baseUrl: string =
 	Constants?.manifest?.extra?.uri ??
