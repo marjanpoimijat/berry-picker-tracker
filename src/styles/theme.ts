@@ -2,14 +2,15 @@ const theme = {
 	colors: {
 		textPrimary: "dimgrey",
 		textSecondary: "white",
+		primaryBackgroundColor: "#008b8b",
 		buttonBackgroundColor: "#b0c4de",
-		navigatorBackgroundColor: "#008b8b",
 		screenBackgroundColor: "white",
 		buttonUnderlayColor: "#ffffff00",
 	},
 	fontSizes: {
-		default: 13,
 		navi: 11,
+		default: 13,
+		info: 15,
 		header: 20,
 	},
 };

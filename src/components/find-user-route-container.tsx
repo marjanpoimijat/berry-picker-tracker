@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import Styles from "../styles";
 import { Waypoint } from "../types";
 import FindUserRouteMap from "./find-user-route-map";
@@ -8,11 +8,13 @@ import FindUserRouteMap from "./find-user-route-map";
  */
 const FindUserRouteContainer = ({
 	usersWaypoints,
+	infoText,
 }: {
 	usersWaypoints: Waypoint[] | null;
+	infoText: string;
 }): JSX.Element => {
 	return (
-		<View>
+		<View style={Styles.smallMapViewContainer}>
 			{usersWaypoints ? (
 				<FindUserRouteMap
 					usersWaypoints={usersWaypoints}
@@ -21,7 +23,9 @@ const FindUserRouteContainer = ({
 			) : (
 				<View style={Styles.smallMapView} />
 			)}
-			<View style={Styles.hideLogo} />
+			<View style={Styles.hideLogo}>
+				<Text style={Styles.infoText}>{infoText}</Text>
+			</View>
 		</View>
 	);
 };

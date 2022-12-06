@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import FindUserRouteContainer from "../components/find-user-route-container";
 import { getUsersLatestRoute } from "../requests";
 import { Waypoint, WaypointFromServer } from "../types";
@@ -55,8 +55,10 @@ const FindUserRouteScreen = () => {
 				findUserRoute={findUserRoute}
 				buttonText={usersWaypoints ? "Update" : "Search"}
 			/>
-			<Text style={Styles.infoText}>{infoText}</Text>
-			<FindUserRouteContainer usersWaypoints={usersWaypoints} />
+			<FindUserRouteContainer
+				usersWaypoints={usersWaypoints}
+				infoText={infoText}
+			/>
 		</View>
 	);
 };
