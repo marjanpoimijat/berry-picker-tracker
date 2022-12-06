@@ -1,4 +1,5 @@
 import "dotenv/config";
+import theme from "./src/theme";
 
 export default {
 	name: "Berry picker tracker",
@@ -41,7 +42,7 @@ export default {
 	},
 	// androidStatusBar: {
 	// 	barStyle: "light-content",
-	// 	backgroundColor: "#333C4A",
+	// 	backgroundColor: theme.colors.primaryBackgroundColor,
 	// },
 	web: {
 		favicon: "./assets/favicon.png",

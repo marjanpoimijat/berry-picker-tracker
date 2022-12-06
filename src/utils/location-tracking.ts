@@ -2,6 +2,7 @@ import * as TaskManager from "expo-task-manager";
 import * as Location from "expo-location";
 import { storeAndSendWaypoints } from "../reducers/waypoint-reducer";
 import { AppDispatch } from "../store";
+import theme from "../theme";
 
 const TRACK_WAYPOINTS = "track_waypoints";
 const locationTaskOptions = {
@@ -11,7 +12,7 @@ const locationTaskOptions = {
 	foregroundService: {
 		notificationTitle: "Berry picker tracker is running on a background",
 		notificationBody: "End current route tracking in order to close the app",
-		notificationColor: "#008b8b",
+		notificationColor: theme.colors.primaryBackgroundColor,
 	},
 };
 
