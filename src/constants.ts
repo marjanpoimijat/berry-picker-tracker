@@ -1,10 +1,10 @@
 import Constants from "expo-constants";
 import * as FileSystem from "expo-file-system";
-//import { Platform } from "react-native";
+// import { Platform } from "react-native";
 
 export const baseUrl: string =
 	Constants?.manifest?.extra?.uri ??
-	"http://berry-picker-tracker.cs.helsinki.fi:88";
+	"https://berry-picker-tracker.cs.helsinki.fi:4443";
 
 // This one is needed for the android build
 // export const statusBarHeight: number =
