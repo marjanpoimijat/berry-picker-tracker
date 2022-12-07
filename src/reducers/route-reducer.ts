@@ -69,7 +69,6 @@ export const startRoute = (user: User) => {
  * makes http request to send last waypoints, deactivate active route,
  * initializes route state and stops background location tracking.
  * Route object `active`param will be se to false.
- * @param routeId
  * @returns dispatch method to reset route state
  */
 export const deactivateRoute = () => {

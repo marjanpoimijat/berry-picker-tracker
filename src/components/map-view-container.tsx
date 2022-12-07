@@ -1,16 +1,9 @@
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View } from "react-native";
 import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
 
-import { baseUrl, statusBarHeight, tileCacheDirectory } from "../constants";
+import { baseUrl, tileCacheDirectory } from "../constants";
 import { useTypedSelector } from "../store";
-
-const styles = StyleSheet.create({
-	map: {
-		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height,
-		top: statusBarHeight,
-	},
-});
+import Styles from "../styles";
 
 function getCircleColor(color: string): string {
 	switch (color) {
@@ -44,7 +37,7 @@ const MapViewContainer = (): JSX.Element => {
 		<View>
 			<MapView
 				mapType={"none"}
-				style={styles.map}
+				style={Styles.mapView}
 				showsUserLocation={true}
 				initialRegion={{
 					latitude: 60.204662,

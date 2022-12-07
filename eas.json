@@ -5,14 +5,14 @@
 	"build": {
 		"production": {
 			"env": {
-				"URI": "http://berry-picker-tracker.cs.helsinki.fi:80"
+				"URI": "https://berry-picker-tracker.cs.helsinki.fi:4443"
 			}
 		},
 		"development": {
 			"developmentClient": true,
 			"distribution": "internal",
 			"env": {
-				"URI": "http://berry-picker-tracker.cs.helsinki.fi:88"
+				"URI": "https://berry-picker-tracker.cs.helsinki.fi:4443"
 			}
 		},
 		"apk": {

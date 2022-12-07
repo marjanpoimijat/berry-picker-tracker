@@ -1,29 +1,17 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 
 import MapViewContainer from "../components/map-view-container";
 import RouteButtonContainer from "../components/route-button-container";
-import InfoContainer from "../components/info-container";
-import NavigatorTab from "../components/navigator-tab";
+import CoordinateContainer from "../components/coordinate-container";
 
 const MapScreen = () => {
 	return (
-		<View style={styles.container}>
+		<View>
 			<MapViewContainer />
 			<RouteButtonContainer />
-			<InfoContainer />
-			<NavigatorTab />
+			<CoordinateContainer />
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "flex-start",
-		flexDirection: "column",
-	},
-});
 
 export default MapScreen;
