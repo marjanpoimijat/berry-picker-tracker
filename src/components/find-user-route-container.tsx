@@ -4,7 +4,8 @@ import { Waypoint } from "../types";
 import FindUserRouteMap from "./find-user-route-map";
 
 /**
- * V
+ * Shows info text at the bottom of the container and `FindUserRouteMap`
+ * if there are waypoints stored for the user. Otherwise shows empty box instead of map.
  */
 const FindUserRouteContainer = ({
 	usersWaypoints,
