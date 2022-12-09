@@ -4,7 +4,7 @@ export default {
 	name: "Berry picker tracker",
 	slug: "berry-picker-tracker",
 	entryPoint: "./index.js",
-	version: "1.0.12",
+	version: "1.1.3",
 	orientation: "portrait",
 	icon: "./assets/icon.png",
 	splash: {
@@ -17,17 +17,17 @@ export default {
 	},
 	assetBundlePatterns: ["**/*"],
 	ios: {
-		bundleIdentifier: "com.berry.picker.tracker",
+		bundleIdentifier: "com.berryPickerTracker",
 		supportsTablet: true,
-		buildNumber: "13",
+		buildNumber: "18",
 		infoPlist: {
 			UIBackgroundModes: ["location", "fetch"],
 			NSLocationAlwaysAndWhenInUseUsageDescription: "App requires geolocation",
 		},
 	},
 	android: {
-		package: "com.berry.picker.tracker",
-		versionCode: 13,
+		package: "com.berryPickerTracker",
+		versionCode: 18,
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#FFFFFF",
@@ -39,10 +39,10 @@ export default {
 			},
 		},
 	},
-	// androidStatusBar: {
-	// 	barStyle: "light-content",
-	// 	backgroundColor: "#008b8b",
-	// },
+	androidStatusBar: {
+		barStyle: "light-content",
+		backgroundColor: "#008b8b",
+	},
 	web: {
 		favicon: "./assets/favicon.png",
 	},
