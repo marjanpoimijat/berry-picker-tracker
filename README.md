@@ -16,10 +16,10 @@ npm install
 Create a .env-file to the project root with following:
 
 ```bash
-URI=<backend-address>
+URI=<server-address>
 ```
 
-e.g. `URI="http://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2:8000"` (address for Android emulator)
+e.g. `URI="https://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2:8000"` (address for Android emulator)
 
 ### Running
 
@@ -43,6 +43,4 @@ Open your user settings and add the following:
 }
 ```
 
-## Licenses
-
-[Licenses](https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker/tree/main/licenses)
+## [Licenses](https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker/tree/main/licenses)
