@@ -42,5 +42,8 @@ Open your user settings and add the following:
 	}
 }
 ```
+## Licences
+[Licenses](https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker/tree/main/licenses)
 
-## [Licenses](https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker/tree/main/licenses)
+## General Information about the App
+[App Documentation](https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker-docs/blob/main/README.md)
