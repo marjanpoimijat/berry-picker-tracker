@@ -8,7 +8,11 @@ export const baseUrl: string =
 
 // This one is needed for the EAS CLI build
 export const statusBarHeight: number =
-	Platform.OS === "ios" ? Constants.statusBarHeight : 0;
+	Platform.OS === "ios"
+		? Constants.statusBarHeight
+		: Platform.OS === "android"
+		? Constants.statusBarHeight
+		: 0;
 
 // This one is needed for the Expo Go
 // export const statusBarHeight: number = Constants.statusBarHeight;

@@ -67,7 +67,7 @@ const Styles = StyleSheet.create({
 		flexDirection: "row",
 		position: "absolute",
 		alignSelf: "flex-start",
-		marginVertical: 50,
+		marginVertical: 18,
 		marginHorizontal: 18,
 		top: statusBarHeight,
 		backgroundColor: theme.colors.primaryBackgroundColor,
