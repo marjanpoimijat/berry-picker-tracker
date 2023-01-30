@@ -66,7 +66,7 @@ const Styles = StyleSheet.create({
 	coordinateContainer: {
 		flexDirection: "row",
 		position: "absolute",
-		alignSelf: "flex-start",
+		alignSelf: "center",
 		marginVertical: 18,
 		marginHorizontal: 18,
 		top: statusBarHeight,
