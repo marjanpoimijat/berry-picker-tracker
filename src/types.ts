@@ -40,3 +40,8 @@ export interface User {
 	mapLifetime: number;
 	offlineMode: boolean;
 }
+
+export enum Language {
+	English = "en",
+	Finnish = "fi",
+}
