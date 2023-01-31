@@ -25,6 +25,8 @@ e.g. `URI="https://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2
 
 ## Usage
 
+### Starting the application
+
 use the following command to start the application:
 ```bash
 npm start
