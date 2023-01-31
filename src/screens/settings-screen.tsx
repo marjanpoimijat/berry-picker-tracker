@@ -27,6 +27,7 @@ import { version, baseUrl } from "../constants";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Styles from "../styles";
 import AppHeader from "../components/app-header";
+import { changeLanguage } from "../reducers/language-reducer";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
@@ -121,7 +122,32 @@ export const SettingScreen = () => {
 		{ key: index++, component: <Text>72 hours</Text>, label: 72 },
 	];
 
+	index = 0;
+	const languageOption = [
+		{ key: index++, component: <Text>English</Text>, label: 0 },
+		{ key: index++, component: <Text>Finnish</Text>, label: 1 },
+	];
+
 	const settingsData: SettingsData = [
+		{
+			type: "SECTION",
+			header: "Language".toUpperCase(),
+			rows: [
+				{
+					title: "Change language",
+					renderAccessory: () => (
+						<ModalSelector
+							data={languageOption}
+							initValue={"English"}
+							initValueTextStyle={Styles.initValueTextStyle}
+							onChange={async (option: { label: number }) => {
+								await dispatch(changeLanguage(option.label));
+							}}
+						/>
+					),
+				},
+			],
+		},
 		{
 			type: "SECTION",
 			header: "Navigation".toUpperCase(),

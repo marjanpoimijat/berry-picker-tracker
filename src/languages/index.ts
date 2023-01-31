@@ -10,5 +10,6 @@ export const languages: Languages = {
 	Map: {
 		en: "Map",
 		fi: "Kartta",
+		sv: "Karta",
 	},
 };

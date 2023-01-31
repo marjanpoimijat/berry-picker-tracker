@@ -44,4 +44,5 @@ export interface User {
 export enum Language {
 	English = "en",
 	Finnish = "fi",
+	Swedish = "sv",
 }
