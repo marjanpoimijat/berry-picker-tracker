@@ -39,12 +39,13 @@ npm start
 
 #### Instructions:
 
-1. Install <strong>Expo Go</strong> app from the apple <strong>App Store</strong>. Expo Go is a smartphone application for running mobile apps that are in development on a mobile device.
+1. Install <strong>Expo Go</strong> app from the Apple <strong>App Store</strong>. Expo Go is a smartphone application for running mobile apps that are in development on a mobile device.
 2. Launch <strong>Expo Go</strong> app on your IOS device.
 3. Login or Create an Expo account.
 
-4. Connect your IOS device to your computer.
-5. On your computer in the Berry-picker-tracker frontend repository run the command:
+4. Connect your IOS device to your computer using usb-cable.
+5. Make sure that your IOS device and your computer are connected to the same network.
+6. On your computer in the Berry-picker-tracker frontend repository run the command:
 	
 ```
 npm start
