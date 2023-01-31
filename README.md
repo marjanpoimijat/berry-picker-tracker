@@ -35,11 +35,11 @@ npm start
 ### Instructions for Berry-Picker-Tracker Mobile App for IOS
 
 #### Prerequisites:
-- [Berry-picker-tracker frontend](https://github.com/marjanpoimijat/berry-picker-tracker) repository working on your computer.
+- [Berry-picker-tracker frontend](https://github.com/marjanpoimijat/berry-picker-tracker) (this repository) repository working on your computer.
 
 #### Instructions:
 
-1. Install <strong>Expo Go</strong> app from App Store. Expo Go is a smartphone application for running mobile apps that are in development on a mobile device.
+1. Install <strong>Expo Go</strong> app from the apple <strong>App Store</strong>. Expo Go is a smartphone application for running mobile apps that are in development on a mobile device.
 2. Launch <strong>Expo Go</strong> app on your IOS device.
 3. Login or Create an Expo account.
 
