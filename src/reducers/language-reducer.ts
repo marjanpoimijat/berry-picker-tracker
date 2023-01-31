@@ -1,26 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch } from "../store";
-//import { Language } from "../types";
+import { Language } from "../types";
 
-const initialState = {
-	language: 0,
-};
+const initialState = Language.English;
 
 const languageSlice = createSlice({
 	name: "language",
 	initialState,
 	reducers: {
-		setLanguage(state, action: PayloadAction<number>) {
-			return { ...state, language: action.payload };
+		setLanguage(state, action: PayloadAction<Language>) {
+			return action.payload;
 		},
 	},
 });
 
 export const { setLanguage } = languageSlice.actions;
 
-export const changeLanguage = (newLanguage: number) => {
+export const changeLanguage = (newLanguage: Language) => {
 	return async (dispatch: AppDispatch) => {
-		console.log("Changing language to: ", newLanguage);
+		console.log("Changing language to:", newLanguage);
 		dispatch(setLanguage(newLanguage));
 	};
 };

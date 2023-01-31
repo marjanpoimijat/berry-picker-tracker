@@ -2,7 +2,6 @@ import { View } from "react-native";
 import { connect } from "react-redux";
 import NavigatorButton from "./navigator-button";
 import Styles from "../styles";
-import { Language } from "../types";
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 
@@ -16,11 +15,7 @@ const NavigatorTab = (): JSX.Element => {
 	return (
 		<View style={Styles.navigatorTab}>
 			<NavigatorButton
-				text={
-					languages["Map"][
-						language.language === 0 ? Language.English : Language.Finnish
-					]
-				}
+				text={languages["Map"][language]}
 				iconName="map"
 				path="/"
 			/>

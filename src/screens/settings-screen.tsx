@@ -28,6 +28,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import Styles from "../styles";
 import AppHeader from "../components/app-header";
 import { changeLanguage } from "../reducers/language-reducer";
+import { Language } from "../types";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
@@ -35,14 +36,14 @@ export const SettingScreen = () => {
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	console.warn = () => {};
 
-	const [userId, currTrack, currSend, mapLifetime] = useTypedSelector(
-		(state) => [
+	const [userId, currTrack, currSend, mapLifetime, currentLanguage] =
+		useTypedSelector((state) => [
 			state.user.userId,
 			state.user.trackingInterval / 1000,
 			state.user.sendingInterval / 1000,
 			state.user.mapLifetime,
-		]
-	);
+			state.language,
+		]);
 	const routeActive = useTypedSelector((state) => state.route.active);
 
 	const dispatch = useTypedDispatch();
@@ -124,8 +125,8 @@ export const SettingScreen = () => {
 
 	index = 0;
 	const languageOption = [
-		{ key: index++, component: <Text>English</Text>, label: 0 },
-		{ key: index++, component: <Text>Finnish</Text>, label: 1 },
+		{ key: index++, component: <Text>English</Text>, label: Language.English },
+		{ key: index++, component: <Text>Finnish</Text>, label: Language.Finnish },
 	];
 
 	const settingsData: SettingsData = [
@@ -138,9 +139,9 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<ModalSelector
 							data={languageOption}
-							initValue={"English"}
+							initValue={currentLanguage}
 							initValueTextStyle={Styles.initValueTextStyle}
-							onChange={async (option: { label: number }) => {
+							onChange={async (option: { label: Language }) => {
 								await dispatch(changeLanguage(option.label));
 							}}
 						/>
