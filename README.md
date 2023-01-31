@@ -7,6 +7,8 @@
 - `node:^16.17.0`
 - `npm:^8.19.0`
 
+The recommended way to set up node and npm is by using [nvm](https://github.com/nvm-sh/nvm).
+
 ### Set-up
 
 ```bash
