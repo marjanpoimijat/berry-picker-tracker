@@ -26,6 +26,13 @@ e.g. `URI="https://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2
 ```bash
 npm start
 ```
+### Lint
+
+Eslint is run automatically when committing changes. For manual linting use the following command in the root directory.
+
+```bash
+npx eslint src/**
+```
 
 ### Recommended editor tooling (VSCode)
 
