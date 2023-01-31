@@ -12,4 +12,14 @@ export const languages: Languages = {
 		fi: "Kartta",
 		sv: "Karta",
 	},
+	Find: {
+		en: "Find",
+		fi: "Etsi",
+		sv: "insert_Swedish_here",
+	},
+	Settings: {
+		en: "Settings",
+		fi: "Asetukset",
+		sv: "insert_Swedish_here",
+	},
 };

@@ -126,7 +126,8 @@ export const SettingScreen = () => {
 	index = 0;
 	const languageOption = [
 		{ key: index++, component: <Text>English</Text>, label: Language.English },
-		{ key: index++, component: <Text>Finnish</Text>, label: Language.Finnish },
+		{ key: index++, component: <Text>suomi</Text>, label: Language.Finnish },
+		{ key: index++, component: <Text>svenska</Text>, label: Language.Swedish },
 	];
 
 	const settingsData: SettingsData = [

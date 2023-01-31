@@ -20,11 +20,15 @@ const NavigatorTab = (): JSX.Element => {
 				path="/"
 			/>
 			<NavigatorButton
-				text="Find"
+				text={languages["Find"][language]}
 				iconName="location-arrow"
 				path="/findroute"
 			/>
-			<NavigatorButton text="Settings" iconName="cog" path="/settings" />
+			<NavigatorButton
+				text={languages["Settings"][language]}
+				iconName="cog"
+				path="/settings"
+			/>
 		</View>
 	);
 };
