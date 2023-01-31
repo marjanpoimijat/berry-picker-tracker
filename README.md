@@ -23,11 +23,34 @@ URI=<server-address>
 
 e.g. `URI="https://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2:8000"` (address for Android emulator)
 
-### Running
+## Usage
 
+use the following command to start the application:
 ```bash
 npm start
 ```
+
+### Running the app in an Android emulator on Cubbli/Ubuntu
+
+1. Install the Android SDK.
+
+```bash
+# Install Android SDK
+$ sudo apt install android-sdk
+
+# Add the path to the sdk to .bashrc
+# Make sure the path is correct
+$ echo 'export ANDROID_HOME="$HOME/Android/Sdk"' >> .bashrc
+```
+
+2. Install Android Studio by following [the instructions](https://developer.android.com/studio/install#linux).
+
+3. Set up an emulator by following [the instructions](https://docs.expo.dev/workflow/android-studio-emulator).
+    - Pixel 6 Pro was used as the device
+    - Android 13.0 (API 33) was used as the operating system
+
+4. Keep Android Studio and the emulator open while running the frontend.
+
 ### Lint
 
 Eslint is run automatically when committing changes. For manual linting use the following command in the root directory.
