@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { View } from "react-native";
-import FindUserRouteContainer from "../components/find-user-route-container";
-import { getUsersLatestRoute } from "../requests";
-import { Waypoint, WaypointFromServer } from "../types";
-import Styles from "../styles";
-import InputContainer from "../components/input-container";
+
 import AppHeader from "../components/app-header";
+import FindUserRouteContainer from "../components/find-user-route-container";
+import InputContainer from "../components/input-container";
+import { languages } from "../languages";
+import { getUsersLatestRoute } from "../requests";
+import { useTypedSelector } from "../store";
+import Styles from "../styles";
+import { Waypoint, WaypointFromServer } from "../types";
 
 const FindUserRouteScreen = () => {
+	const language = useTypedSelector((state) => state.language);
 	const [userId, setUserId] = useState<string>("");
 	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
 	const [infoText, setInfoText] = useState<string>(
-		"Search users latest route by typing userID"
+		languages["Search users latest route by typing userID"][language]
 	);
 
 	/**
@@ -23,7 +27,7 @@ const FindUserRouteScreen = () => {
 		// To re-adjust initial map region while updating the search
 		setUsersWaypoints(null);
 
-		console.log(`Finding user with id ${userId}...`);
+		console.log(`${languages["Finding user with id"][language]} ${userId}...`);
 		const data = await getUsersLatestRoute(userId);
 		if (data !== undefined) {
 			const waypoints: Waypoint[] = data.waypoints.map(
@@ -35,7 +39,9 @@ const FindUserRouteScreen = () => {
 				}
 			);
 			setInfoText(
-				data.active ? "User route is active" : "User has no active route"
+				data.active
+					? languages["User route is active"][language]
+					: languages["User has no active route"][language]
 			);
 			setUsersWaypoints(waypoints);
 			console.log(
@@ -48,12 +54,16 @@ const FindUserRouteScreen = () => {
 
 	return (
 		<View style={Styles.screenContainer}>
-			<AppHeader text={"Find users latest route"} />
+			<AppHeader text={languages["Find users latest route"][language]} />
 			<InputContainer
 				setUserId={setUserId}
 				userId={userId}
 				findUserRoute={findUserRoute}
-				buttonText={usersWaypoints ? "Update" : "Search"}
+				buttonText={
+					usersWaypoints
+						? languages["Update"][language]
+						: languages["Search"][language]
+				}
 			/>
 			<FindUserRouteContainer
 				usersWaypoints={usersWaypoints}

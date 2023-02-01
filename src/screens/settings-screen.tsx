@@ -13,6 +13,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { version, baseUrl } from "../constants";
 import AppHeader from "../components/app-header";
 import SettingsToggle from "../components/settings-toggle";
+import { languages } from "../languages";
 import { changeLanguage } from "../reducers/language-reducer";
 import {
 	changeDefaultSettings,
@@ -36,34 +37,35 @@ export const SettingScreen = () => {
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	console.warn = () => {};
 
-	const [userId, currTrack, currSend, mapLifetime, currentLanguage] =
-		useTypedSelector((state) => [
+	const [userId, currTrack, currSend, mapLifetime, language] = useTypedSelector(
+		(state) => [
 			state.user.userId,
 			state.user.trackingInterval / 1000,
 			state.user.sendingInterval / 1000,
 			state.user.mapLifetime,
 			state.language,
-		]);
+		]
+	);
 	const routeActive = useTypedSelector((state) => state.route.active);
 
 	const dispatch = useTypedDispatch();
 
 	const alertOnReset = (target: string) => {
 		Alert.alert(
-			`Resetting ${target}`,
-			`Do you really want to reset ${target}?`,
+			`${languages["Resetting"][language]} ${languages[target][language]}`,
+			`${languages["Do you really want to reset"][language]} ${languages[target][language]}?`,
 			[
 				{
-					text: "Cancel",
+					text: languages["Cancel"][language],
 				},
 				{
-					text: "Reset",
+					text: languages["Reset"][language],
 					onPress: async () => {
 						if (target === "UserID") {
 							await dispatch(resetUser());
 							await dispatch(identifyUser());
 						}
-						if (target === "maptile cache") {
+						if (target === "map tile cache") {
 							deleteTileCacheDirectory();
 							makeTileCacheDirectory();
 						}
@@ -78,11 +80,13 @@ export const SettingScreen = () => {
 
 	const alertRouteIsActive = () => {
 		Alert.alert(
-			"Route is currently active",
-			"UserID can not be reseted while route is active. End route route first and try again",
+			languages["Route is currently active"][language],
+			languages[
+				"UserID can not be reseted while route is active. End route route first and try again"
+			][language],
 			[
 				{
-					text: "OK",
+					text: languages["OK"][language],
 				},
 			]
 		);
@@ -99,28 +103,84 @@ export const SettingScreen = () => {
 
 	let index = 0;
 	const trackFreq = [
-		{ key: index++, component: <Text>1 second</Text>, label: 1000 },
-		{ key: index++, component: <Text>5 seconds</Text>, label: 5000 },
-		{ key: index++, component: <Text>10 seconds</Text>, label: 10000 },
-		{ key: index++, component: <Text>30 seconds</Text>, label: 30000 },
-		{ key: index++, component: <Text>1 minute</Text>, label: 60000 },
+		{
+			key: index++,
+			component: <Text>1 {languages["second"][language]}</Text>,
+			label: 1000,
+		},
+		{
+			key: index++,
+			component: <Text>5 {languages["seconds"][language]}</Text>,
+			label: 5000,
+		},
+		{
+			key: index++,
+			component: <Text>10 {languages["seconds"][language]}</Text>,
+			label: 10000,
+		},
+		{
+			key: index++,
+			component: <Text>30 {languages["seconds"][language]}</Text>,
+			label: 30000,
+		},
+		{
+			key: index++,
+			component: <Text>1 {languages["minute"][language]}</Text>,
+			label: 60000,
+		},
 	];
 
 	index = 0;
 	const sendFreq = [
-		{ key: index++, component: <Text>10 seconds</Text>, label: 10000 },
-		{ key: index++, component: <Text>30 seconds</Text>, label: 30000 },
-		{ key: index++, component: <Text>1 minute</Text>, label: 60000 },
-		{ key: index++, component: <Text>5 minutes</Text>, label: 300000 },
-		{ key: index++, component: <Text>10 minutes</Text>, label: 600000 },
+		{
+			key: index++,
+			component: <Text>10 {languages["seconds"][language]}</Text>,
+			label: 10000,
+		},
+		{
+			key: index++,
+			component: <Text>30 {languages["seconds"][language]}</Text>,
+			label: 30000,
+		},
+		{
+			key: index++,
+			component: <Text>1 {languages["minute"][language]}</Text>,
+			label: 60000,
+		},
+		{
+			key: index++,
+			component: <Text>5 {languages["minutes"][language]}</Text>,
+			label: 300000,
+		},
+		{
+			key: index++,
+			component: <Text>10 {languages["minutes"][language]}</Text>,
+			label: 600000,
+		},
 	];
 
 	index = 0;
 	const tileLifetime = [
-		{ key: index++, component: <Text>12 hours</Text>, label: 12 },
-		{ key: index++, component: <Text>24 hours</Text>, label: 24 },
-		{ key: index++, component: <Text>48 hours</Text>, label: 48 },
-		{ key: index++, component: <Text>72 hours</Text>, label: 72 },
+		{
+			key: index++,
+			component: <Text>12 {languages["hours"][language]}</Text>,
+			label: 12,
+		},
+		{
+			key: index++,
+			component: <Text>24 {languages["hours"][language]}</Text>,
+			label: 24,
+		},
+		{
+			key: index++,
+			component: <Text>48 {languages["hours"][language]}</Text>,
+			label: 48,
+		},
+		{
+			key: index++,
+			component: <Text>72 {languages["hours"][language]}</Text>,
+			label: 72,
+		},
 	];
 
 	index = 0;
@@ -133,14 +193,14 @@ export const SettingScreen = () => {
 	const settingsData: SettingsData = [
 		{
 			type: "SECTION",
-			header: "Language".toUpperCase(),
+			header: `${languages["Language"][language]}`.toUpperCase(),
 			rows: [
 				{
-					title: "Change language",
+					title: languages["Change language"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							data={languageOption}
-							initValue={currentLanguage}
+							initValue={language}
 							initValueTextStyle={Styles.initValueTextStyle}
 							onChange={async (option: { label: Language }) => {
 								await dispatch(changeLanguage(option.label));
@@ -152,11 +212,11 @@ export const SettingScreen = () => {
 		},
 		{
 			type: "SECTION",
-			header: "Navigation".toUpperCase(),
-			footer: "Change frequencies to save battery life",
+			header: `${languages["Navigation"][language]}`.toUpperCase(),
+			footer: languages["Change frequencies to save battery life"][language],
 			rows: [
 				{
-					title: "Waypoint tracking frequency",
+					title: languages["Waypoint tracking frequency"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							data={trackFreq}
@@ -169,7 +229,7 @@ export const SettingScreen = () => {
 					),
 				},
 				{
-					title: "Waypoint sending frequency",
+					title: languages["Waypoint sending frequency"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							data={sendFreq}
@@ -182,18 +242,18 @@ export const SettingScreen = () => {
 					),
 				},
 				{
-					title: "Offline mode",
+					title: languages["Offline mode"][language],
 					renderAccessory: () => <SettingsToggle />,
 				},
 			],
 		},
 		{
 			type: "SECTION",
-			header: "Map cache".toUpperCase(),
-			footer: "Delete cached map tiles to clear space",
+			header: `${languages["Map cache"][language]}`.toUpperCase(),
+			footer: languages["Delete cached map tiles to clear space"][language],
 			rows: [
 				{
-					title: "Maptile lifetime",
+					title: languages["Map tile lifetime"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							data={tileLifetime}
@@ -206,14 +266,14 @@ export const SettingScreen = () => {
 					),
 				},
 				{
-					title: "Delete maptile cache",
+					title: languages["Delete map tile cache"][language],
 					titleStyle: {
 						color: "red",
 					},
 					renderAccessory: () => (
 						<Button
-							title="RESET"
-							onPress={() => alertOnReset("maptile cache")}
+							title={languages["Reset"][language]}
+							onPress={() => alertOnReset("map tile cache")}
 							color="red"
 						/>
 					),
@@ -222,11 +282,11 @@ export const SettingScreen = () => {
 		},
 		{
 			type: "SECTION",
-			header: "User information".toUpperCase(),
-			footer: "Click your UserID to copy it",
+			header: `${languages["User information"][language]}`.toUpperCase(),
+			footer: languages["Tap your UserID to copy it"][language],
 			rows: [
 				{
-					title: "UserID",
+					title: languages["UserID"][language],
 					renderAccessory: () => (
 						<TouchableOpacity onPress={() => copyToClipboard(userId)}>
 							<Text style={{ color: "dimgrey", fontSize: 12 }}>{userId}</Text>
@@ -234,13 +294,13 @@ export const SettingScreen = () => {
 					),
 				},
 				{
-					title: "Reset UserID",
+					title: languages["Reset UserID"][language],
 					titleStyle: {
 						color: "red",
 					},
 					renderAccessory: () => (
 						<Button
-							title="RESET"
+							title={languages["Reset"][language]}
 							onPress={() =>
 								routeActive ? alertRouteIsActive() : alertOnReset("UserID")
 							}
@@ -252,16 +312,16 @@ export const SettingScreen = () => {
 		},
 		{
 			type: "SECTION",
-			header: "Default settings".toUpperCase(),
+			header: `${languages["Default settings"][language]}`.toUpperCase(),
 			rows: [
 				{
-					title: "Reset settings to default",
+					title: languages["Reset settings to default"][language],
 					titleStyle: {
 						color: "red",
 					},
 					renderAccessory: () => (
 						<Button
-							title="RESET"
+							title={languages["Reset"][language]}
 							onPress={() => alertOnReset("settings")}
 							color="red"
 						/>
@@ -271,37 +331,37 @@ export const SettingScreen = () => {
 		},
 		{
 			type: "SECTION",
-			header: "Legal information".toUpperCase(),
-			footer: "Links to privacy policy and licenses",
+			header: `${languages["Legal information"][language]}`.toUpperCase(),
+			footer: languages["Links to privacy policy and licenses"][language],
 			rows: [
 				{
-					title: "Front end licenses",
+					title: languages["Frontend licenses"][language],
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
 							onPress={() =>
 								Linking.openURL(
-									"https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker/tree/main/licenses"
+									"https://github.com/marjanpoimijat/berry-picker-tracker/tree/main/licenses"
 								)
 							}
 						/>
 					),
 				},
 				{
-					title: "Back end licenses",
+					title: languages["Backend licenses"][language],
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
 							onPress={() =>
 								Linking.openURL(
-									"https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker-server/tree/main/licenses"
+									"https://github.com/marjanpoimijat/berry-picker-tracker-server/tree/main/licenses"
 								)
 							}
 						/>
 					),
 				},
 				{
-					title: "Privacy policy",
+					title: languages["Privacy policy"][language],
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
@@ -317,12 +377,14 @@ export const SettingScreen = () => {
 		},
 		{
 			type: "SECTION",
-			header: "Map legend".toUpperCase(),
+			header: `${languages["Map legend"][language]}`.toUpperCase(),
 			footer:
-				"Download link to National Land Survey of Finland map legend information",
+				languages[
+					"Download link to National Land Survey of Finland map legend information"
+				][language],
 			rows: [
 				{
-					title: "Download map legends",
+					title: languages["Download map legend"][language],
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
@@ -336,7 +398,7 @@ export const SettingScreen = () => {
 			type: "CUSTOM_VIEW",
 			render: () => (
 				<Text style={{ ...Styles.defaultText, padding: 15 }}>
-					Version: {version}
+					{languages["Version"][language]}: {version}
 				</Text>
 			),
 		},
@@ -344,7 +406,7 @@ export const SettingScreen = () => {
 
 	return (
 		<View style={Styles.screenContainer}>
-			<AppHeader text={"Settings"} />
+			<AppHeader text={languages["Settings"][language]} />
 			<SettingsScreen
 				data={settingsData}
 				globalTextStyle={Styles.defaultText}
