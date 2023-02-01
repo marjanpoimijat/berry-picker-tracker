@@ -7,7 +7,13 @@ import {
 	TouchableOpacity,
 	Clipboard,
 } from "react-native";
-import { useTypedDispatch, useTypedSelector } from "../store";
+import ModalSelector from "react-native-modal-selector";
+import { SettingsScreen, SettingsData } from "react-native-settings-screen";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import { version, baseUrl } from "../constants";
+import AppHeader from "../components/app-header";
+import SettingsToggle from "../components/settings-toggle";
+import { changeLanguage } from "../reducers/language-reducer";
 import {
 	changeDefaultSettings,
 	changeMapLifetime,
@@ -16,18 +22,12 @@ import {
 	changeTrackingInterval,
 	changeSendingInterval,
 } from "../reducers/user-reducer";
+import { useTypedDispatch, useTypedSelector } from "../store";
+import Styles from "../styles";
 import {
 	deleteTileCacheDirectory,
 	makeTileCacheDirectory,
 } from "../utils/file-system";
-import { SettingsScreen, SettingsData } from "react-native-settings-screen";
-import SettingsToggle from "../components/settings-toggle";
-import ModalSelector from "react-native-modal-selector";
-import { version, baseUrl } from "../constants";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import Styles from "../styles";
-import AppHeader from "../components/app-header";
-import { changeLanguage } from "../reducers/language-reducer";
 import { Language } from "../types";
 
 export const SettingScreen = () => {
