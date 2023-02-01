@@ -367,7 +367,7 @@ export const SettingScreen = () => {
 							name="chevron-right"
 							onPress={() =>
 								Linking.openURL(
-									"https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker-docs/blob/main/privacy_policies.md"
+									"https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/privacy_policies.md"
 								)
 							}
 						/>
