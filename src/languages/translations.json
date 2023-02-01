@@ -1,0 +1,32 @@
+{
+	"Find": {
+		"en": "Find",
+		"fi": "Etsi",
+		"sv": ""
+	},
+	"Lat": {
+		"en": "Lat",
+		"fi": "",
+		"sv": ""
+	},
+	"Lon": {
+		"en": "Lon",
+		"fi": "",
+		"sv": ""
+	},
+	"Map": {
+		"en": "Map",
+		"fi": "Kartta",
+		"sv": "Karta"
+	},
+	"NA": {
+		"en": "NA",
+		"fi": "",
+		"sv": ""
+	},
+	"Settings": {
+		"en": "Settings",
+		"fi": "Asetukset",
+		"sv": ""
+	}
+}
