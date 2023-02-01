@@ -1,9 +1,11 @@
 import { View } from "react-native";
 import { connect } from "react-redux";
-import NavigatorButton from "./navigator-button";
-import Styles from "../styles";
+
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
+import Styles from "../styles";
+
+import NavigatorButton from "./navigator-button";
 
 /**
  * Navigator tab located at the bottom of the screen which contains

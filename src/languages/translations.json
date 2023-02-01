@@ -1,11 +1,51 @@
 {
+	"Cancel": {
+		"en": "Cancel",
+		"fi": "",
+		"sv": ""
+	},
+	"Do you really want to end tracking?": {
+		"en": "Do you really want to end tracking?",
+		"fi": "",
+		"sv": ""
+	},
+	"End route": {
+		"en": "End route",
+		"fi": "",
+		"sv": ""
+	},
+	"End tracking this route?": {
+		"en": "End tracking this route?",
+		"fi": "",
+		"sv": ""
+	},
 	"Find": {
 		"en": "Find",
 		"fi": "Etsi",
 		"sv": ""
 	},
+	"Hide route": {
+		"en": "Hide route",
+		"fi": "",
+		"sv": ""
+	},
 	"Lat": {
 		"en": "Lat",
+		"fi": "",
+		"sv": ""
+	},
+	"Latest waypoint is not available": {
+		"en": "Latest waypoint is not available",
+		"fi": "",
+		"sv": ""
+	},
+	"Latest waypoint timestamp": {
+		"en": "Latest waypoint timestamp",
+		"fi": "",
+		"sv": ""
+	},
+	"Local waypoints": {
+		"en": "Local waypoints",
 		"fi": "",
 		"sv": ""
 	},
@@ -24,9 +64,44 @@
 		"fi": "",
 		"sv": ""
 	},
+	"NMC code": {
+		"en": "NMC code",
+		"fi": "",
+		"sv": ""
+	},
+	"No network": {
+		"en": "No network",
+		"fi": "",
+		"sv": ""
+	},
+	"OK": {
+		"en": "OK",
+		"fi": "",
+		"sv": ""
+	},
+	"Pending waypoints": {
+		"en": "Pending waypoints",
+		"fi": "Asetukset",
+		"sv": ""
+	},
 	"Settings": {
 		"en": "Settings",
 		"fi": "Asetukset",
+		"sv": ""
+	},
+	"Show route": {
+		"en": "Show route",
+		"fi": "",
+		"sv": ""
+	},
+	"Start route": {
+		"en": "Start route",
+		"fi": "",
+		"sv": ""
+	},
+	"Update search a bit later": {
+		"en": "Update search a bit later",
+		"fi": "",
 		"sv": ""
 	}
 }

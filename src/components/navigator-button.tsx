@@ -1,18 +1,17 @@
 import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Link } from "react-router-native";
+
 import Styles from "../styles";
 import theme from "../styles/theme";
 
-const NavigatorButton = ({
-	text,
-	iconName,
-	path,
-}: {
-	text: string;
+interface Props {
 	iconName: string;
 	path: string;
-}): JSX.Element => {
+	text: string;
+}
+
+const NavigatorButton = ({ iconName, path, text }: Props): JSX.Element => {
 	return (
 		<Link to={path} underlayColor={theme.colors.buttonUnderlayColor}>
 			<View style={Styles.navigatorButton}>
