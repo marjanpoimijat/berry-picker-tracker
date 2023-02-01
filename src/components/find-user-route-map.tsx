@@ -2,6 +2,7 @@ import { View } from "react-native";
 import MapView, { Marker, Polyline, UrlTile } from "react-native-maps";
 
 import { baseUrl, tileCacheDirectory } from "../constants";
+import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import { usersLocationInfo } from "../types";
@@ -16,6 +17,7 @@ const FindUserRouteMap = ({
 	usersWaypoints,
 	usersLatestWaypoint,
 }: usersLocationInfo): JSX.Element => {
+	const language = useTypedSelector((state) => state.language);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
 
 	return (
@@ -59,13 +61,13 @@ const FindUserRouteMap = ({
 				<Marker
 					title={
 						usersLatestWaypoint
-							? "Latest waypoint timestamp"
-							: "Latest waypoint is not available"
+							? languages["Latest waypoint timestamp"][language]
+							: languages["Latest waypoint is not available"][language]
 					}
 					description={
 						usersLatestWaypoint
 							? usersLatestWaypoint.ts.toString()
-							: "Update search a bit later"
+							: languages["Update search a bit later"][language]
 					}
 					coordinate={{
 						latitude: usersLatestWaypoint

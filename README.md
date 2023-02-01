@@ -28,6 +28,7 @@ e.g. `URI="https://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2
 ### Starting the application
 
 use the following command to start the application:
+
 ```bash
 npm start
 ```
@@ -35,6 +36,7 @@ npm start
 ### Instructions for Berry-Picker-Tracker Mobile App for IOS
 
 #### Prerequisites:
+
 - [Berry-picker-tracker frontend](https://github.com/marjanpoimijat/berry-picker-tracker) (this repository) repository working on your computer.
 
 #### Instructions:
@@ -46,14 +48,13 @@ npm start
 4. Connect your IOS device to your computer using usb-cable.
 5. Make sure that your IOS device and your computer are connected to the same network.
 6. On your computer in the Berry-picker-tracker frontend repository run the command:
-	
+
 ```
 npm start
 ```
 
 6. A QR code should be displayed. Open the default camera app on your IOS device and scan the QR code.
 7. On your IOS device Expo Go should open and promt you to choose between <strong>Development Build</strong> or <strong>Expo Go</strong>. Choose <strong>Expo Go</strong>.
-
 
 Congratulations! The Berry-picker-tracker mobile app should now launch on your IOS device.
 
@@ -73,8 +74,9 @@ $ echo 'export ANDROID_HOME="$HOME/Android/Sdk"' >> .bashrc
 2. Install Android Studio by following [the instructions](https://developer.android.com/studio/install#linux).
 
 3. Set up an emulator by following [the instructions](https://docs.expo.dev/workflow/android-studio-emulator).
-    - Pixel 6 Pro was used as the device
-    - Android 13.0 (API 33) was used as the operating system
+
+   - Pixel 6 Pro was used as the device
+   - Android 13.0 (API 33) was used as the operating system
 
 4. Keep Android Studio and the emulator open while running the frontend.
 
@@ -101,8 +103,11 @@ Open your user settings and add the following:
 	}
 }
 ```
+
 ## Licences
-[Licenses](https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker/tree/main/licenses)
+
+[Licenses](https://github.com/marjanpoimijat/berry-picker-tracker/tree/main/licenses)
 
 ## General Information about the App
-[App Documentation](https://github.com/hy-ohtu-syksy-22-bpt/berry-picker-tracker-docs/blob/main/README.md)
+
+[App Documentation](https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/README.md)

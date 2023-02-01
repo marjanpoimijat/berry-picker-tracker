@@ -1,0 +1,327 @@
+{
+	"Backend licenses": {
+		"en": "Backend licenses",
+		"fi": "",
+		"sv": ""
+	},
+	"Cancel": {
+		"en": "Cancel",
+		"fi": "",
+		"sv": ""
+	},
+	"Change frequencies to save battery life": {
+		"en": "Change frequencies to save battery life",
+		"fi": "",
+		"sv": ""
+	},
+	"Change language": {
+		"en": "Change language",
+		"fi": "",
+		"sv": ""
+	},
+	"Default settings": {
+		"en": "Default settings",
+		"fi": "",
+		"sv": ""
+	},
+	"Delete cached map tiles to clear space": {
+		"en": "Delete cached map tiles to clear space",
+		"fi": "",
+		"sv": ""
+	},
+	"Delete map tile cache": {
+		"en": "Delete map tile cache",
+		"fi": "",
+		"sv": ""
+	},
+	"Do you really want to end tracking?": {
+		"en": "Do you really want to end tracking?",
+		"fi": "",
+		"sv": ""
+	},
+	"Do you really want to reset": {
+		"en": "Do you really want to reset",
+		"fi": "",
+		"sv": ""
+	},
+	"Download link to National Land Survey of Finland map legend information": {
+		"en": "Download link to National Land Survey of Finland map legend information",
+		"fi": "",
+		"sv": ""
+	},
+	"Download map legend": {
+		"en": "Download map legend",
+		"fi": "",
+		"sv": ""
+	},
+	"End route": {
+		"en": "End route",
+		"fi": "",
+		"sv": ""
+	},
+	"End tracking this route?": {
+		"en": "End tracking this route?",
+		"fi": "",
+		"sv": ""
+	},
+	"Find": {
+		"en": "Find",
+		"fi": "Etsi",
+		"sv": ""
+	},
+	"Find users latest route": {
+		"en": "Find users latest route",
+		"fi": "",
+		"sv": ""
+	},
+	"Finding user with id": {
+		"en": "Finding user with id",
+		"fi": "",
+		"sv": ""
+	},
+	"Frontend licenses": {
+		"en": "Frontend licenses",
+		"fi": "",
+		"sv": ""
+	},
+	"Hide route": {
+		"en": "Hide route",
+		"fi": "",
+		"sv": ""
+	},
+	"hours": {
+		"en": "hours",
+		"fi": "",
+		"sv": ""
+	},
+	"Language": {
+		"en": "Language",
+		"fi": "",
+		"sv": ""
+	},
+	"Lat": {
+		"en": "Lat",
+		"fi": "",
+		"sv": ""
+	},
+	"Latest waypoint is not available": {
+		"en": "Latest waypoint is not available",
+		"fi": "",
+		"sv": ""
+	},
+	"Latest waypoint timestamp": {
+		"en": "Latest waypoint timestamp",
+		"fi": "",
+		"sv": ""
+	},
+	"Legal information": {
+		"en": "Legal information",
+		"fi": "",
+		"sv": ""
+	},
+	"Links to privacy policy and licenses": {
+		"en": "Links to privacy policy and licenses",
+		"fi": "",
+		"sv": ""
+	},
+	"Local waypoints": {
+		"en": "Local waypoints",
+		"fi": "",
+		"sv": ""
+	},
+	"Lon": {
+		"en": "Lon",
+		"fi": "",
+		"sv": ""
+	},
+	"Map": {
+		"en": "Map",
+		"fi": "Kartta",
+		"sv": "Karta"
+	},
+	"Map cache": {
+		"en": "Map cache",
+		"fi": "",
+		"sv": ""
+	},
+	"Map legend": {
+		"en": "Map legend",
+		"fi": "",
+		"sv": ""
+	},
+	"map tile cache": {
+		"en": "map tile cache",
+		"fi": "",
+		"sv": ""
+	},
+	"Map tile lifetime": {
+		"en": "Map tile lifetime",
+		"fi": "",
+		"sv": ""
+	},
+	"minute": {
+		"en": "minute",
+		"fi": "",
+		"sv": ""
+	},
+	"minutes": {
+		"en": "minutes",
+		"fi": "",
+		"sv": ""
+	},
+	"NA": {
+		"en": "NA",
+		"fi": "",
+		"sv": ""
+	},
+	"Navigation": {
+		"en": "Navigation",
+		"fi": "",
+		"sv": ""
+	},
+	"NMC code": {
+		"en": "NMC code",
+		"fi": "",
+		"sv": ""
+	},
+	"No network": {
+		"en": "No network",
+		"fi": "",
+		"sv": ""
+	},
+	"OK": {
+		"en": "OK",
+		"fi": "",
+		"sv": ""
+	},
+	"Offline mode": {
+		"en": "Offline mode",
+		"fi": "",
+		"sv": ""
+	},
+	"Pending waypoints": {
+		"en": "Pending waypoints",
+		"fi": "Asetukset",
+		"sv": ""
+	},
+	"Privacy policy": {
+		"en": "Privacy policy",
+		"fi": "",
+		"sv": ""
+	},
+	"Reset": {
+		"en": "Reset",
+		"fi": "",
+		"sv": ""
+	},
+	"Reset settings to default": {
+		"en": "Reset settings to default",
+		"fi": "",
+		"sv": ""
+	},
+	"Reset UserID": {
+		"en": "Reset UserID",
+		"fi": "",
+		"sv": ""
+	},
+	"Resetting": {
+		"en": "Resetting",
+		"fi": "",
+		"sv": ""
+	},
+	"Route is currently active": {
+		"en": "Route is currently active",
+		"fi": "",
+		"sv": ""
+	},
+	"Search": {
+		"en": "Search",
+		"fi": "",
+		"sv": ""
+	},
+	"Search users latest route by typing userID": {
+		"en": "Search users latest route by typing userID",
+		"fi": "",
+		"sv": ""
+	},
+	"second": {
+		"en": "second",
+		"fi": "",
+		"sv": ""
+	},
+	"seconds": {
+		"en": "seconds",
+		"fi": "",
+		"sv": ""
+	},
+	"Settings": {
+		"en": "Settings",
+		"fi": "Asetukset",
+		"sv": ""
+	},
+	"Show route": {
+		"en": "Show route",
+		"fi": "",
+		"sv": ""
+	},
+	"Start route": {
+		"en": "Start route",
+		"fi": "",
+		"sv": ""
+	},
+	"Tap your UserID to copy it": {
+		"en": "Tap your UserID to copy it",
+		"fi": "",
+		"sv": ""
+	},
+	"Update": {
+		"en": "Update",
+		"fi": "",
+		"sv": ""
+	},
+	"Update search a bit later": {
+		"en": "Update search a bit later",
+		"fi": "",
+		"sv": ""
+	},
+	"User information": {
+		"en": "User information",
+		"fi": "",
+		"sv": ""
+	},
+	"User has no active route": {
+		"en": "User has no active route",
+		"fi": "",
+		"sv": ""
+	},
+	"User route is active": {
+		"en": "User route is active",
+		"fi": "",
+		"sv": ""
+	},
+	"UserID": {
+		"en": "UserID",
+		"fi": "",
+		"sv": ""
+	},
+	"UserID can not be reseted while route is active. End route route first and try again": {
+		"en": "UserID can not be reseted while route is active. End route route first and try again",
+		"fi": "",
+		"sv": ""
+	},
+	"Version": {
+		"en": "Version",
+		"fi": "",
+		"sv": ""
+	},
+	"Waypoint sending frequency": {
+		"en": "Waypoint sending frequency",
+		"fi": "",
+		"sv": ""
+	},
+	"Waypoint tracking frequency": {
+		"en": "Waypoint tracking frequency",
+		"fi": "",
+		"sv": ""
+	}
+}

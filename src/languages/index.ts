@@ -1,25 +1,11 @@
 import { Language } from "../types";
 
+import translations from "./translations.json";
+
 type Languages = {
 	[key: string]: {
 		[key in Language]: string;
 	};
 };
 
-export const languages: Languages = {
-	Map: {
-		en: "Map",
-		fi: "Kartta",
-		sv: "Karta",
-	},
-	Find: {
-		en: "Find",
-		fi: "Etsi",
-		sv: "insert_Swedish_here",
-	},
-	Settings: {
-		en: "Settings",
-		fi: "Asetukset",
-		sv: "insert_Swedish_here",
-	},
-};
+export const languages: Languages = translations;

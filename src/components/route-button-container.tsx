@@ -1,4 +1,6 @@
-import { View, Alert } from "react-native";
+import { Alert, View } from "react-native";
+
+import { languages } from "../languages";
 import {
 	startRoute,
 	deactivateRoute,
@@ -6,6 +8,7 @@ import {
 } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
+
 import RouteButton from "./route-button";
 
 /**
@@ -14,6 +17,7 @@ import RouteButton from "./route-button";
  * Just preliminary styling and location on a screen.
  */
 const RouteButtonContainer = (): JSX.Element => {
+	const language = useTypedSelector((state) => state.language);
 	const user = useTypedSelector((state) => state.user);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const dispatch = useTypedDispatch();
@@ -32,14 +36,14 @@ const RouteButtonContainer = (): JSX.Element => {
 	 */
 	const alertOnEndRoute = () => {
 		Alert.alert(
-			"End tracking this route?",
-			"Do you really want to end tracking?",
+			languages["End tracking this route?"][language],
+			languages["Do you really want to end tracking?"][language],
 			[
 				{
-					text: "Cancel",
+					text: languages["Cancel"][language],
 				},
 				{
-					text: "OK",
+					text: languages["OK"][language],
 					onPress: () => {
 						changeTracking();
 					},
@@ -52,11 +56,19 @@ const RouteButtonContainer = (): JSX.Element => {
 		<View style={Styles.routeButtonContainer}>
 			<RouteButton
 				onPress={routeInfo.active ? alertOnEndRoute : changeTracking}
-				text={routeInfo.active ? "End route" : "Start route"}
+				text={
+					routeInfo.active
+						? languages["End route"][language]
+						: languages["Start route"][language]
+				}
 			/>
 			<RouteButton
 				onPress={() => dispatch(changeShowRoute())}
-				text={routeInfo.showRoute ? "Hide route" : "Show route"}
+				text={
+					routeInfo.showRoute
+						? languages["Hide route"][language]
+						: languages["Show route"][language]
+				}
 			/>
 		</View>
 	);

@@ -4,9 +4,10 @@ import { LocationObject } from "expo-location";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 
-import { useTypedSelector } from "../store";
-import theme from "../theme";
 import { statusBarHeight } from "../constants";
+import { languages } from "../languages";
+import { useTypedSelector } from "../store";
+import theme from "../styles/theme";
 
 const styles = StyleSheet.create({
 	infoContainer: {
@@ -36,9 +37,10 @@ const styles = StyleSheet.create({
  * purposes. Some of the info should be deleted later, but perhaps keep the coordinates?
  */
 const InfoContainer = (): JSX.Element => {
+	const language = useTypedSelector((state) => state.language);
+	const waypoints = useTypedSelector((state) => state.waypoints);
 	const [curLocation, setCurLocation] = useState<LocationObject | null>(null);
 	const [mobileNetCode, setMobileNetCode] = useState<string | null>(null);
-	const waypoints = useTypedSelector((state) => state.waypoints);
 
 	useEffect(() => {
 		const interval = setInterval(async () => {
@@ -54,19 +56,30 @@ const InfoContainer = (): JSX.Element => {
 	return (
 		<View style={styles.infoContainer}>
 			<Text style={styles.textStyle}>
-				Lat: {curLocation === null ? "NA" : curLocation.coords.latitude}
+				{languages["Lat"][language]}:{" "}
+				{curLocation === null
+					? languages["NA"][language]
+					: curLocation.coords.latitude}
 			</Text>
 			<Text style={styles.textStyle}>
-				Lon: {curLocation === null ? "NA" : curLocation.coords.longitude}
+				{languages["Lon"][language]}:{" "}
+				{curLocation === null
+					? languages["NA"][language]
+					: curLocation.coords.longitude}
 			</Text>
 			<Text style={styles.textStyle}>
-				NMC code: {mobileNetCode === null ? "No network" : mobileNetCode}
+				{languages["NMC code"][language]}:{" "}
+				{mobileNetCode === null
+					? languages["No network"][language]
+					: mobileNetCode}
 			</Text>
 			<Text style={styles.textStyle}>
-				Local waypoints: {waypoints.localWaypoints.length}
+				{languages["Local waypoints"][language]}:{" "}
+				{waypoints.localWaypoints.length}
 			</Text>
 			<Text style={styles.textStyle}>
-				Pending waypoints: {waypoints.pendingWaypoints.length}
+				{languages["Pending waypoints"][language]}:{" "}
+				{waypoints.pendingWaypoints.length}
 			</Text>
 		</View>
 	);
