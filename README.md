@@ -33,7 +33,7 @@ use the following command to start the application:
 npm start
 ```
 
-### Instructions for Berry-Picker-Tracker Mobile App for IOS
+### Instructions for Berry-Picker-Tracker Mobile App for IOS/Android
 
 #### Prerequisites:
 
@@ -41,22 +41,22 @@ npm start
 
 #### Instructions:
 
-1. Install <strong>Expo Go</strong> app from the Apple <strong>App Store</strong>. Expo Go is a smartphone application for running mobile apps that are in development on a mobile device.
-2. Launch <strong>Expo Go</strong> app on your IOS device.
+1. Install <strong>Expo Go</strong> app from the Apple <strong>App Store</strong> or Android <strong>Play Store</strong>. Expo Go is a smartphone application for running mobile apps that are in development on a mobile device.
+2. Launch <strong>Expo Go</strong> app on your IOS/Android device.
 3. Login or Create an Expo account.
 
-4. Connect your IOS device to your computer using usb-cable.
-5. Make sure that your IOS device and your computer are connected to the same network.
+4. Connect your IOS/Android device to your computer using usb-cable.
+5. Make sure that your IOS/Android device and your computer are connected to the same network.
 6. On your computer in the Berry-picker-tracker frontend repository run the command:
 
 ```
 npm start
 ```
 
-6. A QR code should be displayed. Open the default camera app on your IOS device and scan the QR code.
+6. A QR code should be displayed. Open the default camera app on your IOS/Android device and scan the QR code.
 7. On your IOS device Expo Go should open and promt you to choose between <strong>Development Build</strong> or <strong>Expo Go</strong>. Choose <strong>Expo Go</strong>.
 
-Congratulations! The Berry-picker-tracker mobile app should now launch on your IOS device.
+Congratulations! The Berry-picker-tracker mobile app should now launch on your IOS/Android device.
 
 ### Running the app in an Android emulator on Cubbli/Ubuntu
 
