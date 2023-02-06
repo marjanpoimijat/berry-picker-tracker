@@ -1,4 +1,6 @@
 import { TextInput, View } from "react-native";
+import { languages } from "../languages";
+import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import RouteButton from "./route-button";
 
@@ -23,13 +25,15 @@ const InputContainer = ({
 	findUserRoute,
 	buttonText,
 }: Props): JSX.Element => {
+	const language = useTypedSelector((state) => state.language);
+
 	return (
 		<View style={Styles.inputContainer}>
 			<TextInput
 				style={Styles.inputField}
 				onChangeText={setUserId}
 				value={userId}
-				placeholder="userID"
+				placeholder={languages["UserID"][language]}
 			/>
 			<RouteButton onPress={findUserRoute} text={buttonText} />
 		</View>
