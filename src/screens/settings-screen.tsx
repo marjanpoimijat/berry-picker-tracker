@@ -227,7 +227,7 @@ export const SettingScreen = () => {
 					title: languages["Change language"][language],
 					renderAccessory: () => (
 						<ModalSelector
-							cancelText={languages["Cancel"][language]}
+							cancelText={languages["Cancel"][language].toLowerCase()}
 							data={languageOption}
 							initValue={language}
 							initValueTextStyle={Styles.initValueTextStyle}
@@ -248,7 +248,7 @@ export const SettingScreen = () => {
 					title: languages["Waypoint tracking frequency"][language],
 					renderAccessory: () => (
 						<ModalSelector
-							cancelText={languages["Cancel"][language]}
+							cancelText={languages["Cancel"][language].toLowerCase()}
 							data={trackFreq}
 							initValue={currTrack.toString() + " s"}
 							initValueTextStyle={Styles.initValueTextStyle}
@@ -262,7 +262,7 @@ export const SettingScreen = () => {
 					title: languages["Waypoint sending frequency"][language],
 					renderAccessory: () => (
 						<ModalSelector
-							cancelText={languages["Cancel"][language]}
+							cancelText={languages["Cancel"][language].toLowerCase()}
 							data={sendFreq}
 							initValue={currSend.toString() + " s"}
 							initValueTextStyle={Styles.initValueTextStyle}
@@ -288,7 +288,7 @@ export const SettingScreen = () => {
 					title: languages["Map tile lifetime"][language],
 					renderAccessory: () => (
 						<ModalSelector
-							cancelText={languages["Cancel"][language]}
+							cancelText={languages["Cancel"][language].toLowerCase()}
 							data={tileLifetime}
 							initValue={mapLifetime.toString() + " h"}
 							initValueTextStyle={Styles.initValueTextStyle}
