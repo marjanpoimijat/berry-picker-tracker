@@ -104,11 +104,6 @@
 		"fi": "Kieli",
 		"sv": ""
 	},
-	"Lat": {
-		"en": "Lat",
-		"fi": "",
-		"sv": ""
-	},
 	"Latest waypoint is not available": {
 		"en": "Latest waypoint is not available",
 		"fi": "Viimeisin välietappi ei ole saatavilla",
@@ -132,11 +127,6 @@
 	"Local waypoints": {
 		"en": "Local waypoints",
 		"fi": "Paikalliset välietapit",
-		"sv": ""
-	},
-	"Lon": {
-		"en": "Lon",
-		"fi": "",
 		"sv": ""
 	},
 	"Map": {

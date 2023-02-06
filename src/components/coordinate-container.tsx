@@ -25,16 +25,18 @@ const CoordinateContainer = (): JSX.Element => {
 	return (
 		<View style={Styles.coordinateContainer}>
 			<Text style={Styles.coordinateItems}>
-				{languages["Lat"][language]}:{" "}
 				{curLocation === null
 					? languages["NA"][language]
-					: curLocation.coords.latitude}
+					: curLocation.coords.latitude > 0
+					? `${curLocation.coords.latitude} °N`
+					: `${curLocation.coords.latitude} °S`}
 			</Text>
 			<Text style={Styles.coordinateItems}>
-				{languages["Lon"][language]}:{" "}
 				{curLocation === null
 					? languages["NA"][language]
-					: curLocation.coords.longitude}
+					: curLocation.coords.longitude > 0
+					? `${curLocation.coords.longitude} °E`
+					: `${curLocation.coords.longitude} °W`}
 			</Text>
 		</View>
 	);
