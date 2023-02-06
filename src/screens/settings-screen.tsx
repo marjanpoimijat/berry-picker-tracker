@@ -50,10 +50,29 @@ export const SettingScreen = () => {
 
 	const dispatch = useTypedDispatch();
 
-	const alertOnReset = (target: string) => {
+	const alertCacheReset = () => {
 		Alert.alert(
-			`${languages["Resetting"][language]} ${languages[target][language]}`,
-			`${languages["Do you really want to reset"][language]} ${languages[target][language]}?`,
+			languages["Clearing the map tile cache"][language],
+			languages["Do you really want to clear the map tile cache?"][language],
+			[
+				{
+					text: languages["Cancel"][language],
+				},
+				{
+					text: languages["Clear"][language],
+					onPress: async () => {
+						deleteTileCacheDirectory();
+						makeTileCacheDirectory();
+					},
+				},
+			]
+		);
+	};
+
+	const alertUserIDReset = () => {
+		Alert.alert(
+			languages["Resetting the userID"][language],
+			languages["Do you really want to reset the userID?"][language],
 			[
 				{
 					text: languages["Cancel"][language],
@@ -61,17 +80,26 @@ export const SettingScreen = () => {
 				{
 					text: languages["Reset"][language],
 					onPress: async () => {
-						if (target === "UserID") {
-							await dispatch(resetUser());
-							await dispatch(identifyUser());
-						}
-						if (target === "map tile cache") {
-							deleteTileCacheDirectory();
-							makeTileCacheDirectory();
-						}
-						if (target === "settings") {
-							await dispatch(changeDefaultSettings());
-						}
+						await dispatch(resetUser());
+						await dispatch(identifyUser());
+					},
+				},
+			]
+		);
+	};
+
+	const alertSettingsReset = () => {
+		Alert.alert(
+			languages["Resetting the settings"][language],
+			languages["Do you really want to reset the settings?"][language],
+			[
+				{
+					text: languages["Cancel"][language],
+				},
+				{
+					text: languages["Reset settings"][language],
+					onPress: async () => {
+						await dispatch(changeDefaultSettings());
 					},
 				},
 			]
@@ -253,7 +281,8 @@ export const SettingScreen = () => {
 		{
 			type: "SECTION",
 			header: `${languages["Map cache"][language]}`.toUpperCase(),
-			footer: languages["Delete cached map tiles to clear space"][language],
+			footer:
+				languages["Clear the cached map tiles to free up space"][language],
 			rows: [
 				{
 					title: languages["Map tile lifetime"][language],
@@ -270,14 +299,14 @@ export const SettingScreen = () => {
 					),
 				},
 				{
-					title: languages["Delete map tile cache"][language],
+					title: languages["Clear the map tile cache"][language],
 					titleStyle: {
 						color: "red",
 					},
 					renderAccessory: () => (
 						<Button
-							title={languages["Delete"][language]}
-							onPress={() => alertOnReset("map tile cache")}
+							title={languages["Clear"][language]}
+							onPress={() => alertCacheReset()}
 							color="red"
 						/>
 					),
@@ -306,7 +335,7 @@ export const SettingScreen = () => {
 						<Button
 							title={languages["Reset"][language]}
 							onPress={() =>
-								routeActive ? alertRouteIsActive() : alertOnReset("UserID")
+								routeActive ? alertRouteIsActive() : alertUserIDReset()
 							}
 							color="red"
 						/>
@@ -325,8 +354,8 @@ export const SettingScreen = () => {
 					},
 					renderAccessory: () => (
 						<Button
-							title={languages["Reset"][language]}
-							onPress={() => alertOnReset("settings")}
+							title={languages["Reset settings"][language]}
+							onPress={() => alertSettingsReset()}
 							color="red"
 						/>
 					),

@@ -118,7 +118,7 @@ export const changeMapLifetime = (newLifetime: number) => {
 export const changeDefaultSettings = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		const userId = getState().user.userId;
-		console.log("Setting reseted to default");
+		console.log("Setting reset to default");
 		dispatch(setDefaultSettings(userId));
 		const trackingInterval = getState().user.trackingInterval;
 		restartBackgroundUpdate(trackingInterval);
