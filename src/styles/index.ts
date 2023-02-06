@@ -40,8 +40,8 @@ const Styles = StyleSheet.create({
 	hideLogo: {
 		backgroundColor: theme.colors.primaryBackgroundColor,
 		width: "100%",
-		height: "7%",
-		bottom: "7%",
+		height: "9%",
+		bottom: "9%",
 	},
 	routeButtonContainer: {
 		flexDirection: "row",
