@@ -71,7 +71,7 @@ $ sudo apt install android-sdk
 $ echo 'export ANDROID_HOME="$HOME/Android/Sdk"' >> .bashrc
 ```
 
-2. Install Android Studio by following [the instructions](https://developer.android.com/studio/install#linux).
+2. [Download]() and install Android Studio by following [the instructions](https://developer.android.com/studio/install#linux).
 
 3. Set up an emulator by following [the instructions](https://docs.expo.dev/workflow/android-studio-emulator).
 
