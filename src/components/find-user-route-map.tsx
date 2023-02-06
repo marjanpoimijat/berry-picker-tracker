@@ -1,3 +1,5 @@
+import moment from "moment";
+
 import { View } from "react-native";
 import MapView, { Marker, Polyline, UrlTile } from "react-native-maps";
 
@@ -11,7 +13,7 @@ import { usersLocationInfo } from "../types";
  * Visualizes topomap using NLS tiles and draws a users route between
  * latest route waypoints. Show marker at the latest waypoint location.
  * Timestamp will be shown when the marker has been pressed.
- * Initial region will be shown at the Kumpula kampus if list of users waypoint is empty.
+ * Initial region will be shown at the Kumpula campus if list of users waypoint is empty.
  */
 const FindUserRouteMap = ({
 	usersWaypoints,
@@ -19,6 +21,12 @@ const FindUserRouteMap = ({
 }: usersLocationInfo): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
+
+	const formatDate = (dateString: number): string => {
+		const date = new Date(dateString);
+		const formattedDate = moment(date).format("YYYY-MM-DD HH:mm:ss");
+		return formattedDate;
+	};
 
 	return (
 		<View>
@@ -66,7 +74,7 @@ const FindUserRouteMap = ({
 					}
 					description={
 						usersLatestWaypoint
-							? usersLatestWaypoint.ts.toString()
+							? formatDate(usersLatestWaypoint.ts)
 							: languages["Update search a bit later"][language]
 					}
 					coordinate={{
