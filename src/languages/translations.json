@@ -1,67 +1,72 @@
 {
 	"Backend licenses": {
 		"en": "Backend licenses",
-		"fi": "",
+		"fi": "Palvelimen lisenssit",
 		"sv": ""
 	},
 	"Cancel": {
 		"en": "Cancel",
-		"fi": "",
+		"fi": "Peruuta",
 		"sv": ""
 	},
-	"Change frequencies to save battery life": {
-		"en": "Change frequencies to save battery life",
-		"fi": "",
+	"Decrease frequencies to save battery life": {
+		"en": "Decrease frequencies to save battery life",
+		"fi": "Alempi mittaustiheys säästää akkua",
 		"sv": ""
 	},
 	"Change language": {
 		"en": "Change language",
-		"fi": "",
+		"fi": "Vaihda kieli",
 		"sv": ""
 	},
 	"Default settings": {
 		"en": "Default settings",
-		"fi": "",
+		"fi": "Oletusasetukset",
 		"sv": ""
 	},
 	"Delete cached map tiles to clear space": {
 		"en": "Delete cached map tiles to clear space",
-		"fi": "",
+		"fi": "Välimiustin tyhjentäminen säästää tallennustilaa",
+		"sv": ""
+	},
+	"Delete": {
+		"en": "Delete",
+		"fi": "Poista",
 		"sv": ""
 	},
 	"Delete map tile cache": {
 		"en": "Delete map tile cache",
-		"fi": "",
+		"fi": "Tyhjennä kartat välimuistista",
 		"sv": ""
 	},
 	"Do you really want to end tracking?": {
 		"en": "Do you really want to end tracking?",
-		"fi": "",
+		"fi": "Haluatko varmasti lopettaa seurannan?",
 		"sv": ""
 	},
 	"Do you really want to reset": {
 		"en": "Do you really want to reset",
-		"fi": "",
+		"fi": "Oletko varma",
 		"sv": ""
 	},
 	"Download link to National Land Survey of Finland map legend information": {
 		"en": "Download link to National Land Survey of Finland map legend information",
-		"fi": "",
+		"fi": "Lataa linkki Maanmittauslaitoksen kartan merkkiselitteeseen",
 		"sv": ""
 	},
 	"Download map legend": {
 		"en": "Download map legend",
-		"fi": "",
+		"fi": "Lataa kartan merkkiselite",
 		"sv": ""
 	},
 	"End route": {
 		"en": "End route",
-		"fi": "",
+		"fi": "Lopeta reitti",
 		"sv": ""
 	},
 	"End tracking this route?": {
 		"en": "End tracking this route?",
-		"fi": "",
+		"fi": "Lopeta reitin seuranta?",
 		"sv": ""
 	},
 	"Find": {
@@ -69,34 +74,34 @@
 		"fi": "Etsi",
 		"sv": ""
 	},
-	"Find users latest route": {
-		"en": "Find users latest route",
-		"fi": "",
+	"Find user's latest route": {
+		"en": "Find user's latest route",
+		"fi": "Etsi käyttäjän viimeisin reitti",
 		"sv": ""
 	},
 	"Finding user with id": {
 		"en": "Finding user with id",
-		"fi": "",
+		"fi": "Etsitään käyttäjää tunnuksella",
 		"sv": ""
 	},
 	"Frontend licenses": {
 		"en": "Frontend licenses",
-		"fi": "",
+		"fi": "Sovelluksen lisenssit",
 		"sv": ""
 	},
 	"Hide route": {
 		"en": "Hide route",
-		"fi": "",
+		"fi": "Piilota reitti",
 		"sv": ""
 	},
 	"hours": {
 		"en": "hours",
-		"fi": "",
+		"fi": "tuntia",
 		"sv": ""
 	},
 	"Language": {
 		"en": "Language",
-		"fi": "",
+		"fi": "Kieli",
 		"sv": ""
 	},
 	"Lat": {
@@ -106,27 +111,27 @@
 	},
 	"Latest waypoint is not available": {
 		"en": "Latest waypoint is not available",
-		"fi": "",
+		"fi": "Viimeisin välietappi ei ole saatavilla",
 		"sv": ""
 	},
 	"Latest waypoint timestamp": {
 		"en": "Latest waypoint timestamp",
-		"fi": "",
+		"fi": "Viimeisimmän välietapin aikaleima",
 		"sv": ""
 	},
 	"Legal information": {
 		"en": "Legal information",
-		"fi": "",
+		"fi": "Oikeudelliset tiedot",
 		"sv": ""
 	},
 	"Links to privacy policy and licenses": {
 		"en": "Links to privacy policy and licenses",
-		"fi": "",
+		"fi": "Linkit yksityisyyskäytäntöihin ja lisensseihin",
 		"sv": ""
 	},
 	"Local waypoints": {
 		"en": "Local waypoints",
-		"fi": "",
+		"fi": "Paikalliset välietapit",
 		"sv": ""
 	},
 	"Lon": {
@@ -141,117 +146,117 @@
 	},
 	"Map cache": {
 		"en": "Map cache",
-		"fi": "",
+		"fi": "Kartan välimuisti",
 		"sv": ""
 	},
 	"Map legend": {
 		"en": "Map legend",
-		"fi": "",
+		"fi": "Kartan merkkiselite",
 		"sv": ""
 	},
 	"map tile cache": {
 		"en": "map tile cache",
-		"fi": "",
+		"fi": "karttaruutujen välimuisti",
 		"sv": ""
 	},
 	"Map tile lifetime": {
 		"en": "Map tile lifetime",
-		"fi": "",
+		"fi": "Karttaruutujen säilytysaika",
 		"sv": ""
 	},
 	"minute": {
 		"en": "minute",
-		"fi": "",
+		"fi": "minuutti",
 		"sv": ""
 	},
 	"minutes": {
 		"en": "minutes",
-		"fi": "",
+		"fi": "minuuttia",
+		"sv": ""
+	},
+	"MNC code": {
+		"en": "MNC code",
+		"fi": "MNC-koodi",
 		"sv": ""
 	},
 	"NA": {
 		"en": "NA",
-		"fi": "",
+		"fi": "tuntematon",
 		"sv": ""
 	},
 	"Navigation": {
 		"en": "Navigation",
-		"fi": "",
-		"sv": ""
-	},
-	"NMC code": {
-		"en": "NMC code",
-		"fi": "",
+		"fi": "Seuranta",
 		"sv": ""
 	},
 	"No network": {
 		"en": "No network",
-		"fi": "",
+		"fi": "Ei yhteyttä",
 		"sv": ""
 	},
 	"OK": {
 		"en": "OK",
-		"fi": "",
+		"fi": "OK",
 		"sv": ""
 	},
 	"Offline mode": {
 		"en": "Offline mode",
-		"fi": "",
+		"fi": "Offline-tila",
 		"sv": ""
 	},
 	"Pending waypoints": {
 		"en": "Pending waypoints",
-		"fi": "Asetukset",
+		"fi": "Odottavat välietapit",
 		"sv": ""
 	},
 	"Privacy policy": {
 		"en": "Privacy policy",
-		"fi": "",
+		"fi": "Yksityisyyskäytännöt",
 		"sv": ""
 	},
 	"Reset": {
 		"en": "Reset",
-		"fi": "",
+		"fi": "Alusta",
 		"sv": ""
 	},
 	"Reset settings to default": {
 		"en": "Reset settings to default",
-		"fi": "",
+		"fi": "Palauta oletusasetukset",
 		"sv": ""
 	},
 	"Reset UserID": {
 		"en": "Reset UserID",
-		"fi": "",
+		"fi": "Alusta käyttäjätunnus",
 		"sv": ""
 	},
 	"Resetting": {
 		"en": "Resetting",
-		"fi": "",
+		"fi": "Alustetaan",
 		"sv": ""
 	},
 	"Route is currently active": {
 		"en": "Route is currently active",
-		"fi": "",
+		"fi": "Reitti on aktiivinen",
 		"sv": ""
 	},
 	"Search": {
 		"en": "Search",
-		"fi": "",
+		"fi": "Etsi",
 		"sv": ""
 	},
-	"Search users latest route by typing userID": {
-		"en": "Search users latest route by typing userID",
-		"fi": "",
+	"Search user's latest route by typing userID": {
+		"en": "Search user's latest route by typing userID",
+		"fi": "Etsi käyttäjän viimeisin reitti kirjoittamalla käyttäjätunnus",
 		"sv": ""
 	},
 	"second": {
 		"en": "second",
-		"fi": "",
+		"fi": "sekunti",
 		"sv": ""
 	},
 	"seconds": {
 		"en": "seconds",
-		"fi": "",
+		"fi": "sekuntia",
 		"sv": ""
 	},
 	"Settings": {
@@ -261,67 +266,67 @@
 	},
 	"Show route": {
 		"en": "Show route",
-		"fi": "",
+		"fi": "Näytä reitti",
 		"sv": ""
 	},
 	"Start route": {
 		"en": "Start route",
-		"fi": "",
+		"fi": "Aloita reitti",
 		"sv": ""
 	},
 	"Tap your UserID to copy it": {
 		"en": "Tap your UserID to copy it",
-		"fi": "",
+		"fi": "Kopioi käyttäjätunnus painamalla sitä",
 		"sv": ""
 	},
 	"Update": {
 		"en": "Update",
-		"fi": "",
+		"fi": "Päivitä",
 		"sv": ""
 	},
 	"Update search a bit later": {
 		"en": "Update search a bit later",
-		"fi": "",
+		"fi": "Päivitä haku hetken kuluttua",
 		"sv": ""
 	},
 	"User information": {
 		"en": "User information",
-		"fi": "",
+		"fi": "Käyttäjän tiedot",
 		"sv": ""
 	},
 	"User has no active route": {
 		"en": "User has no active route",
-		"fi": "",
+		"fi": "Käyttäjällä ei ole aktiivista reittiä",
 		"sv": ""
 	},
 	"User route is active": {
 		"en": "User route is active",
-		"fi": "",
+		"fi": "Käyttäjän reitti on aktiivinen",
 		"sv": ""
 	},
 	"UserID": {
 		"en": "UserID",
-		"fi": "",
+		"fi": "Käyttäjätunnus",
 		"sv": ""
 	},
-	"UserID can not be reseted while route is active. End route route first and try again": {
-		"en": "UserID can not be reseted while route is active. End route route first and try again",
-		"fi": "",
+	"UserID can not be reset while route is active. End route route first and try again": {
+		"en": "UserID can not be reset while route is active. End route route first and try again",
+		"fi": "Käyttäjätunnusta ei voida alustaa reitin ollessa aktiivinen. Lopeta ensin reitti ja yritä uudelleen",
 		"sv": ""
 	},
 	"Version": {
 		"en": "Version",
-		"fi": "",
+		"fi": "Versio",
 		"sv": ""
 	},
 	"Waypoint sending frequency": {
 		"en": "Waypoint sending frequency",
-		"fi": "",
+		"fi": "Välietappien lähetystiheys",
 		"sv": ""
 	},
 	"Waypoint tracking frequency": {
 		"en": "Waypoint tracking frequency",
-		"fi": "",
+		"fi": "Välietappien seurantatiheys",
 		"sv": ""
 	}
 }

@@ -82,7 +82,7 @@ export const SettingScreen = () => {
 		Alert.alert(
 			languages["Route is currently active"][language],
 			languages[
-				"UserID can not be reseted while route is active. End route route first and try again"
+				"UserID can not be reset while route is active. End route route first and try again"
 			][language],
 			[
 				{
@@ -213,7 +213,7 @@ export const SettingScreen = () => {
 		{
 			type: "SECTION",
 			header: `${languages["Navigation"][language]}`.toUpperCase(),
-			footer: languages["Change frequencies to save battery life"][language],
+			footer: languages["Decrease frequencies to save battery life"][language],
 			rows: [
 				{
 					title: languages["Waypoint tracking frequency"][language],
@@ -272,7 +272,7 @@ export const SettingScreen = () => {
 					},
 					renderAccessory: () => (
 						<Button
-							title={languages["Reset"][language]}
+							title={languages["Delete"][language]}
 							onPress={() => alertOnReset("map tile cache")}
 							color="red"
 						/>

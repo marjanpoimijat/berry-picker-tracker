@@ -68,7 +68,7 @@ const InfoContainer = (): JSX.Element => {
 					: curLocation.coords.longitude}
 			</Text>
 			<Text style={styles.textStyle}>
-				{languages["NMC code"][language]}:{" "}
+				{languages["MNC code"][language]}:{" "}
 				{mobileNetCode === null
 					? languages["No network"][language]
 					: mobileNetCode}

@@ -15,7 +15,7 @@ const FindUserRouteScreen = () => {
 	const [userId, setUserId] = useState<string>("");
 	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
 	const [infoText, setInfoText] = useState<string>(
-		languages["Search users latest route by typing userID"][language]
+		languages["Search user's latest route by typing userID"][language]
 	);
 
 	/**
@@ -54,7 +54,7 @@ const FindUserRouteScreen = () => {
 
 	return (
 		<View style={Styles.screenContainer}>
-			<AppHeader text={languages["Find users latest route"][language]} />
+			<AppHeader text={languages["Find user's latest route"][language]} />
 			<InputContainer
 				setUserId={setUserId}
 				userId={userId}
