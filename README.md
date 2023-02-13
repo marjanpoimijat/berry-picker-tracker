@@ -2,6 +2,9 @@
 
 ## Installation
 
+### Install script for frontend and backend in documentation
+[Documentation for install script](https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/README.md#installation)
+
 ### Requirements
 
 - `node:^16.17.0`
