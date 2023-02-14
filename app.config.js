@@ -12,6 +12,7 @@ export default {
 		resizeMode: "contain",
 		backgroundColor: "#ffffff",
 	},
+	scheme: "bpt",
 	updates: {
 		fallbackToCacheTimeout: 0,
 	},

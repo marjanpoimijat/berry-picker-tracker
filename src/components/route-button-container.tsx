@@ -71,7 +71,7 @@ const RouteButtonContainer = (): JSX.Element => {
 						: languages["Show route"][language]
 				}
 			/>
-			<ShareButton />
+			<ShareButton text={languages["Share route"][language]} />
 		</View>
 	);
 };
