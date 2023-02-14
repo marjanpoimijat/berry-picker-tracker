@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 
-import coordinate from "./coordinate-reducer";
 import language from "./language-reducer";
+import location from "./location-reducer";
 import route from "./route-reducer";
 import user from "./user-reducer";
 import waypoints from "./waypoint-reducer";
 
 export default combineReducers({
-	coordinate,
 	language,
+	location,
 	route,
 	user,
 	waypoints,

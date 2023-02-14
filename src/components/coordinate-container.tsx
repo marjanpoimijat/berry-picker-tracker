@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Text, View } from "react-native";
-import { LocationObject } from "expo-location";
 import * as Location from "expo-location";
 import { languages } from "../languages";
+import { setLocation } from "../reducers/location-reducer";
 import Styles from "../styles";
 import { useTypedDispatch, useTypedSelector } from "../store";
-import { setCoordinate } from "../reducers/coordinate-reducer";
 
 /**
  * Coordinate container to show current coordinates at top of the map screen.
  */
 const CoordinateContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
-	const location = useTypedSelector((state) => state.coordinate);
-	const [curLocation, setCurLocation] = useState<LocationObject | null>(null);
+	const currentLocation = useTypedSelector((state) => state.location);
 
 	const dispatch = useTypedDispatch();
 
@@ -33,31 +31,30 @@ const CoordinateContainer = (): JSX.Element => {
 				timestamp: 0,
 			};
 			if (location === null) {
-				dispatch(setCoordinate(initialState));
+				dispatch(setLocation(initialState));
 			} else {
-				dispatch(setCoordinate(location));
+				dispatch(setLocation(location));
 			}
-			setCurLocation(location);
 		}, 5000);
 
 		return () => clearInterval(interval);
-	}, [curLocation]);
+	}, []);
 
 	return (
 		<View style={Styles.coordinateContainer}>
 			<Text style={Styles.coordinateItems}>
-				{location === null
+				{currentLocation === null
 					? languages["NA"][language]
-					: location.coords.latitude > 0
-					? `${location.coords.latitude} °N`
-					: `${location.coords.latitude} °S`}
+					: currentLocation.coords.latitude > 0
+					? `${currentLocation.coords.latitude} °N`
+					: `${currentLocation.coords.latitude} °S`}
 			</Text>
 			<Text style={Styles.coordinateItems}>
-				{location === null
+				{currentLocation === null
 					? languages["NA"][language]
-					: location.coords.longitude > 0
-					? `${location.coords.longitude} °E`
-					: `${location.coords.longitude} °W`}
+					: currentLocation.coords.longitude > 0
+					? `${currentLocation.coords.longitude} °E`
+					: `${currentLocation.coords.longitude} °W`}
 			</Text>
 		</View>
 	);
