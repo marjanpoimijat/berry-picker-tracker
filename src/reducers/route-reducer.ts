@@ -11,6 +11,7 @@ import {
 	startBackgroundUpdate,
 	stopBackgroundUpdate,
 } from "../utils/location-tracking";
+import { Share } from "react-native";
 
 const initialState: Route = {
 	routeId: null,
@@ -101,7 +102,13 @@ export const changeShowRoute = () => {
 
 export const shareRoute = () => {
 	return async () => {
-		console.log(`share button clicked`);
+		try {
+			await Share.share({
+				message: "This is the demo text",
+			});
+		} catch (error) {
+			alert("error.message");
+		}
 	};
 };
 
