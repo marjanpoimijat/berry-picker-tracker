@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Text, View } from "react-native";
 import * as Location from "expo-location";
 import { languages } from "../languages";
-import { setLocation } from "../reducers/location-reducer";
+import { setCurrentLocation } from "../reducers/current-location-reducer";
 import Styles from "../styles";
 import { useTypedDispatch, useTypedSelector } from "../store";
 
@@ -11,7 +11,7 @@ import { useTypedDispatch, useTypedSelector } from "../store";
  */
 const CoordinateContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
-	const currentLocation = useTypedSelector((state) => state.location);
+	const currentLocation = useTypedSelector((state) => state.currentLocation);
 
 	const dispatch = useTypedDispatch();
 
@@ -28,12 +28,13 @@ const CoordinateContainer = (): JSX.Element => {
 					heading: null,
 					speed: null,
 				},
+				mocked: false,
 				timestamp: 0,
 			};
 			if (location === null) {
-				dispatch(setLocation(initialState));
+				dispatch(setCurrentLocation(initialState));
 			} else {
-				dispatch(setLocation(location));
+				dispatch(setCurrentLocation(location));
 			}
 		}, 5000);
 

@@ -10,21 +10,21 @@ const initialState = {
 };
 
 const locationSlice = createSlice({
-	name: "location",
+	name: "currentLocation",
 	initialState,
 	reducers: {
-		setLocation(state, action: PayloadAction<LocationObject>) {
+		setCurrentLocation(state, action: PayloadAction<LocationObject>) {
 			return action.payload;
 		},
 	},
 });
 
-export const { setLocation } = locationSlice.actions;
+export const { setCurrentLocation } = locationSlice.actions;
 
-export const changeLocation = (newLocation: LocationObject) => {
+export const changeCurrentLocation = (newLocation: LocationObject) => {
 	return async (dispatch: AppDispatch) => {
 		console.log("Changing location to:", newLocation);
-		dispatch(setLocation(newLocation));
+		dispatch(setCurrentLocation(newLocation));
 	};
 };
 
