@@ -5,6 +5,7 @@ import currentLocation from "./current-location-reducer";
 import mapLocation from "./map-location-reducer";
 import route from "./route-reducer";
 import user from "./user-reducer";
+import userId from "./find-user-reducer";
 import waypoints from "./waypoint-reducer";
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
 	mapLocation,
 	route,
 	user,
+	userId,
 	waypoints,
 });
