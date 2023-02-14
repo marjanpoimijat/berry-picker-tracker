@@ -2,7 +2,8 @@ import { View } from "react-native";
 import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
 
 import { baseUrl, tileCacheDirectory } from "../constants";
-import { useTypedSelector } from "../store";
+import { setMapLocation } from "../reducers/map-location-reducer";
+import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 
 function getCircleColor(color: string): string {
@@ -27,11 +28,13 @@ function getCircleColor(color: string): string {
  * route coordinate points if show route state has been set to true.
  */
 const MapViewContainer = (): JSX.Element => {
+	const mapLocation = useTypedSelector((state) => state.mapLocation);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
 	const localWaypoints = useTypedSelector(
 		(state) => state.waypoints.localWaypoints
 	);
+	const dispatch = useTypedDispatch();
 
 	return (
 		<View>
@@ -40,11 +43,14 @@ const MapViewContainer = (): JSX.Element => {
 				style={Styles.mapView}
 				showsUserLocation={true}
 				initialRegion={{
-					latitude: 60.204662,
-					longitude: 24.962535,
-					latitudeDelta: 0.01,
-					longitudeDelta: 0.01,
+					latitude: mapLocation.coords.latitude,
+					longitude: mapLocation.coords.longitude,
+					latitudeDelta: mapLocation.coords.latitudeDelta,
+					longitudeDelta: mapLocation.coords.longitudeDelta,
 				}}
+				onRegionChangeComplete={(region) =>
+					dispatch(setMapLocation({ coords: region }))
+				}
 			>
 				<UrlTile
 					urlTemplate={`${baseUrl}/nlsapi/{z}/{y}/{x}`}
