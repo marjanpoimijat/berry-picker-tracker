@@ -284,6 +284,11 @@
 		"fi": "Asetukset",
 		"sv": "Inställningar"
 	},
+	"Share route": {
+		"en": "Share route",
+		"fi": "Jaa reitti",
+		"sv": "Dela rutt"
+	},
 	"Show route": {
 		"en": "Show route",
 		"fi": "Näytä reitti",
