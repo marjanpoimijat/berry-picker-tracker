@@ -5,6 +5,7 @@ import {
 	startRoute,
 	deactivateRoute,
 	changeShowRoute,
+	shareRoute,
 } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
@@ -71,7 +72,10 @@ const RouteButtonContainer = (): JSX.Element => {
 						: languages["Show route"][language]
 				}
 			/>
-			<ShareButton text={languages["Share route"][language]} />
+			<ShareButton
+				onPress={() => dispatch(shareRoute())}
+				text={languages["Share route"][language]}
+			/>
 		</View>
 	);
 };

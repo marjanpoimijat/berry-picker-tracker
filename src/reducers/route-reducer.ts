@@ -99,4 +99,10 @@ export const changeShowRoute = () => {
 	};
 };
 
+export const shareRoute = () => {
+	return async () => {
+		console.log(`share button clicked`);
+	};
+};
+
 export default routeSlice.reducer;
