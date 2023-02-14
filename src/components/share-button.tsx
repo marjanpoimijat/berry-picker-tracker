@@ -6,7 +6,7 @@ import Styles from "../styles";
  * possible for user to share route
  * @param {string} text Button text
  */
-const ShareButton = ({ text }): JSX.Element => {
+const ShareButton = ({ text }: { text: string }): JSX.Element => {
 	return (
 		<View style={Styles.shareButton}>
 			<Text style={Styles.buttonText}>{text}</Text>
