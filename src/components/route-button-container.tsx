@@ -10,6 +10,7 @@ import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 
 import RouteButton from "./route-button";
+import ShareButton from "./share-button";
 
 /**
  * Route button container component which contains buttons to
@@ -70,6 +71,7 @@ const RouteButtonContainer = (): JSX.Element => {
 						: languages["Show route"][language]
 				}
 			/>
+			<ShareButton />
 		</View>
 	);
 };

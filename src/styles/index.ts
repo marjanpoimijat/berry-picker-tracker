@@ -63,6 +63,15 @@ const Styles = StyleSheet.create({
 		width: 90,
 		marginHorizontal: 2,
 	},
+	shareButton: {
+		backgroundColor: theme.colors.buttonBackgroundColor,
+		borderRadius: 5,
+		justifyContent: "center",
+		alignItems: "center",
+		height: 50,
+		width: 90,
+		marginHorizontal: 2,
+	},
 	coordinateContainer: {
 		flexDirection: "row",
 		position: "absolute",
