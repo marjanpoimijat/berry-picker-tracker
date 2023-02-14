@@ -2,9 +2,8 @@ import { Text, View } from "react-native";
 import Styles from "../styles";
 
 /**
- * Route button component which can perform on press functions
- * such as toggle visibility on / off.
- * Just preliminary styling and location on a screen.
+ * Share button component which makes
+ * possible for user to share route
  * @param {string} text Button text
  */
 const ShareButton = (): JSX.Element => {
