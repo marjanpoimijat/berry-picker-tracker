@@ -73,7 +73,7 @@ const RouteButtonContainer = (): JSX.Element => {
 				}
 			/>
 			<ShareButton
-				onPress={() => dispatch(shareRoute())}
+				onPress={() => dispatch(shareRoute(user))}
 				text={languages["Share route"][language]}
 			/>
 		</View>

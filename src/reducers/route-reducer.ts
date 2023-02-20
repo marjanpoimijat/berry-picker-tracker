@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { AppDispatch, ReduxState } from "../store";
+import { AppDispatch, ReduxState } from "../store";
 import {
 	startNewRoute,
 	deactivateExistingRoute,
@@ -12,6 +12,7 @@ import {
 	stopBackgroundUpdate,
 } from "../utils/location-tracking";
 import { Share } from "react-native";
+import * as Linking from "expo-linking";
 
 const initialState: Route = {
 	routeId: null,
@@ -100,11 +101,15 @@ export const changeShowRoute = () => {
 	};
 };
 
-export const shareRoute = () => {
+export const shareRoute = (user: User) => {
+	const redirectUrl = Linking.createURL("findroute", {
+		queryParams: { userId: `${user.userId}` },
+	});
 	return async () => {
+		console.log("test message");
 		try {
 			await Share.share({
-				message: "This is the demo text",
+				message: redirectUrl,
 			});
 		} catch (error) {
 			alert("error.message");
