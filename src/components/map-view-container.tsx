@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { View } from "react-native";
-import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
+import MapView, { Polyline, UrlTile, Circle, Marker } from "react-native-maps";
 
 import { baseUrl, tileCacheDirectory } from "../constants";
 import { setMapLocation } from "../reducers/map-location-reducer";
@@ -23,6 +24,15 @@ function getCircleColor(color: string): string {
 	}
 }
 
+interface MarkerObject {
+	coordinate: {
+		latitude: number;
+		longitude: number;
+	};
+	title: string;
+	description: string;
+}
+
 /**
  * Visualizes topomap using NLS tiles and draws a route between
  * route coordinate points if show route state has been set to true.
@@ -35,6 +45,21 @@ const MapViewContainer = (): JSX.Element => {
 		(state) => state.waypoints.localWaypoints
 	);
 	const dispatch = useTypedDispatch();
+	const [marker, setMarker] = useState<MarkerObject | null>(null);
+
+	const handleMapPress = (event) => {
+		if (marker) {
+			setMarker(null);
+			return;
+		}
+		const { coordinate } = event.nativeEvent;
+		const newMarker = {
+			coordinate: coordinate,
+			title: "New Marker",
+			description: "This is a new marker",
+		};
+		setMarker(newMarker);
+	};
 
 	return (
 		<View>
@@ -46,6 +71,7 @@ const MapViewContainer = (): JSX.Element => {
 					longitudeDelta: mapLocation.coords.longitudeDelta,
 				}}
 				mapType={"none"}
+				onPress={handleMapPress}
 				onRegionChangeComplete={(region) =>
 					dispatch(setMapLocation({ coords: region }))
 				}
@@ -88,6 +114,13 @@ const MapViewContainer = (): JSX.Element => {
 						);
 					}
 				})}
+				{marker && (
+					<Marker
+						coordinate={marker.coordinate}
+						description={marker.description}
+						title={marker.title}
+					/>
+				)}
 			</MapView>
 		</View>
 	);
