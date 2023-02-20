@@ -90,7 +90,7 @@ const Styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		height: 20,
-		width: 145,
+		width: 110,
 		marginHorizontal: 2,
 		fontSize: theme.fontSizes.default,
 		color: theme.colors.textPrimary,
