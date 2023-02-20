@@ -324,6 +324,16 @@
 		"fi": "Käyttäjällä ei ole aktiivista reittiä",
 		"sv": "Användaren har ingen aktiv rutt"
 	},
+	"User not found": {
+		"en": "User not found",
+		"fi": "Käyttäjää ei löytynyt",
+		"sv": "Användaren hittades ej"
+	},
+	"User not found with ID": {
+		"en": "User not found with ID",
+		"fi": "Käyttäjää ei löytynyt käyttäjätunnuksella",
+		"sv": "Användaren hittades ej med ID"
+	},
 	"User route is active": {
 		"en": "User route is active",
 		"fi": "Käyttäjän reitti on aktiivinen",

@@ -26,7 +26,6 @@ const InputContainer = ({
 	buttonText,
 }: Props): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
-
 	return (
 		<View style={Styles.inputContainer}>
 			<TextInput
