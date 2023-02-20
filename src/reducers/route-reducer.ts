@@ -12,6 +12,7 @@ import {
 	stopBackgroundUpdate,
 } from "../utils/location-tracking";
 import { Share } from "react-native";
+import * as Linking from "expo-linking";
 
 const initialState: Route = {
 	routeId: null,
@@ -102,9 +103,10 @@ export const changeShowRoute = () => {
 
 export const shareRoute = () => {
 	return async () => {
+		console.log("test message");
 		try {
 			await Share.share({
-				message: "This is the demo text",
+				message: Linking.createURL("findroute"),
 			});
 		} catch (error) {
 			alert("error.message");
