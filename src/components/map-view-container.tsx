@@ -39,27 +39,27 @@ const MapViewContainer = (): JSX.Element => {
 	return (
 		<View>
 			<MapView
-				mapType={"none"}
-				style={Styles.mapView}
-				showsUserLocation={true}
 				initialRegion={{
 					latitude: mapLocation.coords.latitude,
 					longitude: mapLocation.coords.longitude,
 					latitudeDelta: mapLocation.coords.latitudeDelta,
 					longitudeDelta: mapLocation.coords.longitudeDelta,
 				}}
+				mapType={"none"}
 				onRegionChangeComplete={(region) =>
 					dispatch(setMapLocation({ coords: region }))
 				}
+				showsUserLocation={true}
+				style={Styles.mapView}
 			>
 				<UrlTile
-					urlTemplate={`${baseUrl}/nlsapi/{z}/{y}/{x}`}
-					tileSize={256}
 					maximumZ={19}
-					zIndex={-3}
-					tileCachePath={tileCacheDirectory}
-					tileCacheMaxAge={mapLifetime * 3600}
 					offlineMode={false}
+					tileCacheMaxAge={mapLifetime * 3600}
+					tileCachePath={tileCacheDirectory}
+					tileSize={256}
+					urlTemplate={`${baseUrl}/nlsapi/{z}/{y}/{x}`}
+					zIndex={-3}
 				/>
 				<Polyline
 					coordinates={routeInfo.showRoute ? localWaypoints : []}
@@ -77,12 +77,12 @@ const MapViewContainer = (): JSX.Element => {
 					if (waypoint.connection !== null) {
 						return (
 							<Circle
-								key={index}
 								center={{
 									latitude: waypoint.latitude,
 									longitude: waypoint.longitude,
 								}}
 								fillColor={getCircleColor(waypoint.connection)}
+								key={index}
 								radius={15}
 							/>
 						);

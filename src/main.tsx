@@ -31,10 +31,10 @@ const Main = () => {
 	return (
 		<View style={Styles.mainContainer}>
 			<Routes>
-				<Route path="/" element={<MapScreen />} />
-				<Route path="/settings" element={<SettingsScreen />} />
-				<Route path="/findroute" element={<FindUserRouteScreen />} />
-				<Route path="*" element={<Navigate to="/" replace />} />
+				<Route element={<MapScreen />} path="/" />
+				<Route element={<SettingsScreen />} path="/settings" />
+				<Route element={<FindUserRouteScreen />} path="/findroute" />
+				<Route element={<Navigate replace to="/" />} path="*" />
 			</Routes>
 			<NavigatorTab />
 		</View>

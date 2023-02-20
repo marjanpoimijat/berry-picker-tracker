@@ -73,8 +73,9 @@ export const storeAndSendWaypoints = () => {
 		);
 		const isConnected = (await NetworkConnectionInformation()).isConnected;
 		if (routeId !== null) {
+			console.log(`Storing wp - lat: ${location?.coords.latitude}`);
 			console.log(
-				`Storing wp - lat: ${location?.coords.latitude} lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`
+				`lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`
 			);
 
 			if (location !== null) {

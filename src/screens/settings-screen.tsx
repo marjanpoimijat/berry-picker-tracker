@@ -10,7 +10,7 @@ import {
 import ModalSelector from "react-native-modal-selector";
 import { SettingsScreen, SettingsData } from "react-native-settings-screen";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { version, baseUrl } from "../constants";
+import { version, baseUrl, repoBaseUrl } from "../constants";
 import AppHeader from "../components/app-header";
 import SettingsToggle from "../components/settings-toggle";
 import { languages } from "../languages";
@@ -305,9 +305,9 @@ export const SettingScreen = () => {
 					},
 					renderAccessory: () => (
 						<Button
-							title={languages["Clear"][language]}
-							onPress={() => alertCacheReset()}
 							color="red"
+							onPress={() => alertCacheReset()}
+							title={languages["Clear"][language]}
 						/>
 					),
 				},
@@ -333,11 +333,11 @@ export const SettingScreen = () => {
 					},
 					renderAccessory: () => (
 						<Button
-							title={languages["Reset"][language]}
+							color="red"
 							onPress={() =>
 								routeActive ? alertRouteIsActive() : alertUserIDReset()
 							}
-							color="red"
+							title={languages["Reset"][language]}
 						/>
 					),
 				},
@@ -354,9 +354,9 @@ export const SettingScreen = () => {
 					},
 					renderAccessory: () => (
 						<Button
-							title={languages["Reset settings"][language]}
-							onPress={() => alertSettingsReset()}
 							color="red"
+							onPress={() => alertSettingsReset()}
+							title={languages["Reset settings"][language]}
 						/>
 					),
 				},
@@ -374,7 +374,7 @@ export const SettingScreen = () => {
 							name="chevron-right"
 							onPress={() =>
 								Linking.openURL(
-									"https://github.com/marjanpoimijat/berry-picker-tracker/tree/main/licenses"
+									`${repoBaseUrl}/berry-picker-tracker/tree/main/licenses`
 								)
 							}
 						/>
@@ -387,7 +387,7 @@ export const SettingScreen = () => {
 							name="chevron-right"
 							onPress={() =>
 								Linking.openURL(
-									"https://github.com/marjanpoimijat/berry-picker-tracker-server/tree/main/licenses"
+									`${repoBaseUrl}/berry-picker-tracker-server/tree/main/licenses`
 								)
 							}
 						/>
@@ -400,7 +400,7 @@ export const SettingScreen = () => {
 							name="chevron-right"
 							onPress={() =>
 								Linking.openURL(
-									"https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/privacy_policies.md"
+									`${repoBaseUrl}/berry-picker-tracker-docs/blob/main/privacy_policies.md`
 								)
 							}
 						/>

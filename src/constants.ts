@@ -20,3 +20,5 @@ export const statusBarHeight: number =
 export const tileCacheDirectory = FileSystem.cacheDirectory + "tiles/";
 
 export const version = Constants?.manifest?.version ?? "1.0.0";
+
+export const repoBaseUrl = "https://github.com/marjanpoimijat";

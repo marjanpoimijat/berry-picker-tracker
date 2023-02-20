@@ -18,8 +18,8 @@ const FindUserRouteContainer = ({
 		<View style={Styles.smallMapViewContainer}>
 			{usersWaypoints ? (
 				<FindUserRouteMap
-					usersWaypoints={usersWaypoints}
 					usersLatestWaypoint={usersWaypoints[usersWaypoints.length - 1]}
+					usersWaypoints={usersWaypoints}
 				/>
 			) : (
 				<View style={Styles.smallMapView} />

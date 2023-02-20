@@ -29,10 +29,10 @@ const InputContainer = ({
 	return (
 		<View style={Styles.inputContainer}>
 			<TextInput
-				style={Styles.inputField}
 				onChangeText={setUserId}
-				value={userId}
 				placeholder={languages["UserID"][language]}
+				style={Styles.inputField}
+				value={userId}
 			/>
 			<RouteButton onPress={findUserRoute} text={buttonText} />
 		</View>

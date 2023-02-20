@@ -35,9 +35,6 @@ const FindUserRouteMap = ({
 	return (
 		<View>
 			<MapView
-				mapType={"none"}
-				style={Styles.smallMapView}
-				showsUserLocation={true}
 				initialRegion={{
 					latitude: usersLatestWaypoint
 						? usersLatestWaypoint.latitude
@@ -48,15 +45,18 @@ const FindUserRouteMap = ({
 					latitudeDelta: 0.05,
 					longitudeDelta: 0.05,
 				}}
+				mapType={"none"}
+				showsUserLocation={true}
+				style={Styles.smallMapView}
 			>
 				<UrlTile
-					urlTemplate={`${baseUrl}/nlsapi/{z}/{y}/{x}`}
-					tileSize={256}
 					maximumZ={19}
-					zIndex={-3}
-					tileCachePath={tileCacheDirectory}
-					tileCacheMaxAge={mapLifetime * 3600}
 					offlineMode={false}
+					tileCacheMaxAge={mapLifetime * 3600}
+					tileCachePath={tileCacheDirectory}
+					tileSize={256}
+					urlTemplate={`${baseUrl}/nlsapi/{z}/{y}/{x}`}
+					zIndex={-3}
 				/>
 				<Polyline
 					coordinates={usersWaypoints}
@@ -71,16 +71,6 @@ const FindUserRouteMap = ({
 					zIndex={1}
 				/>
 				<Marker
-					title={
-						usersLatestWaypoint
-							? `${parseLatitude(lat)}, ${parseLongitude(lon)}`
-							: languages["Latest waypoint is not available"][language]
-					}
-					description={
-						usersLatestWaypoint
-							? formatDate(usersLatestWaypoint.ts)
-							: languages["Update search a bit later"][language]
-					}
 					coordinate={{
 						latitude: usersLatestWaypoint
 							? usersLatestWaypoint.latitude
@@ -89,6 +79,16 @@ const FindUserRouteMap = ({
 							? usersLatestWaypoint.longitude
 							: 24.962535,
 					}}
+					description={
+						usersLatestWaypoint
+							? formatDate(usersLatestWaypoint.ts)
+							: languages["Update search a bit later"][language]
+					}
+					title={
+						usersLatestWaypoint
+							? `${parseLatitude(lat)}, ${parseLongitude(lon)}`
+							: languages["Latest waypoint is not available"][language]
+					}
 				/>
 			</MapView>
 		</View>

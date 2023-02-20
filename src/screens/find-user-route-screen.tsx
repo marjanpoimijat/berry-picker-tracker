@@ -72,8 +72,9 @@ const FindUserRouteScreen = () => {
 				: languages["User has no active route"][language]
 		);
 		setUsersWaypoints(waypoints);
+		console.log(`...Users route ID: ${data.routeId} found.`);
 		console.log(
-			`...Users route ID: ${data.routeId} found. Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`
+			`Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`
 		);
 	};
 
@@ -81,18 +82,18 @@ const FindUserRouteScreen = () => {
 		<View style={Styles.screenContainer}>
 			<AppHeader text={languages["Find user's latest route"][language]} />
 			<InputContainer
-				setUserId={setLocalUserId}
-				userId={localUserId}
-				findUserRoute={findUserRoute}
 				buttonText={
 					usersWaypoints
 						? languages["Update"][language]
 						: languages["Search"][language]
 				}
+				findUserRoute={findUserRoute}
+				setUserId={setLocalUserId}
+				userId={localUserId}
 			/>
 			<FindUserRouteContainer
-				usersWaypoints={usersWaypoints}
 				infoText={infoText}
+				usersWaypoints={usersWaypoints}
 			/>
 		</View>
 	);

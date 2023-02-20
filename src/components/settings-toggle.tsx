@@ -7,10 +7,10 @@ const settingsToggle = (): JSX.Element => {
 
 	return (
 		<Switch
-			trackColor={{ false: "#767577", true: "#008b8b" }}
-			thumbColor={isEnabled ? "#b0c4de" : "#f4f3f4"}
 			ios_backgroundColor="#3e3e3e"
 			onValueChange={toggleSwitch}
+			thumbColor={isEnabled ? "#b0c4de" : "#f4f3f4"}
+			trackColor={{ false: "#767577", true: "#008b8b" }}
 			value={isEnabled}
 		></Switch>
 	);
