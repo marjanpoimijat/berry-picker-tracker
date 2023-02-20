@@ -6,6 +6,7 @@ import { baseUrl, tileCacheDirectory } from "../constants";
 import { setMapLocation } from "../reducers/map-location-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
+import { parseLatitude, parseLongitude } from "../utils/coordinates";
 
 function getCircleColor(color: string): string {
 	switch (color) {
@@ -30,7 +31,11 @@ interface MarkerObject {
 		longitude: number;
 	};
 	title: string;
-	description: string;
+}
+
+interface Coordinate {
+	latitude: number;
+	longitude: number;
 }
 
 /**
@@ -47,7 +52,9 @@ const MapViewContainer = (): JSX.Element => {
 	const dispatch = useTypedDispatch();
 	const [marker, setMarker] = useState<MarkerObject | null>(null);
 
-	const handleMapPress = (event) => {
+	const handleMapPress = (event: {
+		nativeEvent: { coordinate: Coordinate };
+	}) => {
 		if (marker) {
 			setMarker(null);
 			return;
@@ -55,8 +62,9 @@ const MapViewContainer = (): JSX.Element => {
 		const { coordinate } = event.nativeEvent;
 		const newMarker = {
 			coordinate: coordinate,
-			title: "New Marker",
-			description: "This is a new marker",
+			title: `${parseLatitude(coordinate.latitude)}, ${parseLongitude(
+				coordinate.longitude
+			)}`,
 		};
 		setMarker(newMarker);
 	};
@@ -115,11 +123,7 @@ const MapViewContainer = (): JSX.Element => {
 					}
 				})}
 				{marker && (
-					<Marker
-						coordinate={marker.coordinate}
-						description={marker.description}
-						title={marker.title}
-					/>
+					<Marker coordinate={marker.coordinate} title={marker.title} />
 				)}
 			</MapView>
 		</View>
