@@ -8,6 +8,7 @@ import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import { usersLocationInfo } from "../types";
+import { parseLatitude, parseLongitude } from "../utils/coordinates";
 
 /**
  * Visualizes topomap using NLS tiles and draws a users route between
@@ -27,6 +28,9 @@ const FindUserRouteMap = ({
 		const formattedDate = moment(date).format("YYYY-MM-DD HH:mm:ss");
 		return formattedDate;
 	};
+
+	const lat = usersLatestWaypoint ? usersLatestWaypoint.latitude : 0;
+	const lon = usersLatestWaypoint ? usersLatestWaypoint.longitude : 0;
 
 	return (
 		<View>
@@ -69,7 +73,7 @@ const FindUserRouteMap = ({
 				<Marker
 					title={
 						usersLatestWaypoint
-							? languages["Latest waypoint timestamp"][language]
+							? `${parseLatitude(lat)}, ${parseLongitude(lon)}`
 							: languages["Latest waypoint is not available"][language]
 					}
 					description={

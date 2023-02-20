@@ -5,6 +5,7 @@ import { languages } from "../languages";
 import { setCurrentLocation } from "../reducers/current-location-reducer";
 import Styles from "../styles";
 import { useTypedDispatch, useTypedSelector } from "../store";
+import { parseLatitude, parseLongitude } from "../utils/coordinates";
 
 /**
  * Coordinate container to show current coordinates at top of the map screen.
@@ -46,16 +47,12 @@ const CoordinateContainer = (): JSX.Element => {
 			<Text style={Styles.coordinateItems}>
 				{currentLocation === null
 					? languages["NA"][language]
-					: currentLocation.coords.latitude > 0
-					? `${currentLocation.coords.latitude} °N`
-					: `${currentLocation.coords.latitude} °S`}
+					: parseLatitude(currentLocation.coords.latitude)}
 			</Text>
 			<Text style={Styles.coordinateItems}>
 				{currentLocation === null
 					? languages["NA"][language]
-					: currentLocation.coords.longitude > 0
-					? `${currentLocation.coords.longitude} °E`
-					: `${currentLocation.coords.longitude} °W`}
+					: parseLongitude(currentLocation.coords.longitude)}
 			</Text>
 		</View>
 	);
