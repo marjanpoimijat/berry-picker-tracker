@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { AppDispatch, ReduxState } from "../store";
+import { AppDispatch, ReduxState } from "../store";
 import {
 	startNewRoute,
 	deactivateExistingRoute,
@@ -101,12 +101,15 @@ export const changeShowRoute = () => {
 	};
 };
 
-export const shareRoute = () => {
+export const shareRoute = (user: User) => {
+	const redirectUrl = Linking.createURL("findroute", {
+		queryParams: { userId: `${user.userId}` },
+	});
 	return async () => {
 		console.log("test message");
 		try {
 			await Share.share({
-				message: Linking.createURL("findroute"),
+				message: redirectUrl,
 			});
 		} catch (error) {
 			alert("error.message");
