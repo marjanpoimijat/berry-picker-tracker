@@ -24,6 +24,7 @@ export default {
 		infoPlist: {
 			UIBackgroundModes: ["location", "fetch"],
 			NSLocationAlwaysAndWhenInUseUsageDescription: "App requires geolocation",
+			LSApplicationQueriesSchemes: ["bpt"],
 		},
 	},
 	android: {

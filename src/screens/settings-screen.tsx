@@ -61,8 +61,8 @@ export const SettingScreen = () => {
 				{
 					text: languages["Clear"][language],
 					onPress: async () => {
-						deleteTileCacheDirectory();
-						makeTileCacheDirectory();
+						await deleteTileCacheDirectory();
+						await makeTileCacheDirectory();
 					},
 				},
 			]
