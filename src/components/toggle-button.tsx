@@ -12,7 +12,9 @@ interface Props {
 }
 
 const ToggleButton = ({ iconName, onPress, text }: Props): JSX.Element => {
+	const active = useTypedSelector((state) => state.route.active);
 	const toggled = useTypedSelector((state) => state.ui.routeButtonsVisible);
+	const recordingColor = theme.colors.recordingColor;
 	const toggledColor = theme.colors.buttonToggledBackgroundColor;
 
 	return (
@@ -24,7 +26,14 @@ const ToggleButton = ({ iconName, onPress, text }: Props): JSX.Element => {
 			}
 		>
 			<TouchableOpacity onPress={onPress}>
-				<Icon name={iconName} style={Styles.navigatorIcon} />
+				<Icon
+					name={iconName}
+					style={
+						active
+							? { ...Styles.navigatorIcon, color: recordingColor }
+							: Styles.navigatorIcon
+					}
+				/>
 				<Text style={Styles.navigatorText}>{text}</Text>
 			</TouchableOpacity>
 		</View>

@@ -7,6 +7,7 @@ const theme = {
 		buttonToggledBackgroundColor: "#ebe4e4",
 		screenBackgroundColor: "white",
 		buttonUnderlayColor: "#ffffff00",
+		recordingColor: "#f44336",
 	},
 	fontSizes: {
 		navi: 11,
