@@ -119,6 +119,7 @@ const Styles = StyleSheet.create({
 	},
 	navigatorButton: {
 		backgroundColor: theme.colors.buttonBackgroundColor,
+		border: "10px solid red",
 		borderRadius: 5,
 		padding: 1,
 		width: 70,

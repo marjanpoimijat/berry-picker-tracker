@@ -4,6 +4,7 @@ const theme = {
 		textSecondary: "white",
 		primaryBackgroundColor: "#388e3c",
 		buttonBackgroundColor: "#ffffff",
+		buttonToggledBackgroundColor: "#ebe4e4",
 		screenBackgroundColor: "white",
 		buttonUnderlayColor: "#ffffff00",
 	},
