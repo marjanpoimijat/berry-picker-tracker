@@ -17,6 +17,11 @@ const NavigatorTab = (): JSX.Element => {
 	return (
 		<View style={Styles.navigatorTab}>
 			<NavigatorButton
+				iconName="route"
+				path="/"
+				text={languages["Routes"][language]}
+			/>
+			<NavigatorButton
 				iconName="map"
 				path="/"
 				text={languages["Map"][language]}
