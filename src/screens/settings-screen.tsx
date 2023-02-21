@@ -30,7 +30,6 @@ import {
 	makeTileCacheDirectory,
 } from "../utils/file-system";
 import { Language } from "../types";
-import { check } from "prettier";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,

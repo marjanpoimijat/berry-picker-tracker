@@ -3,7 +3,7 @@ import moment from "moment";
 import { View } from "react-native";
 import MapView, { Marker, Polyline, UrlTile } from "react-native-maps";
 
-import { baseUrl, tileCacheDirectory } from "../constants";
+import { baseUrl } from "../constants";
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
@@ -54,7 +54,9 @@ const FindUserRouteMap = ({
 					offlineMode={false}
 					tileCacheMaxAge={mapLifetime * 3600}
 					tileCachePath={
-						"/data/user/0/host.exp.exponent/cache/ExperienceData/%40anonymous%2Fberry-picker-tracker-71573e14-92d4-46c9-a00b-6e8cda3340f5/tiles/"
+						"/data/user/0/host.exp.exponent/cache/ExperienceData/" +
+						"%40anonymous%2Fberry-picker-tracker-71573e14-92d4-46c9-a00b-" +
+						"6e8cda3340f5/tiles/"
 					}
 					tileSize={256}
 					urlTemplate={`${baseUrl}/nlsapi/{z}/{y}/{x}`}
