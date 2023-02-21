@@ -1,9 +1,9 @@
 const theme = {
 	colors: {
-		textPrimary: "dimgrey",
+		textPrimary: "#4d4949",
 		textSecondary: "white",
-		primaryBackgroundColor: "#008b8b",
-		buttonBackgroundColor: "#b0c4de",
+		primaryBackgroundColor: "#388e3c",
+		buttonBackgroundColor: "#ffffff",
 		screenBackgroundColor: "white",
 		buttonUnderlayColor: "#ffffff00",
 	},
