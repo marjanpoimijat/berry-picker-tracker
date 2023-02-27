@@ -9,6 +9,11 @@
 		"fi": "Peruuta",
 		"sv": "Ångra"
 	},
+	"Change map type": {
+		"en": "Change map type",
+		"fi": "Vaihda kartan tyyppi",
+		"sv": "Ändra karttyp"
+	},
 	"Clear": {
 		"en": "Clear",
 		"fi": "Tyhjennä",
