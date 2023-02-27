@@ -8,6 +8,7 @@ import ui from "./ui-reducer";
 import user from "./user-reducer";
 import userId from "./find-user-reducer";
 import waypoints from "./waypoint-reducer";
+import map from "./map-reducer";
 
 export default combineReducers({
 	language,
@@ -18,4 +19,5 @@ export default combineReducers({
 	user,
 	userId,
 	waypoints,
+	map,
 });

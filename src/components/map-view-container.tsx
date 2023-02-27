@@ -46,9 +46,10 @@ const MapViewContainer = (): JSX.Element => {
 	const mapLocation = useTypedSelector((state) => state.mapLocation);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
-	const localWaypoints = useTypedSelector(
-		(state) => state.waypoints.localWaypoints
-	);
+	const [localWaypoints, currMap] = useTypedSelector((state) => [
+		state.waypoints.localWaypoints,
+		state.map,
+	]);
 	const dispatch = useTypedDispatch();
 	const [marker, setMarker] = useState<MarkerObject | null>(null);
 
@@ -93,10 +94,12 @@ const MapViewContainer = (): JSX.Element => {
 					tileCachePath={
 						"/data/user/0/host.exp.exponent/cache/ExperienceData/" +
 						"%40anonymous%2Fberry-picker-tracker-71573e14-92d4-46c9-a00b-" +
-						"6e8cda3340f5/tiles/"
+						"6e8cda3340f5/tiles/" +
+						currMap +
+						"tiles/"
 					}
 					tileSize={256}
-					urlTemplate={`${baseUrl}/nlsapi/{z}/{y}/{x}`}
+					urlTemplate={`${baseUrl}/${currMap}/{z}/{y}/{x}`}
 					zIndex={-3}
 				/>
 				<Polyline

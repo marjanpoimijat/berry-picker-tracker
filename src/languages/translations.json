@@ -9,6 +9,11 @@
 		"fi": "Peruuta",
 		"sv": "Ångra"
 	},
+	"Change map type": {
+		"en": "Change map type",
+		"fi": "Vaihda kartan tyyppi",
+		"sv": "Ändra karttyp"
+	},
 	"Clear": {
 		"en": "Clear",
 		"fi": "Tyhjennä",
@@ -188,6 +193,11 @@
 		"en": "NA",
 		"fi": "tuntematon",
 		"sv": "okänd"
+	},
+	"National Land Survey of Finland": {
+		"en": "National Land Survey of Finland",
+		"fi": "Maanmittauslaitos",
+		"sv": "Lantmäteriverket"
 	},
 	"Navigation": {
 		"en": "Navigation",
