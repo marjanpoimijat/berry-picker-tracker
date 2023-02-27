@@ -15,6 +15,7 @@ import AppHeader from "../components/app-header";
 import SettingsToggle from "../components/settings-toggle";
 import { languages } from "../languages";
 import { changeLanguage } from "../reducers/language-reducer";
+import { changeMap } from "../reducers/map-reducer";
 import {
 	changeDefaultSettings,
 	changeMapLifetime,
@@ -29,7 +30,7 @@ import {
 	deleteTileCacheDirectory,
 	makeTileCacheDirectory,
 } from "../utils/file-system";
-import { Language } from "../types";
+import { Language, Map } from "../types";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
@@ -37,15 +38,15 @@ export const SettingScreen = () => {
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	console.warn = () => {};
 
-	const [userId, currTrack, currSend, mapLifetime, language] = useTypedSelector(
-		(state) => [
+	const [userId, currTrack, currSend, mapLifetime, language, currMap] =
+		useTypedSelector((state) => [
 			state.user.userId,
 			state.user.trackingInterval / 1000,
 			state.user.sendingInterval / 1000,
 			state.user.mapLifetime,
 			state.language,
-		]
-	);
+			state.map,
+		]);
 	const routeActive = useTypedSelector((state) => state.route.active);
 
 	const dispatch = useTypedDispatch();
@@ -218,6 +219,22 @@ export const SettingScreen = () => {
 		{ key: index++, component: <Text>svenska</Text>, label: Language.Swedish },
 	];
 
+	index = 0;
+	const mapOptions = [
+		{
+			key: index++,
+			component: (
+				<Text>{languages["National Land Survey of Finland"][language]}</Text>
+			),
+			label: Map.maanMittausLaitos,
+		},
+		{
+			key: index++,
+			component: <Text>OpenStreetMap</Text>,
+			label: Map.openStreetMap,
+		},
+	];
+
 	const settingsData: SettingsData = [
 		{
 			type: "SECTION",
@@ -280,10 +297,24 @@ export const SettingScreen = () => {
 		},
 		{
 			type: "SECTION",
-			header: `${languages["Map cache"][language]}`.toUpperCase(),
+			header: `${languages["Map"][language]}`.toUpperCase(),
 			footer:
 				languages["Clear the cached map tiles to free up space"][language],
 			rows: [
+				{
+					title: languages["Change map type"][language],
+					renderAccessory: () => (
+						<ModalSelector
+							cancelText={languages["Cancel"][language].toLowerCase()}
+							data={mapOptions}
+							initValue={currMap}
+							initValueTextStyle={Styles.initValueTextStyle}
+							onChange={async (option: { label: Map }) => {
+								await dispatch(changeMap(option.label));
+							}}
+						/>
+					),
+				},
 				{
 					title: languages["Map tile lifetime"][language],
 					renderAccessory: () => (

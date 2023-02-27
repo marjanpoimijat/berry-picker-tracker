@@ -46,3 +46,8 @@ export enum Language {
 	Finnish = "fi",
 	Swedish = "sv",
 }
+
+export enum Map {
+	maanMittausLaitos = "nlsapi",
+	openStreetMap = "openstreetmap",
+}
