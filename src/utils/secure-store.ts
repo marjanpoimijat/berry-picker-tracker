@@ -19,11 +19,15 @@ tracked: {
 
 export async function secureStoreAddTracked(userId: string) {
 	console.log("\n\nsecureStoreAddTracked()");
-	const result = await SecureStore.getItemAsync("tracked");
-	if (!result) {
-		await SecureStore.setItemAsync("tracked", "{}");
-	}
 	try {
+		const objectExists = await secureStoreCheckIfTrackedExists();
+		if (!objectExists) {
+			await secureStoreInitialize();
+		}
+		const userList = await secureStoreGetAllUsers();
+		if (userList && userList.includes(userId)) {
+			return;
+		}
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
 			const trackedJson = JSON.parse(tracked);
@@ -31,8 +35,6 @@ export async function secureStoreAddTracked(userId: string) {
 			const newTracked = JSON.stringify(trackedJson);
 			await SecureStore.setItemAsync("tracked", newTracked);
 			console.log(`Storage updated: ${newTracked}`);
-		} else {
-			console.log('"Tracked" object not found.');
 		}
 	} catch (error) {
 		console.log(`Failed to save key "${userId}". Error: ${error}`);
@@ -96,7 +98,7 @@ export async function secureStoreGetAllUsers() {
 			const trackedJson = JSON.parse(tracked);
 			const userList = Object.keys(trackedJson);
 			console.log("User list: ", userList);
-			console.log('"tracked" object:\n', trackedJson);
+			console.log('"tracked" object: ', trackedJson);
 			return userList;
 		} else {
 			console.log('"Tracked" object not found.');
@@ -116,5 +118,21 @@ export async function secureStoreDeleteAll() {
 		console.log('Deleted "tracked" object.');
 	} catch (error) {
 		console.log(`Failed to delete "tracked" object. Error: ${error}`);
+	}
+}
+
+export async function secureStoreCheckIfTrackedExists() {
+	console.log("\n\nsecureStoreCheckIfTrackedExists()");
+	try {
+		const tracked = await SecureStore.getItemAsync("tracked");
+		if (tracked) {
+			return true;
+		} else {
+			return false;
+		}
+	} catch (error) {
+		console.log(
+			`Failed to check whether "tracked" object exists. Error: ${error}`
+		);
 	}
 }
