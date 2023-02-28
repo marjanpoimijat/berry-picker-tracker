@@ -1,4 +1,9 @@
 {
+	"Aerial image": {
+		"en": "Aerial image",
+		"fi": "Ilmakuva",
+		"sv": "Flygfoto"
+	},
 	"Backend licenses": {
 		"en": "Backend licenses",
 		"fi": "Palvelimen lisenssit",
@@ -219,6 +224,11 @@
 		"fi": "Offline-tila",
 		"sv": "Offline-läge"
 	},
+	"Plain map": {
+		"en": "Plain map",
+		"fi": "Selkokartta",
+		"sv": "Lättläst karta"
+	},
 	"Pending waypoints": {
 		"en": "Pending waypoints",
 		"fi": "Odottavat välietapit",
@@ -318,6 +328,11 @@
 		"en": "Tap your UserID to copy it",
 		"fi": "Kopioi käyttäjätunnus painamalla sitä",
 		"sv": "Tryck på användar id för att kopiera"
+	},
+	"Topographic map": {
+		"en": "Topographic map",
+		"fi": "Maastokartta",
+		"sv": "Terrängkarta"
 	},
 	"Update": {
 		"en": "Update",
