@@ -191,6 +191,24 @@ const Styles = StyleSheet.create({
 		width: 43,
 		alignContent: "center",
 	},
+	coordinateBoxContainer: {
+		backgroundColor: theme.colors.primaryBackgroundColor,
+		padding: 2.5,
+		borderRadius: 10,
+		alignItems: "center",
+	},
+	coordinateBox: {
+		position: "relative",
+		padding: 7,
+		borderRadius: 10,
+		backgroundColor: "#fff",
+	},
+	coordinateDot: {
+		width: 7,
+		height: 7,
+		borderRadius: 5,
+		backgroundColor: "red",
+	},
 });
 
 export default Styles;

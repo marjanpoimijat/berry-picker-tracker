@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import MapView, { Polyline, UrlTile, Circle, Marker } from "react-native-maps";
 
 import { baseUrl } from "../constants";
@@ -25,14 +25,6 @@ function getCircleColor(color: string): string {
 	}
 }
 
-interface MarkerObject {
-	coordinate: {
-		latitude: number;
-		longitude: number;
-	};
-	title: string;
-}
-
 interface Coordinate {
 	latitude: number;
 	longitude: number;
@@ -51,23 +43,17 @@ const MapViewContainer = (): JSX.Element => {
 		state.map,
 	]);
 	const dispatch = useTypedDispatch();
-	const [marker, setMarker] = useState<MarkerObject | null>(null);
+	const [coordinates, setCoordinates] = useState<Coordinate | null>(null);
 
 	const handleMapPress = (event: {
 		nativeEvent: { coordinate: Coordinate };
 	}) => {
-		if (marker) {
-			setMarker(null);
+		if (coordinates) {
+			setCoordinates(null);
 			return;
 		}
 		const { coordinate } = event.nativeEvent;
-		const newMarker = {
-			coordinate: coordinate,
-			title: `${parseLatitude(coordinate.latitude)}, ${parseLongitude(
-				coordinate.longitude
-			)}`,
-		};
-		setMarker(newMarker);
+		setCoordinates(coordinate);
 	};
 
 	return (
@@ -129,8 +115,22 @@ const MapViewContainer = (): JSX.Element => {
 						);
 					}
 				})}
-				{marker && (
-					<Marker coordinate={marker.coordinate} title={marker.title} />
+				{coordinates && (
+					<>
+						<Marker coordinate={coordinates} style={{ height: 50 }}>
+							<View style={Styles.coordinateBoxContainer}>
+								<View style={Styles.coordinateBox}>
+									<Text>
+										{parseLatitude(coordinates.latitude)},{" "}
+										{parseLongitude(coordinates.longitude)}
+									</Text>
+								</View>
+							</View>
+						</Marker>
+						<Marker coordinate={coordinates}>
+							<View style={Styles.coordinateDot} />
+						</Marker>
+					</>
 				)}
 			</MapView>
 		</View>
