@@ -48,6 +48,8 @@ export enum Language {
 }
 
 export enum Map {
-	maanMittausLaitos = "nlsapi",
+	nlsTopographic = "nlstopographic",
 	openStreetMap = "osmapi",
+	nlsPlain = "nlsplain",
+	nlsAerial = "nlsaerial",
 }

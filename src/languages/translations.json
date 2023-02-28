@@ -14,6 +14,11 @@
 		"fi": "Peruuta",
 		"sv": "Ångra"
 	},
+	"Change language": {
+		"en": "Change language",
+		"fi": "Vaihda kieli",
+		"sv": "Byt språk"
+	},
 	"Change map type": {
 		"en": "Change map type",
 		"fi": "Vaihda kartan tyyppi",
@@ -29,25 +34,20 @@
 		"fi": "Välimuistin tyhjentäminen säästää tallennustilaa",
 		"sv": "Töm appens korttidsminne för att spara lagringsutrymme"
 	},
-	"Clearing the map tile cache": {
-		"en": "Clearing the map tile cache",
-		"fi": "Karttaruutujen välimuistin tyhjennys",
-		"sv": "Tömmer appens korttidsminne"
-	},
 	"Clear the map tile cache": {
 		"en": "Clear the map tile cache",
 		"fi": "Tyhjennä kartat välimuistista",
 		"sv": "Töm kartorna i appens korttidsminne"
 	},
+	"Clearing the map tile cache": {
+		"en": "Clearing the map tile cache",
+		"fi": "Karttaruutujen välimuistin tyhjennys",
+		"sv": "Tömmer appens korttidsminne"
+	},
 	"Decrease frequencies to save battery life": {
 		"en": "Decrease frequencies to save battery life",
 		"fi": "Alempi mittaustiheys säästää akkua",
 		"sv": "Sänk mätningsfrekvensen för att spara batteri"
-	},
-	"Change language": {
-		"en": "Change language",
-		"fi": "Vaihda kieli",
-		"sv": "Byt språk"
 	},
 	"Default settings": {
 		"en": "Default settings",

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch } from "../store";
 import { Map } from "../types";
 
-const initialState = Map.maanMittausLaitos;
+const initialState = Map.nlsTopographic;
 
 const mapSlice = createSlice({
 	name: "map",

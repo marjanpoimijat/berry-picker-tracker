@@ -226,12 +226,22 @@ export const SettingScreen = () => {
 			component: (
 				<Text>{languages["National Land Survey of Finland"][language]}</Text>
 			),
-			label: Map.maanMittausLaitos,
+			label: Map.nlsTopographic,
 		},
 		{
 			key: index++,
 			component: <Text>OpenStreetMap</Text>,
 			label: Map.openStreetMap,
+		},
+		{
+			key: index++,
+			component: <Text>{languages["Plain map"][language]}</Text>,
+			label: Map.nlsPlain,
+		},
+		{
+			key: index++,
+			component: <Text>{languages["Aerial image"][language]}</Text>,
+			label: Map.nlsAerial,
 		},
 	];
 
