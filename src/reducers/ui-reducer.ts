@@ -1,30 +1,43 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch } from "../store";
 
-interface uiOptions {
-	routeButtonsVisible: boolean;
-}
-
 const initialState = {
 	routeButtonsVisible: false,
+	trackListVisible: false,
 };
 
 const uiSlice = createSlice({
 	name: "ui",
 	initialState,
 	reducers: {
-		setUi(state, action: PayloadAction<uiOptions>) {
-			return action.payload;
+		setTrackListVisible(state, action: PayloadAction<boolean>) {
+			return {
+				...state,
+				routeButtonsVisible: false,
+				trackListVisible: action.payload,
+			};
+		},
+		setRouteButtonVisible(state, action: PayloadAction<boolean>) {
+			return {
+				...state,
+				routeButtonsVisible: action.payload,
+				trackListVisible: false,
+			};
 		},
 	},
 });
 
-export const { setUi } = uiSlice.actions;
+export const { setRouteButtonVisible, setTrackListVisible } = uiSlice.actions;
 
-export const changeUi = (newUi: uiOptions) => {
+export const changeTrackListVisible = (visibility: boolean) => {
 	return async (dispatch: AppDispatch) => {
-		console.log("Changing ui to:", newUi);
-		dispatch(setUi(newUi));
+		dispatch(setRouteButtonVisible(visibility));
+	};
+};
+
+export const changeRouteButtonVisible = (visibility: boolean) => {
+	return async (dispatch: AppDispatch) => {
+		dispatch(setTrackListVisible(visibility));
 	};
 };
 

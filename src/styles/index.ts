@@ -191,6 +191,18 @@ const Styles = StyleSheet.create({
 		width: 43,
 		alignContent: "center",
 	},
+	trackUsersContainer: {
+		flexDirection: "row",
+		position: "absolute",
+		alignSelf: "center",
+		margin: 10,
+		display: "flex",
+		bottom: navigatorTabHeight + 10,
+		backgroundColor: theme.colors.primaryBackgroundColor,
+		borderRadius: 9,
+		paddingHorizontal: 2,
+		paddingVertical: 4,
+	},
 });
 
 export default Styles;
