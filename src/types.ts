@@ -49,5 +49,5 @@ export enum Language {
 
 export enum Map {
 	maanMittausLaitos = "nlsapi",
-	openStreetMap = "openstreetmap",
+	openStreetMap = "osmapi",
 }
