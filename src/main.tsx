@@ -15,8 +15,11 @@ import {
 } from "./utils/location-tracking";
 import { makeTileCacheDirectory } from "./utils/file-system";
 import Styles from "./styles";
+import { addSharedUser } from "./track-user";
 
 const Main = () => {
+	addSharedUser();
+
 	const dispatch = useTypedDispatch();
 
 	useEffect(() => {
