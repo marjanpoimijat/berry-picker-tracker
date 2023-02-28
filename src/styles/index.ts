@@ -191,16 +191,17 @@ const Styles = StyleSheet.create({
 		width: 43,
 		alignContent: "center",
 	},
+	coordinateBoxContainer: {
+		backgroundColor: theme.colors.primaryBackgroundColor,
+		padding: 2.5,
+		borderRadius: 10,
+		alignItems: "center",
+	},
 	coordinateBox: {
 		position: "relative",
-		padding: 10,
+		padding: 7,
 		borderRadius: 10,
 		backgroundColor: "#fff",
-		shadowColor: "#000",
-		shadowOffset: { width: 0, height: 1 },
-		shadowOpacity: 0.2,
-		shadowRadius: 2,
-		elevation: 2,
 	},
 	coordinateDot: {
 		width: 7,

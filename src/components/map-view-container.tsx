@@ -115,7 +115,7 @@ const MapViewContainer = (): JSX.Element => {
 				{coordinates && (
 					<>
 						<Marker coordinate={coordinates} style={{ height: 50 }}>
-							<View>
+							<View style={Styles.coordinateBoxContainer}>
 								<View style={Styles.coordinateBox}>
 									<Text>
 										{parseLatitude(coordinates.latitude)},{" "}
