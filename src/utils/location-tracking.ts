@@ -8,12 +8,12 @@ const TRACK_WAYPOINTS = "track_waypoints";
 const locationTaskOptions = {
 	accuracy: Location.Accuracy.BestForNavigation, //NB! Altering this may affect for the interval
 	activityType: Location.ActivityType.Fitness,
-	showsBackgroundLocationIndicator: true,
 	foregroundService: {
-		notificationTitle: "Berry picker tracker is running on a background",
 		notificationBody: "End current route tracking in order to close the app",
 		notificationColor: theme.colors.primaryBackgroundColor,
+		notificationTitle: "Berry picker tracker is running on a background",
 	},
+	showsBackgroundLocationIndicator: true,
 };
 
 /**

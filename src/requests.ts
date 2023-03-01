@@ -4,12 +4,12 @@ import { baseUrl } from "./constants";
 export const createNewUser = async () => {
 	const url = `${baseUrl}/new-user/`;
 	const settings = {
-		method: "POST",
+		body: JSON.stringify({}),
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({}),
+		method: "POST",
 	};
 	try {
 		const response = await fetch(url, settings);
@@ -23,12 +23,12 @@ export const createNewUser = async () => {
 export const startNewRoute = async (userId: string) => {
 	const url = `${baseUrl}/start-route/`;
 	const settings = {
-		method: "POST",
+		body: JSON.stringify({ active: true, user_id: userId }),
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({ user_id: userId, active: true }),
+		method: "POST",
 	};
 	try {
 		const response = await fetch(url, settings);
@@ -48,16 +48,15 @@ export const sendNewWaypoint = async (pendingWaypoints: Array<Waypoint>) => {
 		};
 	});
 	const settings = {
-		method: "POST",
+		body: JSON.stringify(waypoints),
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(waypoints),
+		method: "POST",
 	};
 	try {
 		const response = await fetch(url, settings);
-		//const data = await response.json();
 		return response;
 	} catch (error) {
 		console.log(error);
@@ -67,12 +66,12 @@ export const sendNewWaypoint = async (pendingWaypoints: Array<Waypoint>) => {
 export const deactivateExistingRoute = async (routeId: string) => {
 	const url = `${baseUrl}/deactivate-route/`;
 	const settings = {
-		method: "PATCH",
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
 			"route-id": routeId,
 		},
+		method: "PATCH",
 	};
 	try {
 		const response = await fetch(url, settings);
@@ -86,12 +85,12 @@ export const deactivateExistingRoute = async (routeId: string) => {
 export const getUsersLatestRoute = async (userId: string) => {
 	const url = `${baseUrl}/get-users-latest-route/`;
 	const settings = {
-		method: "GET",
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
 			"user-id": userId,
 		},
+		method: "GET",
 	};
 	try {
 		const response = await fetch(url, settings);
@@ -99,7 +98,7 @@ export const getUsersLatestRoute = async (userId: string) => {
 		const routeId: string = data[0];
 		const active: boolean = data[1];
 		const waypoints: WaypointFromServer[] = data[2];
-		return { routeId, active, waypoints };
+		return { active, routeId, waypoints };
 	} catch (error) {
 		console.log(error);
 	}

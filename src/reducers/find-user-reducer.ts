@@ -4,8 +4,8 @@ import type { AppDispatch } from "../store";
 const initialState = "";
 
 const userIdSlice = createSlice({
+	initialState: initialState,
 	name: "userId",
-	initialState,
 	reducers: {
 		setUserId(state, action: PayloadAction<string>) {
 			return action.payload;

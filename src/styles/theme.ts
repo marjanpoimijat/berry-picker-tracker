@@ -1,19 +1,19 @@
 const theme = {
 	colors: {
-		textPrimary: "#4d4949",
-		textSecondary: "white",
-		primaryBackgroundColor: "#388e3c",
 		buttonBackgroundColor: "#ffffff",
 		buttonToggledBackgroundColor: "#ebe4e4",
-		screenBackgroundColor: "white",
 		buttonUnderlayColor: "#ffffff00",
+		primaryBackgroundColor: "#388e3c",
 		recordingColor: "#f44336",
+		screenBackgroundColor: "white",
+		textPrimary: "#4d4949",
+		textSecondary: "white",
 	},
 	fontSizes: {
-		navi: 11,
 		default: 13,
-		info: 15,
 		header: 20,
+		info: 15,
+		navi: 11,
 	},
 };
 

@@ -10,26 +10,15 @@ import {
 } from "../netinfo";
 
 const initialState: WaypointState = {
-	routeId: null,
 	localWaypoints: [],
 	pendingWaypoints: [],
+	routeId: null,
 };
 
 const waypointSlice = createSlice({
+	initialState: initialState,
 	name: "waypoints",
-	initialState,
 	reducers: {
-		initializeWaypoints() {
-			console.log(`Reseting waypoints`);
-			return initialState;
-		},
-		setRouteId(state, action: PayloadAction<string | null>) {
-			console.log(`setting waypointState route ID to ${action.payload}`);
-			return {
-				...state,
-				routeId: action.payload,
-			};
-		},
 		appendWaypoint(state, action: PayloadAction<Waypoint>) {
 			return {
 				...state,
@@ -37,9 +26,20 @@ const waypointSlice = createSlice({
 				pendingWaypoints: state.pendingWaypoints.concat(action.payload),
 			};
 		},
+		initializeWaypoints() {
+			console.log(`Reseting waypoints`);
+			return initialState;
+		},
 		resetPendingWaypoints(state) {
 			console.log("reseting pending waypoints\n");
 			return { ...state, pendingWaypoints: [] };
+		},
+		setRouteId(state, action: PayloadAction<string | null>) {
+			console.log(`setting waypointState route ID to ${action.payload}`);
+			return {
+				...state,
+				routeId: action.payload,
+			};
 		},
 	},
 });
@@ -80,11 +80,11 @@ export const storeAndSendWaypoints = () => {
 
 			if (location !== null) {
 				const waypoint: Waypoint = {
-					routeId: routeId,
+					connection: netInfo,
 					latitude: location.coords.latitude,
 					longitude: location.coords.longitude,
 					mnc: networkCode,
-					connection: netInfo,
+					routeId: routeId,
 					ts: new Date().getTime(),
 				};
 				dispatch(appendWaypoint(waypoint));

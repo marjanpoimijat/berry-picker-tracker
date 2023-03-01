@@ -5,8 +5,8 @@ import { Map } from "../types";
 const initialState = Map.nlsTopographic;
 
 const mapSlice = createSlice({
+	initialState: initialState,
 	name: "map",
-	initialState,
 	reducers: {
 		setMap(state, action: PayloadAction<Map>) {
 			return action.payload;

@@ -61,8 +61,8 @@ const MapViewContainer = (): JSX.Element => {
 			<MapView
 				initialRegion={{
 					latitude: mapLocation.coords.latitude,
-					longitude: mapLocation.coords.longitude,
 					latitudeDelta: mapLocation.coords.latitudeDelta,
+					longitude: mapLocation.coords.longitude,
 					longitudeDelta: mapLocation.coords.longitudeDelta,
 				}}
 				mapType={"none"}

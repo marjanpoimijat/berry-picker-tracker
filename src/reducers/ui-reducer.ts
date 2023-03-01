@@ -10,8 +10,8 @@ const initialState = {
 };
 
 const uiSlice = createSlice({
+	initialState: initialState,
 	name: "ui",
-	initialState,
 	reducers: {
 		setUi(state, action: PayloadAction<uiOptions>) {
 			return action.payload;

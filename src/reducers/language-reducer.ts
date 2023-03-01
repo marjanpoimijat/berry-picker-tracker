@@ -5,8 +5,8 @@ import { Language } from "../types";
 const initialState = Language.English;
 
 const languageSlice = createSlice({
+	initialState: initialState,
 	name: "language",
-	initialState,
 	reducers: {
 		setLanguage(state, action: PayloadAction<Language>) {
 			return action.payload;

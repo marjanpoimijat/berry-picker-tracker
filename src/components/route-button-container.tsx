@@ -46,10 +46,10 @@ const RouteButtonContainer = (): JSX.Element => {
 					text: languages["Cancel"][language],
 				},
 				{
-					text: languages["OK"][language],
 					onPress: () => {
 						changeTracking();
 					},
+					text: languages["OK"][language],
 				},
 			]
 		);

@@ -15,24 +15,24 @@ import { Share } from "react-native";
 import * as Linking from "expo-linking";
 
 const initialState: Route = {
+	active: false,
 	routeId: null,
 	showRoute: true,
-	active: false,
 };
 
 const routeSlice = createSlice({
+	initialState: initialState,
 	name: "route",
-	initialState,
 	reducers: {
-		setRoute(_state, action: PayloadAction<Route>) {
-			console.log(`Setting route: ${action.payload.routeId}`);
-			return action.payload;
-		},
 		changeVisibility(state, action: PayloadAction<boolean>) {
 			return {
 				...state,
 				showRoute: action.payload,
 			};
+		},
+		setRoute(_state, action: PayloadAction<Route>) {
+			console.log(`Setting route: ${action.payload.routeId}`);
+			return action.payload;
 		},
 	},
 });
@@ -54,9 +54,9 @@ export const startRoute = (user: User) => {
 			const data = await startNewRoute(user.userId);
 			//TODO: Validate data and create local id if request fails...?
 			const updatedRoute = {
+				active: true,
 				routeId: data.id,
 				showRoute: true,
-				active: true,
 			};
 			dispatch(setRoute(updatedRoute));
 			dispatch(setRouteId(data.id));

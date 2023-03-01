@@ -10,8 +10,8 @@ const initialState = {
 };
 
 const locationSlice = createSlice({
+	initialState: initialState,
 	name: "currentLocation",
-	initialState,
 	reducers: {
 		setCurrentLocation(state, action: PayloadAction<LocationObject>) {
 			return action.payload;

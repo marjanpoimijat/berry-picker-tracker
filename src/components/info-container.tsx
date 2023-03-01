@@ -1,36 +1,12 @@
 import { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 import { LocationObject } from "expo-location";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 
-import { statusBarHeight } from "../constants";
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
-import theme from "../styles/theme";
-
-const styles = StyleSheet.create({
-	infoContainer: {
-		display: "flex",
-		position: "absolute",
-		backgroundColor: theme.colors.buttonBackgroundColor,
-		top: statusBarHeight,
-		alignSelf: "flex-start",
-		borderRadius: 10,
-		padding: 10,
-		shadowColor: "black",
-		shadowOffset: { width: 3, height: 3 },
-		shadowOpacity: 0.8,
-		shadowRadius: 20,
-		elevation: 10,
-		margin: 15,
-	},
-	textStyle: {
-		fontSize: 13,
-		fontWeight: "bold",
-		color: "dimgrey",
-	},
-});
+import Styles from "../styles";
 
 /**
  * Info container component to show information primarily for debugging
@@ -54,30 +30,30 @@ const InfoContainer = (): JSX.Element => {
 	}, [curLocation]);
 
 	return (
-		<View style={styles.infoContainer}>
-			<Text style={styles.textStyle}>
+		<View style={Styles.infoContainer}>
+			<Text style={Styles.textStyle}>
 				{languages["Lat"][language]}:{" "}
 				{curLocation === null
 					? languages["NA"][language]
 					: curLocation.coords.latitude}
 			</Text>
-			<Text style={styles.textStyle}>
+			<Text style={Styles.textStyle}>
 				{languages["Lon"][language]}:{" "}
 				{curLocation === null
 					? languages["NA"][language]
 					: curLocation.coords.longitude}
 			</Text>
-			<Text style={styles.textStyle}>
+			<Text style={Styles.textStyle}>
 				{languages["MNC code"][language]}:{" "}
 				{mobileNetCode === null
 					? languages["No network"][language]
 					: mobileNetCode}
 			</Text>
-			<Text style={styles.textStyle}>
+			<Text style={Styles.textStyle}>
 				{languages["Local waypoints"][language]}:{" "}
 				{waypoints.localWaypoints.length}
 			</Text>
-			<Text style={styles.textStyle}>
+			<Text style={Styles.textStyle}>
 				{languages["Pending waypoints"][language]}:{" "}
 				{waypoints.pendingWaypoints.length}
 			</Text>

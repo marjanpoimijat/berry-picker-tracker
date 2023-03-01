@@ -5,31 +5,31 @@ import { User } from "../types";
 import { restartBackgroundUpdate } from "../utils/location-tracking";
 
 const initialState: User = {
-	userId: null,
-	trackingInterval: 5000,
-	sendingInterval: 15000,
 	mapLifetime: 48,
 	offlineMode: false,
+	sendingInterval: 15000,
+	trackingInterval: 5000,
+	userId: null,
 };
 const userSlice = createSlice({
+	initialState: initialState,
 	name: "user",
-	initialState,
 	reducers: {
-		setUser(state, action: PayloadAction<string | null>) {
-			return { ...state, userId: action.payload };
+		setDefaultSettings(_state, action: PayloadAction<string | null>) {
+			return { ...initialState, userId: action.payload };
 		},
-		setTrackingInterval(state, action: PayloadAction<number>) {
-			return { ...state, trackingInterval: action.payload };
+		setMapLifetime(state, action: PayloadAction<number>) {
+			return { ...state, mapLifetime: action.payload };
 		},
 		setSendingInterval(state, action: PayloadAction<number>) {
 			console.log("Setting new sendingInterval to", action.payload);
 			return { ...state, sendingInterval: action.payload };
 		},
-		setMapLifetime(state, action: PayloadAction<number>) {
-			return { ...state, mapLifetime: action.payload };
+		setTrackingInterval(state, action: PayloadAction<number>) {
+			return { ...state, trackingInterval: action.payload };
 		},
-		setDefaultSettings(_state, action: PayloadAction<string | null>) {
-			return { ...initialState, userId: action.payload };
+		setUser(state, action: PayloadAction<string | null>) {
+			return { ...state, userId: action.payload };
 		},
 	},
 });

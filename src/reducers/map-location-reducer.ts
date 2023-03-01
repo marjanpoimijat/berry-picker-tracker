@@ -13,15 +13,15 @@ interface MapLocation {
 const initialState = {
 	coords: {
 		latitude: 60.204662,
-		longitude: 24.962535,
 		latitudeDelta: 0.01,
+		longitude: 24.962535,
 		longitudeDelta: 0.01,
 	},
 };
 
 const locationSlice = createSlice({
+	initialState: initialState,
 	name: "location",
-	initialState,
 	reducers: {
 		setMapLocation(state, action: PayloadAction<MapLocation>) {
 			return action.payload;

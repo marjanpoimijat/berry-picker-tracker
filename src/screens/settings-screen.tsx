@@ -60,11 +60,11 @@ export const SettingScreen = () => {
 					text: languages["Cancel"][language],
 				},
 				{
-					text: languages["Clear"][language],
 					onPress: async () => {
 						await deleteTileCacheDirectory();
 						await makeTileCacheDirectory();
 					},
+					text: languages["Clear"][language],
 				},
 			]
 		);
@@ -79,11 +79,11 @@ export const SettingScreen = () => {
 					text: languages["Cancel"][language],
 				},
 				{
-					text: languages["Reset"][language],
 					onPress: async () => {
 						await dispatch(resetUser());
 						await dispatch(identifyUser());
 					},
+					text: languages["Reset"][language],
 				},
 			]
 		);
@@ -98,10 +98,10 @@ export const SettingScreen = () => {
 					text: languages["Cancel"][language],
 				},
 				{
-					text: languages["Reset settings"][language],
 					onPress: async () => {
 						await dispatch(changeDefaultSettings());
 					},
+					text: languages["Reset settings"][language],
 				},
 			]
 		);
@@ -133,28 +133,28 @@ export const SettingScreen = () => {
 	let index = 0;
 	const trackFreq = [
 		{
-			key: index++,
 			component: <Text>1 {languages["second"][language]}</Text>,
+			key: index++,
 			label: 1000,
 		},
 		{
-			key: index++,
 			component: <Text>5 {languages["seconds"][language]}</Text>,
+			key: index++,
 			label: 5000,
 		},
 		{
-			key: index++,
 			component: <Text>10 {languages["seconds"][language]}</Text>,
+			key: index++,
 			label: 10000,
 		},
 		{
-			key: index++,
 			component: <Text>30 {languages["seconds"][language]}</Text>,
+			key: index++,
 			label: 30000,
 		},
 		{
-			key: index++,
 			component: <Text>1 {languages["minute"][language]}</Text>,
+			key: index++,
 			label: 60000,
 		},
 	];
@@ -162,28 +162,28 @@ export const SettingScreen = () => {
 	index = 0;
 	const sendFreq = [
 		{
-			key: index++,
 			component: <Text>10 {languages["seconds"][language]}</Text>,
+			key: index++,
 			label: 10000,
 		},
 		{
-			key: index++,
 			component: <Text>30 {languages["seconds"][language]}</Text>,
+			key: index++,
 			label: 30000,
 		},
 		{
-			key: index++,
 			component: <Text>1 {languages["minute"][language]}</Text>,
+			key: index++,
 			label: 60000,
 		},
 		{
-			key: index++,
 			component: <Text>5 {languages["minutes"][language]}</Text>,
+			key: index++,
 			label: 300000,
 		},
 		{
-			key: index++,
 			component: <Text>10 {languages["minutes"][language]}</Text>,
+			key: index++,
 			label: 600000,
 		},
 	];
@@ -191,67 +191,65 @@ export const SettingScreen = () => {
 	index = 0;
 	const tileLifetime = [
 		{
-			key: index++,
 			component: <Text>12 {languages["hours"][language]}</Text>,
+			key: index++,
 			label: 12,
 		},
 		{
-			key: index++,
 			component: <Text>24 {languages["hours"][language]}</Text>,
+			key: index++,
 			label: 24,
 		},
 		{
-			key: index++,
 			component: <Text>48 {languages["hours"][language]}</Text>,
+			key: index++,
 			label: 48,
 		},
 		{
-			key: index++,
 			component: <Text>72 {languages["hours"][language]}</Text>,
+			key: index++,
 			label: 72,
 		},
 	];
 
 	index = 0;
 	const languageOption = [
-		{ key: index++, component: <Text>English</Text>, label: Language.English },
-		{ key: index++, component: <Text>suomi</Text>, label: Language.Finnish },
-		{ key: index++, component: <Text>svenska</Text>, label: Language.Swedish },
+		{ component: <Text>English</Text>, key: index++, label: Language.English },
+		{ component: <Text>suomi</Text>, key: index++, label: Language.Finnish },
+		{ component: <Text>svenska</Text>, key: index++, label: Language.Swedish },
 	];
 
 	index = 0;
 	const mapOptions = [
 		{
-			key: index++,
 			component: (
 				<Text>{languages["National Land Survey of Finland"][language]}</Text>
 			),
+			key: index++,
 			label: Map.nlsTopographic,
 		},
 		{
-			key: index++,
 			component: <Text>OpenStreetMap</Text>,
+			key: index++,
 			label: Map.openStreetMap,
 		},
 		{
-			key: index++,
 			component: <Text>{languages["Plain map"][language]}</Text>,
+			key: index++,
 			label: Map.nlsPlain,
 		},
 		{
-			key: index++,
 			component: <Text>{languages["Aerial image"][language]}</Text>,
+			key: index++,
 			label: Map.nlsAerial,
 		},
 	];
 
 	const settingsData: SettingsData = [
 		{
-			type: "SECTION",
 			header: `${languages["Language"][language]}`.toUpperCase(),
 			rows: [
 				{
-					title: languages["Change language"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							cancelText={languages["Cancel"][language].toLowerCase()}
@@ -263,16 +261,16 @@ export const SettingScreen = () => {
 							}}
 						/>
 					),
+					title: languages["Change language"][language],
 				},
 			],
+			type: "SECTION",
 		},
 		{
-			type: "SECTION",
-			header: `${languages["Navigation"][language]}`.toUpperCase(),
 			footer: languages["Decrease frequencies to save battery life"][language],
+			header: `${languages["Navigation"][language]}`.toUpperCase(),
 			rows: [
 				{
-					title: languages["Waypoint tracking frequency"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							cancelText={languages["Cancel"][language].toLowerCase()}
@@ -284,9 +282,9 @@ export const SettingScreen = () => {
 							}}
 						/>
 					),
+					title: languages["Waypoint tracking frequency"][language],
 				},
 				{
-					title: languages["Waypoint sending frequency"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							cancelText={languages["Cancel"][language].toLowerCase()}
@@ -298,21 +296,21 @@ export const SettingScreen = () => {
 							}}
 						/>
 					),
+					title: languages["Waypoint sending frequency"][language],
 				},
 				{
-					title: languages["Offline mode"][language],
 					renderAccessory: () => <SettingsToggle />,
+					title: languages["Offline mode"][language],
 				},
 			],
+			type: "SECTION",
 		},
 		{
-			type: "SECTION",
-			header: `${languages["Map"][language]}`.toUpperCase(),
 			footer:
 				languages["Clear the cached map tiles to free up space"][language],
+			header: `${languages["Map"][language]}`.toUpperCase(),
 			rows: [
 				{
-					title: languages["Change map type"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							cancelText={languages["Cancel"][language].toLowerCase()}
@@ -324,9 +322,9 @@ export const SettingScreen = () => {
 							}}
 						/>
 					),
+					title: languages["Change map type"][language],
 				},
 				{
-					title: languages["Map tile lifetime"][language],
 					renderAccessory: () => (
 						<ModalSelector
 							cancelText={languages["Cancel"][language].toLowerCase()}
@@ -338,12 +336,9 @@ export const SettingScreen = () => {
 							}}
 						/>
 					),
+					title: languages["Map tile lifetime"][language],
 				},
 				{
-					title: languages["Clear the map tile cache"][language],
-					titleStyle: {
-						color: "red",
-					},
 					renderAccessory: () => (
 						<Button
 							color="red"
@@ -351,27 +346,27 @@ export const SettingScreen = () => {
 							title={languages["Clear"][language]}
 						/>
 					),
+					title: languages["Clear the map tile cache"][language],
+					titleStyle: {
+						color: "red",
+					},
 				},
 			],
+			type: "SECTION",
 		},
 		{
-			type: "SECTION",
-			header: `${languages["User information"][language]}`.toUpperCase(),
 			footer: languages["Tap your UserID to copy it"][language],
+			header: `${languages["User information"][language]}`.toUpperCase(),
 			rows: [
 				{
-					title: languages["UserID"][language],
 					renderAccessory: () => (
 						<TouchableOpacity onPress={() => copyToClipboard(userId)}>
 							<Text style={{ color: "dimgrey", fontSize: 12 }}>{userId}</Text>
 						</TouchableOpacity>
 					),
+					title: languages["UserID"][language],
 				},
 				{
-					title: languages["Reset UserID"][language],
-					titleStyle: {
-						color: "red",
-					},
 					renderAccessory: () => (
 						<Button
 							color="red"
@@ -381,18 +376,18 @@ export const SettingScreen = () => {
 							title={languages["Reset"][language]}
 						/>
 					),
-				},
-			],
-		},
-		{
-			type: "SECTION",
-			header: `${languages["Default settings"][language]}`.toUpperCase(),
-			rows: [
-				{
-					title: languages["Reset settings to default"][language],
+					title: languages["Reset UserID"][language],
 					titleStyle: {
 						color: "red",
 					},
+				},
+			],
+			type: "SECTION",
+		},
+		{
+			header: `${languages["Default settings"][language]}`.toUpperCase(),
+			rows: [
+				{
 					renderAccessory: () => (
 						<Button
 							color="red"
@@ -400,16 +395,19 @@ export const SettingScreen = () => {
 							title={languages["Reset settings"][language]}
 						/>
 					),
+					title: languages["Reset settings to default"][language],
+					titleStyle: {
+						color: "red",
+					},
 				},
 			],
+			type: "SECTION",
 		},
 		{
-			type: "SECTION",
-			header: `${languages["Legal information"][language]}`.toUpperCase(),
 			footer: languages["Links to privacy policy and licenses"][language],
+			header: `${languages["Legal information"][language]}`.toUpperCase(),
 			rows: [
 				{
-					title: languages["Frontend licenses"][language],
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
@@ -420,9 +418,9 @@ export const SettingScreen = () => {
 							}
 						/>
 					),
+					title: languages["Frontend licenses"][language],
 				},
 				{
-					title: languages["Backend licenses"][language],
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
@@ -433,9 +431,9 @@ export const SettingScreen = () => {
 							}
 						/>
 					),
+					title: languages["Backend licenses"][language],
 				},
 				{
-					title: languages["Privacy policy"][language],
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
@@ -446,35 +444,37 @@ export const SettingScreen = () => {
 							}
 						/>
 					),
+					title: languages["Privacy policy"][language],
 				},
 			],
+			type: "SECTION",
 		},
 		{
-			type: "SECTION",
-			header: `${languages["Map legend"][language]}`.toUpperCase(),
 			footer:
 				languages[
 					"Download link to National Land Survey of Finland map legend information"
 				][language],
+			header: `${languages["Map legend"][language]}`.toUpperCase(),
 			rows: [
 				{
-					title: languages["Download map legend"][language],
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
 							onPress={() => Linking.openURL(`${baseUrl}/get-legend/`)}
 						/>
 					),
+					title: languages["Download map legend"][language],
 				},
 			],
+			type: "SECTION",
 		},
 		{
-			type: "CUSTOM_VIEW",
 			render: () => (
 				<Text style={{ ...Styles.defaultText, padding: 15 }}>
 					{languages["Version"][language]}: {version}
 				</Text>
 			),
+			type: "CUSTOM_VIEW",
 		},
 	];
 

@@ -21,12 +21,12 @@ const CoordinateContainer = (): JSX.Element => {
 			const location = await Location.getLastKnownPositionAsync({});
 			const initialState = {
 				coords: {
-					latitude: 60.204662,
-					longitude: 24.962535,
-					altitude: null,
 					accuracy: null,
+					altitude: null,
 					altitudeAccuracy: null,
 					heading: null,
+					latitude: 60.204662,
+					longitude: 24.962535,
 					speed: null,
 				},
 				mocked: false,

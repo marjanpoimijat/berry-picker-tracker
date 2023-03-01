@@ -40,10 +40,10 @@ const FindUserRouteMap = ({
 					latitude: usersLatestWaypoint
 						? usersLatestWaypoint.latitude
 						: 60.204662,
+					latitudeDelta: 0.05,
 					longitude: usersLatestWaypoint
 						? usersLatestWaypoint.longitude
 						: 24.962535,
-					latitudeDelta: 0.05,
 					longitudeDelta: 0.05,
 				}}
 				mapType={"none"}
