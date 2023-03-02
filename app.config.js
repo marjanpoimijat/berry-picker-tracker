@@ -1,61 +1,53 @@
 import "dotenv/config";
 
 export default {
-	name: "Berry picker tracker",
-	slug: "berry-picker-tracker",
-	entryPoint: "./index.js",
-	version: "1.1.3",
-	orientation: "portrait",
-	icon: "./assets/icon.png",
-	splash: {
-		image: "./assets/splash.png",
-		resizeMode: "contain",
-		backgroundColor: "#cdf5b6",
-	},
-	scheme: "bpt",
-	updates: {
-		fallbackToCacheTimeout: 0,
-	},
-	assetBundlePatterns: ["**/*"],
-	ios: {
-		bundleIdentifier: "com.berryPickerTracker",
-		supportsTablet: true,
-		buildNumber: "18",
-		infoPlist: {
-			UIBackgroundModes: ["location", "fetch"],
-			NSLocationAlwaysAndWhenInUseUsageDescription: "App requires geolocation",
-			LSApplicationQueriesSchemes: ["bpt"],
-		},
-	},
 	android: {
-		package: "com.berryPickerTracker",
-		versionCode: 18,
 		adaptiveIcon: {
-			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#FFFFFF",
+			foregroundImage: "./assets/adaptive-icon.png",
 		},
-		softwareKeyboardLayoutMode: "pan",
 		config: {
 			googleMaps: {
 				apiKey: process.env.MAPS_API,
 			},
 		},
+		package: "com.berryPickerTracker",
+		softwareKeyboardLayoutMode: "pan",
+		versionCode: 18,
 	},
 	androidStatusBar: {
-		barStyle: "light-content",
 		backgroundColor: "#388e3c",
+		barStyle: "light-content",
 	},
-	web: {
-		favicon: "./assets/favicon.png",
+	assetBundlePatterns: ["**/*"],
+	entryPoint: "./index.js",
+	extra: {
+		eas: {
+			projectId: process.env.PROJECT_ID,
+		},
+		uri: process.env.URI,
 	},
+	icon: "./assets/icon.png",
+	ios: {
+		buildNumber: "18",
+		bundleIdentifier: "com.berryPickerTracker",
+		infoPlist: {
+			LSApplicationQueriesSchemes: ["bpt"],
+			NSLocationAlwaysAndWhenInUseUsageDescription: "App requires geolocation",
+			UIBackgroundModes: ["location", "fetch"],
+		},
+		supportsTablet: true,
+	},
+	name: "Berry picker tracker",
+	orientation: "portrait",
 	plugins: [
 		[
 			"expo-build-properties",
 			{
 				android: {
+					buildToolsVersion: "31.0.0",
 					compileSdkVersion: 31,
 					targetSdkVersion: 31,
-					buildToolsVersion: "31.0.0",
 				},
 				ios: {
 					deploymentTarget: "13.0",
@@ -63,10 +55,18 @@ export default {
 			},
 		],
 	],
-	extra: {
-		uri: process.env.URI,
-		eas: {
-			projectId: process.env.PROJECT_ID,
-		},
+	scheme: "bpt",
+	slug: "berry-picker-tracker",
+	splash: {
+		backgroundColor: "#cdf5b6",
+		image: "./assets/splash.png",
+		resizeMode: "contain",
+	},
+	updates: {
+		fallbackToCacheTimeout: 0,
+	},
+	version: "1.1.3",
+	web: {
+		favicon: "./assets/favicon.png",
 	},
 };
