@@ -11,7 +11,7 @@ interface Props {
 	text: string;
 }
 
-const FindButton = ({ iconName, onPress, text }: Props): JSX.Element => {
+const TrackingButton = ({ iconName, onPress, text }: Props): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
 	const toggledColor = theme.colors.buttonToggledBackgroundColor;
 
@@ -31,4 +31,4 @@ const FindButton = ({ iconName, onPress, text }: Props): JSX.Element => {
 	);
 };
 
-export default FindButton;
+export default TrackingButton;
