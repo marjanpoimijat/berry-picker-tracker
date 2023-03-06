@@ -3,7 +3,7 @@ import { View } from "react-native";
 import MapViewContainer from "../components/map-view-container";
 import RouteButtonContainer from "../components/route-button-container";
 import CoordinateContainer from "../components/coordinate-container";
-import TrackUserContainer from "../components/track-user-container";
+import TrackUserMenu from "../components/track-user-menu";
 
 const MapScreen = () => {
 	return (
@@ -11,7 +11,7 @@ const MapScreen = () => {
 			<MapViewContainer />
 			<RouteButtonContainer />
 			<CoordinateContainer />
-			<TrackUserContainer />
+			<TrackUserMenu />
 		</View>
 	);
 };

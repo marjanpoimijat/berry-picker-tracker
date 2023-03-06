@@ -36,7 +36,9 @@ const Styles = StyleSheet.create({
 	},
 	coordinateDot: {
 		backgroundColor: "red",
+		borderColor: "black",
 		borderRadius: 5,
+		borderWidth: 1,
 		height: 7,
 		width: 7,
 	},
@@ -229,7 +231,7 @@ const Styles = StyleSheet.create({
 		fontSize: 13,
 		fontWeight: "bold",
 	},
-	trackUsersContainer: {
+	trackUsersMenuContainer: {
 		alignItems: "center",
 		alignSelf: "center",
 		backgroundColor: theme.colors.primaryBackgroundColor,
@@ -245,13 +247,42 @@ const Styles = StyleSheet.create({
 		top: 72,
 		width: "90%",
 	},
-	trackUsersContent: {
+	trackUsersMenuContent: {
 		backgroundColor: theme.colors.buttonBackgroundColor,
 		borderRadius: 9,
 		height: "99%",
 		padding: 10,
 		position: "absolute",
 		width: "97%",
+	},
+	trackUsersMenuTitle: {
+		fontSize: 22,
+	},
+	trackedUserDetailsContainer: {
+		//borderColor: "black",
+		//borderWidth: 1,
+		display: "flex",
+		flexDirection: "row",
+		padding: 10,
+	},
+	trackedUserDetailsDot: {
+		backgroundColor: "red",
+		//borderColor: 'black',
+		borderRadius: 10,
+		//borderWidth: 1,
+		height: 13,
+		width: 13,
+	},
+	trackedUserDetailsDotContainer: {
+		//borderColor: "black",
+		//borderWidth: 1,
+		justifyContent: "center",
+		padding: 5,
+	},
+	trackedUserDetailsUsername: {
+		//borderColor: "black",
+		//borderWidth: 1,
+		fontSize: 18,
 	},
 });
 
