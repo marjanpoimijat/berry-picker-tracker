@@ -8,16 +8,18 @@ import * as SecureStore from "expo-secure-store";
  *
 tracked: {
 	sdi8ksso: {
-		UserID: 'sdi8ksso'
+		UserID: 'sdi8ksso',
+		Alias: 'Esko'
 	},
 	ks889sss: {
-		UserID: 'ks889sss'
+		UserID: 'ks889sss',
+		Alias: 'Huahei'
 	}
 }
  *
  */
 
-export async function secureStoreAddTracked(userId: string) {
+export async function secureStoreAddTracked(userId: string, alias: string) {
 	console.log("\n\nsecureStoreAddTracked()");
 	try {
 		const objectExists = await secureStoreCheckIfTrackedExists();
@@ -31,7 +33,7 @@ export async function secureStoreAddTracked(userId: string) {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
 			const trackedJson = JSON.parse(tracked);
-			trackedJson[userId] = { UserID: userId };
+			trackedJson[userId] = { Alias: alias, UserID: userId };
 			const newTracked = JSON.stringify(trackedJson);
 			await SecureStore.setItemAsync("tracked", newTracked);
 			console.log(`Storage updated: ${newTracked}`);
