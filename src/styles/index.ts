@@ -229,6 +229,18 @@ const Styles = StyleSheet.create({
 		fontSize: 13,
 		fontWeight: "bold",
 	},
+	trackButtonContainer: {
+		alignSelf: "center",
+		backgroundColor: theme.colors.primaryBackgroundColor,
+		borderRadius: 9,
+		bottom: navigatorTabHeight + 10,
+		display: "flex",
+		flexDirection: "row",
+		margin: 10,
+		paddingHorizontal: 2,
+		paddingVertical: 4,
+		position: "absolute",
+	},
 });
 
 export default Styles;

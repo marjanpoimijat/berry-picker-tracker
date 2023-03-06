@@ -2,12 +2,16 @@ import { View } from "react-native";
 import { connect } from "react-redux";
 
 import { languages } from "../languages";
-import { setUi } from "../reducers/ui-reducer";
+import {
+	setRouteButtonVisible,
+	setTrackListVisible,
+} from "../reducers/ui-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 
 import NavigatorButton from "./navigator-button";
 import ToggleButton from "./toggle-button";
+import FindButton from "./find-button";
 
 /**
  * Navigator tab located at the bottom of the screen which contains
@@ -19,7 +23,11 @@ const NavigatorTab = (): JSX.Element => {
 	const dispatch = useTypedDispatch();
 
 	const toggleRouteButtons = () => {
-		dispatch(setUi({ routeButtonsVisible: !ui.routeButtonsVisible }));
+		dispatch(setRouteButtonVisible(!ui.routeButtonsVisible));
+	};
+
+	const toggleTrackList = () => {
+		dispatch(setTrackListVisible(!ui.trackListVisible));
 	};
 
 	return (
@@ -34,9 +42,9 @@ const NavigatorTab = (): JSX.Element => {
 				path="/"
 				text={languages["Map"][language]}
 			/>
-			<NavigatorButton
+			<FindButton
 				iconName="location-arrow"
-				path="/findroute"
+				onPress={toggleTrackList}
 				text={languages["Find"][language]}
 			/>
 			<NavigatorButton
