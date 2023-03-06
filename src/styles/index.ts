@@ -229,7 +229,7 @@ const Styles = StyleSheet.create({
 		fontSize: 13,
 		fontWeight: "bold",
 	},
-	trackButtonContainer: {
+	trackUsersContainer: {
 		alignSelf: "center",
 		backgroundColor: theme.colors.primaryBackgroundColor,
 		borderRadius: 9,
