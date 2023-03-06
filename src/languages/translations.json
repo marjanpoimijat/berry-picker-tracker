@@ -4,6 +4,11 @@
 		"fi": "Ilmakuva",
 		"sv": "Flygfoto"
 	},
+	"Alias": {
+		"en": "Alias",
+		"fi": "Nimimerkki",
+		"sv": "Alias"
+	},
 	"Backend licenses": {
 		"en": "Backend licenses",
 		"fi": "Palvelimen lisenssit",
