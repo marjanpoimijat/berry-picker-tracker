@@ -59,8 +59,8 @@ export default {
 	slug: "berry-picker-tracker",
 	splash: {
 		backgroundColor: "#cdf5b6",
-		image: "./assets/splash.png",
-		resizeMode: "contain",
+		image: "./assets/splash2.png",
+		resizeMode: "native",
 	},
 	updates: {
 		fallbackToCacheTimeout: 0,
