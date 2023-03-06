@@ -10,6 +10,7 @@ const initialState: User = {
 	sendingInterval: 15000,
 	trackingInterval: 5000,
 	userId: null,
+	username: null,
 };
 const userSlice = createSlice({
 	initialState: initialState,
@@ -31,11 +32,15 @@ const userSlice = createSlice({
 		setUser(state, action: PayloadAction<string | null>) {
 			return { ...state, userId: action.payload };
 		},
+		setUsername(state, action: PayloadAction<string | null>) {
+			return { ...state, username: action.payload };
+		},
 	},
 });
 
 export const {
 	setUser,
+	setUsername,
 	setTrackingInterval,
 	setSendingInterval,
 	setMapLifetime,

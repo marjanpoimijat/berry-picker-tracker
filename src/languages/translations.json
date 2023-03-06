@@ -309,6 +309,16 @@
 		"fi": "sekuntia",
 		"sv": "sekunder"
 	},
+	"Set": {
+		"en": "Set",
+		"fi": "Aseta",
+		"sv": "Uppsättning"
+	},
+	"Set username": {
+		"en": "Set username",
+		"fi": "Aseta käyttäjänimi",
+		"sv": "Uppsättning namn"
+	},
 	"Settings": {
 		"en": "Settings",
 		"fi": "Asetukset",
@@ -338,6 +348,11 @@
 		"en": "Topographic map",
 		"fi": "Maastokartta",
 		"sv": "Terrängkarta"
+	},
+	"Type username": {
+		"en": "Type your username",
+		"fi": "Kirjoita käyttäjänimesi",
+		"sv": "Skriv din användarnamn"
 	},
 	"Update": {
 		"en": "Update",
@@ -383,6 +398,11 @@
 		"en": "UserID can not be reset while route is active. End route route first and try again",
 		"fi": "Käyttäjätunnusta ei voida alustaa reitin ollessa aktiivinen. Lopeta ensin reitti ja yritä uudelleen",
 		"sv": "Användar id kan inte återställas när en rutt är aktiv. Slutför rutt och försök pånytt"
+	},
+	"Username": {
+		"en": "Username",
+		"fi": "Käyttäjänimi",
+		"sv": "Användar namn"
 	},
 	"Version": {
 		"en": "Version",

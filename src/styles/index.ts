@@ -129,7 +129,7 @@ const Styles = StyleSheet.create({
 		flex: 1,
 		height: 40,
 		marginRight: 2,
-		textAlign: "center",
+		textAlign: "right",
 	},
 	mainContainer: {
 		alignItems: "center",

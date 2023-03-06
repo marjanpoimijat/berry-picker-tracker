@@ -2,6 +2,7 @@ import {
 	Alert,
 	Button,
 	Text,
+	TextInput,
 	View,
 	Linking,
 	TouchableOpacity,
@@ -88,7 +89,6 @@ export const SettingScreen = () => {
 			]
 		);
 	};
-
 	const alertSettingsReset = () => {
 		Alert.alert(
 			languages["Resetting the settings"][language],
@@ -358,6 +358,15 @@ export const SettingScreen = () => {
 			footer: languages["Tap your UserID to copy it"][language],
 			header: `${languages["User information"][language]}`.toUpperCase(),
 			rows: [
+				{
+					renderAccessory: () => (
+						<TextInput
+							placeholder={languages["Type username"][language]}
+							style={Styles.inputField}
+						/>
+					),
+					title: languages["Username"][language],
+				},
 				{
 					renderAccessory: () => (
 						<TouchableOpacity onPress={() => copyToClipboard(userId)}>
