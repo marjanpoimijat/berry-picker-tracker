@@ -10,8 +10,8 @@ const MapScreen = () => {
 		<View>
 			<MapViewContainer />
 			<RouteButtonContainer />
-			<TrackUserContainer />
 			<CoordinateContainer />
+			<TrackUserContainer />
 		</View>
 	);
 };

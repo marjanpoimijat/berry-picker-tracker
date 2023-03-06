@@ -12,23 +12,19 @@ interface Props {
 }
 
 const FindButton = ({ iconName, onPress, text }: Props): JSX.Element => {
-	const active = useTypedSelector((state) => state.route.active);
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
-	const recordingColor = theme.colors.recordingColor;
+	const toggledColor = theme.colors.buttonToggledBackgroundColor;
 
 	return (
 		<View
-			style={toggled ? { ...Styles.navigatorButton } : Styles.navigatorButton}
+			style={
+				toggled
+					? { ...Styles.navigatorButton, backgroundColor: toggledColor }
+					: Styles.navigatorButton
+			}
 		>
 			<TouchableOpacity onPress={onPress}>
-				<Icon
-					name={iconName}
-					style={
-						active
-							? { ...Styles.navigatorIcon, color: recordingColor }
-							: Styles.navigatorIcon
-					}
-				/>
+				<Icon name={iconName} style={Styles.navigatorIcon} />
 				<Text style={Styles.navigatorText}>{text}</Text>
 			</TouchableOpacity>
 		</View>

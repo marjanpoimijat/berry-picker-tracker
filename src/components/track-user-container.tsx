@@ -1,11 +1,7 @@
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
-import { languages } from "../languages";
-import { changeShowRoute, shareRoute } from "../reducers/route-reducer";
-import { useTypedDispatch, useTypedSelector } from "../store";
+import { useTypedSelector } from "../store";
 import Styles from "../styles";
-import RouteButton from "./route-button";
-import ShareButton from "./share-button";
 
 /**
  * Route button container component which contains buttons to
@@ -13,11 +9,7 @@ import ShareButton from "./share-button";
  * Just preliminary styling and location on a screen.
  */
 const TrackUserContainer = (): JSX.Element => {
-	const language = useTypedSelector((state) => state.language);
-	const user = useTypedSelector((state) => state.user);
-	const routeInfo = useTypedSelector((state) => state.route);
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
-	const dispatch = useTypedDispatch();
 
 	return (
 		<View
@@ -27,18 +19,9 @@ const TrackUserContainer = (): JSX.Element => {
 					: { ...Styles.trackUsersContainer, display: "none" }
 			}
 		>
-			<RouteButton
-				onPress={() => dispatch(changeShowRoute())}
-				text={
-					routeInfo.showRoute
-						? languages["Hide route"][language]
-						: languages["Show route"][language]
-				}
-			/>
-			<ShareButton
-				onPress={() => dispatch(shareRoute(user))}
-				text={languages["Share route"][language]}
-			/>
+			<View style={Styles.trackUsersContent}>
+				<Text>Tracking</Text>
+			</View>
 		</View>
 	);
 };

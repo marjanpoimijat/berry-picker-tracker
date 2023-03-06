@@ -229,17 +229,29 @@ const Styles = StyleSheet.create({
 		fontSize: 13,
 		fontWeight: "bold",
 	},
-	trackButtonContainer: {
+	trackUsersContainer: {
+		alignItems: "center",
 		alignSelf: "center",
 		backgroundColor: theme.colors.primaryBackgroundColor,
 		borderRadius: 9,
 		bottom: navigatorTabHeight + 10,
 		display: "flex",
 		flexDirection: "row",
+		justifyContent: "center",
 		margin: 10,
 		paddingHorizontal: 2,
 		paddingVertical: 4,
 		position: "absolute",
+		top: 72,
+		width: "90%",
+	},
+	trackUsersContent: {
+		backgroundColor: theme.colors.buttonBackgroundColor,
+		borderRadius: 9,
+		height: "99%",
+		padding: 10,
+		position: "absolute",
+		width: "97%",
 	},
 });
 
