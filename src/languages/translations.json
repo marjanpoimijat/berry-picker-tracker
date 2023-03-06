@@ -349,6 +349,11 @@
 		"fi": "Maastokartta",
 		"sv": "Terrängkarta"
 	},
+	"Tracking": {
+		"en": "Tracking",
+		"fi": "Seuranta",
+		"sv": "Spårning"
+	},
 	"Type username": {
 		"en": "Type your username",
 		"fi": "Kirjoita käyttäjänimesi",
