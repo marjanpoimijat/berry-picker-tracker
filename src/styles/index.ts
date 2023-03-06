@@ -61,6 +61,12 @@ const Styles = StyleSheet.create({
 		fontSize: theme.fontSizes.default,
 		paddingTop: 5,
 	},
+	divider: {
+		borderBottomWidth: 1,
+		borderColor: "#dbdbd7",
+		height: 1,
+		width: "95%",
+	},
 	findButton: {
 		alignItems: "center",
 		backgroundColor: theme.colors.buttonBackgroundColor,

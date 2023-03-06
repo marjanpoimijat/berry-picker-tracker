@@ -339,6 +339,11 @@
 		"fi": "Maastokartta",
 		"sv": "Terrängkarta"
 	},
+	"Tracking": {
+		"en": "Tracking",
+		"fi": "Seuranta",
+		"sv": "Spårning"
+	},
 	"Update": {
 		"en": "Update",
 		"fi": "Päivitä",
