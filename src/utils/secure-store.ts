@@ -20,7 +20,7 @@ tracked: {
  */
 
 export async function secureStoreAddTracked(userId: string, alias: string) {
-	console.log("\n\nsecureStoreAddTracked()");
+	console.log("secureStoreAddTracked()");
 	try {
 		const objectExists = await secureStoreCheckIfTrackedExists();
 		if (!objectExists) {
@@ -44,7 +44,7 @@ export async function secureStoreAddTracked(userId: string, alias: string) {
 }
 
 export async function secureStoreGetUser(key: string) {
-	console.log("\n\nsecureStoreGetUser()");
+	console.log("secureStoreGetUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
@@ -65,7 +65,7 @@ export async function secureStoreGetUser(key: string) {
 }
 
 export async function secureStoreDeleteUser(key: string) {
-	console.log("\n\nsecureStoreDeleteUser()");
+	console.log("secureStoreDeleteUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
@@ -83,7 +83,7 @@ export async function secureStoreDeleteUser(key: string) {
 }
 
 export async function secureStoreInitialize() {
-	console.log("\n\nsecureStoreInitialize()");
+	console.log("secureStoreInitialize()");
 	try {
 		await SecureStore.setItemAsync("tracked", "{}");
 		console.log('Initialized "tracked" object.');
@@ -93,25 +93,17 @@ export async function secureStoreInitialize() {
 }
 
 export async function secureStoreGetAllUsers() {
-	console.log("\n\nsecureStoreGetAllUsers()");
+	console.log("secureStoreGetAllUsers()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
-		if (tracked) {
-			const trackedJson = JSON.parse(tracked);
-			const userList = Object.keys(trackedJson);
-			console.log("User list: ", userList);
-			console.log('"tracked" object: ', trackedJson);
-			return userList;
-		} else {
-			console.log('"Tracked" object not found.');
-		}
+		if (tracked) return tracked;
 	} catch (error) {
 		console.log(`Failed to get all users. Error: ${error}`);
 	}
 }
 
 export async function secureStoreDeleteAll() {
-	console.log("\n\nsecureStoreDeleteAll()");
+	console.log("secureStoreDeleteAll()");
 	try {
 		const result = await SecureStore.getItemAsync("tracked");
 		if (result) {
@@ -124,7 +116,7 @@ export async function secureStoreDeleteAll() {
 }
 
 export async function secureStoreCheckIfTrackedExists() {
-	console.log("\n\nsecureStoreCheckIfTrackedExists()");
+	console.log("secureStoreCheckIfTrackedExists()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
