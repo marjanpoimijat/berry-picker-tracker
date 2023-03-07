@@ -377,7 +377,7 @@ export const SettingScreen = () => {
 						<TextInput
 							onChangeText={setLocalUsername}
 							placeholder={languages["Type username"][language]}
-							style={Styles.inputField}
+							style={{ color: "dimgrey", fontSize: 12, textAlign: "right" }}
 							value={localUsername}
 						/>
 					),
