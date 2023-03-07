@@ -21,20 +21,7 @@ type TrackedUsers = {
 const TrackUserMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [localUsers, setLocalUsers] = useState<TrackedUsers>();
-
-	const exampleUsers = [
-		"Riku",
-		"Alexander",
-		"Janne",
-		"Jenni",
-		"Jyri",
-		"Mikael",
-		"Samu",
-		"Petri",
-		"Ashwin",
-	];
 
 	const getUsers = async () => {
 		const users = await secureStoreGetAllUsers();
@@ -44,6 +31,14 @@ const TrackUserMenu = (): JSX.Element => {
 	useEffect(() => {
 		getUsers();
 	}, []);
+
+	const dataArray = localUsers ? Object.entries(localUsers) : [];
+
+	const mappedUsers = dataArray.map(([key, value]) => ({
+		alias: value.Alias,
+		id: key,
+		userId: value.UserID,
+	}));
 
 	return (
 		<View
@@ -59,9 +54,9 @@ const TrackUserMenu = (): JSX.Element => {
 						{languages["Tracking"][language]}
 					</Text>
 				</View>
-				{exampleUsers.map((user, index) => (
+				{mappedUsers.map((user, index) => (
 					<>
-						<TrackedUserDetails id={index} key={index} username={user} />
+						<TrackedUserDetails id={index} key={index} username={user.alias} />
 						<View style={{ alignItems: "center" }}>
 							<View style={Styles.divider} />
 						</View>
