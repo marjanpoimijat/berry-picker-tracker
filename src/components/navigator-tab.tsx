@@ -11,7 +11,7 @@ import Styles from "../styles";
 
 import NavigatorButton from "./navigator-button";
 import ToggleButton from "./toggle-button";
-import FindButton from "./find-button";
+import TrackingButton from "./tracking-button";
 
 /**
  * Navigator tab located at the bottom of the screen which contains
@@ -42,10 +42,10 @@ const NavigatorTab = (): JSX.Element => {
 				path="/"
 				text={languages["Map"][language]}
 			/>
-			<FindButton
+			<TrackingButton
 				iconName="location-arrow"
 				onPress={toggleTrackList}
-				text={languages["Find"][language]}
+				text={languages["Tracking"][language]}
 			/>
 			<NavigatorButton
 				iconName="cog"

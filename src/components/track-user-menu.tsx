@@ -12,7 +12,17 @@ import TrackedUserDetails from "./tracked-user-details";
 const TrackUserMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
-	const exampleUsers = ["Riku", "Alexander", "Janne"];
+	const exampleUsers = [
+		"Riku",
+		"Alexander",
+		"Janne",
+		"Jenni",
+		"Jyri",
+		"Mikael",
+		"Samu",
+		"Petri",
+		"Ashwin",
+	];
 
 	return (
 		<View
