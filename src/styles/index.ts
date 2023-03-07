@@ -264,11 +264,19 @@ const Styles = StyleSheet.create({
 	trackUsersMenuTitle: {
 		fontSize: 22,
 	},
+	trackedUserDetailsButtonContainer: {
+		//borderColor: "black",
+		//borderWidth: 1,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "center",
+	},
 	trackedUserDetailsContainer: {
 		//borderColor: "black",
 		//borderWidth: 1,
 		display: "flex",
 		flexDirection: "row",
+		justifyContent: "space-between",
 		padding: 10,
 	},
 	trackedUserDetailsDot: {
@@ -284,6 +292,10 @@ const Styles = StyleSheet.create({
 		//borderWidth: 1,
 		justifyContent: "center",
 		padding: 5,
+	},
+	trackedUserDetailsNameContainer: {
+		display: "flex",
+		flexDirection: "row",
 	},
 	trackedUserDetailsUsername: {
 		//borderColor: "black",
