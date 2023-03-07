@@ -103,7 +103,7 @@ export const changeShowRoute = () => {
 
 export const shareRoute = (user: User) => {
 	const redirectUrl = Linking.createURL("/", {
-		queryParams: { alias: "", userId: `${user.userId}` },
+		queryParams: { alias: `${user.username}`, userId: `${user.userId}` },
 	});
 	return async () => {
 		await Share.share({
