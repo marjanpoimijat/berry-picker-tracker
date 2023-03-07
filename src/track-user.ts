@@ -1,12 +1,8 @@
 import * as Linking from "expo-linking";
-import {
-	secureStoreAddTracked,
-	secureStoreDeleteAll,
-} from "./utils/secure-store";
+import { secureStoreAddTracked } from "./utils/secure-store";
 import { getUsersLatestRoute } from "./requests";
 
 export const addSharedUser = async () => {
-	secureStoreDeleteAll(); // remove this when sharing functionality is complete
 	const url = Linking.useURL();
 	if (!url) {
 		return;
