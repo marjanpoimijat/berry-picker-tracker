@@ -10,8 +10,9 @@ const initialState: User = {
 	sendingInterval: 15000,
 	trackingInterval: 5000,
 	userId: null,
-	username: null,
+	username: "",
 };
+
 const userSlice = createSlice({
 	initialState: initialState,
 	name: "user",
@@ -32,7 +33,7 @@ const userSlice = createSlice({
 		setUser(state, action: PayloadAction<string | null>) {
 			return { ...state, userId: action.payload };
 		},
-		setUsername(state, action: PayloadAction<string | null>) {
+		setUsername(state, action: PayloadAction<string>) {
 			return { ...state, username: action.payload };
 		},
 	},

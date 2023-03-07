@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
 	Alert,
 	Button,
@@ -32,6 +33,7 @@ import {
 	makeTileCacheDirectory,
 } from "../utils/file-system";
 import { Language, Map } from "../types";
+import { setUsername } from "../reducers/user-reducer";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
@@ -39,18 +41,30 @@ export const SettingScreen = () => {
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	console.warn = () => {};
 
-	const [userId, currTrack, currSend, mapLifetime, language, currMap] =
-		useTypedSelector((state) => [
-			state.user.userId,
-			state.user.trackingInterval / 1000,
-			state.user.sendingInterval / 1000,
-			state.user.mapLifetime,
-			state.language,
-			state.map,
-		]);
+	const [
+		username,
+		userId,
+		currTrack,
+		currSend,
+		mapLifetime,
+		language,
+		currMap,
+	] = useTypedSelector((state) => [
+		state.user.username,
+		state.user.userId,
+		state.user.trackingInterval / 1000,
+		state.user.sendingInterval / 1000,
+		state.user.mapLifetime,
+		state.language,
+		state.map,
+	]);
 	const routeActive = useTypedSelector((state) => state.route.active);
-
+	const [localUsername, setLocalUsername] = useState<string>(username);
 	const dispatch = useTypedDispatch();
+
+	useEffect(() => {
+		dispatch(setUsername(localUsername));
+	}, [localUsername]);
 
 	const alertCacheReset = () => {
 		Alert.alert(
@@ -361,8 +375,10 @@ export const SettingScreen = () => {
 				{
 					renderAccessory: () => (
 						<TextInput
+							onChangeText={setLocalUsername}
 							placeholder={languages["Type username"][language]}
 							style={Styles.inputField}
+							value={localUsername}
 						/>
 					),
 					title: languages["Username"][language],

@@ -35,7 +35,7 @@ export interface Route {
 
 export interface User {
 	userId: string | null;
-	username: string | null;
+	username: string;
 	trackingInterval: number;
 	sendingInterval: number;
 	mapLifetime: number;
