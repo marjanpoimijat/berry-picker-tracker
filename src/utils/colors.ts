@@ -1,22 +1,24 @@
-// Colors by Material UI
-// https://mui.com/material-ui/customization/color
-
-export const colors = [
-	"#cddc39", // lime
-	"#009688", // teal
-	"#9c27b0", // purple
-	"#f44336", // red
-	"#e91e63", // pink
-	"#673ab7", // deep purple
-	"#2196f3", // blue
-	"#3f51b5", // indigo
-	"#03a9f4", // light blue
-	"#00bcd4", // cyan
-	"#4caf50", // green
-	"#8bc34a", // light green
-	"#ffeb3b", // yellow
-	"#ffc107", // amber
-	"#ff9800", // orange
-	"#ff5722", // deep orange
-	"#795548", // brown
+export const colors: string[] = [
+	"#DC143C", // Crimson
+	"#2ECC40", // Green
+	"#FFDC00", // Yellow
+	"#B10DC9", // Purple
+	"#39CCCC", // Turquoise
+	"#FF851B", // Orange
+	"#85144b", // Maroon
+	"#FF4136", // Red
+	"#FF6F61", // Coral
+	"#7FDBFF", // Light blue
+	"#001f3f", // Navy
+	"#FFC0CB", // Pink
+	"#F012BE", // Magenta
+	"#3D9970", // Olive
+	"#111111", // Black
+	"#FFD700", // Gold
+	"#9B59B6", // Amethyst
+	"#F7DC6F", // Khaki
+	"#34495E", // Slate gray
+	"#2C3E50", // Midnight blue
+	"#0074D9", // Blue
+	"#E74C3C", // Brick red
 ];
