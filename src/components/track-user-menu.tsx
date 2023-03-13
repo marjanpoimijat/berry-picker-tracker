@@ -10,8 +10,8 @@ import TrackedUserDetails from "./tracked-user-details";
 
 type TrackedUsers = {
 	[key: string]: {
-		Alias: string;
-		UserID: string;
+		alias: string;
+		userId: string;
 	};
 };
 
@@ -35,9 +35,9 @@ const TrackUserMenu = (): JSX.Element => {
 	const dataArray = localUsers ? Object.entries(localUsers) : [];
 
 	const mappedUsers = dataArray.map(([key, value]) => ({
-		alias: value.Alias,
+		alias: value.alias,
 		id: key,
-		userId: value.UserID,
+		userId: value.userId,
 	}));
 
 	return (
@@ -56,7 +56,11 @@ const TrackUserMenu = (): JSX.Element => {
 				</View>
 				{mappedUsers.map((user, index) => (
 					<View key={index}>
-						<TrackedUserDetails id={index} username={user.alias} />
+						<TrackedUserDetails
+							id={index}
+							userId={user.userId}
+							username={user.alias}
+						/>
 						<View style={{ alignItems: "center" }}>
 							<View style={Styles.divider} />
 						</View>

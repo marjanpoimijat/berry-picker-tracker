@@ -4,15 +4,22 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 import Styles from "../styles";
 import { colors } from "../utils/colors";
+import { secureStoreUpdateUser } from "../utils/secure-store";
 
 interface TrackedUser {
 	id: number;
+	userId: string;
 	username: string;
 }
 
-const TrackedUserDetails = ({ id, username }: TrackedUser) => {
+const TrackedUserDetails = ({ id, userId, username }: TrackedUser) => {
 	const [locationVisible, setLocationVisible] = useState<boolean>(true);
 	const [routeVisible, setRouteVisible] = useState<boolean>(true);
+
+	const handleLocationVisibleChange = () => {
+		setLocationVisible(!locationVisible);
+		secureStoreUpdateUser(userId);
+	};
 
 	return (
 		<View style={Styles.trackedUserDetailsContainer}>
@@ -22,8 +29,8 @@ const TrackedUserDetails = ({ id, username }: TrackedUser) => {
 			</View>
 			<View style={Styles.trackedUserDetailsButtonContainer}>
 				<LocationVisibleButton
+					handleLocationVisibleChange={handleLocationVisibleChange}
 					locationVisible={locationVisible}
-					setLocationVisible={setLocationVisible}
 				/>
 				<RouteVisibleButton
 					locationVisible={locationVisible}
@@ -60,15 +67,15 @@ const Username = ({ username }: UsernameProps) => (
 
 interface LocationVisibleButtonProps {
 	locationVisible: boolean;
-	setLocationVisible: (arg0: boolean) => void;
+	handleLocationVisibleChange: () => void;
 }
 
 const LocationVisibleButton = ({
 	locationVisible,
-	setLocationVisible,
+	handleLocationVisibleChange,
 }: LocationVisibleButtonProps) => (
 	<TouchableOpacity
-		onPress={() => setLocationVisible(!locationVisible)}
+		onPress={() => handleLocationVisibleChange()}
 		style={{ marginRight: 20 }}
 	>
 		{locationVisible ? (
