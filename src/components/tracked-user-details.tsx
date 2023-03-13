@@ -8,17 +8,32 @@ import { secureStoreUpdateUser } from "../utils/secure-store";
 
 interface TrackedUser {
 	id: number;
+	locationVisible: boolean;
+	routeVisible: boolean;
 	userId: string;
 	username: string;
 }
 
-const TrackedUserDetails = ({ id, userId, username }: TrackedUser) => {
-	const [locationVisible, setLocationVisible] = useState<boolean>(true);
-	const [routeVisible, setRouteVisible] = useState<boolean>(true);
+const TrackedUserDetails = ({
+	id,
+	locationVisible,
+	routeVisible,
+	userId,
+	username,
+}: TrackedUser) => {
+	const [localLocationVisible, setLocalLocationVisible] =
+		useState<boolean>(locationVisible);
+	const [localRouteVisible, setLocalRouteVisible] =
+		useState<boolean>(routeVisible);
 
 	const handleLocationVisibleChange = () => {
-		setLocationVisible(!locationVisible);
-		secureStoreUpdateUser(userId);
+		setLocalLocationVisible(!localLocationVisible);
+		secureStoreUpdateUser(userId, localLocationVisible, localRouteVisible);
+	};
+
+	const handleRouteVisibleChange = () => {
+		setLocalRouteVisible(!localRouteVisible);
+		secureStoreUpdateUser(userId, localLocationVisible, localRouteVisible);
 	};
 
 	return (
@@ -30,12 +45,12 @@ const TrackedUserDetails = ({ id, userId, username }: TrackedUser) => {
 			<View style={Styles.trackedUserDetailsButtonContainer}>
 				<LocationVisibleButton
 					handleLocationVisibleChange={handleLocationVisibleChange}
-					locationVisible={locationVisible}
+					locationVisible={localLocationVisible}
 				/>
 				<RouteVisibleButton
-					locationVisible={locationVisible}
-					routeVisible={routeVisible}
-					setRouteVisible={setRouteVisible}
+					handleRouteVisibleChange={handleRouteVisibleChange}
+					locationVisible={localLocationVisible}
+					routeVisible={localRouteVisible}
 				/>
 			</View>
 		</View>
@@ -89,17 +104,17 @@ const LocationVisibleButton = ({
 interface RouteVisibleButtonProps {
 	locationVisible: boolean;
 	routeVisible: boolean;
-	setRouteVisible: (arg0: boolean) => void;
+	handleRouteVisibleChange: () => void;
 }
 
 const RouteVisibleButton = ({
 	locationVisible,
 	routeVisible,
-	setRouteVisible,
+	handleRouteVisibleChange,
 }: RouteVisibleButtonProps) => (
 	<TouchableOpacity
 		disabled={!locationVisible}
-		onPress={() => setRouteVisible(!routeVisible)}
+		onPress={() => handleRouteVisibleChange()}
 	>
 		<Button disabled={!locationVisible || !routeVisible} name="route" />
 	</TouchableOpacity>

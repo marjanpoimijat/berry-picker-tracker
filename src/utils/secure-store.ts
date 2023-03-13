@@ -69,23 +69,29 @@ export async function secureStoreGetUser(key: string) {
 	}
 }
 
-export async function secureStoreUpdateUser(userId: string) {
+export async function secureStoreUpdateUser(
+	userId: string,
+	location: boolean,
+	route: boolean
+) {
 	console.log("secureStoreUpdateUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
-		if (tracked) {
-			const trackedJson = JSON.parse(tracked);
-			// eslint-disable-next-line no-prototype-builtins
-			if (trackedJson.hasOwnProperty(userId)) {
-				trackedJson[userId].locationVisible =
-					!trackedJson[userId].locationVisible;
-				const newTracked = JSON.stringify(trackedJson);
-				await SecureStore.setItemAsync("tracked", newTracked);
-				console.log(`Storage updated: ${newTracked}`);
-			} else {
-				console.log(`User "${userId}" not found.`);
-			}
+		if (!tracked) {
+			console.log("Tracked object not found");
+			return;
 		}
+		const trackedJson = JSON.parse(tracked);
+		// eslint-disable-next-line no-prototype-builtins
+		if (!trackedJson.hasOwnProperty(userId)) {
+			console.log(`User "${userId}" not found.`);
+			return;
+		}
+		trackedJson[userId].locationVisible = location;
+		trackedJson[userId].routeVisible = route;
+		const newTracked = JSON.stringify(trackedJson);
+		await SecureStore.setItemAsync("tracked", newTracked);
+		console.log(`Storage updated: ${newTracked}`);
 	} catch (error) {
 		console.log(
 			`Failed to flip routeVisible for user "${userId}". Error: ${error}`

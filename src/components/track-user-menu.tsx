@@ -11,6 +11,8 @@ import TrackedUserDetails from "./tracked-user-details";
 type TrackedUsers = {
 	[key: string]: {
 		alias: string;
+		locationVisible: boolean;
+		routeVisible: boolean;
 		userId: string;
 	};
 };
@@ -33,10 +35,11 @@ const TrackUserMenu = (): JSX.Element => {
 	}, []);
 
 	const dataArray = localUsers ? Object.entries(localUsers) : [];
-
 	const mappedUsers = dataArray.map(([key, value]) => ({
 		alias: value.alias,
 		id: key,
+		locationVisible: value.locationVisible,
+		routeVisible: value.routeVisible,
 		userId: value.userId,
 	}));
 
@@ -58,6 +61,8 @@ const TrackUserMenu = (): JSX.Element => {
 					<View key={index}>
 						<TrackedUserDetails
 							id={index}
+							locationVisible={user.locationVisible}
+							routeVisible={user.routeVisible}
 							userId={user.userId}
 							username={user.alias}
 						/>
