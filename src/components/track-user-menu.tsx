@@ -55,12 +55,12 @@ const TrackUserMenu = (): JSX.Element => {
 					</Text>
 				</View>
 				{mappedUsers.map((user, index) => (
-					<>
-						<TrackedUserDetails id={index} key={index} username={user.alias} />
+					<View key={index}>
+						<TrackedUserDetails id={index} username={user.alias} />
 						<View style={{ alignItems: "center" }}>
 							<View style={Styles.divider} />
 						</View>
-					</>
+					</View>
 				))}
 			</View>
 		</View>
