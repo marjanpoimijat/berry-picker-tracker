@@ -22,11 +22,11 @@ tracked: {
 export async function secureStoreAddTracked(userId: string, alias: string) {
 	console.log("secureStoreAddTracked()");
 	try {
-		const objectExists = await secureStoreCheckIfTrackedExists();
+		const objectExists = await secureStoreGetTrackedObject();
 		if (!objectExists) {
-			await secureStoreInitialize();
+			await secureStoreInitializeTrackedObject();
 		}
-		const userList = await secureStoreGetAllUsers();
+		const userList = await secureStoreGetAllTrackedUsers();
 		if (userList && userList.includes(userId)) {
 			return;
 		}
@@ -48,8 +48,8 @@ export async function secureStoreAddTracked(userId: string, alias: string) {
 	}
 }
 
-export async function secureStoreGetUser(key: string) {
-	console.log("secureStoreGetUser()");
+export async function secureStoreGetTrackedUser(key: string) {
+	console.log("secureStoreGetTrackedUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
@@ -69,12 +69,12 @@ export async function secureStoreGetUser(key: string) {
 	}
 }
 
-export async function secureStoreUpdateUser(
+export async function secureStoreUpdateTrackedUser(
 	userId: string,
 	location: boolean,
 	route: boolean
 ) {
-	console.log("secureStoreUpdateUser()");
+	console.log("secureStoreUpdateTrackedUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (!tracked) {
@@ -99,8 +99,8 @@ export async function secureStoreUpdateUser(
 	}
 }
 
-export async function secureStoreDeleteUser(key: string) {
-	console.log("secureStoreDeleteUser()");
+export async function secureStoreDeleteTrackedUser(key: string) {
+	console.log("secureStoreDeleteTrackedUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
@@ -117,8 +117,8 @@ export async function secureStoreDeleteUser(key: string) {
 	}
 }
 
-export async function secureStoreInitialize() {
-	console.log("secureStoreInitialize()");
+export async function secureStoreInitializeTrackedObject() {
+	console.log("secureStoreInitializeTrackedObject()");
 	try {
 		await SecureStore.setItemAsync("tracked", "{}");
 		console.log('Initialized "tracked" object.');
@@ -127,9 +127,9 @@ export async function secureStoreInitialize() {
 	}
 }
 
-export async function secureStoreGetAllUsers() {
-	//secureStoreDeleteAll();
-	console.log("secureStoreGetAllUsers()");
+export async function secureStoreGetAllTrackedUsers() {
+	//secureStoreDeleteTrackedObject();
+	console.log("secureStoreGetAllTrackedUsers()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		//console.log(tracked);
@@ -139,8 +139,8 @@ export async function secureStoreGetAllUsers() {
 	}
 }
 
-export async function secureStoreDeleteAll() {
-	console.log("secureStoreDeleteAll()");
+export async function secureStoreDeleteTrackedObject() {
+	console.log("secureStoreDeleteTrackedObject()");
 	try {
 		const result = await SecureStore.getItemAsync("tracked");
 		if (result) {
@@ -152,8 +152,8 @@ export async function secureStoreDeleteAll() {
 	}
 }
 
-export async function secureStoreCheckIfTrackedExists() {
-	console.log("secureStoreCheckIfTrackedExists()");
+export async function secureStoreGetTrackedObject() {
+	console.log("secureStoreGetTrackedObject()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		return tracked;

@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 import Styles from "../styles";
 import { colors } from "../utils/colors";
-import { secureStoreUpdateUser } from "../utils/secure-store";
+import { secureStoreUpdateTrackedUser } from "../utils/secure-store";
 
 interface TrackedUser {
 	id: number;
@@ -30,16 +30,20 @@ const TrackedUserDetails = ({
 		if (localLocationVisible) {
 			setLocalLocationVisible(false);
 			setLocalRouteVisible(false);
-			secureStoreUpdateUser(userId, false, false);
+			secureStoreUpdateTrackedUser(userId, false, false);
 		} else {
 			setLocalLocationVisible(true);
-			secureStoreUpdateUser(userId, true, localRouteVisible);
+			secureStoreUpdateTrackedUser(userId, true, localRouteVisible);
 		}
 	};
 
 	const handleRouteVisibleChange = () => {
 		setLocalRouteVisible(!localRouteVisible);
-		secureStoreUpdateUser(userId, localLocationVisible, !localRouteVisible);
+		secureStoreUpdateTrackedUser(
+			userId,
+			localLocationVisible,
+			!localRouteVisible
+		);
 	};
 
 	return (
