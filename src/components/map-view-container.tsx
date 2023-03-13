@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import MapView, { Polyline, UrlTile, Circle, Marker } from "react-native-maps";
 
 import { baseUrl } from "../constants";
 import { setMapLocation } from "../reducers/map-location-reducer";
+import { getUsersLatestRoute } from "../requests";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
+import { TrackedUsers, Waypoint, WaypointFromServer } from "../types";
+import { colors } from "../utils/colors";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
+import { secureStoreGetAllUsers } from "../utils/secure-store";
 
 function getCircleColor(color: string): string {
 	switch (color) {
@@ -56,6 +60,26 @@ const MapViewContainer = (): JSX.Element => {
 		setCoordinates(coordinate);
 	};
 
+	const [localUsers, setLocalUsers] = useState<TrackedUsers>();
+
+	const getUsers = async () => {
+		const users = await secureStoreGetAllUsers();
+		if (users) setLocalUsers(JSON.parse(users));
+	};
+
+	useEffect(() => {
+		getUsers();
+	}, []);
+
+	const dataArray = localUsers ? Object.entries(localUsers) : [];
+	const mappedUsers = dataArray.map(([key, value]) => ({
+		alias: value.alias,
+		id: key,
+		locationVisible: value.locationVisible,
+		routeVisible: value.routeVisible,
+		userId: value.userId,
+	}));
+
 	return (
 		<View>
 			<MapView
@@ -100,6 +124,9 @@ const MapViewContainer = (): JSX.Element => {
 					strokeWidth={8}
 					zIndex={1}
 				/>
+				{mappedUsers.map((user, index) => (
+					<TrackedUserRoute id={index} key={index} userId={user.userId} />
+				))}
 				{localWaypoints.map((waypoint, index) => {
 					if (waypoint.connection !== null) {
 						return (
@@ -134,6 +161,81 @@ const MapViewContainer = (): JSX.Element => {
 				)}
 			</MapView>
 		</View>
+	);
+};
+
+interface TrackedUserRouteProps {
+	id: number;
+	userId: string;
+}
+
+const TrackedUserRoute = ({ id, userId }: TrackedUserRouteProps) => {
+	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
+
+	const findUserRoute = async () => {
+		setUsersWaypoints(null);
+		const data = await getUsersLatestRoute(userId);
+		if (!data) return <></>;
+		const waypoints: Waypoint[] = data.waypoints.map(
+			(waypoint: WaypointFromServer) => {
+				return {
+					...waypoint,
+					routeId: waypoint.route_id,
+				};
+			}
+		);
+		setUsersWaypoints(waypoints);
+		console.log(`...Users route ID: ${data.routeId} found.`);
+		console.log(
+			`Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`
+		);
+	};
+
+	useEffect(() => {
+		findUserRoute();
+	}, []);
+
+	return (
+		<>
+			{usersWaypoints ? (
+				<>
+					<Polyline
+						coordinates={usersWaypoints}
+						strokeColor={colors[id]}
+						strokeWidth={4}
+						zIndex={2}
+					/>
+					<Polyline
+						coordinates={usersWaypoints}
+						strokeColor="black"
+						strokeWidth={8}
+						zIndex={1}
+					/>
+					{/* 				<Marker
+					coordinate={{
+						latitude: usersLatestWaypoint
+							? usersLatestWaypoint.latitude
+							: 60.204662,
+						longitude: usersLatestWaypoint
+							? usersLatestWaypoint.longitude
+							: 24.962535,
+					}}
+					description={
+						usersLatestWaypoint
+							? formatDate(usersLatestWaypoint.ts)
+							: languages["Update search a bit later"][language]
+					}
+					title={
+						usersLatestWaypoint
+							? `${parseLatitude(lat)}, ${parseLongitude(lon)}`
+							: languages["Latest waypoint is not available"][language]
+					}
+				/> */}
+				</>
+			) : (
+				<></>
+			)}
+		</>
 	);
 };
 

@@ -4,18 +4,10 @@ import { Text, View } from "react-native";
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
+import { TrackedUsers } from "../types";
 import { secureStoreGetAllUsers } from "../utils/secure-store";
 
 import TrackedUserDetails from "./tracked-user-details";
-
-type TrackedUsers = {
-	[key: string]: {
-		alias: string;
-		locationVisible: boolean;
-		routeVisible: boolean;
-		userId: string;
-	};
-};
 
 /**
  * Menu for tracking tracking other users and their routes.

@@ -54,3 +54,12 @@ export enum Map {
 	nlsPlain = "nlsplain",
 	nlsAerial = "nlsaerial",
 }
+
+export type TrackedUsers = {
+	[key: string]: {
+		alias: string;
+		locationVisible: boolean;
+		routeVisible: boolean;
+		userId: string;
+	};
+};
