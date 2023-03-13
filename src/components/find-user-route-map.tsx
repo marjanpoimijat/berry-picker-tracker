@@ -1,5 +1,3 @@
-import moment from "moment";
-
 import { View } from "react-native";
 import MapView, { Marker, Polyline, UrlTile } from "react-native-maps";
 
@@ -9,6 +7,7 @@ import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import { usersLocationInfo } from "../types";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
+import { formatDate } from "../utils/date";
 
 /**
  * Visualizes topomap using NLS tiles and draws a users route between
@@ -23,12 +22,6 @@ const FindUserRouteMap = ({
 	const language = useTypedSelector((state) => state.language);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
 	const currMap = useTypedSelector((state) => state.map);
-
-	const formatDate = (dateString: number): string => {
-		const date = new Date(dateString);
-		const formattedDate = moment(date).format("YYYY-MM-DD HH:mm:ss");
-		return formattedDate;
-	};
 
 	const lat = usersLatestWaypoint ? usersLatestWaypoint.latitude : 0;
 	const lon = usersLatestWaypoint ? usersLatestWaypoint.longitude : 0;

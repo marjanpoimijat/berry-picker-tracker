@@ -302,6 +302,14 @@ const Styles = StyleSheet.create({
 		//borderWidth: 1,
 		fontSize: 18,
 	},
+	trackedUserDot: {
+		backgroundColor: "red",
+		borderColor: "black",
+		borderRadius: 100,
+		borderWidth: 1,
+		height: 13,
+		width: 13,
+	},
 });
 
 export default Styles;

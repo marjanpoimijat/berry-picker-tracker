@@ -211,26 +211,25 @@ const TrackedUserRoute = ({ id, userId }: TrackedUserRouteProps) => {
 						strokeWidth={8}
 						zIndex={1}
 					/>
-					{/* 				<Marker
-					coordinate={{
-						latitude: usersLatestWaypoint
-							? usersLatestWaypoint.latitude
-							: 60.204662,
-						longitude: usersLatestWaypoint
-							? usersLatestWaypoint.longitude
-							: 24.962535,
-					}}
-					description={
-						usersLatestWaypoint
-							? formatDate(usersLatestWaypoint.ts)
-							: languages["Update search a bit later"][language]
-					}
-					title={
-						usersLatestWaypoint
-							? `${parseLatitude(lat)}, ${parseLongitude(lon)}`
-							: languages["Latest waypoint is not available"][language]
-					}
-				/> */}
+					<View>
+						<Marker
+							coordinate={{
+								latitude: usersWaypoints[usersWaypoints.length - 1]
+									? usersWaypoints[usersWaypoints.length - 1].latitude
+									: 60.204662,
+								longitude: usersWaypoints[usersWaypoints.length - 1]
+									? usersWaypoints[usersWaypoints.length - 1].longitude
+									: 24.962535,
+							}}
+						>
+							<View
+								style={{
+									...Styles.trackedUserDot,
+									backgroundColor: colors[id],
+								}}
+							/>
+						</Marker>
+					</View>
 				</>
 			) : (
 				<></>
