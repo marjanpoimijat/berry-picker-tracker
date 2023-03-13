@@ -2,7 +2,8 @@ import * as SecureStore from "expo-secure-store";
 
 /**
  * SecureStore is used to store tracked users' information
- * in a single JSON object named "tracked".
+ * in a single JSON object named "tracked". SecureStore also stores the user's
+ * crypto key which is used to encrypt and decrypt sent data.
  *
  * example JSON object:
  *
@@ -161,5 +162,35 @@ export async function secureStoreGetTrackedObject() {
 		console.log(
 			`Failed to check whether "tracked" object exists. Error: ${error}`
 		);
+	}
+}
+
+export async function secureStoreAddCryptoKey(key: string) {
+	try {
+		await SecureStore.setItemAsync("cryptoKey", key);
+		console.log("Crypto key updated.");
+	} catch (error) {
+		console.log(`Failed to save crypto key. Error: ${error}`);
+	}
+}
+
+export async function secureStoreGetCryptoKey() {
+	try {
+		const cryptoKey = await SecureStore.getItemAsync("cryptoKey");
+		return cryptoKey;
+	} catch (error) {
+		console.log(`Failed to get crypto key. Error: ${error}`);
+	}
+}
+
+export async function secureStoreDeleteCryptoKey() {
+	try {
+		const result = await SecureStore.getItemAsync("cryptoKey");
+		if (result) {
+			await SecureStore.deleteItemAsync("cryptoKey");
+		}
+		console.log("CryptoKey deleted.");
+	} catch (error) {
+		console.log(`Failed to delete cryptoKey. Error: ${error}`);
 	}
 }
