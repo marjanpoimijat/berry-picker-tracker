@@ -27,13 +27,19 @@ const TrackedUserDetails = ({
 		useState<boolean>(routeVisible);
 
 	const handleLocationVisibleChange = () => {
-		setLocalLocationVisible(!localLocationVisible);
-		secureStoreUpdateUser(userId, localLocationVisible, localRouteVisible);
+		if (localLocationVisible) {
+			setLocalLocationVisible(false);
+			setLocalRouteVisible(false);
+			secureStoreUpdateUser(userId, false, false);
+		} else {
+			setLocalLocationVisible(true);
+			secureStoreUpdateUser(userId, true, localRouteVisible);
+		}
 	};
 
 	const handleRouteVisibleChange = () => {
 		setLocalRouteVisible(!localRouteVisible);
-		secureStoreUpdateUser(userId, localLocationVisible, localRouteVisible);
+		secureStoreUpdateUser(userId, localLocationVisible, !localRouteVisible);
 	};
 
 	return (
