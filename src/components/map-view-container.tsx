@@ -114,14 +114,14 @@ const MapViewContainer = (): JSX.Element => {
 				/>
 				<Polyline
 					coordinates={routeInfo.showRoute ? localWaypoints : []}
-					strokeColor="red"
+					strokeColor="#4285f4"
 					strokeWidth={4}
 					zIndex={2}
 				/>
 				<Polyline
 					coordinates={routeInfo.showRoute ? localWaypoints : []}
-					strokeColor="black"
-					strokeWidth={8}
+					strokeColor="white"
+					strokeWidth={6.5}
 					zIndex={1}
 				/>
 				{mappedUsers.map((user, index) => (
