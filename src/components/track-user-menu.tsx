@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
-import { secureStoreGetAllUsers } from "../utils/secure-store";
+import { secureStoreGetAllTrackedUsers } from "../utils/secure-store";
 
 import TrackedUserDetails from "./tracked-user-details";
 
@@ -26,7 +26,7 @@ const TrackUserMenu = (): JSX.Element => {
 	const [localUsers, setLocalUsers] = useState<TrackedUsers>();
 
 	const getUsers = async () => {
-		const users = await secureStoreGetAllUsers();
+		const users = await secureStoreGetAllTrackedUsers();
 		if (users) setLocalUsers(JSON.parse(users));
 	};
 
