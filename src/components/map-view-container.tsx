@@ -10,7 +10,7 @@ import Styles from "../styles";
 import { TrackedUsers, Waypoint, WaypointFromServer } from "../types";
 import { colors } from "../utils/colors";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
-import { secureStoreGetAllUsers } from "../utils/secure-store";
+import { secureStoreGetAllTrackedUsers } from "../utils/secure-store";
 
 function getCircleColor(color: string): string {
 	switch (color) {
@@ -63,7 +63,7 @@ const MapViewContainer = (): JSX.Element => {
 	const [localUsers, setLocalUsers] = useState<TrackedUsers>();
 
 	const getUsers = async () => {
-		const users = await secureStoreGetAllUsers();
+		const users = await secureStoreGetAllTrackedUsers();
 		if (users) setLocalUsers(JSON.parse(users));
 	};
 
