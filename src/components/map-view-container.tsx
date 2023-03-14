@@ -74,7 +74,6 @@ const MapViewContainer = (): JSX.Element => {
 	const dataArray = localUsers ? Object.entries(localUsers) : [];
 	const mappedUsers = dataArray.map(([key, value]) => ({
 		alias: value.alias,
-		id: key,
 		locationVisible: value.locationVisible,
 		routeVisible: value.routeVisible,
 		userId: value.userId,
@@ -125,7 +124,7 @@ const MapViewContainer = (): JSX.Element => {
 					zIndex={1}
 				/>
 				{mappedUsers.map((user, index) => (
-					<TrackedUserRoute id={index} key={index} userId={user.userId} />
+					<TrackedUserRoute id={index} key={index} user={user} />
 				))}
 				{localWaypoints.map((waypoint, index) => {
 					if (waypoint.connection !== null) {
@@ -164,17 +163,24 @@ const MapViewContainer = (): JSX.Element => {
 	);
 };
 
-interface TrackedUserRouteProps {
-	id: number;
+interface TrackedUser {
+	alias: string;
+	locationVisible: boolean;
+	routeVisible: boolean;
 	userId: string;
 }
 
-const TrackedUserRoute = ({ id, userId }: TrackedUserRouteProps) => {
+interface TrackedUserRouteProps {
+	id: number;
+	user: TrackedUser;
+}
+
+const TrackedUserRoute = ({ id, user }: TrackedUserRouteProps) => {
 	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
 
 	const findUserRoute = async () => {
 		setUsersWaypoints(null);
-		const data = await getUsersLatestRoute(userId);
+		const data = await getUsersLatestRoute(user.userId);
 		if (!data) return <></>;
 		const waypoints: Waypoint[] = data.waypoints.map(
 			(waypoint: WaypointFromServer) => {
@@ -199,36 +205,42 @@ const TrackedUserRoute = ({ id, userId }: TrackedUserRouteProps) => {
 		<>
 			{usersWaypoints ? (
 				<>
-					<Polyline
-						coordinates={usersWaypoints}
-						strokeColor={colors[id]}
-						strokeWidth={4}
-						zIndex={2}
-					/>
-					<Polyline
-						coordinates={usersWaypoints}
-						strokeColor="black"
-						strokeWidth={8}
-						zIndex={1}
-					/>
-					<View>
-						<Marker
-							coordinate={{
-								latitude: usersWaypoints[usersWaypoints.length - 1]
-									? usersWaypoints[usersWaypoints.length - 1].latitude
-									: 60.204662,
-								longitude: usersWaypoints[usersWaypoints.length - 1]
-									? usersWaypoints[usersWaypoints.length - 1].longitude
-									: 24.962535,
-							}}
-						>
-							<View
-								style={{
-									...Styles.trackedUserDot,
-									backgroundColor: colors[id],
-								}}
+					{user.routeVisible && (
+						<>
+							<Polyline
+								coordinates={usersWaypoints}
+								strokeColor={colors[id]}
+								strokeWidth={4}
+								zIndex={2}
 							/>
-						</Marker>
+							<Polyline
+								coordinates={usersWaypoints}
+								strokeColor="black"
+								strokeWidth={8}
+								zIndex={1}
+							/>
+						</>
+					)}
+					<View>
+						{user.locationVisible && (
+							<Marker
+								coordinate={{
+									latitude: usersWaypoints[usersWaypoints.length - 1]
+										? usersWaypoints[usersWaypoints.length - 1].latitude
+										: 60.204662,
+									longitude: usersWaypoints[usersWaypoints.length - 1]
+										? usersWaypoints[usersWaypoints.length - 1].longitude
+										: 24.962535,
+								}}
+							>
+								<View
+									style={{
+										...Styles.trackedUserDot,
+										backgroundColor: colors[id],
+									}}
+								/>
+							</Marker>
+						)}
 					</View>
 				</>
 			) : (
