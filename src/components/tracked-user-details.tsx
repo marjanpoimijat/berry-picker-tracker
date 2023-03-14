@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { addNewTrackedUser } from "../reducers/tracker-users-reducer";
+import { useTypedDispatch } from "../store";
 
 import Styles from "../styles";
 import { colors } from "../utils/colors";
@@ -26,19 +28,45 @@ const TrackedUserDetails = ({
 	const [localRouteVisible, setLocalRouteVisible] =
 		useState<boolean>(routeVisible);
 
+	const dispatch = useTypedDispatch();
+
 	const handleLocationVisibleChange = () => {
 		if (localLocationVisible) {
 			setLocalLocationVisible(false);
 			setLocalRouteVisible(false);
+			dispatch(
+				addNewTrackedUser({
+					alias: username,
+					locationVisible: false,
+					routeVisible: false,
+					userId: userId,
+				})
+			);
 			secureStoreUpdateTrackedUser(userId, false, false);
 		} else {
 			setLocalLocationVisible(true);
+			dispatch(
+				addNewTrackedUser({
+					alias: username,
+					locationVisible: true,
+					routeVisible: localRouteVisible,
+					userId: userId,
+				})
+			);
 			secureStoreUpdateTrackedUser(userId, true, localRouteVisible);
 		}
 	};
 
 	const handleRouteVisibleChange = () => {
 		setLocalRouteVisible(!localRouteVisible);
+		dispatch(
+			addNewTrackedUser({
+				alias: username,
+				locationVisible: localLocationVisible,
+				routeVisible: !localRouteVisible,
+				userId: userId,
+			})
+		);
 		secureStoreUpdateTrackedUser(
 			userId,
 			localLocationVisible,

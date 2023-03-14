@@ -10,7 +10,6 @@ import Styles from "../styles";
 import { TrackedUsers, Waypoint, WaypointFromServer } from "../types";
 import { colors } from "../utils/colors";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
-import { secureStoreGetAllTrackedUsers } from "../utils/secure-store";
 
 function getCircleColor(color: string): string {
 	switch (color) {
@@ -42,12 +41,16 @@ const MapViewContainer = (): JSX.Element => {
 	const mapLocation = useTypedSelector((state) => state.mapLocation);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
+	const trackedUsers: TrackedUsers = useTypedSelector(
+		(state) => state.trackedUsers
+	);
 	const [localWaypoints, currMap] = useTypedSelector((state) => [
 		state.waypoints.localWaypoints,
 		state.map,
 	]);
-	const dispatch = useTypedDispatch();
 	const [coordinates, setCoordinates] = useState<Coordinate | null>(null);
+
+	const dispatch = useTypedDispatch();
 
 	const handleMapPress = (event: {
 		nativeEvent: { coordinate: Coordinate };
@@ -60,18 +63,7 @@ const MapViewContainer = (): JSX.Element => {
 		setCoordinates(coordinate);
 	};
 
-	const [localUsers, setLocalUsers] = useState<TrackedUsers>();
-
-	const getUsers = async () => {
-		const users = await secureStoreGetAllTrackedUsers();
-		if (users) setLocalUsers(JSON.parse(users));
-	};
-
-	useEffect(() => {
-		getUsers();
-	}, []);
-
-	const dataArray = localUsers ? Object.entries(localUsers) : [];
+	const dataArray = trackedUsers ? Object.entries(trackedUsers) : [];
 	const mappedUsers = dataArray.map(([key, value]) => ({
 		alias: value.alias,
 		locationVisible: value.locationVisible,

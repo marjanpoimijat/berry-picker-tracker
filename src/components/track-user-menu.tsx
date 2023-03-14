@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import { TrackedUsers } from "../types";
-import { secureStoreGetAllTrackedUsers } from "../utils/secure-store";
 
 import TrackedUserDetails from "./tracked-user-details";
 
@@ -15,18 +13,11 @@ import TrackedUserDetails from "./tracked-user-details";
 const TrackUserMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
-	const [localUsers, setLocalUsers] = useState<TrackedUsers>();
+	const trackedUsers: TrackedUsers = useTypedSelector(
+		(state) => state.trackedUsers
+	);
 
-	const getUsers = async () => {
-		const users = await secureStoreGetAllTrackedUsers();
-		if (users) setLocalUsers(JSON.parse(users));
-	};
-
-	useEffect(() => {
-		getUsers();
-	}, []);
-
-	const dataArray = localUsers ? Object.entries(localUsers) : [];
+	const dataArray = trackedUsers ? Object.entries(trackedUsers) : [];
 	const mappedUsers = dataArray.map(([key, value]) => ({
 		alias: value.alias,
 		id: key,

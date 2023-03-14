@@ -55,6 +55,13 @@ export enum Map {
 	nlsAerial = "nlsaerial",
 }
 
+export interface TrackedUser {
+	alias: string;
+	locationVisible: boolean;
+	routeVisible: boolean;
+	userId: string;
+}
+
 export type TrackedUsers = {
 	[key: string]: {
 		alias: string;

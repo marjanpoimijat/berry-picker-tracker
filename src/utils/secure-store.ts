@@ -1,4 +1,5 @@
 import * as SecureStore from "expo-secure-store";
+import { addNewTrackedUser } from "../reducers/tracker-users-reducer";
 
 /**
  * SecureStore is used to store tracked users' information
@@ -8,17 +9,22 @@ import * as SecureStore from "expo-secure-store";
  * example JSON object:
  *
 tracked: {
-	sdi8ksso: {
-		userId: 'sdi8ksso',
-		alias: 'Esko'
+	Y0QsWBzUwP89: {
+		alias: 'John',
+		locationVisible: true,
+		routeVisible: true,
+		userId: 'Y0QsWBzUwP89',
 	},
-	ks889sss: {
-		userID: 'ks889sss',
-		alias: 'Huahei'
-	}
+	W9RZL7VXJ3FK: {
+		alias: 'Mary',
+		locationVisible: true,
+		routeVisible: false,
+		userId: 'W9RZL7VXJ3FK',
+	},
 }
- *
  */
+
+import { store } from "../store";
 
 export async function secureStoreAddTracked(userId: string, alias: string) {
 	console.log("secureStoreAddTracked()");
@@ -34,12 +40,14 @@ export async function secureStoreAddTracked(userId: string, alias: string) {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
 			const trackedJson = JSON.parse(tracked);
-			trackedJson[userId] = {
+			const trackedObject = {
 				alias: alias,
 				locationVisible: true,
 				routeVisible: true,
 				userId: userId,
 			};
+			store.dispatch(addNewTrackedUser(trackedObject));
+			trackedJson[userId] = trackedObject;
 			const newTracked = JSON.stringify(trackedJson);
 			await SecureStore.setItemAsync("tracked", newTracked);
 			console.log(`Storage updated: ${newTracked}`);
