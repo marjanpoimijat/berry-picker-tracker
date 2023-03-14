@@ -76,7 +76,7 @@ const Dot = ({ id }: DotProps) => (
 		<View
 			style={{
 				...Styles.trackedUserDetailsDot,
-				backgroundColor: colors[id],
+				backgroundColor: colors[id % colors.length],
 			}}
 		/>
 	</View>

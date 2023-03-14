@@ -76,7 +76,7 @@ const MapViewContainer = (): JSX.Element => {
 		alias: value.alias,
 		locationVisible: value.locationVisible,
 		routeVisible: value.routeVisible,
-		userId: value.userId,
+		userId: key,
 	}));
 
 	return (
@@ -203,13 +203,13 @@ const TrackedUserRoute = ({ id, user }: TrackedUserRouteProps) => {
 
 	return (
 		<>
-			{usersWaypoints ? (
+			{usersWaypoints && (
 				<>
 					{user.routeVisible && (
 						<>
 							<Polyline
 								coordinates={usersWaypoints}
-								strokeColor={colors[id]}
+								strokeColor={colors[id % colors.length]}
 								strokeWidth={4}
 								zIndex={2}
 							/>
@@ -236,15 +236,13 @@ const TrackedUserRoute = ({ id, user }: TrackedUserRouteProps) => {
 								<View
 									style={{
 										...Styles.trackedUserDot,
-										backgroundColor: colors[id],
+										backgroundColor: colors[id % colors.length],
 									}}
 								/>
 							</Marker>
 						)}
 					</View>
 				</>
-			) : (
-				<></>
 			)}
 		</>
 	);

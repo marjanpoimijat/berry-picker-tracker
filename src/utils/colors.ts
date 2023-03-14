@@ -8,7 +8,6 @@ export const colors: string[] = [
 	"#85144b", // Maroon
 	"#FF4136", // Red
 	"#FF6F61", // Coral
-	"#7FDBFF", // Light blue
 	"#001f3f", // Navy
 	"#FFC0CB", // Pink
 	"#F012BE", // Magenta
