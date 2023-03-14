@@ -137,7 +137,7 @@ export async function secureStoreInitializeTrackedObject() {
 }
 
 export async function secureStoreGetAllTrackedUsers() {
-	//secureStoreDeleteTrackedObject();
+	secureStoreDeleteTrackedObject();
 	console.log("secureStoreGetAllTrackedUsers()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");

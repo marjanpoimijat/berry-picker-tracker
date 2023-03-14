@@ -12,14 +12,16 @@ const trackedUsersSlice = createSlice({
 				[action.payload.userId]: action.payload,
 			};
 		},
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		clearState(state) {
-			return {};
+		updateTrackedUser(state, action: PayloadAction<TrackedUser>) {
+			const updatedState = Object.assign({}, state, {
+				[action.payload.userId]: action.payload,
+			});
+			return updatedState;
 		},
 	},
 });
 
-export const { addNewTrackedUser, clearState } = trackedUsersSlice.actions;
+export const { addNewTrackedUser } = trackedUsersSlice.actions;
 
 export const addTrackedUser = (newUser: TrackedUser) => {
 	return async (dispatch: AppDispatch) => {

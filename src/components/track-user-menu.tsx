@@ -16,15 +16,16 @@ const TrackUserMenu = (): JSX.Element => {
 	const trackedUsers: TrackedUsers = useTypedSelector(
 		(state) => state.trackedUsers
 	);
-
 	const dataArray = trackedUsers ? Object.entries(trackedUsers) : [];
-	const mappedUsers = dataArray.map(([key, value]) => ({
-		alias: value.alias,
-		id: key,
-		locationVisible: value.locationVisible,
-		routeVisible: value.routeVisible,
-		userId: value.userId,
-	}));
+	const mappedUsers = dataArray
+		.map(([key, value]) => ({
+			alias: value.alias,
+			id: key,
+			locationVisible: value.locationVisible,
+			routeVisible: value.routeVisible,
+			userId: value.userId,
+		}))
+		.sort((a, b) => a.alias.localeCompare(b.alias));
 
 	return (
 		<View
