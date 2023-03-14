@@ -5,13 +5,13 @@
 	"build": {
 		"production": {
 			"env": {
-				"URI": "https://berry-picker-tracker.cs.helsinki.fi/v1"
+				"URI": "https://ohtup-staging.cs.helsinki.fi/bpt-stage"
 			}
 		},
 		"development": {
 			"distribution": "internal",
 			"env": {
-				"URI": "https://berry-picker-tracker.cs.helsinki.fi/dev"
+				"URI": "https://ohtup-staging.cs.helsinki.fi/bpt-stage"
 			}
 		},
 		"apk": {
