@@ -1,19 +1,9 @@
 import { TextInput, View } from "react-native";
+import { InputContainerProps } from "../../types";
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import RouteButton from "./route-button";
-
-interface Props {
-	/** Sets user ID state at find-user-route-screen */
-	setUserId: React.Dispatch<React.SetStateAction<string>>;
-	/** User ID */
-	userId: string;
-	/** Function to search users latest route from the server */
-	findUserRoute: () => void;
-	/** Text on a input button */
-	buttonText: string;
-}
 
 /**
  * Input container where user can search and update other users latest route
@@ -24,7 +14,7 @@ const InputContainer = ({
 	userId,
 	findUserRoute,
 	buttonText,
-}: Props): JSX.Element => {
+}: InputContainerProps): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	return (
 		<View style={Styles.inputContainer}>

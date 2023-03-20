@@ -1,17 +1,16 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { ToggleButtonProps } from "../../types";
 import { useTypedSelector } from "../store";
 
 import Styles from "../styles";
 import theme from "../styles/theme";
 
-interface Props {
-	iconName: string;
-	onPress: () => void;
-	text: string;
-}
-
-const ToggleButton = ({ iconName, onPress, text }: Props): JSX.Element => {
+const ToggleButton = ({
+	iconName,
+	onPress,
+	text,
+}: ToggleButtonProps): JSX.Element => {
 	const active = useTypedSelector((state) => state.route.active);
 	const toggled = useTypedSelector((state) => state.ui.routeButtonsVisible);
 	const recordingColor = theme.colors.recordingColor;

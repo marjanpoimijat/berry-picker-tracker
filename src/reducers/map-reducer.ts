@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch } from "../store";
-import { Map } from "../types";
+import { Map } from "../../types";
 
 const initialState = Map.nlsTopographic;
 

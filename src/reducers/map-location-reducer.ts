@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { MapLocation } from "../../types";
 import type { AppDispatch } from "../store";
-
-interface MapLocation {
-	coords: {
-		latitude: number;
-		longitude: number;
-		latitudeDelta: number;
-		longitudeDelta: number;
-	};
-}
 
 const initialState = {
 	coords: {

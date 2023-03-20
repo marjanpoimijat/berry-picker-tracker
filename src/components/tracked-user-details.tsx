@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import {
+	ButtonProps,
+	DotProps,
+	LocationVisibleButtonProps,
+	RouteVisibleButtonProps,
+	TrackedUserFull,
+	UsernameProps,
+} from "../../types";
 import { addNewTrackedUser } from "../reducers/tracker-users-reducer";
 import { useTypedDispatch } from "../store";
 
@@ -8,21 +16,13 @@ import Styles from "../styles";
 import { colors } from "../utils/colors";
 import { secureStoreUpdateTrackedUser } from "../utils/secure-store";
 
-interface TrackedUser {
-	id: number;
-	locationVisible: boolean;
-	routeVisible: boolean;
-	userId: string;
-	username: string;
-}
-
 const TrackedUserDetails = ({
 	id,
 	locationVisible,
 	routeVisible,
 	userId,
 	username,
-}: TrackedUser) => {
+}: TrackedUserFull) => {
 	const [localLocationVisible, setLocalLocationVisible] =
 		useState<boolean>(locationVisible);
 	const [localRouteVisible, setLocalRouteVisible] =
@@ -95,10 +95,6 @@ const TrackedUserDetails = ({
 	);
 };
 
-interface DotProps {
-	id: number;
-}
-
 const Dot = ({ id }: DotProps) => (
 	<View style={Styles.trackedUserDetailsDotContainer}>
 		<View
@@ -110,18 +106,9 @@ const Dot = ({ id }: DotProps) => (
 	</View>
 );
 
-interface UsernameProps {
-	username: string;
-}
-
 const Username = ({ username }: UsernameProps) => (
 	<Text style={Styles.trackedUserDetailsUsername}>{username}</Text>
 );
-
-interface LocationVisibleButtonProps {
-	locationVisible: boolean;
-	handleLocationVisibleChange: () => void;
-}
 
 const LocationVisibleButton = ({
 	locationVisible,
@@ -139,12 +126,6 @@ const LocationVisibleButton = ({
 	</TouchableOpacity>
 );
 
-interface RouteVisibleButtonProps {
-	locationVisible: boolean;
-	routeVisible: boolean;
-	handleRouteVisibleChange: () => void;
-}
-
 const RouteVisibleButton = ({
 	locationVisible,
 	routeVisible,
@@ -157,11 +138,6 @@ const RouteVisibleButton = ({
 		<Button disabled={!locationVisible || !routeVisible} name="route" />
 	</TouchableOpacity>
 );
-
-interface ButtonProps {
-	disabled: boolean;
-	name: string;
-}
 
 const Button = ({ disabled, name }: ButtonProps) => (
 	<Icon color={disabled ? "gray" : "black"} name={name} size={19} />

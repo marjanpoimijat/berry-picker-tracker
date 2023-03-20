@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import Styles from "../styles";
-import { Waypoint } from "../types";
+import { FindUserRouteContainerProps } from "../../types";
 import FindUserRouteMap from "./find-user-route-map";
 
 /**
@@ -10,10 +10,7 @@ import FindUserRouteMap from "./find-user-route-map";
 const FindUserRouteContainer = ({
 	usersWaypoints,
 	infoText,
-}: {
-	usersWaypoints: Waypoint[] | null;
-	infoText: string;
-}): JSX.Element => {
+}: FindUserRouteContainerProps): JSX.Element => {
 	return (
 		<View style={Styles.smallMapViewContainer}>
 			{usersWaypoints ? (

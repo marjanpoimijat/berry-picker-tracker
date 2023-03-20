@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch } from "../store";
-import { TrackedUser } from "../types";
+import { TrackedUser } from "../../types";
 
 const trackedUsersSlice = createSlice({
 	initialState: {},

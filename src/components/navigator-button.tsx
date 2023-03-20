@@ -5,13 +5,13 @@ import { Link } from "react-router-native";
 import Styles from "../styles";
 import theme from "../styles/theme";
 
-interface Props {
-	iconName: string;
-	path: string;
-	text: string;
-}
+import { NavigatorButtonProps } from "../../types";
 
-const NavigatorButton = ({ iconName, path, text }: Props): JSX.Element => {
+const NavigatorButton = ({
+	iconName,
+	path,
+	text,
+}: NavigatorButtonProps): JSX.Element => {
 	return (
 		<Link to={path} underlayColor={theme.colors.buttonUnderlayColor}>
 			<View style={Styles.navigatorButton}>

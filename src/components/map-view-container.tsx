@@ -7,7 +7,13 @@ import { setMapLocation } from "../reducers/map-location-reducer";
 import { getUsersLatestRoute } from "../requests";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import { TrackedUsers, Waypoint, WaypointFromServer } from "../types";
+import {
+	Coordinate,
+	TrackedUserRouteProps,
+	TrackedUsers,
+	Waypoint,
+	WaypointFromServer,
+} from "../../types";
 import { colors } from "../utils/colors";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
 
@@ -26,11 +32,6 @@ function getCircleColor(color: string): string {
 		default:
 			return "rgba(228, 68, 68, 0.05)";
 	}
-}
-
-interface Coordinate {
-	latitude: number;
-	longitude: number;
 }
 
 /**
@@ -156,18 +157,6 @@ const MapViewContainer = (): JSX.Element => {
 		</View>
 	);
 };
-
-interface TrackedUser {
-	alias: string;
-	locationVisible: boolean;
-	routeVisible: boolean;
-	userId: string;
-}
-
-interface TrackedUserRouteProps {
-	id: number;
-	user: TrackedUser;
-}
 
 const TrackedUserRoute = ({ id, user }: TrackedUserRouteProps) => {
 	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);

@@ -32,7 +32,7 @@ import {
 	deleteTileCacheDirectory,
 	makeTileCacheDirectory,
 } from "../utils/file-system";
-import { Language, Map } from "../types";
+import { Language, Map } from "../../types";
 import { setUsername } from "../reducers/user-reducer";
 
 export const SettingScreen = () => {

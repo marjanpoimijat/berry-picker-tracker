@@ -9,7 +9,7 @@ import { setUserId } from "../reducers/find-user-reducer";
 import { getUsersLatestRoute } from "../requests";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import { Waypoint, WaypointFromServer } from "../types";
+import { Waypoint, WaypointFromServer } from "../../types";
 
 const FindUserRouteScreen = () => {
 	const language = useTypedSelector((state) => state.language);

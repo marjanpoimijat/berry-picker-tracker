@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
-import { TrackedUsers } from "../types";
+import { TrackedUsers } from "../../types";
 
 import TrackedUserDetails from "./tracked-user-details";
 

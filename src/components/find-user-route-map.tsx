@@ -5,7 +5,7 @@ import { baseUrl } from "../constants";
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
-import { usersLocationInfo } from "../types";
+import { UsersLocationInfo } from "../../types";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
 import { formatDate } from "../utils/date";
 
@@ -18,7 +18,7 @@ import { formatDate } from "../utils/date";
 const FindUserRouteMap = ({
 	usersWaypoints,
 	usersLatestWaypoint,
-}: usersLocationInfo): JSX.Element => {
+}: UsersLocationInfo): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
 	const currMap = useTypedSelector((state) => state.map);

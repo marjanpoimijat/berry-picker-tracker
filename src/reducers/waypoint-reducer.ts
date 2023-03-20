@@ -3,7 +3,7 @@ import type { AppDispatch, ReduxState } from "../store";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { sendNewWaypoint } from "../requests";
-import { Waypoint, WaypointState } from "../types";
+import { Waypoint, WaypointState } from "../../types";
 import {
 	NetworkConnectionInformation,
 	getNetworkCellularGeneration,

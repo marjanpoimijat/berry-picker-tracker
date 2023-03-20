@@ -1,17 +1,16 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { TrackingButtonProps } from "../../types";
 import { useTypedSelector } from "../store";
 
 import Styles from "../styles";
 import theme from "../styles/theme";
 
-interface Props {
-	iconName: string;
-	onPress: () => void;
-	text: string;
-}
-
-const TrackingButton = ({ iconName, onPress, text }: Props): JSX.Element => {
+const TrackingButton = ({
+	iconName,
+	onPress,
+	text,
+}: TrackingButtonProps): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
 	const toggledColor = theme.colors.buttonToggledBackgroundColor;
 

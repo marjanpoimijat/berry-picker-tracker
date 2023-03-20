@@ -1,12 +1,6 @@
 import { Text, View, TouchableOpacity } from "react-native";
+import { RouteButtonProps } from "../../types";
 import Styles from "../styles";
-
-interface Props {
-	/** On press function */
-	onPress: () => void;
-	/** Button text */
-	text: string;
-}
 
 /**
  * Route button component which can perform on press functions
@@ -14,7 +8,7 @@ interface Props {
  * Just preliminary styling and location on a screen.
  * @param {string} text Button text
  */
-const RouteButton = ({ onPress, text }: Props): JSX.Element => {
+const RouteButton = ({ onPress, text }: RouteButtonProps): JSX.Element => {
 	return (
 		<View style={Styles.routeButton}>
 			<TouchableOpacity onPress={onPress}>
