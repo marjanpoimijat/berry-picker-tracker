@@ -28,18 +28,16 @@
 		"@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
 		"@typescript-eslint/semi": ["error"],
 		"arrow-spacing": ["error", { "before": true, "after": true }],
+		"camelcase": "error",
 		"eqeqeq": "error",
 		"max-len": ["error", { "code": 120, "tabWidth": 4 }],
 		"max-statements-per-line": ["error", { "max": 1 }],
 		"no-multi-spaces": "error",
 		"no-trailing-spaces": "error",
 		"no-unneeded-ternary": "error",
+		"prefer-arrow-callback": "error",
 		"react/jsx-sort-props": ["error", { "ignoreCase": true }],
 		"react/react-in-jsx-scope": "off",
-		"sort-keys": [
-			"error",
-			"asc",
-			{ "caseSensitive": true, "natural": false, "minKeys": 2 }
-		]
+		"sort-keys": ["error", "asc", { "caseSensitive": true, "natural": false, "minKeys": 2 }]
 	}
 }
