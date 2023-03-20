@@ -16,18 +16,6 @@ export interface DotProps {
 	id: number;
 }
 
-export interface FindUserRouteContainerProps {
-	usersWaypoints: Waypoint[] | null;
-	infoText: string;
-}
-
-export interface InputContainerProps {
-	setUserId: React.Dispatch<React.SetStateAction<string>>;
-	userId: string;
-	findUserRoute: () => void;
-	buttonText: string;
-}
-
 export enum Language {
 	English = "en",
 	Finnish = "fi",
@@ -136,11 +124,6 @@ export interface User {
 
 export interface UsernameProps {
 	username: string;
-}
-
-export interface UsersLocationInfo {
-	usersWaypoints: Waypoint[];
-	usersLatestWaypoint: null | Waypoint;
 }
 
 export interface Waypoint {
