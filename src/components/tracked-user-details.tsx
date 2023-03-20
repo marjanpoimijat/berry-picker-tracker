@@ -9,7 +9,7 @@ import {
 	RouteVisibleButtonProps,
 	TrackedUser,
 	UsernameProps,
-} from "../../types";
+} from "../types";
 import { languages } from "../languages";
 import {
 	addTrackedUser,

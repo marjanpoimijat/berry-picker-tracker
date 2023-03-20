@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { ToggleButtonProps } from "../../types";
+import { ToggleButtonProps } from "../types";
 import { useTypedSelector } from "../store";
 
 import Styles from "../styles";

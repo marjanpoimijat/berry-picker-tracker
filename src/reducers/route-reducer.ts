@@ -5,7 +5,7 @@ import {
 	deactivateExistingRoute,
 	sendNewWaypoint,
 } from "../requests";
-import { Route, User } from "../../types";
+import { Route, User } from "../types";
 import { setRouteId, initializeWaypoints } from "./waypoint-reducer";
 import {
 	startBackgroundUpdate,

@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { TrackingButtonProps } from "../../types";
+import { TrackingButtonProps } from "../types";
 import { useTypedSelector } from "../store";
 
 import Styles from "../styles";

@@ -5,7 +5,7 @@ import { Link } from "react-router-native";
 import Styles from "../styles";
 import theme from "../styles/theme";
 
-import { NavigatorButtonProps } from "../../types";
+import { NavigatorButtonProps } from "../types";
 
 const NavigatorButton = ({
 	iconName,

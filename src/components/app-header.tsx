@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import { AppHeaderProps } from "../../types";
+import { AppHeaderProps } from "../types";
 import Styles from "../styles";
 
 /**

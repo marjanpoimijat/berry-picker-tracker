@@ -1,5 +1,5 @@
 import { Text, View, TouchableOpacity } from "react-native";
-import { ShareButtonProps } from "../../types";
+import { ShareButtonProps } from "../types";
 import Styles from "../styles";
 
 /**

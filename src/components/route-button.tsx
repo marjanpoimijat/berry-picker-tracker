@@ -1,5 +1,5 @@
 import { Text, View, TouchableOpacity } from "react-native";
-import { RouteButtonProps } from "../../types";
+import { RouteButtonProps } from "../types";
 import Styles from "../styles";
 
 /**

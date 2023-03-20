@@ -28,7 +28,10 @@ tracked: {
 
 import { store } from "../store";
 
-export async function secureStoreAddTracked(userId: string, username: string) {
+export const secureStoreAddTracked = async (
+	userId: string,
+	username: string
+) => {
 	console.log("secureStoreAddTracked()");
 	try {
 		const objectExists = await secureStoreGetTrackedObject();
@@ -58,9 +61,9 @@ export async function secureStoreAddTracked(userId: string, username: string) {
 	} catch (error) {
 		console.log(`Failed to save key "${userId}". Error: ${error}`);
 	}
-}
+};
 
-export async function secureStoreGetTrackedUser(key: string) {
+export const secureStoreGetTrackedUser = async (key: string) => {
 	console.log("secureStoreGetTrackedUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
@@ -79,13 +82,13 @@ export async function secureStoreGetTrackedUser(key: string) {
 	} catch (error) {
 		console.log(`Failed to get user "${key}". Error: ${error}`);
 	}
-}
+};
 
-export async function secureStoreUpdateTrackedUser(
+export const secureStoreUpdateTrackedUser = async (
 	userId: string,
 	location: boolean,
 	route: boolean
-) {
+) => {
 	console.log("secureStoreUpdateTrackedUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
@@ -109,9 +112,9 @@ export async function secureStoreUpdateTrackedUser(
 			`Failed to flip routeVisible for user "${userId}". Error: ${error}`
 		);
 	}
-}
+};
 
-export async function secureStoreDeleteTrackedUser(key: string) {
+export const secureStoreDeleteTrackedUser = async (key: string) => {
 	console.log("secureStoreDeleteTrackedUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
@@ -127,9 +130,9 @@ export async function secureStoreDeleteTrackedUser(key: string) {
 	} catch (error) {
 		console.log(`Failed to delete key "${key}". Error: ${error}`);
 	}
-}
+};
 
-export async function secureStoreInitializeTrackedObject() {
+export const secureStoreInitializeTrackedObject = async () => {
 	console.log("secureStoreInitializeTrackedObject()");
 	try {
 		await SecureStore.setItemAsync("tracked", "{}");
@@ -137,9 +140,9 @@ export async function secureStoreInitializeTrackedObject() {
 	} catch (error) {
 		console.log(`Failed to initialize "tracked" object. Error: ${error}`);
 	}
-}
+};
 
-export async function secureStoreGetAllTrackedUsers() {
+export const secureStoreGetAllTrackedUsers = async () => {
 	//secureStoreDeleteTrackedObject();
 	console.log("secureStoreGetAllTrackedUsers()");
 	try {
@@ -149,9 +152,9 @@ export async function secureStoreGetAllTrackedUsers() {
 	} catch (error) {
 		console.log(`Failed to get all users. Error: ${error}`);
 	}
-}
+};
 
-export async function secureStoreDeleteTrackedObject() {
+export const secureStoreDeleteTrackedObject = async () => {
 	console.log("secureStoreDeleteTrackedObject()");
 	try {
 		const result = await SecureStore.getItemAsync("tracked");
@@ -162,9 +165,9 @@ export async function secureStoreDeleteTrackedObject() {
 	} catch (error) {
 		console.log(`Failed to delete "tracked" object. Error: ${error}`);
 	}
-}
+};
 
-export async function secureStoreGetTrackedObject() {
+export const secureStoreGetTrackedObject = async () => {
 	console.log("secureStoreGetTrackedObject()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
@@ -174,27 +177,27 @@ export async function secureStoreGetTrackedObject() {
 			`Failed to check whether "tracked" object exists. Error: ${error}`
 		);
 	}
-}
+};
 
-export async function secureStoreAddCryptoKey(key: string) {
+export const secureStoreAddCryptoKey = async (key: string) => {
 	try {
 		await SecureStore.setItemAsync("cryptoKey", key);
 		console.log("Crypto key updated.");
 	} catch (error) {
 		console.log(`Failed to save crypto key. Error: ${error}`);
 	}
-}
+};
 
-export async function secureStoreGetCryptoKey() {
+export const secureStoreGetCryptoKey = async () => {
 	try {
 		const cryptoKey = await SecureStore.getItemAsync("cryptoKey");
 		return cryptoKey;
 	} catch (error) {
 		console.log(`Failed to get crypto key. Error: ${error}`);
 	}
-}
+};
 
-export async function secureStoreDeleteCryptoKey() {
+export const secureStoreDeleteCryptoKey = async () => {
 	try {
 		const result = await SecureStore.getItemAsync("cryptoKey");
 		if (result) {
@@ -204,4 +207,4 @@ export async function secureStoreDeleteCryptoKey() {
 	} catch (error) {
 		console.log(`Failed to delete cryptoKey. Error: ${error}`);
 	}
-}
+};
