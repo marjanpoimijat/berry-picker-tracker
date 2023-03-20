@@ -7,7 +7,7 @@ import {
 	LocationVisibleButtonProps,
 	RemoveButtonProps,
 	RouteVisibleButtonProps,
-	TrackedUserFull,
+	TrackedUser,
 	UsernameProps,
 } from "../../types";
 import { languages } from "../languages";
@@ -26,7 +26,7 @@ const TrackedUserDetails = ({
 	routeVisible,
 	userId,
 	username,
-}: TrackedUserFull) => {
+}: TrackedUser) => {
 	const language = useTypedSelector((state) => state.language);
 	const [localLocationVisible, setLocalLocationVisible] =
 		useState<boolean>(locationVisible);
@@ -41,10 +41,11 @@ const TrackedUserDetails = ({
 			setLocalRouteVisible(false);
 			dispatch(
 				addTrackedUser({
-					alias: username,
+					id: id,
 					locationVisible: false,
 					routeVisible: false,
 					userId: userId,
+					username: username,
 				})
 			);
 			secureStoreUpdateTrackedUser(userId, false, false);
@@ -52,10 +53,11 @@ const TrackedUserDetails = ({
 			setLocalLocationVisible(true);
 			dispatch(
 				addTrackedUser({
-					alias: username,
-					locationVisible: true,
-					routeVisible: localRouteVisible,
+					id: id,
+					locationVisible: false,
+					routeVisible: false,
 					userId: userId,
+					username: username,
 				})
 			);
 			secureStoreUpdateTrackedUser(userId, true, localRouteVisible);
@@ -66,10 +68,11 @@ const TrackedUserDetails = ({
 		setLocalRouteVisible(!localRouteVisible);
 		dispatch(
 			addTrackedUser({
-				alias: username,
-				locationVisible: localLocationVisible,
-				routeVisible: !localRouteVisible,
+				id: id,
+				locationVisible: false,
+				routeVisible: false,
 				userId: userId,
+				username: username,
 			})
 		);
 		secureStoreUpdateTrackedUser(

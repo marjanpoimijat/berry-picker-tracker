@@ -1,5 +1,5 @@
 import * as SecureStore from "expo-secure-store";
-import { addNewTrackedUser } from "../reducers/tracker-users-reducer";
+import { addTrackedUser } from "../reducers/tracker-users-reducer";
 
 /**
  * SecureStore is used to store tracked users' information
@@ -10,23 +10,25 @@ import { addNewTrackedUser } from "../reducers/tracker-users-reducer";
  *
 tracked: {
 	Y0QsWBzUwP89: {
-		alias: 'John',
+		id: 1,
 		locationVisible: true,
 		routeVisible: true,
 		userId: 'Y0QsWBzUwP89',
+		username: Jorma,
 	},
 	W9RZL7VXJ3FK: {
-		alias: 'Mary',
+		id: 2,
 		locationVisible: true,
 		routeVisible: false,
 		userId: 'W9RZL7VXJ3FK',
+		username: Seppo,
 	},
 }
  */
 
 import { store } from "../store";
 
-export async function secureStoreAddTracked(userId: string, alias: string) {
+export async function secureStoreAddTracked(userId: string, username: string) {
 	console.log("secureStoreAddTracked()");
 	try {
 		const objectExists = await secureStoreGetTrackedObject();
@@ -41,12 +43,13 @@ export async function secureStoreAddTracked(userId: string, alias: string) {
 		if (tracked) {
 			const trackedJson = JSON.parse(tracked);
 			const trackedObject = {
-				alias: alias,
+				id: -1,
 				locationVisible: true,
 				routeVisible: true,
 				userId: userId,
+				username: username,
 			};
-			store.dispatch(addNewTrackedUser(trackedObject));
+			store.dispatch(addTrackedUser(trackedObject));
 			trackedJson[userId] = trackedObject;
 			const newTracked = JSON.stringify(trackedJson);
 			await SecureStore.setItemAsync("tracked", newTracked);
@@ -137,7 +140,7 @@ export async function secureStoreInitializeTrackedObject() {
 }
 
 export async function secureStoreGetAllTrackedUsers() {
-	secureStoreDeleteTrackedObject();
+	//secureStoreDeleteTrackedObject();
 	console.log("secureStoreGetAllTrackedUsers()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");

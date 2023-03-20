@@ -19,13 +19,13 @@ const TrackUserMenu = (): JSX.Element => {
 	const dataArray = trackedUsers ? Object.entries(trackedUsers) : [];
 	const mappedUsers = dataArray
 		.map(([key, value]) => ({
-			alias: value.alias,
 			id: key,
 			locationVisible: value.locationVisible,
 			routeVisible: value.routeVisible,
 			userId: value.userId,
+			username: value.username,
 		}))
-		.sort((a, b) => a.alias.localeCompare(b.alias));
+		.sort((a, b) => a.username.localeCompare(b.username));
 
 	return (
 		<View
@@ -48,7 +48,7 @@ const TrackUserMenu = (): JSX.Element => {
 							locationVisible={user.locationVisible}
 							routeVisible={user.routeVisible}
 							userId={user.userId}
-							username={user.alias}
+							username={user.username}
 						/>
 						<View style={{ alignItems: "center" }}>
 							<View style={Styles.divider} />

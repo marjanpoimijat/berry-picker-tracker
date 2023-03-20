@@ -11,15 +11,15 @@ export const addSharedUser = async () => {
 	if (!queryParams || !queryParams.userId) {
 		return;
 	}
-	const { userId, alias } = queryParams;
+	const { userId, username } = queryParams;
 	if (typeof userId !== "string") {
 		return;
 	}
 	const data = await getUsersLatestRoute(userId);
 	if (!data || data.routeId === undefined) {
-		console.log(`shared userId: ${alias} ${userId} is not found`);
+		console.log(`shared userId: ${username} ${userId} is not found`);
 		return;
 	}
-	console.log(`shared userId: ${alias} ${userId} is found`);
-	await secureStoreAddTracked(userId, `${alias}`);
+	console.log(`shared userId: ${username} ${userId} is found`);
+	await secureStoreAddTracked(userId, `${username}`);
 };

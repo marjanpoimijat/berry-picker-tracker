@@ -67,12 +67,13 @@ const MapViewContainer = (): JSX.Element => {
 	const dataArray = trackedUsers ? Object.entries(trackedUsers) : [];
 	const mappedUsers = dataArray
 		.map(([key, value]) => ({
-			alias: value.alias,
+			id: value.id,
 			locationVisible: value.locationVisible,
 			routeVisible: value.routeVisible,
 			userId: key,
+			username: value.username,
 		}))
-		.sort((a, b) => a.alias.localeCompare(b.alias));
+		.sort((a, b) => a.username.localeCompare(b.username));
 
 	return (
 		<View>

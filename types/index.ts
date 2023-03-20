@@ -82,14 +82,6 @@ export interface ToggleButtonProps {
 }
 
 export interface TrackedUser {
-	alias: string;
-	locationVisible: boolean;
-	routeVisible: boolean;
-	userId: string;
-}
-
-// Combine with Tracked User
-export interface TrackedUserFull {
 	id: number;
 	locationVisible: boolean;
 	routeVisible: boolean;
@@ -98,12 +90,7 @@ export interface TrackedUserFull {
 }
 
 export type TrackedUsers = {
-	[key: string]: {
-		alias: string;
-		locationVisible: boolean;
-		routeVisible: boolean;
-		userId: string;
-	};
+	[key: string]: TrackedUser;
 };
 
 export interface TrackedUserRouteProps {
