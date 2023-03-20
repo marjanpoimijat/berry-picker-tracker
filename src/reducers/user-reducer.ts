@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch, ReduxState } from "../store";
 import { createNewUser } from "../requests";
-import { User } from "../../types";
+import { User } from "../types";
 import { restartBackgroundUpdate } from "../utils/location-tracking";
 
 const initialState: User = {

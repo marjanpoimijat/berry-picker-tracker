@@ -1,4 +1,4 @@
-import { Waypoint, WaypointFromServer } from "../types";
+import { Waypoint, WaypointFromServer } from "./types";
 import { baseUrl } from "./constants";
 
 export const createNewUser = async () => {

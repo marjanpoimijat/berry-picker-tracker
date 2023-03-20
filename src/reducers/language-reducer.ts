@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch } from "../store";
-import { Language } from "../../types";
+import { Language } from "../types";
 
 const initialState = Language.English;
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import MapView, { Polyline, UrlTile, Circle, Marker } from "react-native-maps";
-
 import { baseUrl } from "../constants";
 import { setMapLocation } from "../reducers/map-location-reducer";
 import { getUsersLatestRoute } from "../requests";
@@ -13,9 +12,10 @@ import {
 	TrackedUsers,
 	Waypoint,
 	WaypointFromServer,
-} from "../../types";
+} from "../types";
 import { colors } from "../utils/colors";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
+import sortTrackedUserList from "../utils/sort";
 
 function getCircleColor(color: string): string {
 	switch (color) {
@@ -50,6 +50,12 @@ const MapViewContainer = (): JSX.Element => {
 		state.map,
 	]);
 	const [coordinates, setCoordinates] = useState<Coordinate | null>(null);
+	const [users, setUsers] = useState<TrackedUsers>({});
+	const sortedUsers = sortTrackedUserList(users);
+
+	useEffect(() => {
+		setUsers(trackedUsers);
+	}, []);
 
 	const dispatch = useTypedDispatch();
 
@@ -63,17 +69,6 @@ const MapViewContainer = (): JSX.Element => {
 		const { coordinate } = event.nativeEvent;
 		setCoordinates(coordinate);
 	};
-
-	const dataArray = trackedUsers ? Object.entries(trackedUsers) : [];
-	const mappedUsers = dataArray
-		.map(([key, value]) => ({
-			id: value.id,
-			locationVisible: value.locationVisible,
-			routeVisible: value.routeVisible,
-			userId: key,
-			username: value.username,
-		}))
-		.sort((a, b) => a.username.localeCompare(b.username));
 
 	return (
 		<View>
@@ -119,7 +114,7 @@ const MapViewContainer = (): JSX.Element => {
 					strokeWidth={6.5}
 					zIndex={1}
 				/>
-				{mappedUsers.map((user, index) => (
+				{sortedUsers.map((user, index) => (
 					<TrackedUserRoute id={index} key={index} user={user} />
 				))}
 				{localWaypoints.map((waypoint, index) => {

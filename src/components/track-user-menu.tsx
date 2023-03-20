@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
-import { TrackedUsers } from "../../types";
+import { TrackedUsers } from "../types";
+import sortTrackedUserList from "../utils/sort";
 
 import TrackedUserDetails from "./tracked-user-details";
 
@@ -13,19 +15,13 @@ import TrackedUserDetails from "./tracked-user-details";
 const TrackUserMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
-	const trackedUsers: TrackedUsers = useTypedSelector(
-		(state) => state.trackedUsers
-	);
-	const dataArray = trackedUsers ? Object.entries(trackedUsers) : [];
-	const mappedUsers = dataArray
-		.map(([key, value]) => ({
-			id: key,
-			locationVisible: value.locationVisible,
-			routeVisible: value.routeVisible,
-			userId: value.userId,
-			username: value.username,
-		}))
-		.sort((a, b) => a.username.localeCompare(b.username));
+	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
+	const [users, setUsers] = useState<TrackedUsers>({});
+	const sortedUsers = sortTrackedUserList(users);
+
+	useEffect(() => {
+		setUsers(trackedUsers);
+	}, []);
 
 	return (
 		<View
@@ -41,7 +37,7 @@ const TrackUserMenu = (): JSX.Element => {
 						{languages["Tracking"][language]}
 					</Text>
 				</View>
-				{mappedUsers.map((user, index) => (
+				{sortedUsers.map((user, index) => (
 					<View key={index}>
 						<TrackedUserDetails
 							id={index}
