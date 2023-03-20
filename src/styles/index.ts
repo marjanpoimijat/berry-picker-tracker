@@ -265,15 +265,11 @@ const Styles = StyleSheet.create({
 		fontSize: 22,
 	},
 	trackedUserDetailsButtonContainer: {
-		//borderColor: "black",
-		//borderWidth: 1,
 		display: "flex",
 		flexDirection: "row",
 		justifyContent: "center",
 	},
 	trackedUserDetailsContainer: {
-		//borderColor: "black",
-		//borderWidth: 1,
 		display: "flex",
 		flexDirection: "row",
 		justifyContent: "space-between",
@@ -281,15 +277,11 @@ const Styles = StyleSheet.create({
 	},
 	trackedUserDetailsDot: {
 		backgroundColor: "red",
-		//borderColor: 'black',
 		borderRadius: 10,
-		//borderWidth: 1,
 		height: 13,
 		width: 13,
 	},
 	trackedUserDetailsDotContainer: {
-		//borderColor: "black",
-		//borderWidth: 1,
 		justifyContent: "center",
 		padding: 5,
 	},
@@ -298,8 +290,6 @@ const Styles = StyleSheet.create({
 		flexDirection: "row",
 	},
 	trackedUserDetailsUsername: {
-		//borderColor: "black",
-		//borderWidth: 1,
 		fontSize: 18,
 	},
 	trackedUserDot: {

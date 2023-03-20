@@ -1,17 +1,21 @@
 import { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import {
 	ButtonProps,
 	DotProps,
 	LocationVisibleButtonProps,
+	RemoveButtonProps,
 	RouteVisibleButtonProps,
 	TrackedUserFull,
 	UsernameProps,
 } from "../../types";
-import { addNewTrackedUser } from "../reducers/tracker-users-reducer";
-import { useTypedDispatch } from "../store";
-
+import { languages } from "../languages";
+import {
+	addTrackedUser,
+	removeTrackedUser,
+} from "../reducers/tracker-users-reducer";
+import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import { colors } from "../utils/colors";
 import { secureStoreUpdateTrackedUser } from "../utils/secure-store";
@@ -23,6 +27,7 @@ const TrackedUserDetails = ({
 	userId,
 	username,
 }: TrackedUserFull) => {
+	const language = useTypedSelector((state) => state.language);
 	const [localLocationVisible, setLocalLocationVisible] =
 		useState<boolean>(locationVisible);
 	const [localRouteVisible, setLocalRouteVisible] =
@@ -35,7 +40,7 @@ const TrackedUserDetails = ({
 			setLocalLocationVisible(false);
 			setLocalRouteVisible(false);
 			dispatch(
-				addNewTrackedUser({
+				addTrackedUser({
 					alias: username,
 					locationVisible: false,
 					routeVisible: false,
@@ -46,7 +51,7 @@ const TrackedUserDetails = ({
 		} else {
 			setLocalLocationVisible(true);
 			dispatch(
-				addNewTrackedUser({
+				addTrackedUser({
 					alias: username,
 					locationVisible: true,
 					routeVisible: localRouteVisible,
@@ -60,7 +65,7 @@ const TrackedUserDetails = ({
 	const handleRouteVisibleChange = () => {
 		setLocalRouteVisible(!localRouteVisible);
 		dispatch(
-			addNewTrackedUser({
+			addTrackedUser({
 				alias: username,
 				locationVisible: localLocationVisible,
 				routeVisible: !localRouteVisible,
@@ -71,6 +76,26 @@ const TrackedUserDetails = ({
 			userId,
 			localLocationVisible,
 			!localRouteVisible
+		);
+	};
+
+	const handleRemoveButtonPress = () => {
+		Alert.alert(
+			languages["Removing a tracked user"][language],
+			languages["Do you really want to remove this user from the list?"][
+				language
+			],
+			[
+				{
+					text: languages["Cancel"][language],
+				},
+				{
+					onPress: () => {
+						dispatch(removeTrackedUser(userId));
+					},
+					text: languages["Remove"][language],
+				},
+			]
 		);
 	};
 
@@ -90,6 +115,7 @@ const TrackedUserDetails = ({
 					locationVisible={localLocationVisible}
 					routeVisible={localRouteVisible}
 				/>
+				<RemoveButton handleRemoveButtonPress={handleRemoveButtonPress} />
 			</View>
 		</View>
 	);
@@ -114,14 +140,11 @@ const LocationVisibleButton = ({
 	locationVisible,
 	handleLocationVisibleChange,
 }: LocationVisibleButtonProps) => (
-	<TouchableOpacity
-		onPress={() => handleLocationVisibleChange()}
-		style={{ marginRight: 20 }}
-	>
+	<TouchableOpacity onPress={() => handleLocationVisibleChange()}>
 		{locationVisible ? (
-			<Button disabled={!locationVisible} name="eye" />
+			<Button disabled={!locationVisible} iconName="eye" />
 		) : (
-			<Button disabled={!locationVisible} name="eye-slash" />
+			<Button disabled={!locationVisible} iconName="eye-slash" />
 		)}
 	</TouchableOpacity>
 );
@@ -135,12 +158,23 @@ const RouteVisibleButton = ({
 		disabled={!locationVisible}
 		onPress={() => handleRouteVisibleChange()}
 	>
-		<Button disabled={!locationVisible || !routeVisible} name="route" />
+		<Button disabled={!locationVisible || !routeVisible} iconName="route" />
 	</TouchableOpacity>
 );
 
-const Button = ({ disabled, name }: ButtonProps) => (
-	<Icon color={disabled ? "gray" : "black"} name={name} size={19} />
+const RemoveButton = ({ handleRemoveButtonPress }: RemoveButtonProps) => (
+	<TouchableOpacity onPress={() => handleRemoveButtonPress()}>
+		<Button disabled={false} iconName="trash-alt" />
+	</TouchableOpacity>
+);
+
+const Button = ({ disabled, iconName }: ButtonProps) => (
+	<Icon
+		color={disabled ? "gray" : "black"}
+		name={iconName}
+		size={19}
+		style={{ marginLeft: 20 }}
+	/>
 );
 
 export default TrackedUserDetails;

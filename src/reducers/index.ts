@@ -8,7 +8,6 @@ import route from "./route-reducer";
 import trackedUsers from "./tracker-users-reducer";
 import ui from "./ui-reducer";
 import user from "./user-reducer";
-import userId from "./find-user-reducer";
 import waypoints from "./waypoint-reducer";
 
 export default combineReducers({
@@ -20,6 +19,5 @@ export default combineReducers({
 	trackedUsers,
 	ui,
 	user,
-	userId,
 	waypoints,
 });

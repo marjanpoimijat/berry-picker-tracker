@@ -69,6 +69,11 @@
 		"fi": "Haluatko varmasti tyhjentää karttaruutujen välimuistin?",
 		"sv": "Är du säker att du vill tömma kartans korttidsminne?"
 	},
+	"Do you really want to remove this user from the list?": {
+		"en": "Do you really want to remove this user from the list?",
+		"fi": "Haluatko varmasti poistaa tämän käyttäjän listalta?",
+		"sv": "Är du säker att du vill radera användaren från listan?"
+	},
 	"Do you really want to reset the userID?": {
 		"en": "Do you really want to reset the userID?",
 		"fi": "Haluatko varmasti alustaa käyttäjätunnuksen?",
@@ -243,6 +248,16 @@
 		"en": "Privacy policy",
 		"fi": "Yksityisyyskäytännöt",
 		"sv": "Integritetspolicy"
+	},
+	"Remove": {
+		"en": "Remove",
+		"fi": "Poista",
+		"sv": "Radera"
+	},
+	"Removing a tracked user": {
+		"en": "Removing a tracked user",
+		"fi": "Poistetaan seurattu käyttäjä",
+		"sv": "Radera den spårade användaren"
 	},
 	"Reset": {
 		"en": "Reset",

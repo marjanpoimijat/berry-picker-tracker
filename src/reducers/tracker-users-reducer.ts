@@ -1,16 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { AppDispatch } from "../store";
-import { TrackedUser } from "../../types";
+import { TrackedUser, TrackedUsers } from "../../types";
+
+const initialState: TrackedUsers = {};
 
 const trackedUsersSlice = createSlice({
-	initialState: {},
+	initialState: initialState,
 	name: "trackedUsers",
 	reducers: {
-		addNewTrackedUser(state, action: PayloadAction<TrackedUser>) {
+		addTrackedUser(state, action: PayloadAction<TrackedUser>) {
 			return {
 				...state,
 				[action.payload.userId]: action.payload,
 			};
+		},
+		removeTrackedUser(state, action: PayloadAction<string>) {
+			const newState = { ...state };
+			delete newState[action.payload];
+			return newState;
 		},
 		updateTrackedUser(state, action: PayloadAction<TrackedUser>) {
 			const updatedState = Object.assign({}, state, {
@@ -21,12 +27,7 @@ const trackedUsersSlice = createSlice({
 	},
 });
 
-export const { addNewTrackedUser } = trackedUsersSlice.actions;
-
-export const addTrackedUser = (newUser: TrackedUser) => {
-	return async (dispatch: AppDispatch) => {
-		dispatch(addNewTrackedUser(newUser));
-	};
-};
+export const { addTrackedUser, updateTrackedUser, removeTrackedUser } =
+	trackedUsersSlice.actions;
 
 export default trackedUsersSlice.reducer;

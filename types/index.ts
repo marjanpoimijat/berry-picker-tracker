@@ -4,7 +4,7 @@ export interface AppHeaderProps {
 
 export interface ButtonProps {
 	disabled: boolean;
-	name: string;
+	iconName: string;
 }
 
 export interface Coordinate {
@@ -47,6 +47,10 @@ export interface NavigatorButtonProps {
 	iconName: string;
 	path: string;
 	text: string;
+}
+
+export interface RemoveButtonProps {
+	handleRemoveButtonPress: () => void;
 }
 
 export interface Route {
