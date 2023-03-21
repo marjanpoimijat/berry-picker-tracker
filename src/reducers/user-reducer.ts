@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch, ReduxState } from "../store";
-import { createNewUser, deleteUser } from "../requests";
+import { createNewUser } from "../requests";
 import { User } from "../types";
 import { restartBackgroundUpdate } from "../utils/location-tracking";
 import { generateKeyString } from "../utils/crypto";
@@ -76,7 +76,7 @@ export const resetUser = () => {
 		const userId = getState().user.userId;
 		dispatch(setUser(null));
 		if (userId !== null) {
-			deleteUser(userId);
+			//deleteUser(userId);
 			await secureStoreDeleteCryptoKey();
 		}
 	};
