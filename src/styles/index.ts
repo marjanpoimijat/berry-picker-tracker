@@ -237,6 +237,14 @@ const Styles = StyleSheet.create({
 		fontSize: 13,
 		fontWeight: "bold",
 	},
+	trackUsersMasterButtonContainer: {
+		borderColor: "black",
+		borderWidth: 1,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "center",
+		padding: 10,
+	},
 	trackUsersMenuContainer: {
 		alignItems: "center",
 		alignSelf: "center",
