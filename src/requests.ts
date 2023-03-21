@@ -103,3 +103,22 @@ export const getUsersLatestRoute = async (userId: string) => {
 		console.log(error);
 	}
 };
+
+export const deleteUser = async (userId: string) => {
+	const url = `${baseUrl}/delete-user/`;
+	const settings = {
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			"user-id": userId,
+		},
+		method: "DELETE",
+	};
+	try {
+		const response = await fetch(url, settings);
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};

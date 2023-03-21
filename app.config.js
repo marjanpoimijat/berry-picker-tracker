@@ -20,7 +20,6 @@ export default {
 		barStyle: "light-content",
 	},
 	assetBundlePatterns: ["**/*"],
-	entryPoint: "./index.js",
 	extra: {
 		eas: {
 			projectId: process.env.PROJECT_ID,
@@ -60,7 +59,7 @@ export default {
 	splash: {
 		backgroundColor: "#cdf5b6",
 		image: "./assets/splash2.png",
-		resizeMode: "native",
+		resizeMode: "contain",
 	},
 	updates: {
 		fallbackToCacheTimeout: 0,

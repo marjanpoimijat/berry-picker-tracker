@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppDispatch, ReduxState } from "../store";
-import { createNewUser } from "../requests";
+import { createNewUser, deleteUser } from "../requests";
 import { User } from "../types";
 import { restartBackgroundUpdate } from "../utils/location-tracking";
 
@@ -67,9 +67,13 @@ export const identifyUser = () => {
  * @returns dispatch method to update user state
  */
 export const resetUser = () => {
-	return async (dispatch: AppDispatch) => {
+	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		console.log("Reseting user...");
+		const userId = getState().user.userId;
 		dispatch(setUser(null));
+		if (userId !== null) {
+			deleteUser(userId);
+		}
 	};
 };
 
