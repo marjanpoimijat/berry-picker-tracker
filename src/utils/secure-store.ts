@@ -24,6 +24,10 @@ tracked: {
 		username: Seppo,
 	},
 }
+ *
+ * example cryptokey object:
+ *
+"cryptoKey": "sd9fk3+f0sdf3"
  */
 
 import { store } from "../store";
@@ -134,11 +138,9 @@ export const secureStoreInitializeTrackedObject = async () => {
 };
 
 export const secureStoreGetAllTrackedUsers = async () => {
-	//secureStoreDeleteTrackedObject();
 	console.log("secureStoreGetAllTrackedUsers()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
-		//console.log(tracked);
 		if (tracked) return tracked;
 	} catch (error) {
 		console.log(`Failed to get all users. Error: ${error}`);
