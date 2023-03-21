@@ -1,4 +1,5 @@
 import * as Linking from "expo-linking";
+import { increment } from "./reducers/id-reducer";
 import { addTrackedUser } from "./reducers/tracker-users-reducer";
 import { getUsersLatestRoute } from "./requests";
 import { store } from "./store";
@@ -25,12 +26,14 @@ export const addSharedUser = async () => {
 		return;
 	}
 	console.log(`shared userId: ${username} ${userId} is found`);
+	const id = store.getState().id;
 	const trackedObject = {
-		id: 1,
+		id: id,
 		locationVisible: true,
 		routeVisible: true,
 		userId: userId,
 		username: username,
 	};
+	store.dispatch(increment());
 	store.dispatch(addTrackedUser(trackedObject));
 };
