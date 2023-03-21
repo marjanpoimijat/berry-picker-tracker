@@ -2,7 +2,7 @@ import CryptoES from "crypto-es";
 import * as Crypto from "expo-crypto";
 
 export const encrypt = (message: string, key: string) => {
-	const encrypted = CryptoES.AES.encrypt(message, key).toString();
+	const encrypted = CryptoES.AES.encrypt(message, key, { iv: generateWordArray(16) }).toString();
 	console.log(encrypted);
 	return encrypted;
 };
