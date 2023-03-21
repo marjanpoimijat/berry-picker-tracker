@@ -1,20 +1,14 @@
 import { useState } from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import {
-	ButtonProps,
-	DotProps,
-	LocationVisibleButtonProps,
-	RemoveButtonProps,
-	RouteVisibleButtonProps,
-	TrackedUser,
-	UsernameProps,
-} from "../types";
+import { Alert, Text, View } from "react-native";
 import { languages } from "../languages";
+import { DotProps, TrackedUser, UsernameProps } from "../types";
 import { addTrackedUser, removeTrackedUser } from "../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import { colors } from "../utils/colors";
+import LocationVisibleButton from "./location-visible-button";
+import RouteVisibleButton from "./route-visible-button";
+import RemoveButton from "./remove-button";
 
 const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, username }: TrackedUser) => {
 	const language = useTypedSelector((state) => state.language);
@@ -119,51 +113,5 @@ const Dot = ({ id }: DotProps) => (
 );
 
 const Username = ({ username }: UsernameProps) => <Text style={Styles.trackedUserDetailsUsername}>{username}</Text>;
-
-const LocationVisibleButton = ({ locationVisible, handleLocationVisibleChange }: LocationVisibleButtonProps) => (
-	<TouchableOpacity onPress={() => handleLocationVisibleChange()}>
-		{locationVisible ? (
-			<Button
-				disabled={!locationVisible}
-				iconName="eye"
-			/>
-		) : (
-			<Button
-				disabled={!locationVisible}
-				iconName="eye-slash"
-			/>
-		)}
-	</TouchableOpacity>
-);
-
-const RouteVisibleButton = ({ locationVisible, routeVisible, handleRouteVisibleChange }: RouteVisibleButtonProps) => (
-	<TouchableOpacity
-		disabled={!locationVisible}
-		onPress={() => handleRouteVisibleChange()}
-	>
-		<Button
-			disabled={!locationVisible || !routeVisible}
-			iconName="route"
-		/>
-	</TouchableOpacity>
-);
-
-const RemoveButton = ({ handleRemoveButtonPress }: RemoveButtonProps) => (
-	<TouchableOpacity onPress={() => handleRemoveButtonPress()}>
-		<Button
-			disabled={false}
-			iconName="trash-alt"
-		/>
-	</TouchableOpacity>
-);
-
-const Button = ({ disabled, iconName }: ButtonProps) => (
-	<Icon
-		color={disabled ? "gray" : "black"}
-		name={iconName}
-		size={19}
-		style={{ marginLeft: 20 }}
-	/>
-);
 
 export default TrackedUserDetails;
