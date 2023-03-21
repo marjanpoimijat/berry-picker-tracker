@@ -3,6 +3,8 @@ import type { AppDispatch, ReduxState } from "../store";
 import { createNewUser } from "../requests";
 import { User } from "../types";
 import { restartBackgroundUpdate } from "../utils/location-tracking";
+import { generateKeyString } from "../utils/crypto";
+import { secureStoreAddCryptoKey, secureStoreDeleteCryptoKey } from "../utils/secure-store";
 
 const initialState: User = {
 	mapLifetime: 48,
@@ -58,6 +60,8 @@ export const identifyUser = () => {
 			const data = await createNewUser();
 			console.log(`recieved user id for a new user ${data.id}\n`);
 			dispatch(setUser(data.id));
+			const cryptoKey = generateKeyString(16);
+			await secureStoreAddCryptoKey(cryptoKey);
 		}
 	};
 };
@@ -73,6 +77,7 @@ export const resetUser = () => {
 		dispatch(setUser(null));
 		if (userId !== null) {
 			//deleteUser(userId);
+			await secureStoreDeleteCryptoKey();
 		}
 	};
 };
