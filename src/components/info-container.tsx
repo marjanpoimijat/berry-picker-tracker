@@ -32,30 +32,19 @@ const InfoContainer = (): JSX.Element => {
 	return (
 		<View style={Styles.infoContainer}>
 			<Text style={Styles.textStyle}>
-				{languages["Lat"][language]}:{" "}
-				{curLocation === null
-					? languages["NA"][language]
-					: curLocation.coords.latitude}
+				{languages["Lat"][language]}: {!curLocation ? languages["NA"][language] : curLocation.coords.latitude}
 			</Text>
 			<Text style={Styles.textStyle}>
-				{languages["Lon"][language]}:{" "}
-				{curLocation === null
-					? languages["NA"][language]
-					: curLocation.coords.longitude}
+				{languages["Lon"][language]}: {!curLocation ? languages["NA"][language] : curLocation.coords.longitude}
 			</Text>
 			<Text style={Styles.textStyle}>
-				{languages["MNC code"][language]}:{" "}
-				{mobileNetCode === null
-					? languages["No network"][language]
-					: mobileNetCode}
+				{languages["MNC code"][language]}: {!mobileNetCode ? languages["No network"][language] : mobileNetCode}
 			</Text>
 			<Text style={Styles.textStyle}>
-				{languages["Local waypoints"][language]}:{" "}
-				{waypoints.localWaypoints.length}
+				{languages["Local waypoints"][language]}: {waypoints.localWaypoints.length}
 			</Text>
 			<Text style={Styles.textStyle}>
-				{languages["Pending waypoints"][language]}:{" "}
-				{waypoints.pendingWaypoints.length}
+				{languages["Pending waypoints"][language]}: {waypoints.pendingWaypoints.length}
 			</Text>
 		</View>
 	);

@@ -28,10 +28,7 @@ tracked: {
 
 import { store } from "../store";
 
-export const secureStoreAddTracked = async (
-	userId: string,
-	username: string
-) => {
+export const secureStoreAddTracked = async (userId: string, username: string) => {
 	console.log("secureStoreAddTracked()");
 	try {
 		const objectExists = await secureStoreGetTrackedObject();
@@ -84,11 +81,7 @@ export const secureStoreGetTrackedUser = async (key: string) => {
 	}
 };
 
-export const secureStoreUpdateTrackedUser = async (
-	userId: string,
-	location: boolean,
-	route: boolean
-) => {
+export const secureStoreUpdateTrackedUser = async (userId: string, location: boolean, route: boolean) => {
 	console.log("secureStoreUpdateTrackedUser()");
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
@@ -108,9 +101,7 @@ export const secureStoreUpdateTrackedUser = async (
 		await SecureStore.setItemAsync("tracked", newTracked);
 		console.log(`Storage updated: ${newTracked}`);
 	} catch (error) {
-		console.log(
-			`Failed to flip routeVisible for user "${userId}". Error: ${error}`
-		);
+		console.log(`Failed to flip routeVisible for user "${userId}". Error: ${error}`);
 	}
 };
 
@@ -173,9 +164,7 @@ export const secureStoreGetTrackedObject = async () => {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		return tracked;
 	} catch (error) {
-		console.log(
-			`Failed to check whether "tracked" object exists. Error: ${error}`
-		);
+		console.log(`Failed to check whether "tracked" object exists. Error: ${error}`);
 	}
 };
 

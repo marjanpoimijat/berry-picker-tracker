@@ -1,16 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch, ReduxState } from "../store";
-import {
-	startNewRoute,
-	deactivateExistingRoute,
-	sendNewWaypoint,
-} from "../requests";
+import { startNewRoute, deactivateExistingRoute, sendNewWaypoint } from "../requests";
 import { Route, User } from "../types";
 import { setRouteId, initializeWaypoints } from "./waypoint-reducer";
-import {
-	startBackgroundUpdate,
-	stopBackgroundUpdate,
-} from "../utils/location-tracking";
+import { startBackgroundUpdate, stopBackgroundUpdate } from "../utils/location-tracking";
 import { Share } from "react-native";
 import * as Linking from "expo-linking";
 

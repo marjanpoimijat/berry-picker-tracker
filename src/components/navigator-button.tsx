@@ -7,15 +7,17 @@ import theme from "../styles/theme";
 
 import { NavigatorButtonProps } from "../types";
 
-const NavigatorButton = ({
-	iconName,
-	path,
-	text,
-}: NavigatorButtonProps): JSX.Element => {
+const NavigatorButton = ({ iconName, path, text }: NavigatorButtonProps): JSX.Element => {
 	return (
-		<Link to={path} underlayColor={theme.colors.buttonUnderlayColor}>
+		<Link
+			to={path}
+			underlayColor={theme.colors.buttonUnderlayColor}
+		>
 			<View style={Styles.navigatorButton}>
-				<Icon name={iconName} style={Styles.navigatorIcon} />
+				<Icon
+					name={iconName}
+					style={Styles.navigatorIcon}
+				/>
 				<Text style={Styles.navigatorText}>{text}</Text>
 			</View>
 		</Link>

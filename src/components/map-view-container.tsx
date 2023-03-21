@@ -6,13 +6,7 @@ import { setMapLocation } from "../reducers/map-location-reducer";
 import { getUsersLatestRoute } from "../requests";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import {
-	Coordinate,
-	TrackedUserRouteProps,
-	TrackedUsers,
-	Waypoint,
-	WaypointFromServer,
-} from "../types";
+import { Coordinate, TrackedUserRouteProps, TrackedUsers, Waypoint, WaypointFromServer } from "../types";
 import getCircleColor from "../utils/circle";
 import { colors } from "../utils/colors";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
@@ -26,13 +20,8 @@ const MapViewContainer = (): JSX.Element => {
 	const mapLocation = useTypedSelector((state) => state.mapLocation);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
-	const trackedUsers: TrackedUsers = useTypedSelector(
-		(state) => state.trackedUsers
-	);
-	const [localWaypoints, currMap] = useTypedSelector((state) => [
-		state.waypoints.localWaypoints,
-		state.map,
-	]);
+	const trackedUsers: TrackedUsers = useTypedSelector((state) => state.trackedUsers);
+	const [localWaypoints, currMap] = useTypedSelector((state) => [state.waypoints.localWaypoints, state.map]);
 	const [coordinates, setCoordinates] = useState<Coordinate | null>(null);
 	const [users, setUsers] = useState<TrackedUsers>({});
 	const sortedUsers = sortTrackedUserList(users);
@@ -43,9 +32,7 @@ const MapViewContainer = (): JSX.Element => {
 
 	const dispatch = useTypedDispatch();
 
-	const handleMapPress = (event: {
-		nativeEvent: { coordinate: Coordinate };
-	}) => {
+	const handleMapPress = (event: { nativeEvent: { coordinate: Coordinate } }) => {
 		if (coordinates) {
 			setCoordinates(null);
 			return;
@@ -65,9 +52,7 @@ const MapViewContainer = (): JSX.Element => {
 				}}
 				mapType={"none"}
 				onPress={handleMapPress}
-				onRegionChangeComplete={(region) =>
-					dispatch(setMapLocation({ coords: region }))
-				}
+				onRegionChangeComplete={(region) => dispatch(setMapLocation({ coords: region }))}
 				showsUserLocation={true}
 				style={Styles.mapView}
 			>
@@ -99,7 +84,11 @@ const MapViewContainer = (): JSX.Element => {
 					zIndex={1}
 				/>
 				{sortedUsers.map((user, index) => (
-					<TrackedUserRoute id={index} key={index} user={user} />
+					<TrackedUserRoute
+						id={index}
+						key={index}
+						user={user}
+					/>
 				))}
 				{localWaypoints.map((waypoint, index) => {
 					if (waypoint.connection !== null) {
@@ -118,12 +107,14 @@ const MapViewContainer = (): JSX.Element => {
 				})}
 				{coordinates && (
 					<>
-						<Marker coordinate={coordinates} style={{ height: 50 }}>
+						<Marker
+							coordinate={coordinates}
+							style={{ height: 50 }}
+						>
 							<View style={Styles.coordinateBoxContainer}>
 								<View style={Styles.coordinateBox}>
 									<Text>
-										{parseLatitude(coordinates.latitude)},{" "}
-										{parseLongitude(coordinates.longitude)}
+										{parseLatitude(coordinates.latitude)}, {parseLongitude(coordinates.longitude)}
 									</Text>
 								</View>
 							</View>
@@ -145,19 +136,15 @@ const TrackedUserRoute = ({ id, user }: TrackedUserRouteProps) => {
 		setUsersWaypoints(null);
 		const data = await getUsersLatestRoute(user.userId);
 		if (!data) return <></>;
-		const waypoints: Waypoint[] = data.waypoints.map(
-			(waypoint: WaypointFromServer) => {
-				return {
-					...waypoint,
-					routeId: waypoint.route_id,
-				};
-			}
-		);
+		const waypoints: Waypoint[] = data.waypoints.map((waypoint: WaypointFromServer) => {
+			return {
+				...waypoint,
+				routeId: waypoint.route_id,
+			};
+		});
 		setUsersWaypoints(waypoints);
 		console.log(`...Users route ID: ${data.routeId} found.`);
-		console.log(
-			`Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`
-		);
+		console.log(`Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`);
 	};
 
 	useEffect(() => {

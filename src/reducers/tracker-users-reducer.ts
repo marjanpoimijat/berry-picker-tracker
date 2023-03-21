@@ -27,7 +27,6 @@ const trackedUsersSlice = createSlice({
 	},
 });
 
-export const { addTrackedUser, updateTrackedUser, removeTrackedUser } =
-	trackedUsersSlice.actions;
+export const { addTrackedUser, updateTrackedUser, removeTrackedUser } = trackedUsersSlice.actions;
 
 export default trackedUsersSlice.reducer;

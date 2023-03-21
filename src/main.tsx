@@ -8,10 +8,7 @@ import MapScreen from "./screens/map-screen";
 import SettingsScreen from "./screens/settings-screen";
 import NavigatorTab from "./components/navigator-tab";
 
-import {
-	defineBackgroundLocationTask,
-	requestPermissions,
-} from "./utils/location-tracking";
+import { defineBackgroundLocationTask, requestPermissions } from "./utils/location-tracking";
 import { makeTileCacheDirectory } from "./utils/file-system";
 import Styles from "./styles";
 import { addSharedUser } from "./track-user";
@@ -33,9 +30,23 @@ const Main = () => {
 	return (
 		<View style={Styles.mainContainer}>
 			<Routes>
-				<Route element={<MapScreen />} path="/" />
-				<Route element={<SettingsScreen />} path="/settings" />
-				<Route element={<Navigate replace to="/" />} path="*" />
+				<Route
+					element={<MapScreen />}
+					path="/"
+				/>
+				<Route
+					element={<SettingsScreen />}
+					path="/settings"
+				/>
+				<Route
+					element={
+						<Navigate
+							replace
+							to="/"
+						/>
+					}
+					path="*"
+				/>
 			</Routes>
 			<NavigatorTab />
 		</View>

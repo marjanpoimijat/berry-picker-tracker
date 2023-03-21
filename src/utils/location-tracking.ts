@@ -71,15 +71,9 @@ export const startBackgroundUpdate = async (trackingInterval: number) => {
 };
 
 export const restartBackgroundUpdate = async (trackingInterval: number) => {
-	const trackingActive = await Location.hasStartedLocationUpdatesAsync(
-		TRACK_WAYPOINTS
-	);
+	const trackingActive = await Location.hasStartedLocationUpdatesAsync(TRACK_WAYPOINTS);
 	if (trackingActive) {
-		console.log(
-			`Restarting background location updates with new tracking interval ${
-				trackingInterval / 1000
-			} s\n`
-		);
+		console.log(`Restarting background location updates with new tracking interval ${trackingInterval / 1000} s\n`);
 		await Location.stopLocationUpdatesAsync(TRACK_WAYPOINTS);
 		await Location.startLocationUpdatesAsync(TRACK_WAYPOINTS, {
 			...locationTaskOptions,
@@ -92,9 +86,7 @@ export const restartBackgroundUpdate = async (trackingInterval: number) => {
  * Stops background task for location tracking if it is currently running.
  */
 export const stopBackgroundUpdate = async () => {
-	const trackingActive = await Location.hasStartedLocationUpdatesAsync(
-		TRACK_WAYPOINTS
-	);
+	const trackingActive = await Location.hasStartedLocationUpdatesAsync(TRACK_WAYPOINTS);
 	if (trackingActive) {
 		await Location.stopLocationUpdatesAsync(TRACK_WAYPOINTS);
 		console.log("Background location tracking has been ended");

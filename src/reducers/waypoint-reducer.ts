@@ -4,10 +4,7 @@ import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { sendNewWaypoint } from "../requests";
 import { Waypoint, WaypointState } from "../types";
-import {
-	NetworkConnectionInformation,
-	getNetworkCellularGeneration,
-} from "../netinfo";
+import { NetworkConnectionInformation, getNetworkCellularGeneration } from "../netinfo";
 
 const initialState: WaypointState = {
 	localWaypoints: [],
@@ -44,12 +41,7 @@ const waypointSlice = createSlice({
 	},
 });
 
-export const {
-	initializeWaypoints,
-	setRouteId,
-	appendWaypoint,
-	resetPendingWaypoints,
-} = waypointSlice.actions;
+export const { initializeWaypoints, setRouteId, appendWaypoint, resetPendingWaypoints } = waypointSlice.actions;
 
 let wasOffline = false;
 let sendTicker = 0;
@@ -68,15 +60,11 @@ export const storeAndSendWaypoints = () => {
 		const trackingInterval = getState().user.trackingInterval;
 		const location = await Location.getLastKnownPositionAsync({});
 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
-		const netInfo = getNetworkCellularGeneration(
-			await NetworkConnectionInformation()
-		);
+		const netInfo = getNetworkCellularGeneration(await NetworkConnectionInformation());
 		const isConnected = (await NetworkConnectionInformation()).isConnected;
 		if (routeId !== null) {
 			console.log(`Storing wp - lat: ${location?.coords.latitude}`);
-			console.log(
-				`lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`
-			);
+			console.log(`lon: ${location?.coords.longitude} mnc: ${networkCode} conn: ${netInfo}`);
 
 			if (location !== null) {
 				const waypoint: Waypoint = {
@@ -93,17 +81,11 @@ export const storeAndSendWaypoints = () => {
 
 		if (
 			isConnected &&
-			(pendingWaypoints.length >
-				~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4 ||
-				wasOffline)
+			(pendingWaypoints.length > ~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4 || wasOffline)
 		) {
-			const response: Response = (await sendNewWaypoint(
-				pendingWaypoints
-			)) as Response;
+			const response: Response = (await sendNewWaypoint(pendingWaypoints)) as Response;
 			if (response.status === 200) {
-				console.log(
-					`\n${pendingWaypoints.length} waypoints sent to the server`
-				);
+				console.log(`\n${pendingWaypoints.length} waypoints sent to the server`);
 				dispatch(resetPendingWaypoints());
 				sendTicker = 0;
 			} else {

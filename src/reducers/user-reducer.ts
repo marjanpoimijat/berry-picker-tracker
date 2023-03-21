@@ -39,14 +39,8 @@ const userSlice = createSlice({
 	},
 });
 
-export const {
-	setUser,
-	setUsername,
-	setTrackingInterval,
-	setSendingInterval,
-	setMapLifetime,
-	setDefaultSettings,
-} = userSlice.actions;
+export const { setUser, setUsername, setTrackingInterval, setSendingInterval, setMapLifetime, setDefaultSettings } =
+	userSlice.actions;
 
 /**
  * Function to identify user. Creates new user by using http request unless

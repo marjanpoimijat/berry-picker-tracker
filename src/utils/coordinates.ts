@@ -5,9 +5,7 @@
  * @returns {string} The formatted latitude string with a direction indicator.
  */
 export const parseLatitude = (latitude: number): string => {
-	return latitude > 0
-		? `${formatCoordinate(latitude)} °N`
-		: `${formatCoordinate(latitude)} °S`;
+	return latitude > 0 ? `${formatCoordinate(latitude)} °N` : `${formatCoordinate(latitude)} °S`;
 };
 
 /**
@@ -17,9 +15,7 @@ export const parseLatitude = (latitude: number): string => {
  * @returns {string} The formatted longitude string with a direction indicator.
  */
 export const parseLongitude = (longitude: number): string => {
-	return longitude > 0
-		? `${formatCoordinate(longitude)} °E`
-		: `${formatCoordinate(longitude)} °W`;
+	return longitude > 0 ? `${formatCoordinate(longitude)} °E` : `${formatCoordinate(longitude)} °W`;
 };
 
 /**

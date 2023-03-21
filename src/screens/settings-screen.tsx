@@ -1,14 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-	Alert,
-	Button,
-	Text,
-	TextInput,
-	View,
-	Linking,
-	TouchableOpacity,
-	Clipboard,
-} from "react-native";
+import { Alert, Button, Text, TextInput, View, Linking, TouchableOpacity, Clipboard } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { SettingsScreen, SettingsData } from "react-native-settings-screen";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -28,10 +19,7 @@ import {
 } from "../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import {
-	deleteTileCacheDirectory,
-	makeTileCacheDirectory,
-} from "../utils/file-system";
+import { deleteTileCacheDirectory, makeTileCacheDirectory } from "../utils/file-system";
 import { Language, Map } from "../types";
 import { setUsername } from "../reducers/user-reducer";
 
@@ -41,15 +29,7 @@ export const SettingScreen = () => {
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	console.warn = () => {};
 
-	const [
-		username,
-		userId,
-		currTrack,
-		currSend,
-		mapLifetime,
-		language,
-		currMap,
-	] = useTypedSelector((state) => [
+	const [username, userId, currTrack, currSend, mapLifetime, language, currMap] = useTypedSelector((state) => [
 		state.user.username,
 		state.user.userId,
 		state.user.trackingInterval / 1000,
@@ -65,6 +45,10 @@ export const SettingScreen = () => {
 	useEffect(() => {
 		dispatch(setUsername(localUsername));
 	}, [localUsername]);
+
+	const frontend = `${repoBaseUrl}/berry-picker-tracker/tree/main/licenses`;
+	const backend = `${repoBaseUrl}/berry-picker-tracker-server/tree/main/licenses`;
+	const privacyPolicy = `${repoBaseUrl}/berry-picker-tracker-docs/blob/main/privacy_policies.md`;
 
 	const alertCacheReset = () => {
 		Alert.alert(
@@ -124,9 +108,7 @@ export const SettingScreen = () => {
 	const alertRouteIsActive = () => {
 		Alert.alert(
 			languages["Route is currently active"][language],
-			languages[
-				"UserID can not be reset while route is active. End route route first and try again"
-			][language],
+			languages["UserID can not be reset while route is active. End route route first and try again"][language],
 			[
 				{
 					text: languages["OK"][language],
@@ -236,9 +218,7 @@ export const SettingScreen = () => {
 	index = 0;
 	const mapOptions = [
 		{
-			component: (
-				<Text>{languages["National Land Survey of Finland"][language]}</Text>
-			),
+			component: <Text>{languages["National Land Survey of Finland"][language]}</Text>,
 			key: index++,
 			label: Map.nlsTopographic,
 		},
@@ -320,8 +300,7 @@ export const SettingScreen = () => {
 			type: "SECTION",
 		},
 		{
-			footer:
-				languages["Clear the cached map tiles to free up space"][language],
+			footer: languages["Clear the cached map tiles to free up space"][language],
 			header: `${languages["Map"][language]}`.toUpperCase(),
 			rows: [
 				{
@@ -395,9 +374,7 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<Button
 							color="red"
-							onPress={() =>
-								routeActive ? alertRouteIsActive() : alertUserIDReset()
-							}
+							onPress={() => (routeActive ? alertRouteIsActive() : alertUserIDReset())}
 							title={languages["Reset"][language]}
 						/>
 					),
@@ -436,11 +413,7 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
-							onPress={() =>
-								Linking.openURL(
-									`${repoBaseUrl}/berry-picker-tracker/tree/main/licenses`
-								)
-							}
+							onPress={() => Linking.openURL(frontend)}
 						/>
 					),
 					title: languages["Frontend licenses"][language],
@@ -449,11 +422,7 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
-							onPress={() =>
-								Linking.openURL(
-									`${repoBaseUrl}/berry-picker-tracker-server/tree/main/licenses`
-								)
-							}
+							onPress={() => Linking.openURL(backend)}
 						/>
 					),
 					title: languages["Backend licenses"][language],
@@ -462,11 +431,7 @@ export const SettingScreen = () => {
 					renderAccessory: () => (
 						<Icon
 							name="chevron-right"
-							onPress={() =>
-								Linking.openURL(
-									`${repoBaseUrl}/berry-picker-tracker-docs/blob/main/privacy_policies.md`
-								)
-							}
+							onPress={() => Linking.openURL(privacyPolicy)}
 						/>
 					),
 					title: languages["Privacy policy"][language],
@@ -475,10 +440,7 @@ export const SettingScreen = () => {
 			type: "SECTION",
 		},
 		{
-			footer:
-				languages[
-					"Download link to National Land Survey of Finland map legend information"
-				][language],
+			footer: languages["Download link to National Land Survey of Finland map legend information"][language],
 			header: `${languages["Map legend"][language]}`.toUpperCase(),
 			rows: [
 				{

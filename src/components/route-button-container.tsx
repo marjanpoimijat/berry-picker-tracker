@@ -1,12 +1,7 @@
 import { Alert, View } from "react-native";
 
 import { languages } from "../languages";
-import {
-	startRoute,
-	deactivateRoute,
-	changeShowRoute,
-	shareRoute,
-} from "../reducers/route-reducer";
+import { startRoute, deactivateRoute, changeShowRoute, shareRoute } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 
@@ -56,28 +51,14 @@ const RouteButtonContainer = (): JSX.Element => {
 	};
 
 	return (
-		<View
-			style={
-				toggled
-					? Styles.routeButtonContainer
-					: { ...Styles.routeButtonContainer, display: "none" }
-			}
-		>
+		<View style={toggled ? Styles.routeButtonContainer : { ...Styles.routeButtonContainer, display: "none" }}>
 			<RouteButton
 				onPress={routeInfo.active ? alertOnEndRoute : changeTracking}
-				text={
-					routeInfo.active
-						? languages["End route"][language]
-						: languages["Start route"][language]
-				}
+				text={routeInfo.active ? languages["End route"][language] : languages["Start route"][language]}
 			/>
 			<RouteButton
 				onPress={() => dispatch(changeShowRoute())}
-				text={
-					routeInfo.showRoute
-						? languages["Hide route"][language]
-						: languages["Show route"][language]
-				}
+				text={routeInfo.showRoute ? languages["Hide route"][language] : languages["Show route"][language]}
 			/>
 			<ShareButton
 				onPress={() => dispatch(shareRoute(user))}

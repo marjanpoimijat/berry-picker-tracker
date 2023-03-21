@@ -11,27 +11,16 @@ import {
 	UsernameProps,
 } from "../types";
 import { languages } from "../languages";
-import {
-	addTrackedUser,
-	removeTrackedUser,
-} from "../reducers/tracker-users-reducer";
+import { addTrackedUser, removeTrackedUser } from "../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import { colors } from "../utils/colors";
 import { secureStoreUpdateTrackedUser } from "../utils/secure-store";
 
-const TrackedUserDetails = ({
-	id,
-	locationVisible,
-	routeVisible,
-	userId,
-	username,
-}: TrackedUser) => {
+const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, username }: TrackedUser) => {
 	const language = useTypedSelector((state) => state.language);
-	const [localLocationVisible, setLocalLocationVisible] =
-		useState<boolean>(locationVisible);
-	const [localRouteVisible, setLocalRouteVisible] =
-		useState<boolean>(routeVisible);
+	const [localLocationVisible, setLocalLocationVisible] = useState<boolean>(locationVisible);
+	const [localRouteVisible, setLocalRouteVisible] = useState<boolean>(routeVisible);
 
 	const dispatch = useTypedDispatch();
 
@@ -75,19 +64,13 @@ const TrackedUserDetails = ({
 				username: username,
 			})
 		);
-		secureStoreUpdateTrackedUser(
-			userId,
-			localLocationVisible,
-			!localRouteVisible
-		);
+		secureStoreUpdateTrackedUser(userId, localLocationVisible, !localRouteVisible);
 	};
 
 	const handleRemoveButtonPress = () => {
 		Alert.alert(
 			languages["Removing a tracked user"][language],
-			languages["Do you really want to remove this user from the list?"][
-				language
-			],
+			languages["Do you really want to remove this user from the list?"][language],
 			[
 				{
 					text: languages["Cancel"][language],
@@ -135,39 +118,42 @@ const Dot = ({ id }: DotProps) => (
 	</View>
 );
 
-const Username = ({ username }: UsernameProps) => (
-	<Text style={Styles.trackedUserDetailsUsername}>{username}</Text>
-);
+const Username = ({ username }: UsernameProps) => <Text style={Styles.trackedUserDetailsUsername}>{username}</Text>;
 
-const LocationVisibleButton = ({
-	locationVisible,
-	handleLocationVisibleChange,
-}: LocationVisibleButtonProps) => (
+const LocationVisibleButton = ({ locationVisible, handleLocationVisibleChange }: LocationVisibleButtonProps) => (
 	<TouchableOpacity onPress={() => handleLocationVisibleChange()}>
 		{locationVisible ? (
-			<Button disabled={!locationVisible} iconName="eye" />
+			<Button
+				disabled={!locationVisible}
+				iconName="eye"
+			/>
 		) : (
-			<Button disabled={!locationVisible} iconName="eye-slash" />
+			<Button
+				disabled={!locationVisible}
+				iconName="eye-slash"
+			/>
 		)}
 	</TouchableOpacity>
 );
 
-const RouteVisibleButton = ({
-	locationVisible,
-	routeVisible,
-	handleRouteVisibleChange,
-}: RouteVisibleButtonProps) => (
+const RouteVisibleButton = ({ locationVisible, routeVisible, handleRouteVisibleChange }: RouteVisibleButtonProps) => (
 	<TouchableOpacity
 		disabled={!locationVisible}
 		onPress={() => handleRouteVisibleChange()}
 	>
-		<Button disabled={!locationVisible || !routeVisible} iconName="route" />
+		<Button
+			disabled={!locationVisible || !routeVisible}
+			iconName="route"
+		/>
 	</TouchableOpacity>
 );
 
 const RemoveButton = ({ handleRemoveButtonPress }: RemoveButtonProps) => (
 	<TouchableOpacity onPress={() => handleRemoveButtonPress()}>
-		<Button disabled={false} iconName="trash-alt" />
+		<Button
+			disabled={false}
+			iconName="trash-alt"
+		/>
 	</TouchableOpacity>
 );
 

@@ -2,10 +2,7 @@ import { View } from "react-native";
 import { connect } from "react-redux";
 
 import { languages } from "../languages";
-import {
-	setRouteButtonVisible,
-	setTrackListVisible,
-} from "../reducers/ui-reducer";
+import { setRouteButtonVisible, setTrackListVisible } from "../reducers/ui-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 
@@ -26,7 +23,7 @@ const NavigatorTab = (): JSX.Element => {
 		dispatch(setRouteButtonVisible(!ui.routeButtonsVisible));
 	};
 
-	const toggleTrackList = () => {
+	const toggleList = () => {
 		dispatch(setTrackListVisible(!ui.trackListVisible));
 	};
 
@@ -44,7 +41,7 @@ const NavigatorTab = (): JSX.Element => {
 			/>
 			<TrackingButton
 				iconName="location-arrow"
-				onPress={toggleTrackList}
+				onPress={toggleList}
 				text={languages["Tracking"][language]}
 			/>
 			<NavigatorButton

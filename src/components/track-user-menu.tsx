@@ -24,18 +24,10 @@ const TrackUserMenu = (): JSX.Element => {
 	}, []);
 
 	return (
-		<View
-			style={
-				toggled
-					? Styles.trackUsersMenuContainer
-					: { ...Styles.trackUsersMenuContainer, display: "none" }
-			}
-		>
+		<View style={toggled ? Styles.trackUsersMenuContainer : { ...Styles.trackUsersMenuContainer, display: "none" }}>
 			<View style={Styles.trackUsersMenuContent}>
 				<View style={{ alignItems: "center" }}>
-					<Text style={Styles.trackUsersMenuTitle}>
-						{languages["Tracking"][language]}
-					</Text>
+					<Text style={Styles.trackUsersMenuTitle}>{languages["Tracking"][language]}</Text>
 				</View>
 				{sortedUsers.map((user, index) => (
 					<View key={index}>

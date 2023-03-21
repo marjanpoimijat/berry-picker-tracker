@@ -45,14 +45,10 @@ const CoordinateContainer = (): JSX.Element => {
 	return (
 		<View style={Styles.coordinateContainer}>
 			<Text style={Styles.coordinateItems}>
-				{currentLocation === null
-					? languages["NA"][language]
-					: parseLatitude(currentLocation.coords.latitude)}
+				{!currentLocation ? languages["NA"][language] : parseLatitude(currentLocation.coords.latitude)}
 			</Text>
 			<Text style={Styles.coordinateItems}>
-				{currentLocation === null
-					? languages["NA"][language]
-					: parseLongitude(currentLocation.coords.longitude)}
+				{!currentLocation ? languages["NA"][language] : parseLongitude(currentLocation.coords.longitude)}
 			</Text>
 		</View>
 	);
