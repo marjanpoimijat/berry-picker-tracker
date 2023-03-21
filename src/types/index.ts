@@ -94,7 +94,6 @@ export type TrackedUsers = {
 };
 
 export interface TrackedUserRouteProps {
-	id: number;
 	user: TrackedUser;
 }
 

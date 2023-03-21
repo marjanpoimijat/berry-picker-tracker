@@ -23,12 +23,7 @@ const MapViewContainer = (): JSX.Element => {
 	const trackedUsers: TrackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const [localWaypoints, currMap] = useTypedSelector((state) => [state.waypoints.localWaypoints, state.map]);
 	const [coordinates, setCoordinates] = useState<Coordinate | null>(null);
-	const [users, setUsers] = useState<TrackedUsers>({});
-	const sortedUsers = sortTrackedUserList(users);
-
-	useEffect(() => {
-		setUsers(trackedUsers);
-	}, []);
+	const sortedUsers = sortTrackedUserList(trackedUsers);
 
 	const dispatch = useTypedDispatch();
 
@@ -83,10 +78,9 @@ const MapViewContainer = (): JSX.Element => {
 					strokeWidth={6.5}
 					zIndex={1}
 				/>
-				{sortedUsers.map((user, index) => (
+				{sortedUsers.map((user) => (
 					<TrackedUserRoute
-						id={index}
-						key={index}
+						key={user.id}
 						user={user}
 					/>
 				))}
@@ -129,7 +123,7 @@ const MapViewContainer = (): JSX.Element => {
 	);
 };
 
-const TrackedUserRoute = ({ id, user }: TrackedUserRouteProps) => {
+const TrackedUserRoute = ({ user }: TrackedUserRouteProps) => {
 	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
 
 	const findUserRoute = async () => {
@@ -159,7 +153,7 @@ const TrackedUserRoute = ({ id, user }: TrackedUserRouteProps) => {
 						<>
 							<Polyline
 								coordinates={usersWaypoints}
-								strokeColor={colors[id % colors.length]}
+								strokeColor={colors[user.id % colors.length]}
 								strokeWidth={4}
 								zIndex={2}
 							/>
@@ -171,27 +165,25 @@ const TrackedUserRoute = ({ id, user }: TrackedUserRouteProps) => {
 							/>
 						</>
 					)}
-					<View>
-						{user.locationVisible && (
-							<Marker
-								coordinate={{
-									latitude: usersWaypoints[usersWaypoints.length - 1]
-										? usersWaypoints[usersWaypoints.length - 1].latitude
-										: 60.204662,
-									longitude: usersWaypoints[usersWaypoints.length - 1]
-										? usersWaypoints[usersWaypoints.length - 1].longitude
-										: 24.962535,
+					{user.locationVisible && (
+						<Marker
+							coordinate={{
+								latitude: usersWaypoints[usersWaypoints.length - 1]
+									? usersWaypoints[usersWaypoints.length - 1].latitude
+									: 60.204662,
+								longitude: usersWaypoints[usersWaypoints.length - 1]
+									? usersWaypoints[usersWaypoints.length - 1].longitude
+									: 24.962535,
+							}}
+						>
+							<View
+								style={{
+									...Styles.trackedUserDot,
+									backgroundColor: colors[user.id % colors.length],
 								}}
-							>
-								<View
-									style={{
-										...Styles.trackedUserDot,
-										backgroundColor: colors[id % colors.length],
-									}}
-								/>
-							</Marker>
-						)}
-					</View>
+							/>
+						</Marker>
+					)}
 				</>
 			)}
 		</>

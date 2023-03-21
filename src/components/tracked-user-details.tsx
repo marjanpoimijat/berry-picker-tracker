@@ -15,10 +15,10 @@ import { addTrackedUser, removeTrackedUser } from "../reducers/tracker-users-red
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import { colors } from "../utils/colors";
-import { secureStoreUpdateTrackedUser } from "../utils/secure-store";
 
 const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, username }: TrackedUser) => {
 	const language = useTypedSelector((state) => state.language);
+	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const [localLocationVisible, setLocalLocationVisible] = useState<boolean>(locationVisible);
 	const [localRouteVisible, setLocalRouteVisible] = useState<boolean>(routeVisible);
 
@@ -37,20 +37,19 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 					username: username,
 				})
 			);
-			secureStoreUpdateTrackedUser(userId, false, false);
 		} else {
 			setLocalLocationVisible(true);
 			dispatch(
 				addTrackedUser({
 					id: id,
-					locationVisible: false,
-					routeVisible: false,
+					locationVisible: true,
+					routeVisible: localRouteVisible,
 					userId: userId,
 					username: username,
 				})
 			);
-			secureStoreUpdateTrackedUser(userId, true, localRouteVisible);
 		}
+		console.log(JSON.stringify(trackedUsers, null, 2));
 	};
 
 	const handleRouteVisibleChange = () => {
@@ -58,13 +57,13 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 		dispatch(
 			addTrackedUser({
 				id: id,
-				locationVisible: false,
-				routeVisible: false,
+				locationVisible: localLocationVisible,
+				routeVisible: !localRouteVisible,
 				userId: userId,
 				username: username,
 			})
 		);
-		secureStoreUpdateTrackedUser(userId, localLocationVisible, !localRouteVisible);
+		console.log(JSON.stringify(trackedUsers, null, 2));
 	};
 
 	const handleRemoveButtonPress = () => {
@@ -83,6 +82,7 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 				},
 			]
 		);
+		console.log(JSON.stringify(trackedUsers, null, 2));
 	};
 
 	return (

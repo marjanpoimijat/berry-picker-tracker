@@ -1,6 +1,7 @@
 import * as Linking from "expo-linking";
-import { secureStoreAddTracked } from "./utils/secure-store";
+import { addTrackedUser } from "./reducers/tracker-users-reducer";
 import { getUsersLatestRoute } from "./requests";
+import { store } from "./store";
 
 export const addSharedUser = async () => {
 	const url = Linking.useURL();
@@ -15,11 +16,21 @@ export const addSharedUser = async () => {
 	if (typeof userId !== "string") {
 		return;
 	}
+	if (typeof username !== "string") {
+		return;
+	}
 	const data = await getUsersLatestRoute(userId);
 	if (!data || data.routeId === undefined) {
 		console.log(`shared userId: ${username} ${userId} is not found`);
 		return;
 	}
 	console.log(`shared userId: ${username} ${userId} is found`);
-	await secureStoreAddTracked(userId, `${username}`);
+	const trackedObject = {
+		id: 1,
+		locationVisible: true,
+		routeVisible: true,
+		userId: userId,
+		username: username,
+	};
+	store.dispatch(addTrackedUser(trackedObject));
 };

@@ -47,7 +47,7 @@ export const secureStoreAddTracked = async (userId: string, username: string) =>
 		if (tracked) {
 			const trackedJson = JSON.parse(tracked);
 			const trackedObject = {
-				id: -1,
+				id: 1,
 				locationVisible: true,
 				routeVisible: true,
 				userId: userId,
