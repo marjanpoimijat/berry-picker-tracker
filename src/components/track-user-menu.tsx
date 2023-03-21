@@ -4,6 +4,7 @@ import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import sortTrackedUserList from "../utils/sort";
+import TrackUserMenuToggle from "./track-user-menu-toggle";
 
 import TrackedUserDetails from "./tracked-user-details";
 
@@ -22,6 +23,7 @@ const TrackUserMenu = (): JSX.Element => {
 				<View style={{ alignItems: "center" }}>
 					<Text style={Styles.trackUsersMenuTitle}>{languages["Tracking"][language]}</Text>
 				</View>
+				<TrackUserMenuToggle />
 				{sortedUsers.map((user, index) => (
 					<View key={index}>
 						<TrackedUserDetails

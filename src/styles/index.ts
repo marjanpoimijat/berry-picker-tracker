@@ -150,6 +150,22 @@ const Styles = StyleSheet.create({
 		marginTop: statusBarHeight,
 		width: Dimensions.get("window").width,
 	},
+	masterButtonContainer: {
+		//borderColor: "black",
+		//borderWidth: 1,
+		width: "33%",
+	},
+	masterButtonIcon: {
+		fontSize: 23,
+		paddingTop: 5,
+		textAlign: "center",
+	},
+	masterButtonText: {
+		fontSize: 15,
+		paddingBottom: 2,
+		paddingTop: 5,
+		textAlign: "center",
+	},
 	navigatorButton: {
 		backgroundColor: theme.colors.buttonBackgroundColor,
 		border: "10px solid red",
@@ -238,12 +254,15 @@ const Styles = StyleSheet.create({
 		fontWeight: "bold",
 	},
 	trackUsersMasterButtonContainer: {
-		borderColor: "black",
-		borderWidth: 1,
+		//borderColor: "black",
+		//borderWidth: 1,
 		display: "flex",
 		flexDirection: "row",
-		justifyContent: "center",
-		padding: 10,
+		justifyContent: "space-between",
+		paddingBottom: 10,
+		paddingLeft: 35,
+		paddingRight: 35,
+		paddingTop: 10,
 	},
 	trackUsersMenuContainer: {
 		alignItems: "center",
