@@ -4,10 +4,10 @@ import NetInfo, { NetInfoState, NetInfoCellularGeneration } from "@react-native-
  * Gets network information state and returns it
  * @returns NetInfoState`
  */
-export const NetworkConnectionInformation = async (): Promise<NetInfoState> => {
+export async function NetworkConnectionInformation(): Promise<NetInfoState> {
 	const state = await NetInfo.fetch();
 	return state;
-};
+}
 
 /**
  * Parses the NetInfoState and returns the cellular generation
@@ -15,9 +15,9 @@ export const NetworkConnectionInformation = async (): Promise<NetInfoState> => {
  * When using expo defaults to null because it uses wifi!
  * @returns Cellular generation or null`
  */
-export const getNetworkCellularGeneration = async (state: NetInfoState): Promise<NetInfoCellularGeneration | null> => {
+export function getNetworkCellularGeneration(state: NetInfoState): NetInfoCellularGeneration | null {
 	if (state.type === "cellular") {
 		return state.details.cellularGeneration;
 	}
 	return null;
-};
+}
