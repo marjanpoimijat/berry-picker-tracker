@@ -13,7 +13,10 @@ const TrackingButton = ({ iconName, onPress, text }: TrackingButtonProps): JSX.E
 	return (
 		<View style={toggled ? { ...Styles.navigatorButton, backgroundColor: toggledColor } : Styles.navigatorButton}>
 			<TouchableOpacity onPress={onPress}>
-				<Icon name={iconName} style={Styles.navigatorIcon} />
+				<Icon
+					name={iconName}
+					style={Styles.navigatorIcon}
+				/>
 				<Text style={Styles.navigatorText}>{text}</Text>
 			</TouchableOpacity>
 		</View>
