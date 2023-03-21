@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
 import currentLocation from "./current-location-reducer";
+import id from "./id-reducer";
 import language from "./language-reducer";
 import map from "./map-reducer";
 import mapLocation from "./map-location-reducer";
@@ -12,6 +13,7 @@ import waypoints from "./waypoint-reducer";
 
 export default combineReducers({
 	currentLocation,
+	id,
 	language,
 	map,
 	mapLocation,
