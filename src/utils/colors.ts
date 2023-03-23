@@ -1,4 +1,8 @@
-export const colors: string[] = [
+export const getColor = (id: number): string => {
+	return colors[id % colors.length];
+};
+
+const colors: string[] = [
 	"#DC143C", // Crimson
 	"#2ECC40", // Green
 	"#FFDC00", // Yellow

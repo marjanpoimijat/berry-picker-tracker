@@ -4,7 +4,7 @@ import { Marker, Polyline } from "react-native-maps";
 import { getUsersLatestRoute } from "../requests";
 import Styles from "../styles";
 import { TrackedUserRouteProps, Waypoint, WaypointFromServer } from "../types";
-import { colors } from "../utils/colors";
+import { getColor } from "../utils/colors";
 
 /**
  * Renders a tracked user's route on the map.
@@ -42,7 +42,7 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 						<>
 							<Polyline
 								coordinates={usersWaypoints}
-								strokeColor={colors[user.id % colors.length]}
+								strokeColor={getColor(user.id)}
 								strokeWidth={4}
 								zIndex={2}
 							/>
@@ -68,7 +68,7 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 							<View
 								style={{
 									...Styles.trackedUserDot,
-									backgroundColor: colors[user.id % colors.length],
+									backgroundColor: getColor(user.id),
 								}}
 							/>
 						</Marker>

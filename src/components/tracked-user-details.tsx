@@ -5,7 +5,7 @@ import { DotProps, TrackedUser, UsernameProps } from "../types";
 import { addTrackedUser, removeTrackedUser } from "../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import { colors } from "../utils/colors";
+import { getColor } from "../utils/colors";
 import LocationVisibleButton from "./location-visible-button";
 import RouteVisibleButton from "./route-visible-button";
 import RemoveButton from "./remove-button";
@@ -112,7 +112,7 @@ const Dot = ({ id }: DotProps) => (
 		<View
 			style={{
 				...Styles.trackedUserDetailsDot,
-				backgroundColor: colors[id % colors.length],
+				backgroundColor: getColor(id),
 			}}
 		/>
 	</View>
