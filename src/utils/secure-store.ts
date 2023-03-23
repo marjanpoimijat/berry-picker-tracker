@@ -1,37 +1,37 @@
 import * as SecureStore from "expo-secure-store";
-import { addTrackedUser } from "../reducers/tracker-users-reducer";
 
 /**
  * SecureStore is used to store tracked users' information
  * in a single JSON object named "tracked". SecureStore also stores the user's
  * crypto key which is used to encrypt and decrypt sent data.
  *
- * example JSON object:
+ * @param {string} userId UserID of the user to be added.
+ * @param {string} username Username of the user to be added.
+ * @returns {void}
  *
-tracked: {
-	Y0QsWBzUwP89: {
-		id: 1,
-		locationVisible: true,
-		routeVisible: true,
-		userId: 'Y0QsWBzUwP89',
-		username: Jorma,
-	},
-	W9RZL7VXJ3FK: {
-		id: 2,
-		locationVisible: true,
-		routeVisible: false,
-		userId: 'W9RZL7VXJ3FK',
-		username: Seppo,
-	},
-}
+ * Example JSON object:
  *
- * example cryptokey object:
+ * tracked: {
+ *   Y0QsWBzUwP89: {
+ *	   id: 1,
+ * 	   locationVisible: true,
+ * 	   routeVisible: true,
+ *	   userId: 'Y0QsWBzUwP89',
+ * 	   username: Jorma,
+ *	 },
+ *	 W9RZL7VXJ3FK: {
+ * 	   id: 2,
+ * 	   locationVisible: true,
+ *	   routeVisible: false,
+ *	   userId: 'W9RZL7VXJ3FK',
+ *	   username: Seppo,
+ *	 },
+ * }
  *
-"cryptoKey": "sd9fk3+f0sdf3"
+ * Example cryptokey object:
+ *
+ * "cryptoKey": "sd9fk3+f0sdf3"
  */
-
-import { store } from "../store";
-
 export const secureStoreAddTracked = async (userId: string, username: string) => {
 	console.log("secureStoreAddTracked()");
 	try {
@@ -53,7 +53,7 @@ export const secureStoreAddTracked = async (userId: string, username: string) =>
 				userId: userId,
 				username: username,
 			};
-			store.dispatch(addTrackedUser(trackedObject));
+			//store.dispatch(addTrackedUser(trackedObject));
 			trackedJson[userId] = trackedObject;
 			const newTracked = JSON.stringify(trackedJson);
 			await SecureStore.setItemAsync("tracked", newTracked);
