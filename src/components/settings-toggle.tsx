@@ -1,7 +1,12 @@
-import { Switch } from "react-native";
 import { useState } from "react";
+import { Switch } from "react-native";
 
-const settingsToggle = (): JSX.Element => {
+/**
+ * Toggles a setting on or off in the Settings view.
+ *
+ * @returns {JSX.Element} A new SettingsToggle component.
+ */
+const SettingsToggle = (): JSX.Element => {
 	const [isEnabled, setIsEnabled] = useState(false);
 	const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
@@ -15,4 +20,5 @@ const settingsToggle = (): JSX.Element => {
 		></Switch>
 	);
 };
-export default settingsToggle;
+
+export default SettingsToggle;

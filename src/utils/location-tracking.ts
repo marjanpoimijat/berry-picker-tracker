@@ -22,7 +22,9 @@ const locationTaskOptions = {
  * which handles storing, sending and updating waypoint data.
  * **Note**: Currently location data from background task is not passed via dispatch
  * method. Instead of that, dispatch method will retrieve the data used to create new waypoint.
- * @param dispatch dispatch method to update `WaypointState`
+ *
+ * @param {AppDispatch} dispatch dispatch method to update `WaypointState`
+ * @returns {AppDispatch} Dispatch function.
  */
 export const defineBackgroundLocationTask = (dispatch: AppDispatch) => {
 	console.log("defining background location task \n");
@@ -38,8 +40,9 @@ export const defineBackgroundLocationTask = (dispatch: AppDispatch) => {
 };
 
 /**
- * Requests permissions from the user to use foreground and background
- * location tasks.
+ * Requests permissions from the user to use foreground and background location tasks.
+ *
+ * @returns {AppDispatch} Dispatch function.
  */
 export const requestPermissions = async () => {
 	console.log("requesting foreground permission...");
@@ -61,7 +64,9 @@ export const requestPermissions = async () => {
 
 /**
  * Starts background task for location tracking.
- * @param trackingInterval minimum interval how often background task will be executed
+ *
+ * @param {number} trackingInterval minimum interval how often background task will be executed
+ * @returns {AppDispatch} Dispatch function.
  */
 export const startBackgroundUpdate = async (trackingInterval: number) => {
 	await Location.startLocationUpdatesAsync(TRACK_WAYPOINTS, {
@@ -84,6 +89,8 @@ export const restartBackgroundUpdate = async (trackingInterval: number) => {
 
 /**
  * Stops background task for location tracking if it is currently running.
+ *
+ * @returns {AppDispatch} Dispatch function.
  */
 export const stopBackgroundUpdate = async () => {
 	const trackingActive = await Location.hasStartedLocationUpdatesAsync(TRACK_WAYPOINTS);

@@ -1,11 +1,9 @@
 import { View } from "react-native";
 import { connect } from "react-redux";
-
 import { languages } from "../languages";
 import { setRouteButtonVisible, setTrackListVisible } from "../reducers/ui-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-
 import NavigatorButton from "./navigator-button";
 import ToggleButton from "./toggle-button";
 import TrackingButton from "./tracking-button";
@@ -13,6 +11,8 @@ import TrackingButton from "./tracking-button";
 /**
  * Navigator tab located at the bottom of the screen which contains
  * navigator buttons to navigate into other views.
+ *
+ * @returns {JSX.Element} A new NavigatorTab component.
  */
 const NavigatorTab = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);

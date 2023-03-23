@@ -8,7 +8,9 @@ import { useTypedDispatch, useTypedSelector } from "../store";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
 
 /**
- * Coordinate container to show current coordinates at top of the map screen.
+ * Component that displays the user's current coordinates.
+ *
+ * @returns {JSX.Element} A new CoordinateContainer component.
  */
 const CoordinateContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);

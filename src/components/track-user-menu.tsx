@@ -1,15 +1,15 @@
 import { Text, View } from "react-native";
-
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import sortTrackedUserList from "../utils/sort";
 import TrackUserMenuToggle from "./track-user-menu-toggle";
-
 import TrackedUserDetails from "./tracked-user-details";
 
 /**
  * Menu for tracking tracking other users and their routes.
+ *
+ * @returns {JSX.Element} A new TrackUserMenu component.
  */
 const TrackUserMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);

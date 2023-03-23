@@ -47,7 +47,8 @@ export const { setUser, setUsername, setTrackingInterval, setSendingInterval, se
 /**
  * Function to identify user. Creates new user by using http request unless
  * user has been already created and stored into the device.
- * @returns dispatch method to update user state
+ *
+ * @returns {AppDispatch} Dispatch method to update user state.
  */
 export const identifyUser = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
@@ -68,7 +69,8 @@ export const identifyUser = () => {
 
 /**
  * For testing to easily reset reset user state which is already stored into device.
- * @returns dispatch method to update user state
+ *
+ * @returns {AppDispatch} Dispatch method to update user state.
  */
 export const resetUser = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
@@ -84,8 +86,9 @@ export const resetUser = () => {
 
 /**
  * Changing waypoint tracking interval in the settings (src/screens/settings-screen.tsx).
- * @param newInterval new tracking interval in seconds
- * @returns dispatch method to update tracking interval.
+ *
+ * @param {number} newInterval New tracking interval in seconds.
+ * @returns {AppDispatch} Dispatch method to update tracking interval.
  */
 export const changeTrackingInterval = (newInterval: number) => {
 	return async (dispatch: AppDispatch) => {
@@ -97,8 +100,9 @@ export const changeTrackingInterval = (newInterval: number) => {
 
 /**
  * Changing waypoint sending interval to server in the settings (src/screens/settings-screen.tsx).
- * @param newInterval new sending interval in seconds
- * @returns dispatch method to update sending interval.
+ *
+ * @param {number} newInterval New sending interval in seconds.
+ * @returns {AppDispatch} Dispatch method to update sending interval.
  */
 export const changeSendingInterval = (newInterval: number) => {
 	return async (dispatch: AppDispatch) => {
@@ -108,9 +112,10 @@ export const changeSendingInterval = (newInterval: number) => {
 };
 
 /**
- * Change map tile cache lifetime in the settings
- * @param newLifetime in hours
- * @returns dispatch method to update map life time
+ * Change map tile cache lifetime in the settings.
+ *
+ * @param {number} newLifetime New lifetime in hours.
+ * @returns {AppDispatch} Dispatch method to update map life time.
  */
 export const changeMapLifetime = (newLifetime: number) => {
 	return async (dispatch: AppDispatch) => {
@@ -122,7 +127,8 @@ export const changeMapLifetime = (newLifetime: number) => {
 /**
  * Change default user settings such as intervals and map life time in the settings.
  * User ID remains the same.
- * @returns dispatch method to change default settings
+ *
+ * @returns {AppDispatch} Dispatch method to change default settings.
  */
 export const changeDefaultSettings = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {

@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppDispatch, ReduxState } from "../store";
-import { startNewRoute, deactivateExistingRoute, sendNewWaypoint } from "../requests";
-import { Route, User } from "../types";
-import { setRouteId, initializeWaypoints } from "./waypoint-reducer";
-import { startBackgroundUpdate, stopBackgroundUpdate } from "../utils/location-tracking";
 import { Share } from "react-native";
 import * as Linking from "expo-linking";
+import { startNewRoute, deactivateExistingRoute, sendNewWaypoint } from "../requests";
+import { AppDispatch, ReduxState } from "../store";
+import { Route, User } from "../types";
+import { startBackgroundUpdate, stopBackgroundUpdate } from "../utils/location-tracking";
+import { setRouteId, initializeWaypoints } from "./waypoint-reducer";
 
 const initialState: Route = {
 	active: false,
@@ -37,8 +37,8 @@ export const { setRoute, changeVisibility } = routeSlice.actions;
  * to create new route, store new route object into the devices storage and start background
  * location tracking.
  * Route object `showRoute` and `active` params will be se to true.
- * @param user user object which contains id and interval parameters.
- * @returns dispatch method to update route state
+ * @param {User} user User object which contains id and interval parameters.
+ * @returns {AppDispatch} Dispatch method to update the route state.
  */
 export const startRoute = (user: User) => {
 	return async (dispatch: AppDispatch) => {
@@ -64,7 +64,8 @@ export const startRoute = (user: User) => {
  * makes http request to send last waypoints, deactivate active route,
  * initializes route state and stops background location tracking.
  * Route object `active`param will be se to false.
- * @returns dispatch method to reset route state
+ *
+ * @returns {AppDispatch} dispatch method to reset route state
  */
 export const deactivateRoute = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
@@ -84,7 +85,8 @@ export const deactivateRoute = () => {
 
 /**
  * Function to change show route status to opposite boolean.
- * @returns dispatch method to change route show route
+ *
+ * @returns {AppDispatch} Dispatch method to change route show route.
  */
 export const changeShowRoute = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {

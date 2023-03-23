@@ -10,7 +10,13 @@ import LocationVisibleButton from "./location-visible-button";
 import RouteVisibleButton from "./route-visible-button";
 import RemoveButton from "./remove-button";
 
-const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, username }: TrackedUser) => {
+/**
+ * A container that displays a tracked user's name and visibility control buttons.
+ *
+ * @param {TrackedUser} { id, locationVisible, routeVisible, userId, username }
+ * @returns {JSX.Element} A new TrackedUserDetails component.
+ */
+const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, username }: TrackedUser): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const [localLocationVisible, setLocalLocationVisible] = useState<boolean>(locationVisible);

@@ -3,19 +3,18 @@ import { RouteButtonProps } from "../types";
 import Styles from "../styles";
 
 /**
- * Route button component which can perform on press functions
- * such as toggle visibility on / off.
- * Just preliminary styling and location on a screen.
- * @param {string} text Button text
+ * Route button component which can perform on press functions such as toggle visibility on / off.
+ *
+ * @param {function} onPress A function to handle the button being pressed.
+ * @param {string} text Text to be displayed on the butotn.
+ * @returns {JSX.Element} A new RouteButton component.
  */
-const RouteButton = ({ onPress, text }: RouteButtonProps): JSX.Element => {
-	return (
-		<View style={Styles.routeButton}>
-			<TouchableOpacity onPress={onPress}>
-				<Text style={Styles.buttonText}>{text}</Text>
-			</TouchableOpacity>
-		</View>
-	);
-};
+const RouteButton = ({ onPress, text }: RouteButtonProps): JSX.Element => (
+	<View style={Styles.routeButton}>
+		<TouchableOpacity onPress={onPress}>
+			<Text style={Styles.buttonText}>{text}</Text>
+		</TouchableOpacity>
+	</View>
+);
 
 export default RouteButton;

@@ -45,12 +45,14 @@ export const { initializeWaypoints, setRouteId, appendWaypoint, resetPendingWayp
 
 let wasOffline = false;
 let sendTicker = 0;
+
 /**
  * Checks wheter route ID has been initialized. If so, gets location and MNC code and creates
  * a new waypoint object which will stored into localdevices `WaypointState`
  * Sends waypoints to server according to the sending interval or immediately if
  * was disconnected and is connected.
- * @returns dispatch method to update `WaypointState`
+ *
+ * @returns {AppDispatch} Dispatch method to update `WaypointState`.
  */
 export const storeAndSendWaypoints = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {

@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { LocationObject } from "expo-location";
 import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
-
 import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
@@ -11,6 +10,8 @@ import Styles from "../styles";
 /**
  * Info container component to show information primarily for debugging
  * purposes. Some of the info should be deleted later, but perhaps keep the coordinates?
+ *
+ * @returns {JSX.Element} A new InfoContainer component.
  */
 const InfoContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);

@@ -37,6 +37,8 @@
 		"prefer-arrow-callback": "error",
 		"react/jsx-sort-props": ["error", { "ignoreCase": true }],
 		"react/react-in-jsx-scope": "off",
-		"sort-keys": ["error", "asc", { "caseSensitive": true, "natural": false, "minKeys": 2 }]
+		"require-jsdoc": "error",
+		"sort-keys": ["error", "asc", { "caseSensitive": true, "natural": false, "minKeys": 2 }],
+		"valid-jsdoc": "error"
 	}
 }

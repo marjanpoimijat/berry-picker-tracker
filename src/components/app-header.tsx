@@ -1,17 +1,17 @@
 import { Text, View } from "react-native";
-import { AppHeaderProps } from "../types";
 import Styles from "../styles";
+import { AppHeaderProps } from "../types";
 
 /**
- * Application header to display header text at find-user-route-screen and settings-screen.
- * @param {string} name header text
+ * Displays a header text at the top of a component.
+ *
+ * @param {string} text The text to be displayed in the header.
+ * @returns {JSX.Element} A new AppHeader component.
  */
-const AppHeader = ({ text }: AppHeaderProps): JSX.Element => {
-	return (
-		<View style={Styles.headerContainer}>
-			<Text style={Styles.headerText}>{text}</Text>
-		</View>
-	);
-};
+const AppHeader = ({ text }: AppHeaderProps): JSX.Element => (
+	<View style={Styles.headerContainer}>
+		<Text style={Styles.headerText}>{text}</Text>
+	</View>
+);
 
 export default AppHeader;

@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Text, View } from "react-native";
 import MapView, { Polyline, UrlTile, Circle, Marker } from "react-native-maps";
 import { baseUrl } from "../constants";
 import { setMapLocation } from "../reducers/map-location-reducer";
-import { getUsersLatestRoute } from "../requests";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import { Coordinate, TrackedUserRouteProps, TrackedUsers, Waypoint, WaypointFromServer } from "../types";
-import getCircleColor from "../utils/circle";
-import { colors } from "../utils/colors";
+import { Coordinate, TrackedUsers } from "../types";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
+import getCircleColor from "../utils/circle";
 import sortTrackedUserList from "../utils/sort";
+import TrackedUserRoute from "./tracked-user-route";
 
 /**
- * Visualizes topomap using NLS tiles and draws a route between
+ * Visualizes topomap using map tiles and draws a route between
  * route coordinate points if show route state has been set to true.
+ *
+ * @returns {JSX.Element} A new MapViewContainer component.
  */
 const MapViewContainer = (): JSX.Element => {
 	const mapLocation = useTypedSelector((state) => state.mapLocation);
@@ -120,73 +121,6 @@ const MapViewContainer = (): JSX.Element => {
 				)}
 			</MapView>
 		</View>
-	);
-};
-
-const TrackedUserRoute = ({ user }: TrackedUserRouteProps) => {
-	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
-
-	const findUserRoute = async () => {
-		setUsersWaypoints(null);
-		const data = await getUsersLatestRoute(user.userId);
-		if (!data) return <></>;
-		const waypoints: Waypoint[] = data.waypoints.map((waypoint: WaypointFromServer) => {
-			return {
-				...waypoint,
-				routeId: waypoint.route_id,
-			};
-		});
-		setUsersWaypoints(waypoints);
-		console.log(`...Users route ID: ${data.routeId} found.`);
-		console.log(`Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`);
-	};
-
-	useEffect(() => {
-		findUserRoute();
-	}, []);
-
-	return (
-		<>
-			{usersWaypoints && (
-				<>
-					{user.routeVisible && (
-						<>
-							<Polyline
-								coordinates={usersWaypoints}
-								strokeColor={colors[user.id % colors.length]}
-								strokeWidth={4}
-								zIndex={2}
-							/>
-							<Polyline
-								coordinates={usersWaypoints}
-								strokeColor="black"
-								strokeWidth={8}
-								zIndex={1}
-							/>
-						</>
-					)}
-					{user.locationVisible && (
-						<Marker
-							coordinate={{
-								latitude: usersWaypoints[usersWaypoints.length - 1]
-									? usersWaypoints[usersWaypoints.length - 1].latitude
-									: 60.204662,
-								longitude: usersWaypoints[usersWaypoints.length - 1]
-									? usersWaypoints[usersWaypoints.length - 1].longitude
-									: 24.962535,
-							}}
-						>
-							<View
-								style={{
-									...Styles.trackedUserDot,
-									backgroundColor: colors[user.id % colors.length],
-								}}
-							/>
-						</Marker>
-					)}
-				</>
-			)}
-		</>
 	);
 };
 

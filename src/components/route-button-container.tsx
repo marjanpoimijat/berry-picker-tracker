@@ -1,10 +1,8 @@
 import { Alert, View } from "react-native";
-
 import { languages } from "../languages";
 import { startRoute, deactivateRoute, changeShowRoute, shareRoute } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-
 import RouteButton from "./route-button";
 import ShareButton from "./share-button";
 
@@ -12,6 +10,8 @@ import ShareButton from "./share-button";
  * Route button container component which contains buttons to
  * start / end route tracking and to toggle route visibility on / off.
  * Just preliminary styling and location on a screen.
+ *
+ * @returns {JSX.Element} A new RouteButtonContainer component.
  */
 const RouteButtonContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
@@ -28,10 +28,6 @@ const RouteButtonContainer = (): JSX.Element => {
 		}
 	};
 
-	/**
-	 * Shows alert on pressing End route.
-	 * Pressing OK ends route, CANCEL cancels operation.
-	 */
 	const alertOnEndRoute = () => {
 		Alert.alert(
 			languages["End tracking this route?"][language],
