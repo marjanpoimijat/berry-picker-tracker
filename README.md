@@ -1,21 +1,32 @@
-# Berry Picker Tracker mobile app
+<div align="center">
+  <a href="https://github.com/marjanpoimijat">
+    <img
+        alt="Berry Picker Tracker logo"
+        height=150
+        src="https://raw.githubusercontent.com/marjanpoimijat/berry-picker-tracker-docs/main/docs/images/logo.png"
+        title="Berry Picker Tracker logo"
+        width=150
+    />
+  </a>
+  <h1>
+    <a href="https://github.com/marjanpoimijat">
+      Berry Picker Tracker
+    </a>
+  </h1>
+</div>
+
+# Application
 
 ## Installation
 
-### Install script for frontend and backend in documentation
-[Documentation for install script](https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/README.md#installation)
+### Installation Script
 
-### Requirements
+There is a script for automating the installation process for both the frontend and the backend. You can find the [instructions](https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/README.md#installation) in the official Berry Picker Tracker documentation.
 
-- `node:^16.17.0`
-- `npm:^8.19.0`
-
-The recommended way to set up node and npm is by using [nvm](https://github.com/nvm-sh/nvm).
-
-### Set-up
+### Manual Set-up
 
 ```bash
-npm install
+$ npm install
 ```
 
 Create a .env-file to the project root with following:
@@ -26,14 +37,21 @@ URI=<server-address>
 
 e.g. `URI="https://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2:8000"` (address for Android emulator)
 
+### Requirements
+
+- `node:^16.17.0`
+- `npm:^8.19.0`
+
+The recommended way to set up node and npm is by using [nvm](https://github.com/nvm-sh/nvm).
+
 ## Usage
 
-### Starting the application
+### Running
 
-use the following command to start the application:
+Use the following command to start the application:
 
 ```bash
-npm start
+$ npm start
 ```
 
 ### Instructions for Berry-Picker-Tracker Mobile App for IOS/Android
@@ -44,22 +62,21 @@ npm start
 
 #### Instructions:
 
-1. Install <strong>Expo Go</strong> app from the Apple <strong>App Store</strong> or Android <strong>Play Store</strong>. Expo Go is a smartphone application for running mobile apps that are in development on a mobile device.
-2. Launch <strong>Expo Go</strong> app on your IOS/Android device.
+1. Install **Expo Go** app from the Apple **App Store** or Android **Play Store**. Expo Go is a smartphone application for running mobile apps that are in development on a mobile device.
+2. Launch **Expo Go** app on your IOS/Android device.
 3. Login or Create an Expo account.
-
 4. Connect your IOS/Android device to your computer using usb-cable.
 5. Make sure that your IOS/Android device and your computer are connected to the same network.
 6. On your computer in the Berry-picker-tracker frontend repository run the command:
 
-```
-npm start
+```bash
+$ npm start
 ```
 
 6. A QR code should be displayed. Open the default camera app on your IOS/Android device and scan the QR code.
-7. On your IOS device Expo Go should open and promt you to choose between <strong>Development Build</strong> or <strong>Expo Go</strong>. Choose <strong>Expo Go</strong>.
+7. On your IOS device Expo Go should open and promt you to choose between **Development Build** or **Expo Go**. Choose **Expo Go**.
 
-Congratulations! The Berry-picker-tracker mobile app should now launch on your IOS/Android device.
+Congratulations! The Berry Picker Tracker mobile application should now be launched on your iOS/Android device.
 
 ### Running the app in an Android emulator on Cubbli/Ubuntu
 
@@ -74,7 +91,7 @@ $ sudo apt install android-sdk
 $ echo 'export ANDROID_HOME="$HOME/Android/Sdk"' >> .bashrc
 ```
 
-2. [Download]() and install Android Studio by following [the instructions](https://developer.android.com/studio/install#linux).
+2. Download and install Android Studio by following [the instructions](https://developer.android.com/studio/install#linux).
 
 3. Set up an emulator by following [the instructions](https://docs.expo.dev/workflow/android-studio-emulator).
 
@@ -83,12 +100,12 @@ $ echo 'export ANDROID_HOME="$HOME/Android/Sdk"' >> .bashrc
 
 4. Keep Android Studio and the emulator open while running the frontend.
 
-### Lint
+### Linting
 
 Eslint is run automatically when committing changes. For manual linting use the following command in the root directory.
 
 ```bash
-npx eslint src/**
+$ npx eslint src/**
 ```
 
 ### Recommended editor tooling (VSCode)
@@ -110,7 +127,3 @@ Open your user settings and add the following:
 ## Licences
 
 [Licenses](https://github.com/marjanpoimijat/berry-picker-tracker/tree/main/licenses)
-
-## General Information about the App
-
-[App Documentation](https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/README.md)
