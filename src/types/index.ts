@@ -2,7 +2,7 @@ export interface AppHeaderProps {
 	text: string;
 }
 
-export interface ButtonProps {
+export interface ButtonIconProps {
 	disabled: boolean;
 	iconName: string;
 }
