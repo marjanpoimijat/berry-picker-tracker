@@ -3,8 +3,8 @@ import { languages } from "../languages";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import sortTrackedUserList from "../utils/sort";
-import TrackUserMenuToggle from "./track-user-menu-toggle";
-import TrackedUserDetails from "./tracked-user-details";
+import TrackUserMenuToggle from "./TrackUserMenuToggle";
+import TrackedUserDetails from "./TrackedUserDetails";
 
 /**
  * Menu for tracking tracking other users and their routes.

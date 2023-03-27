@@ -4,9 +4,9 @@ import { languages } from "../languages";
 import { setRouteButtonVisible, setTrackListVisible } from "../reducers/ui-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import NavigatorButton from "./navigator-button";
-import ToggleButton from "./toggle-button";
-import TrackingButton from "./tracking-button";
+import NavigatorButton from "./NavigatorButton";
+import ToggleButton from "./ToggleButton";
+import TrackingButton from "./TrackingButton";
 
 /**
  * Navigator tab located at the bottom of the screen which contains

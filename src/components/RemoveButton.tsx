@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { RemoveButtonProps } from "../types";
-import Button from "./button";
+import Button from "./Button";
 
 /**
  * A button used to remove a tracked user from the Tracking menu.

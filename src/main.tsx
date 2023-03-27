@@ -4,9 +4,9 @@ import { useEffect } from "react";
 
 import { useTypedDispatch } from "./store";
 import { identifyUser } from "./reducers/user-reducer";
-import MapScreen from "./screens/map-screen";
-import SettingsScreen from "./screens/settings-screen";
-import NavigatorTab from "./components/navigator-tab";
+import MapScreen from "./screens/MapScreen";
+import SettingsScreen from "./screens/SettingsScreen";
+import NavigatorTab from "./components/NavigatorTab";
 
 import { defineBackgroundLocationTask, requestPermissions } from "./utils/location-tracking";
 import { makeTileCacheDirectory } from "./utils/file-system";

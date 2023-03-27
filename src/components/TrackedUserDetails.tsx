@@ -6,9 +6,9 @@ import { addTrackedUser, removeTrackedUser } from "../reducers/tracker-users-red
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import { getColor } from "../utils/colors";
-import LocationVisibleButton from "./location-visible-button";
-import RouteVisibleButton from "./route-visible-button";
-import RemoveButton from "./remove-button";
+import LocationVisibleButton from "./LocationVisibleButton";
+import RouteVisibleButton from "./RouteVisibleButton";
+import RemoveButton from "./RemoveButton";
 
 /**
  * A container that displays a tracked user's name and visibility control buttons.

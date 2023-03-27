@@ -3,8 +3,8 @@ import { languages } from "../languages";
 import { startRoute, deactivateRoute, changeShowRoute, shareRoute } from "../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import RouteButton from "./route-button";
-import ShareButton from "./share-button";
+import RouteButton from "./RouteButton";
+import ShareButton from "./ShareButton";
 
 /**
  * Route button container component which contains buttons to

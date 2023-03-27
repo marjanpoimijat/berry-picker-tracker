@@ -9,7 +9,7 @@ import { Coordinate, TrackedUsers } from "../types";
 import { parseLatitude, parseLongitude } from "../utils/coordinates";
 import getCircleColor from "../utils/circle";
 import sortTrackedUserList from "../utils/sort";
-import TrackedUserRoute from "./tracked-user-route";
+import TrackedUserRoute from "./TrackedUserRoute";
 
 /**
  * Visualizes topomap using map tiles and draws a route between
