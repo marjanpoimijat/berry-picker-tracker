@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { Text, View } from "react-native";
-import MapView, { Polyline, UrlTile, Circle, Marker } from "react-native-maps";
-import { baseUrl } from "../constants";
-import { setMapLocation } from "../reducers/map-location-reducer";
-import { useTypedDispatch, useTypedSelector } from "../store";
-import Styles from "../styles";
-import { Coordinate, TrackedUsers } from "../types";
-import { parseLatitude, parseLongitude } from "../utils/coordinates";
-import getCircleColor from "../utils/circle";
-import sortTrackedUserList from "../utils/sort";
+import { View } from "react-native";
+import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
+import { baseUrl } from "../../constants";
+import { setMapLocation } from "../../reducers/map-location-reducer";
+import { useTypedDispatch, useTypedSelector } from "../../store";
+import Styles from "../../styles";
+import { Coordinate, TrackedUsers } from "../../types";
+import getCircleColor from "../../utils/circle";
+import sortTrackedUserList from "../../utils/sort";
 import TrackedUserRoute from "./TrackedUserRoute";
+import CoordinatesMarker from "./CoordinatesMarker";
 
 /**
  * Visualizes topomap using map tiles and draws a route between
@@ -100,25 +100,7 @@ const MapViewContainer = (): JSX.Element => {
 						);
 					}
 				})}
-				{coordinates && (
-					<>
-						<Marker
-							coordinate={coordinates}
-							style={{ height: 50 }}
-						>
-							<View style={Styles.coordinateBoxContainer}>
-								<View style={Styles.coordinateBox}>
-									<Text>
-										{parseLatitude(coordinates.latitude)}, {parseLongitude(coordinates.longitude)}
-									</Text>
-								</View>
-							</View>
-						</Marker>
-						<Marker coordinate={coordinates}>
-							<View style={Styles.coordinateDot} />
-						</Marker>
-					</>
-				)}
+				{coordinates && <CoordinatesMarker coordinates={coordinates} />}
 			</MapView>
 		</View>
 	);

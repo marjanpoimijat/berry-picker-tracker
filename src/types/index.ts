@@ -12,6 +12,10 @@ export interface Coordinate {
 	longitude: number;
 }
 
+export interface CoordinatesMarkerProps {
+	coordinates: Coordinate;
+}
+
 export interface DotProps {
 	id: number;
 }

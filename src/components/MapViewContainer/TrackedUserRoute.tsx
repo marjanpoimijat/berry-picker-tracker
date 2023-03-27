@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { Marker, Polyline } from "react-native-maps";
-import { getUsersLatestRoute } from "../requests";
-import Styles from "../styles";
-import { TrackedUserRouteProps, Waypoint, WaypointFromServer } from "../types";
-import { getColor } from "../utils/colors";
+import { getUsersLatestRoute } from "../../requests";
+import Styles from "../../styles";
+import { TrackedUserRouteProps, Waypoint, WaypointFromServer } from "../../types";
+import { getColor } from "../../utils/colors";
 
 /**
  * Renders a tracked user's route on the map.
