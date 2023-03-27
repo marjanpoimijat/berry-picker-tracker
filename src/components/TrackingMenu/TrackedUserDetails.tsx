@@ -8,7 +8,7 @@ import Styles from "../../styles";
 import { getColor } from "../../utils/colors";
 import LocationVisibleButton from "./LocationVisibleButton";
 import RouteVisibleButton from "./RouteVisibleButton";
-import RemoveButton from "./RemoveButton";
+import RemoveUserButton from "./RemoveUserButton";
 
 /**
  * A container that displays a tracked user's name and visibility control buttons.
@@ -66,7 +66,7 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 		console.log(JSON.stringify(trackedUsers, null, 2));
 	};
 
-	const handleRemoveButtonPress = () => {
+	const handleRemoveUserButtonPress = () => {
 		Alert.alert(
 			languages["Removing a tracked user"][language],
 			languages["Do you really want to remove this user from the list?"][language],
@@ -101,7 +101,7 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 					locationVisible={localLocationVisible}
 					routeVisible={localRouteVisible}
 				/>
-				<RemoveButton handleRemoveButtonPress={handleRemoveButtonPress} />
+				<RemoveUserButton handleRemoveUserButtonPress={handleRemoveUserButtonPress} />
 			</View>
 		</View>
 	);

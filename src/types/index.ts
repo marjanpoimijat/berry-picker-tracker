@@ -59,8 +59,8 @@ export interface NavigatorButtonProps {
 	text: string;
 }
 
-export interface RemoveButtonProps {
-	handleRemoveButtonPress: () => void;
+export interface RemoveUserButtonProps {
+	handleRemoveUserButtonPress: () => void;
 }
 
 export interface Route {
