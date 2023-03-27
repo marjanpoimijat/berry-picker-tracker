@@ -4,7 +4,6 @@ import { startRoute, deactivateRoute, changeShowRoute, shareRoute } from "../red
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import RouteButton from "./RouteButton";
-import ShareButton from "./ShareButton";
 
 /**
  * Route button container component which contains buttons to
@@ -56,7 +55,7 @@ const RouteButtonContainer = (): JSX.Element => {
 				onPress={() => dispatch(changeShowRoute())}
 				text={routeInfo.showRoute ? languages["Hide route"][language] : languages["Show route"][language]}
 			/>
-			<ShareButton
+			<RouteButton
 				onPress={() => dispatch(shareRoute(user))}
 				text={languages["Share route"][language]}
 			/>

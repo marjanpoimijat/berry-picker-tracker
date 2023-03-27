@@ -210,15 +210,6 @@ const Styles = StyleSheet.create({
 		paddingHorizontal: 10,
 		width: "95%",
 	},
-	shareButton: {
-		alignItems: "center",
-		backgroundColor: theme.colors.buttonBackgroundColor,
-		borderRadius: 5,
-		height: 40,
-		justifyContent: "center",
-		marginHorizontal: 2,
-		width: 90,
-	},
 	smallMapView: {
 		backgroundColor: "lightgrey",
 		borderRadius: 5,
