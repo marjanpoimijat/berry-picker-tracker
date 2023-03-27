@@ -23,25 +23,25 @@ const NavigatorTab = (): JSX.Element => {
 		dispatch(setRouteButtonVisible(!ui.routeButtonsVisible));
 	};
 
-	const toggleList = () => {
+	const toggleTrackingMenu = () => {
 		dispatch(setTrackListVisible(!ui.trackListVisible));
 	};
 
 	return (
 		<View style={Styles.navigatorTab}>
-			<MyRoutesButton
-				iconName="route"
-				onPress={toggleRouteButtons}
-				text={languages["My routes"][language]}
-			/>
 			<NavigatorButton
 				iconName="map"
 				path="/"
 				text={languages["Map"][language]}
 			/>
+			<MyRoutesButton
+				iconName="route"
+				onPress={toggleRouteButtons}
+				text={languages["My routes"][language]}
+			/>
 			<TrackingButton
 				iconName="location-arrow"
-				onPress={toggleList}
+				onPress={toggleTrackingMenu}
 				text={languages["Tracking"][language]}
 			/>
 			<NavigatorButton
