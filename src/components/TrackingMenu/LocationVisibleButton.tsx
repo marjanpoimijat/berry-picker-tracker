@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { LocationVisibleButtonProps } from "../../types";
-import Button from "./Button";
+import ButtonIcon from "./ButtonIcon";
 
 /**
  * Description placeholder
@@ -12,12 +12,12 @@ import Button from "./Button";
 const LocationVisibleButton = ({ locationVisible, handleLocationVisibleChange }: LocationVisibleButtonProps) => (
 	<TouchableOpacity onPress={() => handleLocationVisibleChange()}>
 		{locationVisible ? (
-			<Button
+			<ButtonIcon
 				disabled={!locationVisible}
 				iconName="eye"
 			/>
 		) : (
-			<Button
+			<ButtonIcon
 				disabled={!locationVisible}
 				iconName="eye-slash"
 			/>

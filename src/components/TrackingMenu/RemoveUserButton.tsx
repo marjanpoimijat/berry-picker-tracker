@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { RemoveUserButtonProps } from "../../types";
-import Button from "./Button";
+import ButtonIcon from "./ButtonIcon";
 
 /**
  * A button used to remove a tracked user from the Tracking menu.
@@ -10,7 +10,7 @@ import Button from "./Button";
  */
 const RemoveUserButton = ({ handleRemoveUserButtonPress }: RemoveUserButtonProps): JSX.Element => (
 	<TouchableOpacity onPress={() => handleRemoveUserButtonPress()}>
-		<Button
+		<ButtonIcon
 			disabled={false}
 			iconName="trash-alt"
 		/>

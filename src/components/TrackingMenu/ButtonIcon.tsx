@@ -8,7 +8,7 @@ import { ButtonProps } from "../../types";
  * @param {string} iconName The name of the FontAwesome5 icon to be used.
  * @returns {JSX.Element} A new Button component.
  */
-const Button = ({ disabled, iconName }: ButtonProps): JSX.Element => (
+const ButtonIcon = ({ disabled, iconName }: ButtonProps): JSX.Element => (
 	<Icon
 		color={disabled ? "gray" : "black"}
 		name={iconName}
@@ -17,4 +17,4 @@ const Button = ({ disabled, iconName }: ButtonProps): JSX.Element => (
 	/>
 );
 
-export default Button;
+export default ButtonIcon;
