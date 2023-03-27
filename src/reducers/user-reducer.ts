@@ -61,7 +61,7 @@ export const identifyUser = () => {
 			const data = await createNewUser();
 			console.log(`recieved user id for a new user ${data.id}\n`);
 			dispatch(setUser(data.id));
-			const cryptoKey = generateKeyString(16);
+			const cryptoKey = generateKeyString(16, true);
 			await secureStoreAddCryptoKey(cryptoKey);
 		}
 	};
