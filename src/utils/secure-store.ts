@@ -5,10 +5,6 @@ import * as SecureStore from "expo-secure-store";
  * in a single JSON object named "tracked". SecureStore also stores the user's
  * own crypto key. Crypto keys are used to encrypt and decrypt sent data between users.
  *
- * @param {string} userId UserID of the user to be added.
- * @param {string} cryptoKey The key used to decrypt the shared data.
- * @returns {void}
- *
  * Example JSON object:
  *
  * tracked: {
@@ -25,6 +21,14 @@ import * as SecureStore from "expo-secure-store";
  * Example cryptokey object:
  *
  * cryptoKey: 'sd9fk3+f0sdf3'
+ */
+
+/**
+ * Adds a new tracked user to the storage or updates an old one.
+ *
+ * @param {string} userId UserID of the user to be added.
+ * @param {string} cryptoKey The key used to decrypt the shared data.
+ * @returns {void}
  */
 export const secureStoreAddTracked = async (userId: string, cryptoKey: string) => {
 	try {
@@ -52,6 +56,12 @@ export const secureStoreAddTracked = async (userId: string, cryptoKey: string) =
 	}
 };
 
+/**
+ * Retrieves the information of a specific user.
+ *
+ * @param {string} userId UserID of the user.
+ * @returns {object} JSON object of the user.
+ */
 export const secureStoreGetTrackedUser = async (userId: string) => {
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
@@ -71,6 +81,12 @@ export const secureStoreGetTrackedUser = async (userId: string) => {
 	}
 };
 
+/**
+ * Deletes a specific user from "tracked" object.
+ *
+ * @param {string} userId UserID of the user.
+ * @returns {void}
+ */
 export const secureStoreDeleteTrackedUser = async (userId: string) => {
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
@@ -92,6 +108,11 @@ export const secureStoreDeleteTrackedUser = async (userId: string) => {
 	}
 };
 
+/**
+ * Initializes an empty "tracked" object. Tracked users' secret information will be stored into it.
+ *
+ * @returns {void}
+ */
 export const secureStoreInitializeTrackedObject = async () => {
 	try {
 		await SecureStore.setItemAsync("tracked", "{}");
@@ -101,6 +122,11 @@ export const secureStoreInitializeTrackedObject = async () => {
 	}
 };
 
+/**
+ * Deletes the "tracked" object from storage.
+ *
+ * @returns {void}
+ */
 export const secureStoreDeleteTrackedObject = async () => {
 	try {
 		const result = await SecureStore.getItemAsync("tracked");
@@ -113,6 +139,12 @@ export const secureStoreDeleteTrackedObject = async () => {
 	}
 };
 
+/**
+ * Adds the user's own cryptoKey into storage or updates it.
+ *
+ * @param {string} key CryptoKey to be saved.
+ * @returns {void}
+ */
 export const secureStoreAddCryptoKey = async (key: string) => {
 	try {
 		await SecureStore.setItemAsync("cryptoKey", key);
@@ -122,6 +154,11 @@ export const secureStoreAddCryptoKey = async (key: string) => {
 	}
 };
 
+/**
+ * Retrieves the user's own cryptoKey.
+ *
+ * @returns {string} CryptoKey.
+ */
 export const secureStoreGetCryptoKey = async () => {
 	try {
 		const cryptoKey = await SecureStore.getItemAsync("cryptoKey");
@@ -131,6 +168,11 @@ export const secureStoreGetCryptoKey = async () => {
 	}
 };
 
+/**
+ * Deletes user's own cryptoKey from storage.
+ *
+ * @returns {void}
+ */
 export const secureStoreDeleteCryptoKey = async () => {
 	try {
 		const result = await SecureStore.getItemAsync("cryptoKey");
