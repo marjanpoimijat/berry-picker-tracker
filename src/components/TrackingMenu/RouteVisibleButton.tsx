@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { RouteVisibleButtonProps } from "../../types";
-import Button from "./Button";
+import ButtonIcon from "./ButtonIcon";
 
 /**
  * A button used to toggle the visibility of a tracked user's route.
@@ -14,7 +14,7 @@ const RouteVisibleButton = ({ locationVisible, routeVisible, handleRouteVisibleC
 		disabled={!locationVisible}
 		onPress={() => handleRouteVisibleChange()}
 	>
-		<Button
+		<ButtonIcon
 			disabled={!locationVisible || !routeVisible}
 			iconName="route"
 		/>

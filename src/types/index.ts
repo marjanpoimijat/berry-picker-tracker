@@ -2,7 +2,7 @@ export interface AppHeaderProps {
 	text: string;
 }
 
-export interface ButtonProps {
+export interface ButtonIconProps {
 	disabled: boolean;
 	iconName: string;
 }
@@ -59,8 +59,8 @@ export interface NavigatorButtonProps {
 	text: string;
 }
 
-export interface RemoveButtonProps {
-	handleRemoveButtonPress: () => void;
+export interface RemoveUserButtonProps {
+	handleRemoveUserButtonPress: () => void;
 }
 
 export interface Route {
