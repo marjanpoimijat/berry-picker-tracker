@@ -8,7 +8,7 @@ import Styles from "../../styles";
 import { getColor } from "../../utils/colors";
 import LocationVisibleButton from "./LocationVisibleButton";
 import RouteVisibleButton from "./RouteVisibleButton";
-import RemoveButton from "../RemoveButton";
+import RemoveButton from "./RemoveButton";
 
 /**
  * A container that displays a tracked user's name and visibility control buttons.

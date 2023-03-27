@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { LocationVisibleButtonProps } from "../../types";
-import Button from "../Button";
+import Button from "./Button";
 
 /**
  * Description placeholder

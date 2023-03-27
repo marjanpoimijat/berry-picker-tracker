@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { RouteVisibleButtonProps } from "../../types";
-import Button from "../Button";
+import Button from "./Button";
 
 /**
  * A button used to toggle the visibility of a tracked user's route.
