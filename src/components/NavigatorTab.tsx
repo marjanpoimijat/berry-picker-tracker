@@ -5,7 +5,7 @@ import { setRouteButtonVisible, setTrackListVisible } from "../reducers/ui-reduc
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import NavigatorButton from "./NavigatorButton";
-import ToggleButton from "./ToggleButton";
+import MyRoutesButton from "./MyRoutesButton";
 import TrackingButton from "./TrackingButton";
 
 /**
@@ -29,10 +29,10 @@ const NavigatorTab = (): JSX.Element => {
 
 	return (
 		<View style={Styles.navigatorTab}>
-			<ToggleButton
+			<MyRoutesButton
 				iconName="route"
 				onPress={toggleRouteButtons}
-				text={languages["Routes"][language]}
+				text={languages["My routes"][language]}
 			/>
 			<NavigatorButton
 				iconName="map"

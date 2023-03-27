@@ -199,6 +199,11 @@
 		"fi": "MNC-koodi",
 		"sv": "MNC-kod"
 	},
+	"My routes": {
+		"en": "My routes",
+		"fi": "Omat reitit",
+		"sv": "Mina rutter"
+	},
 	"NA": {
 		"en": "NA",
 		"fi": "tuntematon",

@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { ToggleButtonProps } from "../types";
+import { MyRoutesButtonProps } from "../types";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import theme from "../styles/theme";
@@ -10,9 +10,9 @@ import theme from "../styles/theme";
  * @param {string} iconName Name of the FontAwesome5 icon to be displayed on the button.
  * @param {function} onPress Function to handle the button being pressed.
  * @param {string} text Text to be displayed on the button.
- * @returns {JSX.Element} A new ToggleButton component.
+ * @returns {JSX.Element} A new MyRoutesButton component.
  */
-const ToggleButton = ({ iconName, onPress, text }: ToggleButtonProps): JSX.Element => {
+const MyRoutesButton = ({ iconName, onPress, text }: MyRoutesButtonProps): JSX.Element => {
 	const active = useTypedSelector((state) => state.route.active);
 	const toggled = useTypedSelector((state) => state.ui.routeButtonsVisible);
 	const recordingColor = theme.colors.recordingColor;
@@ -31,4 +31,4 @@ const ToggleButton = ({ iconName, onPress, text }: ToggleButtonProps): JSX.Eleme
 	);
 };
 
-export default ToggleButton;
+export default MyRoutesButton;

@@ -47,6 +47,12 @@ export interface MapLocation {
 	};
 }
 
+export interface MyRoutesButtonProps {
+	iconName: string;
+	onPress: () => void;
+	text: string;
+}
+
 export interface NavigatorButtonProps {
 	iconName: string;
 	path: string;
@@ -75,12 +81,6 @@ export interface RouteVisibleButtonProps {
 }
 
 export interface ShareButtonProps {
-	onPress: () => void;
-	text: string;
-}
-
-export interface ToggleButtonProps {
-	iconName: string;
 	onPress: () => void;
 	text: string;
 }
