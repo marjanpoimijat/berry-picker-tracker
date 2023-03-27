@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Text, View } from "react-native";
 import * as Location from "expo-location";
-import { languages } from "../languages";
-import { setCurrentLocation } from "../reducers/current-location-reducer";
-import Styles from "../styles";
-import { useTypedDispatch, useTypedSelector } from "../store";
-import { parseLatitude, parseLongitude } from "../utils/coordinates";
+import { languages } from "../../languages";
+import { setCurrentLocation } from "../../reducers/current-location-reducer";
+import Styles from "../../styles";
+import { useTypedDispatch, useTypedSelector } from "../../store";
+import { parseLatitude, parseLongitude } from "../../utils/coordinates";
 
 /**
  * Component that displays the user's current coordinates.
