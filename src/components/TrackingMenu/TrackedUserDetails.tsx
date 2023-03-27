@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Alert, Text, View } from "react-native";
-import { languages } from "../languages";
-import { DotProps, TrackedUser, UsernameProps } from "../types";
-import { addTrackedUser, removeTrackedUser } from "../reducers/tracker-users-reducer";
-import { useTypedDispatch, useTypedSelector } from "../store";
-import Styles from "../styles";
-import { getColor } from "../utils/colors";
+import { languages } from "../../languages";
+import { DotProps, TrackedUser, UsernameProps } from "../../types";
+import { addTrackedUser, removeTrackedUser } from "../../reducers/tracker-users-reducer";
+import { useTypedDispatch, useTypedSelector } from "../../store";
+import Styles from "../../styles";
+import { getColor } from "../../utils/colors";
 import LocationVisibleButton from "./LocationVisibleButton";
 import RouteVisibleButton from "./RouteVisibleButton";
-import RemoveButton from "./RemoveButton";
+import RemoveButton from "../RemoveButton";
 
 /**
  * A container that displays a tracked user's name and visibility control buttons.

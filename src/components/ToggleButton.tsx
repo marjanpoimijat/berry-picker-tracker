@@ -4,6 +4,7 @@ import { ToggleButtonProps } from "../types";
 import { useTypedSelector } from "../store";
 import Styles from "../styles";
 import theme from "../styles/theme";
+
 /**
  * A toggleable button component.
  * @param {string} iconName Name of the FontAwesome5 icon to be displayed on the button.

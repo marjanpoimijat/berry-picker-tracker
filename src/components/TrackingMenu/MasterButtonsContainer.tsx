@@ -1,13 +1,13 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Styles from "../styles";
+import Styles from "../../styles";
 
 /**
  * Master toggle for all users.
  *
  * @returns {JSX.Element} A new TrackUserMenuToggle component.
  */
-const TrackUserMenuToggle = (): JSX.Element => (
+const MasterButtonsContainer = (): JSX.Element => (
 	<View style={Styles.trackUsersMasterButtonContainer}>
 		<View style={Styles.masterButtonContainer}>
 			<TouchableOpacity onPress={() => console.log("")}>
@@ -39,4 +39,4 @@ const TrackUserMenuToggle = (): JSX.Element => (
 	</View>
 );
 
-export default TrackUserMenuToggle;
+export default MasterButtonsContainer;

@@ -1,9 +1,9 @@
 import { Text, View } from "react-native";
-import { languages } from "../languages";
-import { useTypedSelector } from "../store";
-import Styles from "../styles";
-import sortTrackedUserList from "../utils/sort";
-import TrackUserMenuToggle from "./TrackUserMenuToggle";
+import { languages } from "../../languages";
+import { useTypedSelector } from "../../store";
+import Styles from "../../styles";
+import sortTrackedUserList from "../../utils/sort";
+import TrackUserMenuToggle from "./MasterButtonsContainer";
 import TrackedUserDetails from "./TrackedUserDetails";
 
 /**
@@ -11,7 +11,7 @@ import TrackedUserDetails from "./TrackedUserDetails";
  *
  * @returns {JSX.Element} A new TrackUserMenu component.
  */
-const TrackUserMenu = (): JSX.Element => {
+const TrackingMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
 	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
@@ -43,4 +43,4 @@ const TrackUserMenu = (): JSX.Element => {
 	);
 };
 
-export default TrackUserMenu;
+export default TrackingMenu;
