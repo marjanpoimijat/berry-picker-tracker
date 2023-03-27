@@ -1,134 +1,119 @@
 import * as SecureStore from "expo-secure-store";
 
 /**
- * SecureStore is used to store tracked users' information
+ * SecureStore is used to store tracked users' crypto key
  * in a single JSON object named "tracked". SecureStore also stores the user's
- * crypto key which is used to encrypt and decrypt sent data.
- *
- * @param {string} userId UserID of the user to be added.
- * @param {string} username Username of the user to be added.
- * @returns {void}
+ * own crypto key. Crypto keys are used to encrypt and decrypt sent data between users.
  *
  * Example JSON object:
  *
  * tracked: {
  *   Y0QsWBzUwP89: {
- *	   id: 1,
- * 	   locationVisible: true,
- * 	   routeVisible: true,
  *	   userId: 'Y0QsWBzUwP89',
- * 	   username: Jorma,
+ *	   cryptoKey: 'sdfdsff',
  *	 },
  *	 W9RZL7VXJ3FK: {
- * 	   id: 2,
- * 	   locationVisible: true,
- *	   routeVisible: false,
  *	   userId: 'W9RZL7VXJ3FK',
- *	   username: Seppo,
+ *	   cryptoKey: '34k0430'
  *	 },
  * }
  *
  * Example cryptokey object:
  *
- * "cryptoKey": "sd9fk3+f0sdf3"
+ * cryptoKey: 'sd9fk3+f0sdf3'
  */
-export const secureStoreAddTracked = async (userId: string, username: string) => {
-	console.log("secureStoreAddTracked()");
+
+/**
+ * Adds a new tracked user to the storage or updates an old one.
+ *
+ * @param {string} userId UserID of the user to be added.
+ * @param {string} cryptoKey The key used to decrypt the shared data.
+ * @returns {void}
+ */
+export const secureStoreAddTracked = async (userId: string, cryptoKey: string) => {
 	try {
-		const objectExists = await secureStoreGetTrackedObject();
-		if (!objectExists) {
+		const trackedObject = await SecureStore.getItemAsync("tracked");
+		if (!trackedObject) {
 			await secureStoreInitializeTrackedObject();
-		}
-		const userList = await secureStoreGetAllTrackedUsers();
-		if (userList && userList.includes(userId)) {
-			return;
+		} else if (trackedObject.includes(userId)) {
+			console.log(`${userId} is already added to tracked users. Updating...`);
 		}
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
 			const trackedJson = JSON.parse(tracked);
-			const trackedObject = {
-				id: 1,
-				locationVisible: true,
-				routeVisible: true,
+			const userObject = {
+				cryptoKey: cryptoKey,
 				userId: userId,
-				username: username,
 			};
 			//store.dispatch(addTrackedUser(trackedObject));
-			trackedJson[userId] = trackedObject;
+			trackedJson[userId] = userObject;
 			const newTracked = JSON.stringify(trackedJson);
 			await SecureStore.setItemAsync("tracked", newTracked);
-			console.log(`Storage updated: ${newTracked}`);
+			console.log(`Secure store: ${userId} added to tracked users.`);
 		}
 	} catch (error) {
-		console.log(`Failed to save key "${userId}". Error: ${error}`);
+		console.log(`Failed to add ${userId} to tracked users. Error: ${error}`);
 	}
 };
 
-export const secureStoreGetTrackedUser = async (key: string) => {
-	console.log("secureStoreGetTrackedUser()");
+/**
+ * Retrieves the information of a specific user.
+ *
+ * @param {string} userId UserID of the user.
+ * @returns {object} JSON object of the user.
+ */
+export const secureStoreGetTrackedUser = async (userId: string) => {
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
 			const trackedJson = JSON.parse(tracked);
-			const value = trackedJson[key];
+			const value = trackedJson[userId];
 			if (value) {
-				console.log(value);
 				return value;
 			} else {
-				console.log("No values stored under that key.");
+				console.log("No values stored under that userId.");
 			}
 		} else {
 			console.log('"Tracked" object not found.');
 		}
 	} catch (error) {
-		console.log(`Failed to get user "${key}". Error: ${error}`);
+		console.log(`Failed to get user ${userId}. Error: ${error}`);
 	}
 };
 
-export const secureStoreUpdateTrackedUser = async (userId: string, location: boolean, route: boolean) => {
-	console.log("secureStoreUpdateTrackedUser()");
-	try {
-		const tracked = await SecureStore.getItemAsync("tracked");
-		if (!tracked) {
-			console.log("Tracked object not found");
-			return;
-		}
-		const trackedJson = JSON.parse(tracked);
-		// eslint-disable-next-line no-prototype-builtins
-		if (!trackedJson.hasOwnProperty(userId)) {
-			console.log(`User "${userId}" not found.`);
-			return;
-		}
-		trackedJson[userId].locationVisible = location;
-		trackedJson[userId].routeVisible = route;
-		const newTracked = JSON.stringify(trackedJson);
-		await SecureStore.setItemAsync("tracked", newTracked);
-		console.log(`Storage updated: ${newTracked}`);
-	} catch (error) {
-		console.log(`Failed to flip routeVisible for user "${userId}". Error: ${error}`);
-	}
-};
-
-export const secureStoreDeleteTrackedUser = async (key: string) => {
-	console.log("secureStoreDeleteTrackedUser()");
+/**
+ * Deletes a specific user from "tracked" object.
+ *
+ * @param {string} userId UserID of the user.
+ * @returns {void}
+ */
+export const secureStoreDeleteTrackedUser = async (userId: string) => {
 	try {
 		const tracked = await SecureStore.getItemAsync("tracked");
 		if (tracked) {
 			const trackedJson = JSON.parse(tracked);
-			delete trackedJson[key];
+			if (!trackedJson[userId]) {
+				console.log(`Error during deletion: ${userId} not found.`);
+				return;
+			}
+			delete trackedJson[userId];
 			const newTracked = JSON.stringify(trackedJson);
 			await SecureStore.setItemAsync("tracked", newTracked);
-			console.log(`Key "${key}" deleted successfully.`);
+			console.log(`User ${userId} deleted successfully.`);
 		} else {
-			console.log('"tracked" object not found.');
+			console.log('Error: "tracked" object not found.');
 		}
 	} catch (error) {
-		console.log(`Failed to delete key "${key}". Error: ${error}`);
+		console.log(`Failed to delete user ${userId}. Error: ${error}`);
 	}
 };
 
+/**
+ * Initializes an empty "tracked" object. Tracked users' secret information will be stored into it.
+ *
+ * @returns {void}
+ */
 export const secureStoreInitializeTrackedObject = async () => {
-	console.log("secureStoreInitializeTrackedObject()");
 	try {
 		await SecureStore.setItemAsync("tracked", "{}");
 		console.log('Initialized "tracked" object.');
@@ -137,18 +122,12 @@ export const secureStoreInitializeTrackedObject = async () => {
 	}
 };
 
-export const secureStoreGetAllTrackedUsers = async () => {
-	console.log("secureStoreGetAllTrackedUsers()");
-	try {
-		const tracked = await SecureStore.getItemAsync("tracked");
-		if (tracked) return tracked;
-	} catch (error) {
-		console.log(`Failed to get all users. Error: ${error}`);
-	}
-};
-
+/**
+ * Deletes the "tracked" object from storage.
+ *
+ * @returns {void}
+ */
 export const secureStoreDeleteTrackedObject = async () => {
-	console.log("secureStoreDeleteTrackedObject()");
 	try {
 		const result = await SecureStore.getItemAsync("tracked");
 		if (result) {
@@ -160,16 +139,12 @@ export const secureStoreDeleteTrackedObject = async () => {
 	}
 };
 
-export const secureStoreGetTrackedObject = async () => {
-	console.log("secureStoreGetTrackedObject()");
-	try {
-		const tracked = await SecureStore.getItemAsync("tracked");
-		return tracked;
-	} catch (error) {
-		console.log(`Failed to check whether "tracked" object exists. Error: ${error}`);
-	}
-};
-
+/**
+ * Adds the user's own cryptoKey into storage or updates it.
+ *
+ * @param {string} key CryptoKey to be saved.
+ * @returns {void}
+ */
 export const secureStoreAddCryptoKey = async (key: string) => {
 	try {
 		await SecureStore.setItemAsync("cryptoKey", key);
@@ -179,6 +154,11 @@ export const secureStoreAddCryptoKey = async (key: string) => {
 	}
 };
 
+/**
+ * Retrieves the user's own cryptoKey.
+ *
+ * @returns {string} CryptoKey.
+ */
 export const secureStoreGetCryptoKey = async () => {
 	try {
 		const cryptoKey = await SecureStore.getItemAsync("cryptoKey");
@@ -188,6 +168,11 @@ export const secureStoreGetCryptoKey = async () => {
 	}
 };
 
+/**
+ * Deletes user's own cryptoKey from storage.
+ *
+ * @returns {void}
+ */
 export const secureStoreDeleteCryptoKey = async () => {
 	try {
 		const result = await SecureStore.getItemAsync("cryptoKey");
