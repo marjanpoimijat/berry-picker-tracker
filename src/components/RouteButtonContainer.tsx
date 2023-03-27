@@ -56,7 +56,7 @@ const RouteButtonContainer = (): JSX.Element => {
 				text={routeInfo.showRoute ? languages["Hide route"][language] : languages["Show route"][language]}
 			/>
 			<RouteButton
-				onPress={() => dispatch(shareRoute(user))}
+				onPress={async () => dispatch(await shareRoute(user))}
 				text={languages["Share route"][language]}
 			/>
 		</View>
