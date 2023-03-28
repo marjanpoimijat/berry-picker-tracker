@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View } from "react-native";
-import MapView, { Polyline, UrlTile } from "react-native-maps";
+import MapView, { UrlTile } from "react-native-maps";
 import { baseUrl } from "../../constants";
 import { setMapLocation } from "../../reducers/map-location-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
@@ -9,6 +9,7 @@ import { Coordinate } from "../../types";
 import getTrackedUsersList from "../../utils/list";
 import TrackedUserRoutes from "./TrackedUserRoutes";
 import CoordinatesMarker from "./CoordinatesMarker";
+import RouteLine from "./RouteLine";
 import Waypoints from "./Waypoints";
 
 /**
@@ -70,17 +71,9 @@ const MapViewContainer = (): JSX.Element => {
 					urlTemplate={`${baseUrl}/${currentMap}/{z}/{y}/{x}`}
 					zIndex={-3}
 				/>
-				<Polyline
-					coordinates={routeInfo.showRoute ? localWaypoints : []}
-					strokeColor="#4285f4"
-					strokeWidth={4}
-					zIndex={2}
-				/>
-				<Polyline
-					coordinates={routeInfo.showRoute ? localWaypoints : []}
-					strokeColor="white"
-					strokeWidth={6.5}
-					zIndex={1}
+				<RouteLine
+					id={-1}
+					waypoints={routeInfo.showRoute ? localWaypoints : []}
 				/>
 				<TrackedUserRoutes users={users} />
 				<Waypoints />

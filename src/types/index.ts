@@ -82,6 +82,11 @@ export interface RouteButtonProps {
 	text: string;
 }
 
+export interface RouteLineProps {
+	id: number;
+	waypoints: Waypoint[];
+}
+
 export interface RouteVisibleButtonProps {
 	locationVisible: boolean;
 	routeVisible: boolean;

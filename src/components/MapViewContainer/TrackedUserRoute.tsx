@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { Marker, Polyline } from "react-native-maps";
+import { Marker } from "react-native-maps";
 import { getUsersLatestRoute } from "../../requests";
 import Styles from "../../styles";
 import { TrackedUserRouteProps, Waypoint, WaypointFromServer } from "../../types";
 import { getColor } from "../../utils/colors";
+import RouteLine from "./RouteLine";
 
 /**
  * Renders a tracked user's route on the map.
@@ -39,20 +40,10 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 			{usersWaypoints && (
 				<>
 					{user.routeVisible && (
-						<>
-							<Polyline
-								coordinates={usersWaypoints}
-								strokeColor={getColor(user.id)}
-								strokeWidth={4}
-								zIndex={2}
-							/>
-							<Polyline
-								coordinates={usersWaypoints}
-								strokeColor="black"
-								strokeWidth={8}
-								zIndex={1}
-							/>
-						</>
+						<RouteLine
+							id={user.id}
+							waypoints={usersWaypoints}
+						/>
 					)}
 					{user.locationVisible && (
 						<Marker
