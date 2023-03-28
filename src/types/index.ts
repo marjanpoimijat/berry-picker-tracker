@@ -50,6 +50,7 @@ export interface MapLocation {
 export interface MenuButtonProps {
 	iconName: string;
 	onPress: () => void;
+	routeActive?: boolean;
 	text: string;
 	visible: boolean;
 }

@@ -4,7 +4,8 @@ import Styles from "../styles";
 import theme from "../styles/theme";
 import { MenuButtonProps } from "../types";
 
-const MenuButton = ({ iconName, onPress, text, visible }: MenuButtonProps): JSX.Element => {
+const MenuButton = ({ iconName, onPress, routeActive, text, visible }: MenuButtonProps): JSX.Element => {
+	const recordingColor = theme.colors.recordingColor;
 	const toggledColor = theme.colors.buttonToggledBackgroundColor;
 
 	return (
@@ -12,7 +13,7 @@ const MenuButton = ({ iconName, onPress, text, visible }: MenuButtonProps): JSX.
 			<TouchableOpacity onPress={onPress}>
 				<Icon
 					name={iconName}
-					style={Styles.navigatorIcon}
+					style={routeActive ? { ...Styles.navigatorIcon, color: recordingColor } : Styles.navigatorIcon}
 				/>
 				<Text style={Styles.navigatorText}>{text}</Text>
 			</TouchableOpacity>
