@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import sortTrackedUserList from "../../utils/sort";
+import sortTrackedUserList from "../../utils/list";
 import TrackUserMenuToggle from "./MasterButtonsContainer";
 import TrackedUserDetails from "./TrackedUserDetails";
 
@@ -13,7 +13,7 @@ import TrackedUserDetails from "./TrackedUserDetails";
  */
 const TrackingMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
-	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
+	const toggled = useTypedSelector((state) => state.ui.trackingMenuVisible);
 	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const sortedUsers = sortTrackedUserList(trackedUsers);
 

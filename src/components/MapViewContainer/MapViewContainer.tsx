@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { View } from "react-native";
-import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
+import MapView, { UrlTile } from "react-native-maps";
 import { baseUrl } from "../../constants";
 import { setMapLocation } from "../../reducers/map-location-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import { Coordinate, TrackedUsers } from "../../types";
-import getCircleColor from "../../utils/circle";
-import sortTrackedUserList from "../../utils/sort";
-import TrackedUserRoute from "./TrackedUserRoute";
+import { Coordinate } from "../../types";
+import getTrackedUsersList from "../../utils/list";
 import CoordinatesMarker from "./CoordinatesMarker";
+import RouteLine from "./RouteLine";
+import TrackedUserRoutes from "./TrackedUserRoutes";
+import Waypoints from "./Waypoints";
 
 /**
  * Visualizes topomap using map tiles and draws a route between
@@ -21,10 +22,13 @@ const MapViewContainer = (): JSX.Element => {
 	const mapLocation = useTypedSelector((state) => state.mapLocation);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
-	const trackedUsers: TrackedUsers = useTypedSelector((state) => state.trackedUsers);
-	const [localWaypoints, currMap] = useTypedSelector((state) => [state.waypoints.localWaypoints, state.map]);
+	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
+	const localWaypoints = useTypedSelector((state) => state.waypoints.localWaypoints);
+	const currentMap = useTypedSelector((state) => state.map);
+
 	const [coordinates, setCoordinates] = useState<Coordinate | null>(null);
-	const sortedUsers = sortTrackedUserList(trackedUsers);
+
+	const users = getTrackedUsersList(trackedUsers);
 
 	const dispatch = useTypedDispatch();
 
@@ -60,47 +64,20 @@ const MapViewContainer = (): JSX.Element => {
 						"/data/user/0/host.exp.exponent/cache/ExperienceData/" +
 						"%40anonymous%2Fberry-picker-tracker-71573e14-92d4-46c9-a00b-" +
 						"6e8cda3340f5/tiles/" +
-						currMap +
+						currentMap +
 						"tiles/"
 					}
 					tileSize={256}
-					urlTemplate={`${baseUrl}/${currMap}/{z}/{y}/{x}`}
+					urlTemplate={`${baseUrl}/${currentMap}/{z}/{y}/{x}`}
 					zIndex={-3}
 				/>
-				<Polyline
-					coordinates={routeInfo.showRoute ? localWaypoints : []}
-					strokeColor="#4285f4"
-					strokeWidth={4}
-					zIndex={2}
+				<RouteLine
+					id={-1}
+					waypoints={routeInfo.showRoute ? localWaypoints : []}
 				/>
-				<Polyline
-					coordinates={routeInfo.showRoute ? localWaypoints : []}
-					strokeColor="white"
-					strokeWidth={6.5}
-					zIndex={1}
-				/>
-				{sortedUsers.map((user) => (
-					<TrackedUserRoute
-						key={user.id}
-						user={user}
-					/>
-				))}
-				{localWaypoints.map((waypoint, index) => {
-					if (waypoint.connection !== null) {
-						return (
-							<Circle
-								center={{
-									latitude: waypoint.latitude,
-									longitude: waypoint.longitude,
-								}}
-								fillColor={getCircleColor(waypoint.connection)}
-								key={index}
-								radius={15}
-							/>
-						);
-					}
-				})}
-				{coordinates && <CoordinatesMarker coordinates={coordinates} />}
+				<TrackedUserRoutes users={users} />
+				<Waypoints />
+				<CoordinatesMarker coordinates={coordinates} />
 			</MapView>
 		</View>
 	);

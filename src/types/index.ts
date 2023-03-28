@@ -13,7 +13,7 @@ export interface Coordinate {
 }
 
 export interface CoordinatesMarkerProps {
-	coordinates: Coordinate;
+	coordinates: Coordinate | null;
 }
 
 export interface DotProps {
@@ -47,6 +47,14 @@ export interface MapLocation {
 	};
 }
 
+export interface MenuButtonProps {
+	iconName: string;
+	onPress: () => void;
+	routeActive?: boolean;
+	text: string;
+	visible: boolean;
+}
+
 export interface MyRoutesButtonProps {
 	iconName: string;
 	onPress: () => void;
@@ -74,6 +82,11 @@ export interface RouteButtonProps {
 	text: string;
 }
 
+export interface RouteLineProps {
+	id: number;
+	waypoints: Waypoint[];
+}
+
 export interface RouteVisibleButtonProps {
 	locationVisible: boolean;
 	routeVisible: boolean;
@@ -99,6 +112,10 @@ export type TrackedUsers = {
 
 export interface TrackedUserRouteProps {
 	user: TrackedUser;
+}
+
+export interface TrackedUserRoutesProps {
+	users: TrackedUser[];
 }
 
 export interface TrackingButtonProps {

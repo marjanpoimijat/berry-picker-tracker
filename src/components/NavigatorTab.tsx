@@ -1,12 +1,11 @@
 import { View } from "react-native";
 import { connect } from "react-redux";
 import { languages } from "../languages";
-import { setRouteButtonVisible, setTrackListVisible } from "../reducers/ui-reducer";
+import { setMyRoutesMenuVisible, setTrackingMenuVisible, setSettingsMenuVisible } from "../reducers/ui-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
+import MenuButton from "./MenuButton";
 import NavigatorButton from "./NavigatorButton";
-import MyRoutesButton from "./MyRoutesButton";
-import TrackingButton from "./TrackingButton";
 
 /**
  * Navigator tab located at the bottom of the screen which contains
@@ -16,15 +15,22 @@ import TrackingButton from "./TrackingButton";
  */
 const NavigatorTab = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
-	const ui = useTypedSelector((state) => state.ui);
+	const visibleMyRoutesMenu = useTypedSelector((state) => state.ui.myRoutesMenuVisible);
+	const visibleTrackingMenu = useTypedSelector((state) => state.ui.trackingMenuVisible);
+	const visibleSettingsMenu = useTypedSelector((state) => state.ui.settingsMenuVisible);
+	const routeActive = useTypedSelector((state) => state.route.active);
 	const dispatch = useTypedDispatch();
 
-	const toggleRouteButtons = () => {
-		dispatch(setRouteButtonVisible(!ui.routeButtonsVisible));
+	const toggleMyRoutesMenu = () => {
+		dispatch(setMyRoutesMenuVisible(!visibleMyRoutesMenu));
 	};
 
 	const toggleTrackingMenu = () => {
-		dispatch(setTrackListVisible(!ui.trackListVisible));
+		dispatch(setTrackingMenuVisible(!visibleTrackingMenu));
+	};
+
+	const toggleSettingsMenu = () => {
+		dispatch(setSettingsMenuVisible(!visibleSettingsMenu));
 	};
 
 	return (
@@ -34,15 +40,24 @@ const NavigatorTab = (): JSX.Element => {
 				path="/"
 				text={languages["Map"][language]}
 			/>
-			<MyRoutesButton
+			<MenuButton
 				iconName="route"
-				onPress={toggleRouteButtons}
+				onPress={toggleMyRoutesMenu}
+				routeActive={routeActive}
 				text={languages["My routes"][language]}
+				visible={visibleMyRoutesMenu}
 			/>
-			<TrackingButton
+			<MenuButton
 				iconName="location-arrow"
 				onPress={toggleTrackingMenu}
 				text={languages["Tracking"][language]}
+				visible={visibleTrackingMenu}
+			/>
+			<MenuButton
+				iconName="cog"
+				onPress={toggleSettingsMenu}
+				text={languages["Settings"][language]}
+				visible={visibleSettingsMenu}
 			/>
 			<NavigatorButton
 				iconName="cog"

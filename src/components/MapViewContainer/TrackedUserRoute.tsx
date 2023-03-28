@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { Marker, Polyline } from "react-native-maps";
+import { Marker } from "react-native-maps";
 import { getUsersLatestRoute } from "../../requests";
 import Styles from "../../styles";
 import { TrackedUserRouteProps, Waypoint, WaypointFromServer } from "../../types";
 import { getColor } from "../../utils/colors";
+import RouteLine from "./RouteLine";
 
 /**
  * Renders a tracked user's route on the map.
@@ -13,7 +14,7 @@ import { getColor } from "../../utils/colors";
  * @returns {JSX.Element} A new TrackedUserRoute component.
  */
 const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
-	const [usersWaypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
+	const [waypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
 
 	const findUserRoute = async () => {
 		setUsersWaypoints(null);
@@ -34,46 +35,30 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 		findUserRoute();
 	}, []);
 
+	if (!waypoints) return <></>;
+
 	return (
 		<>
-			{usersWaypoints && (
-				<>
-					{user.routeVisible && (
-						<>
-							<Polyline
-								coordinates={usersWaypoints}
-								strokeColor={getColor(user.id)}
-								strokeWidth={4}
-								zIndex={2}
-							/>
-							<Polyline
-								coordinates={usersWaypoints}
-								strokeColor="black"
-								strokeWidth={8}
-								zIndex={1}
-							/>
-						</>
-					)}
-					{user.locationVisible && (
-						<Marker
-							coordinate={{
-								latitude: usersWaypoints[usersWaypoints.length - 1]
-									? usersWaypoints[usersWaypoints.length - 1].latitude
-									: 60.204662,
-								longitude: usersWaypoints[usersWaypoints.length - 1]
-									? usersWaypoints[usersWaypoints.length - 1].longitude
-									: 24.962535,
-							}}
-						>
-							<View
-								style={{
-									...Styles.trackedUserDot,
-									backgroundColor: getColor(user.id),
-								}}
-							/>
-						</Marker>
-					)}
-				</>
+			{user.routeVisible && (
+				<RouteLine
+					id={user.id}
+					waypoints={waypoints}
+				/>
+			)}
+			{user.locationVisible && (
+				<Marker
+					coordinate={{
+						latitude: waypoints[waypoints.length - 1] ? waypoints[waypoints.length - 1].latitude : 60.204662,
+						longitude: waypoints[waypoints.length - 1] ? waypoints[waypoints.length - 1].longitude : 24.962535,
+					}}
+				>
+					<View
+						style={{
+							...Styles.trackedUserDot,
+							backgroundColor: getColor(user.id),
+						}}
+					/>
+				</Marker>
 			)}
 		</>
 	);

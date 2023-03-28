@@ -1,6 +1,6 @@
-import { TrackedUsers } from "../types";
+import { TrackedUser, TrackedUsers } from "../types";
 
-const sortTrackedUserList = (trackedUsers: TrackedUsers) => {
+const getTrackedUsersList = (trackedUsers: TrackedUsers): TrackedUser[] => {
 	if (!trackedUsers) return [];
 	return Object.entries(trackedUsers).map(([key, value]) => ({
 		id: value.id,
@@ -11,4 +11,4 @@ const sortTrackedUserList = (trackedUsers: TrackedUsers) => {
 	}));
 };
 
-export default sortTrackedUserList;
+export default getTrackedUsersList;

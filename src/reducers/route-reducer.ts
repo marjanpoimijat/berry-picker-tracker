@@ -103,7 +103,7 @@ export const shareRoute = async (user: User) => {
 		queryParams: {
 			cryptoKey: `${cryptoKey}`,
 			userId: `${user.userId}`,
-			//username: `${user.username}`,
+			username: `${user.username}`,
 		},
 	});
 	return async () => {

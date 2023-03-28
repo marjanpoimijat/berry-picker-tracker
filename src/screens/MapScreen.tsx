@@ -1,17 +1,19 @@
 import { View } from "react-native";
 
 import MapViewContainer from "../components/MapViewContainer";
-import RouteButtonContainer from "../components/RouteButtonContainer";
-import CoordinateContainer from "../components/CoordinateContainer";
-import TrackUserMenu from "../components/TrackingMenu";
+import RouteButtonContainer from "../components/MyRoutesMenu";
+import CoordinateBar from "../components/CoordinateBar";
+import TrackingMenu from "../components/TrackingMenu";
+import SettingsMenu from "../components/SettingsMenu";
 
 const MapScreen = () => {
 	return (
 		<View>
 			<MapViewContainer />
 			<RouteButtonContainer />
-			<CoordinateContainer />
-			<TrackUserMenu />
+			<CoordinateBar />
+			<TrackingMenu />
+			<SettingsMenu />
 		</View>
 	);
 };
