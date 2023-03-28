@@ -31,7 +31,6 @@ const NavigatorTab = (): JSX.Element => {
 
 	const toggleSettingsMenu = () => {
 		dispatch(setSettingsMenuVisible(!visibleSettingsMenu));
-		console.log(visibleSettingsMenu);
 	};
 
 	return (
