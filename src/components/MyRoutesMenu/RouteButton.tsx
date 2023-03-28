@@ -1,6 +1,6 @@
 import { Text, View, TouchableOpacity } from "react-native";
-import { RouteButtonProps } from "../types";
-import Styles from "../styles";
+import { RouteButtonProps } from "../../types";
+import Styles from "../../styles";
 
 /**
  * Route button component which can perform on press functions such as toggle visibility on / off.

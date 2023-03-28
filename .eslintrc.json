@@ -29,6 +29,7 @@
 		"@typescript-eslint/semi": ["error"],
 		"arrow-spacing": ["error", { "before": true, "after": true }],
 		"eqeqeq": "error",
+		"indent": ["error", "tab"],
 		"max-len": ["error", { "code": 120, "tabWidth": 4 }],
 		"max-statements-per-line": ["error", { "max": 1 }],
 		"no-multi-spaces": "error",
