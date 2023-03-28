@@ -1,8 +1,8 @@
 import { Alert, View } from "react-native";
-import { languages } from "../languages";
-import { startRoute, deactivateRoute, changeShowRoute, shareRoute } from "../reducers/route-reducer";
-import { useTypedDispatch, useTypedSelector } from "../store";
-import Styles from "../styles";
+import { languages } from "../../languages";
+import { startRoute, deactivateRoute, changeShowRoute, shareRoute } from "../../reducers/route-reducer";
+import { useTypedDispatch, useTypedSelector } from "../../store";
+import Styles from "../../styles";
 import RouteButton from "./RouteButton";
 
 /**
@@ -10,9 +10,9 @@ import RouteButton from "./RouteButton";
  * start / end route tracking and to toggle route visibility on / off.
  * Just preliminary styling and location on a screen.
  *
- * @returns {JSX.Element} A new RouteButtonContainer component.
+ * @returns {JSX.Element} A new MyRoutesMenu component.
  */
-const RouteButtonContainer = (): JSX.Element => {
+const MyRoutesMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const user = useTypedSelector((state) => state.user);
 	const routeInfo = useTypedSelector((state) => state.route);
@@ -63,4 +63,4 @@ const RouteButtonContainer = (): JSX.Element => {
 	);
 };
 
-export default RouteButtonContainer;
+export default MyRoutesMenu;
