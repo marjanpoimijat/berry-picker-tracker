@@ -7,9 +7,9 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { Coordinate } from "../../types";
 import getTrackedUsersList from "../../utils/list";
-import TrackedUserRoutes from "./TrackedUserRoutes";
 import CoordinatesMarker from "./CoordinatesMarker";
 import RouteLine from "./RouteLine";
+import TrackedUserRoutes from "./TrackedUserRoutes";
 import Waypoints from "./Waypoints";
 
 /**
