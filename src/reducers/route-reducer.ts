@@ -6,6 +6,7 @@ import { AppDispatch, ReduxState } from "../store";
 import { Route, User } from "../types";
 import { startBackgroundUpdate, stopBackgroundUpdate } from "../utils/location-tracking";
 import { setRouteId, initializeWaypoints } from "./waypoint-reducer";
+import { secureStoreGetCryptoKey } from "../utils/secure-store";
 
 const initialState: Route = {
 	active: false,
@@ -96,11 +97,13 @@ export const changeShowRoute = () => {
 	};
 };
 
-export const shareRoute = (user: User) => {
+export const shareRoute = async (user: User) => {
+	const cryptoKey = await secureStoreGetCryptoKey();
 	const redirectUrl = Linking.createURL("/", {
 		queryParams: {
+			cryptoKey: `${cryptoKey}`,
 			userId: `${user.userId}`,
-			username: `${user.username}`,
+			//username: `${user.username}`,
 		},
 	});
 	return async () => {
