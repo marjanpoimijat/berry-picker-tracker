@@ -1,7 +1,13 @@
 import { TrackedUserRoutesProps } from "../../types";
 import TrackedUserRoute from "./TrackedUserRoute";
 
-const TrackedUserRoutes = ({ users }: TrackedUserRoutesProps) => (
+/**
+ * Renders every tracked user's route on the map.
+ *
+ * @param {TrackedUser[]} users A list of the TrackedUser objects.
+ * @returns {JSX.Element} A new TrackedUsersRoute component.
+ */
+const TrackedUserRoutes = ({ users }: TrackedUserRoutesProps): JSX.Element => (
 	<>
 		{users.map((user) => (
 			<TrackedUserRoute

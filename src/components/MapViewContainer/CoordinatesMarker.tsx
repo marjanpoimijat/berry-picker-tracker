@@ -4,6 +4,13 @@ import Styles from "../../styles";
 import { CoordinatesMarkerProps } from "../../types";
 import { parseLatitude, parseLongitude } from "../../utils/coordinates";
 
+/**
+ * Displays a coordinate marker on the map where a user taps the screen.
+ * Tapping the screen again will hide the marker.
+ *
+ * @param {Coordinate | null} coordinates Coordinates of the tapped location.
+ * @returns {JSX.Element} A new CoordinatesMarker component.
+ */
 const CoordinatesMarker = ({ coordinates }: CoordinatesMarkerProps): JSX.Element => {
 	if (!coordinates) return <></>;
 	return (
