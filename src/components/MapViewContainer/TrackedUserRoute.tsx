@@ -37,6 +37,11 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 
 	if (!waypoints) return <></>;
 
+	const coordinate = {
+		latitude: waypoints[waypoints.length - 1].latitude ?? 60.204662,
+		longitude: waypoints[waypoints.length - 1].longitude ?? 24.962535,
+	};
+
 	return (
 		<>
 			{user.routeVisible && (
@@ -46,18 +51,8 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 				/>
 			)}
 			{user.locationVisible && (
-				<Marker
-					coordinate={{
-						latitude: waypoints[waypoints.length - 1] ? waypoints[waypoints.length - 1].latitude : 60.204662,
-						longitude: waypoints[waypoints.length - 1] ? waypoints[waypoints.length - 1].longitude : 24.962535,
-					}}
-				>
-					<View
-						style={{
-							...Styles.trackedUserDot,
-							backgroundColor: getColor(user.id),
-						}}
-					/>
+				<Marker coordinate={coordinate}>
+					<View style={{ ...Styles.trackedUserDot, backgroundColor: getColor(user.id) }} />
 				</Marker>
 			)}
 		</>
