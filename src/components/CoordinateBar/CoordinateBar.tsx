@@ -10,9 +10,9 @@ import { parseLatitude, parseLongitude } from "../../utils/coordinates";
 /**
  * Component that displays the user's current coordinates.
  *
- * @returns {JSX.Element} A new CoordinateContainer component.
+ * @returns {JSX.Element} A new CoordinateBar component.
  */
-const CoordinateContainer = (): JSX.Element => {
+const CoordinateBar = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const currentLocation = useTypedSelector((state) => state.currentLocation);
 
@@ -56,4 +56,4 @@ const CoordinateContainer = (): JSX.Element => {
 	);
 };
 
-export default CoordinateContainer;
+export default CoordinateBar;
