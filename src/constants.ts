@@ -8,6 +8,8 @@ export const baseUrl: string = Constants?.manifest?.extra?.uri ?? "https://berry
 export const statusBarHeight: number =
 	Platform.OS === "ios" ? Constants.statusBarHeight : Platform.OS === "android" ? Constants.statusBarHeight : 0;
 
+export const navigatorTabHeight = 70;
+
 // This one is needed for the Expo Go
 // export const statusBarHeight: number = Constants.statusBarHeight;
 
