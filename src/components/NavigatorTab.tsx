@@ -17,6 +17,7 @@ const NavigatorTab = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const visibleMyRoutesMenu = useTypedSelector((state) => state.ui.myRoutesMenuVisible);
 	const visibleTrackingMenu = useTypedSelector((state) => state.ui.trackingMenuVisible);
+	const routeActive = useTypedSelector((state) => state.route.active);
 	const dispatch = useTypedDispatch();
 
 	const toggleMyRoutesMenu = () => {
@@ -37,6 +38,7 @@ const NavigatorTab = (): JSX.Element => {
 			<MenuButton
 				iconName="route"
 				onPress={toggleMyRoutesMenu}
+				routeActive={routeActive}
 				text={languages["My routes"][language]}
 				visible={visibleMyRoutesMenu}
 			/>
