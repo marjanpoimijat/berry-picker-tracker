@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { View } from "react-native";
-import MapView, { Polyline, UrlTile, Circle } from "react-native-maps";
+import MapView, { Polyline, UrlTile } from "react-native-maps";
 import { baseUrl } from "../../constants";
 import { setMapLocation } from "../../reducers/map-location-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import { Coordinate, TrackedUsers } from "../../types";
-import getCircleColor from "../../utils/circle";
+import { Coordinate } from "../../types";
 import getTrackedUsersList from "../../utils/list";
 import TrackedUserRoutes from "./TrackedUserRoutes";
 import CoordinatesMarker from "./CoordinatesMarker";
+import Waypoints from "./Waypoints";
 
 /**
  * Visualizes topomap using map tiles and draws a route between
@@ -21,7 +21,7 @@ const MapViewContainer = (): JSX.Element => {
 	const mapLocation = useTypedSelector((state) => state.mapLocation);
 	const routeInfo = useTypedSelector((state) => state.route);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
-	const trackedUsers: TrackedUsers = useTypedSelector((state) => state.trackedUsers);
+	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const localWaypoints = useTypedSelector((state) => state.waypoints.localWaypoints);
 	const currentMap = useTypedSelector((state) => state.map);
 
@@ -83,21 +83,7 @@ const MapViewContainer = (): JSX.Element => {
 					zIndex={1}
 				/>
 				<TrackedUserRoutes users={users} />
-				{localWaypoints.map((waypoint, index) => {
-					if (waypoint.connection !== null) {
-						return (
-							<Circle
-								center={{
-									latitude: waypoint.latitude,
-									longitude: waypoint.longitude,
-								}}
-								fillColor={getCircleColor(waypoint.connection)}
-								key={index}
-								radius={15}
-							/>
-						);
-					}
-				})}
+				<Waypoints />
 				<CoordinatesMarker coordinates={coordinates} />
 			</MapView>
 		</View>
