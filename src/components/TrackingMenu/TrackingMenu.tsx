@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import sortTrackedUserList from "../../utils/sort";
+import sortTrackedUserList from "../../utils/list";
 import TrackUserMenuToggle from "./MasterButtonsContainer";
 import TrackedUserDetails from "./TrackedUserDetails";
 

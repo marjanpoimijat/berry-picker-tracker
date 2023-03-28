@@ -13,7 +13,7 @@ export interface Coordinate {
 }
 
 export interface CoordinatesMarkerProps {
-	coordinates: Coordinate;
+	coordinates: Coordinate | null;
 }
 
 export interface DotProps {
@@ -107,6 +107,10 @@ export type TrackedUsers = {
 
 export interface TrackedUserRouteProps {
 	user: TrackedUser;
+}
+
+export interface TrackedUserRoutesProps {
+	users: TrackedUser[];
 }
 
 export interface TrackingButtonProps {

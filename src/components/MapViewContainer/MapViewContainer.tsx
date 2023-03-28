@@ -7,8 +7,8 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { Coordinate, TrackedUsers } from "../../types";
 import getCircleColor from "../../utils/circle";
-import sortTrackedUserList from "../../utils/sort";
-import TrackedUserRoute from "./TrackedUserRoute";
+import getTrackedUsersList from "../../utils/list";
+import TrackedUserRoutes from "./TrackedUserRoutes";
 import CoordinatesMarker from "./CoordinatesMarker";
 
 /**
@@ -22,9 +22,12 @@ const MapViewContainer = (): JSX.Element => {
 	const routeInfo = useTypedSelector((state) => state.route);
 	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
 	const trackedUsers: TrackedUsers = useTypedSelector((state) => state.trackedUsers);
-	const [localWaypoints, currMap] = useTypedSelector((state) => [state.waypoints.localWaypoints, state.map]);
+	const localWaypoints = useTypedSelector((state) => state.waypoints.localWaypoints);
+	const currentMap = useTypedSelector((state) => state.map);
+
 	const [coordinates, setCoordinates] = useState<Coordinate | null>(null);
-	const sortedUsers = sortTrackedUserList(trackedUsers);
+
+	const users = getTrackedUsersList(trackedUsers);
 
 	const dispatch = useTypedDispatch();
 
@@ -60,11 +63,11 @@ const MapViewContainer = (): JSX.Element => {
 						"/data/user/0/host.exp.exponent/cache/ExperienceData/" +
 						"%40anonymous%2Fberry-picker-tracker-71573e14-92d4-46c9-a00b-" +
 						"6e8cda3340f5/tiles/" +
-						currMap +
+						currentMap +
 						"tiles/"
 					}
 					tileSize={256}
-					urlTemplate={`${baseUrl}/${currMap}/{z}/{y}/{x}`}
+					urlTemplate={`${baseUrl}/${currentMap}/{z}/{y}/{x}`}
 					zIndex={-3}
 				/>
 				<Polyline
@@ -79,12 +82,7 @@ const MapViewContainer = (): JSX.Element => {
 					strokeWidth={6.5}
 					zIndex={1}
 				/>
-				{sortedUsers.map((user) => (
-					<TrackedUserRoute
-						key={user.id}
-						user={user}
-					/>
-				))}
+				<TrackedUserRoutes users={users} />
 				{localWaypoints.map((waypoint, index) => {
 					if (waypoint.connection !== null) {
 						return (
@@ -100,7 +98,7 @@ const MapViewContainer = (): JSX.Element => {
 						);
 					}
 				})}
-				{coordinates && <CoordinatesMarker coordinates={coordinates} />}
+				<CoordinatesMarker coordinates={coordinates} />
 			</MapView>
 		</View>
 	);
