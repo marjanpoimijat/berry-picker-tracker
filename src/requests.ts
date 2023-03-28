@@ -2,7 +2,7 @@ import { Waypoint, WaypointFromServer } from "./types";
 import { baseUrl } from "./constants";
 
 export const createNewUser = async () => {
-	const url = `${baseUrl}/new-user/`;
+	const url = `${baseUrl}/new-user`;
 	const settings = {
 		body: JSON.stringify({}),
 		headers: {
@@ -21,7 +21,7 @@ export const createNewUser = async () => {
 };
 
 export const startNewRoute = async (userId: string) => {
-	const url = `${baseUrl}/start-route/`;
+	const url = `${baseUrl}/start-route`;
 	const settings = {
 		body: JSON.stringify({ active: true, user_id: userId }),
 		headers: {
@@ -40,7 +40,7 @@ export const startNewRoute = async (userId: string) => {
 };
 
 export const sendNewWaypoint = async (pendingWaypoints: Array<Waypoint>) => {
-	const url = `${baseUrl}/create-waypoint/`;
+	const url = `${baseUrl}/create-waypoint`;
 	const waypoints = pendingWaypoints.map((waypoint) => {
 		return {
 			route_id: waypoint.routeId,
@@ -64,7 +64,7 @@ export const sendNewWaypoint = async (pendingWaypoints: Array<Waypoint>) => {
 };
 
 export const deactivateExistingRoute = async (routeId: string) => {
-	const url = `${baseUrl}/deactivate-route/`;
+	const url = `${baseUrl}/deactivate-route`;
 	const settings = {
 		headers: {
 			Accept: "application/json",
@@ -83,7 +83,7 @@ export const deactivateExistingRoute = async (routeId: string) => {
 };
 
 export const getUsersLatestRoute = async (userId: string) => {
-	const url = `${baseUrl}/get-users-latest-route/`;
+	const url = `${baseUrl}/get-users-latest-route`;
 	const settings = {
 		headers: {
 			Accept: "application/json",
@@ -105,7 +105,7 @@ export const getUsersLatestRoute = async (userId: string) => {
 };
 
 export const deleteUser = async (userId: string) => {
-	const url = `${baseUrl}/delete-user/`;
+	const url = `${baseUrl}/delete-user`;
 	const settings = {
 		headers: {
 			Accept: "application/json",
