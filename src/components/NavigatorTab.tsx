@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { connect } from "react-redux";
 import { languages } from "../languages";
-import { setMyRoutesMenuVisible, setTrackingMenuVisible } from "../reducers/ui-reducer";
+import { setMyRoutesMenuVisible, setTrackingMenuVisible, setSettingsMenuVisible } from "../reducers/ui-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import MenuButton from "./MenuButton";
@@ -17,6 +17,7 @@ const NavigatorTab = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const visibleMyRoutesMenu = useTypedSelector((state) => state.ui.myRoutesMenuVisible);
 	const visibleTrackingMenu = useTypedSelector((state) => state.ui.trackingMenuVisible);
+	const visibleSettingsMenu = useTypedSelector((state) => state.ui.settingsMenuVisible);
 	const dispatch = useTypedDispatch();
 
 	const toggleMyRoutesMenu = () => {
@@ -25,6 +26,11 @@ const NavigatorTab = (): JSX.Element => {
 
 	const toggleTrackingMenu = () => {
 		dispatch(setTrackingMenuVisible(!visibleTrackingMenu));
+	};
+
+	const toggleSettingsMenu = () => {
+		dispatch(setSettingsMenuVisible(!visibleSettingsMenu));
+		console.log(visibleSettingsMenu);
 	};
 
 	return (
@@ -45,6 +51,12 @@ const NavigatorTab = (): JSX.Element => {
 				onPress={toggleTrackingMenu}
 				text={languages["Tracking"][language]}
 				visible={visibleTrackingMenu}
+			/>
+			<MenuButton
+				iconName="cog"
+				onPress={toggleSettingsMenu}
+				text={languages["Settings"][language]}
+				visible={visibleSettingsMenu}
 			/>
 			<NavigatorButton
 				iconName="cog"

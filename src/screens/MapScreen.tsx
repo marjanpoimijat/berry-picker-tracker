@@ -4,6 +4,7 @@ import MapViewContainer from "../components/MapViewContainer";
 import RouteButtonContainer from "../components/MyRoutesMenu";
 import CoordinateBar from "../components/CoordinateBar";
 import TrackingMenu from "../components/TrackingMenu";
+import SettingsMenu from "../components/SettingsMenu";
 
 const MapScreen = () => {
 	return (
@@ -12,6 +13,7 @@ const MapScreen = () => {
 			<RouteButtonContainer />
 			<CoordinateBar />
 			<TrackingMenu />
+			<SettingsMenu />
 		</View>
 	);
 };

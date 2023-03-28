@@ -14,6 +14,7 @@ const uiSlice = createSlice({
 			return {
 				...state,
 				myRoutesMenuVisible: action.payload,
+				settingsMenuVisible: false,
 				trackingMenuVisible: false,
 			};
 		},
