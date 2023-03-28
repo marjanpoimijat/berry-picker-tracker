@@ -14,13 +14,13 @@ export const addSharedUser = async () => {
 	if (!queryParams || !queryParams.userId) {
 		return;
 	}
-	const { userId, cryptoKey } = queryParams;
+	const { cryptoKey, userId, username } = queryParams;
 	if (typeof userId !== "string") {
 		return;
 	}
-	//if (typeof username !== "string") {
-	//	return;
-	//}
+	if (typeof username !== "string") {
+		return;
+	}
 	if (typeof cryptoKey !== "string") {
 		return;
 	}
@@ -36,7 +36,7 @@ export const addSharedUser = async () => {
 		locationVisible: true,
 		routeVisible: true,
 		userId: userId,
-		username: "<username>",
+		username: username,
 	};
 	store.dispatch(increment());
 	store.dispatch(addTrackedUser(trackedObject));
