@@ -13,7 +13,7 @@ import TrackedUserDetails from "./TrackedUserDetails";
  */
 const TrackingMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
-	const toggled = useTypedSelector((state) => state.ui.trackListVisible);
+	const toggled = useTypedSelector((state) => state.ui.trackingMenuVisible);
 	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const sortedUsers = sortTrackedUserList(trackedUsers);
 

@@ -47,6 +47,13 @@ export interface MapLocation {
 	};
 }
 
+export interface MenuButtonProps {
+	iconName: string;
+	onPress: () => void;
+	text: string;
+	visible: boolean;
+}
+
 export interface MyRoutesButtonProps {
 	iconName: string;
 	onPress: () => void;

@@ -1,60 +1,41 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { AppDispatch } from "../store";
 
 const initialState = {
-	routeButtonsVisible: false,
+	myRoutesMenuVisible: false,
 	settingsMenuVisible: false,
-	trackListVisible: false,
+	trackingMenuVisible: false,
 };
 
 const uiSlice = createSlice({
 	initialState: initialState,
 	name: "ui",
 	reducers: {
-		setRouteButtonVisible(state, action: PayloadAction<boolean>) {
+		setMyRoutesMenuVisible(state, action: PayloadAction<boolean>) {
 			return {
 				...state,
-				routeButtonsVisible: action.payload,
-				trackListVisible: false,
+				myRoutesMenuVisible: action.payload,
+				trackingMenuVisible: false,
 			};
 		},
 		setSettingsMenuVisible(state, action: PayloadAction<boolean>) {
 			return {
 				...state,
-				routeButtonsVisible: false,
+				myRoutesMenuVisible: false,
 				settingsMenuVisible: action.payload,
-				trackListVisible: false,
+				trackingMenuVisible: false,
 			};
 		},
-		setTrackListVisible(state, action: PayloadAction<boolean>) {
+		setTrackingMenuVisible(state, action: PayloadAction<boolean>) {
 			return {
 				...state,
-				routeButtonsVisible: false,
+				myRoutesMenuVisible: false,
 				settingsMenuVisible: false,
-				trackListVisible: action.payload,
+				trackingMenuVisible: action.payload,
 			};
 		},
 	},
 });
 
-export const { setRouteButtonVisible, setTrackListVisible, setSettingsMenuVisible } = uiSlice.actions;
-
-export const changeTrackListVisible = (visibility: boolean) => {
-	return async (dispatch: AppDispatch) => {
-		dispatch(setRouteButtonVisible(visibility));
-	};
-};
-
-export const changeRouteButtonVisible = (visibility: boolean) => {
-	return async (dispatch: AppDispatch) => {
-		dispatch(setTrackListVisible(visibility));
-	};
-};
-
-export const changeSettingsMenuVisible = (visibility: boolean) => {
-	return async (dispatch: AppDispatch) => {
-		dispatch(setSettingsMenuVisible(visibility));
-	};
-};
+export const { setMyRoutesMenuVisible, setTrackingMenuVisible, setSettingsMenuVisible } = uiSlice.actions;
 
 export default uiSlice.reducer;

@@ -16,7 +16,7 @@ const MyRoutesMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const user = useTypedSelector((state) => state.user);
 	const routeInfo = useTypedSelector((state) => state.route);
-	const toggled = useTypedSelector((state) => state.ui.routeButtonsVisible);
+	const toggled = useTypedSelector((state) => state.ui.myRoutesMenuVisible);
 	const dispatch = useTypedDispatch();
 
 	const changeTracking = () => {
