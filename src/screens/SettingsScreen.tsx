@@ -19,9 +19,9 @@ import {
 } from "../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import { deleteTileCacheDirectory, makeTileCacheDirectory } from "../utils/file-system";
-import { Language, Map } from "../types";
+import { Language, Map, Waypoint } from "../types";
 import { setUsername } from "../reducers/user-reducer";
+import { encrypt } from "../utils/crypto";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
@@ -60,8 +60,20 @@ export const SettingScreen = () => {
 				},
 				{
 					onPress: async () => {
-						await deleteTileCacheDirectory();
-						await makeTileCacheDirectory();
+						//await deleteTileCacheDirectory();
+						//await makeTileCacheDirectory();
+						const waypoint: Waypoint = {
+							connection: "teeat",
+							latitude: 123,
+							longitude: 321,
+							mnc: "test",
+							routeId: "234234243",
+							ts: 5555,
+						};
+						const testEncrypt = encrypt(waypoint, "key123");
+						console.log("encryptedWaypoint:", testEncrypt);
+						//const testDecrypt = decrypt(testEncrypt, 'key123');
+						//console.log(testDecrypt)
 					},
 					text: languages["Clear"][language],
 				},
