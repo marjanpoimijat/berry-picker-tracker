@@ -17,9 +17,9 @@ import * as Crypto from "expo-crypto";
 export const encrypt = (message: string, keyString: string) => {
 	const keyWordArray = CryptoES.enc.Utf8.parse(keyString);
 	const ivString = generateKeyString(16);
-	const ivWordArray = CryptoES.enc.Base64.parse(ivString);
+	const ivWordArray = CryptoES.enc.Utf8.parse(ivString);
 	const encrypted = CryptoES.AES.encrypt(message, keyWordArray, { iv: ivWordArray });
-	return [encrypted.ciphertext.toString(CryptoES.enc.Base64), encrypted.iv.toString(CryptoES.enc.Base64)];
+	return [encrypted.ciphertext.toString(CryptoES.enc.Utf8), encrypted.iv.toString(CryptoES.enc.Utf8)];
 };
 
 /**
@@ -32,7 +32,7 @@ export const encrypt = (message: string, keyString: string) => {
 export const decrypt = (encryptedMessage: Array<string>, keyString: string) => {
 	const keyWordArray = CryptoES.enc.Utf8.parse(keyString);
 	const decrypted = CryptoES.AES.decrypt(encryptedMessage[0], keyWordArray, {
-		iv: CryptoES.enc.Base64.parse(encryptedMessage[1]),
+		iv: CryptoES.enc.Utf8.parse(encryptedMessage[1]),
 	});
 	return decrypted.toString(CryptoES.enc.Utf8);
 };
@@ -41,16 +41,10 @@ export const decrypt = (encryptedMessage: Array<string>, keyString: string) => {
  * Generates a key in string form. First gets random bytes using the expo-crypto library.
  * These random bytes are used to generate a WordArray, which is converted to a string.
  * @param {number} length The amount of bytes that are needed for the key generation.
- * @param {boolean} utf8 Boolean value to determine whether resulting key is encoded into utf-8 or Base64.
- *
  * @returns {string} The key in string form
  */
-export const generateKeyString = (length: number, utf8 = false) => {
+export const generateKeyString = (length: number) => {
 	const byteArray = Crypto.getRandomBytes(length);
 	const keyWordArray = CryptoES.lib.WordArray.create(byteArray);
-	if (utf8) {
-		return CryptoES.enc.Utf8.stringify(keyWordArray);
-	} else {
-		return CryptoES.enc.Base64.stringify(keyWordArray);
-	}
+	return CryptoES.enc.Utf8.stringify(keyWordArray);
 };
