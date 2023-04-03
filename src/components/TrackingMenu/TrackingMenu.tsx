@@ -6,6 +6,12 @@ import getTrackedUsersList from "../../utils/list";
 import MasterButtonsContainer from "./MasterButtonsContainer";
 import TrackedUserList from "./TrackedUserList";
 
+const NoTrackedUsersText = () => (
+	<View style={Styles.noTrackedUsersTextContainer}>
+		<Text style={Styles.noTrackedUsersText}>No tracked users yet.</Text>
+	</View>
+);
+
 /**
  * Menu for tracking tracking other users and their routes.
  *
@@ -23,8 +29,14 @@ const TrackingMenu = (): JSX.Element => {
 				<View style={{ alignItems: "center" }}>
 					<Text style={Styles.trackUsersMenuTitle}>{languages["Tracking"][language]}</Text>
 				</View>
-				<MasterButtonsContainer />
-				<TrackedUserList users={users} />
+				{users.length === 0 ? (
+					<NoTrackedUsersText />
+				) : (
+					<>
+						<MasterButtonsContainer />
+						<TrackedUserList users={users} />
+					</>
+				)}
 			</View>
 		</View>
 	);

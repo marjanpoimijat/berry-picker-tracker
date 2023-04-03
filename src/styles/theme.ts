@@ -1,13 +1,13 @@
 const theme = {
 	colors: {
-		buttonBackgroundColor: "#ffffff",
-		buttonToggledBackgroundColor: "#ebe4e4",
-		buttonUnderlayColor: "#ffffff00",
-		primaryBackgroundColor: "#388e3c",
-		recordingColor: "#f44336",
-		screenBackgroundColor: "white",
-		textPrimary: "#4d4949",
-		textSecondary: "white",
+		buttonBackgroundColor: "#ffffff", // white
+		buttonToggledBackgroundColor: "#ebe4e4", // light grey
+		buttonUnderlayColor: "#ffffff00", // transparent white
+		primaryBackgroundColor: "#388e3c", // green
+		recordingColor: "#f44336", // red
+		screenBackgroundColor: "white", // white
+		textPrimary: "#4d4949", // dark grey
+		textSecondary: "white", // white
 	},
 	fontSizes: {
 		default: 13,

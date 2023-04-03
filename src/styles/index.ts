@@ -136,8 +136,6 @@ const Styles = StyleSheet.create({
 		width: Dimensions.get("window").width,
 	},
 	masterButtonContainer: {
-		//borderColor: "black",
-		//borderWidth: 1,
 		width: "33%",
 	},
 	masterButtonIcon: {
@@ -182,6 +180,14 @@ const Styles = StyleSheet.create({
 		paddingBottom: 2,
 		paddingTop: 15,
 		textAlign: "center",
+	},
+	noTrackedUsersText: {
+		color: "gray",
+		fontSize: 15,
+	},
+	noTrackedUsersTextContainer: {
+		alignItems: "center",
+		padding: 15,
 	},
 	routeButton: {
 		alignItems: "center",
@@ -230,8 +236,6 @@ const Styles = StyleSheet.create({
 		fontWeight: "bold",
 	},
 	trackUsersMasterButtonContainer: {
-		//borderColor: "black",
-		//borderWidth: 1,
 		display: "flex",
 		flexDirection: "row",
 		justifyContent: "space-between",
