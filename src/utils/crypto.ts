@@ -19,7 +19,7 @@ export const encrypt = (message: string, keyString: string) => {
 	const ivString = generateKeyString(16);
 	const ivWordArray = CryptoES.enc.Utf8.parse(ivString);
 	const encrypted = CryptoES.AES.encrypt(message, keyWordArray, { iv: ivWordArray });
-	return [encrypted.ciphertext.toString(CryptoES.enc.Utf8), encrypted.iv.toString(CryptoES.enc.Utf8)];
+	return [CryptoES.enc.Utf8.stringify(encrypted.ciphertext), CryptoES.enc.Utf8.stringify(encrypted.iv)];
 };
 
 /**
@@ -34,7 +34,7 @@ export const decrypt = (encryptedMessage: Array<string>, keyString: string) => {
 	const decrypted = CryptoES.AES.decrypt(encryptedMessage[0], keyWordArray, {
 		iv: CryptoES.enc.Utf8.parse(encryptedMessage[1]),
 	});
-	return decrypted.toString(CryptoES.enc.Utf8);
+	return CryptoES.enc.Utf8.stringify(decrypted);
 };
 
 /**

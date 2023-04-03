@@ -22,6 +22,7 @@ import Styles from "../styles";
 import { deleteTileCacheDirectory, makeTileCacheDirectory } from "../utils/file-system";
 import { Language, Map } from "../types";
 import { setUsername } from "../reducers/user-reducer";
+import { decrypt, encrypt } from "../utils/crypto";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,
@@ -60,8 +61,14 @@ export const SettingScreen = () => {
 				},
 				{
 					onPress: async () => {
-						await deleteTileCacheDirectory();
-						await makeTileCacheDirectory();
+						// await deleteTileCacheDirectory();
+						// await makeTileCacheDirectory();
+						const message = "testMessage123";
+						console.log("message: " + message + ", key: key123");
+						const encryptedMessage = encrypt(message, "key123");
+						console.log("encrypted message: ", encryptedMessage);
+						const decryptedMessage = decrypt(encryptedMessage, "key123");
+						console.log("decrypted message: ", decryptedMessage);
 					},
 					text: languages["Clear"][language],
 				},
