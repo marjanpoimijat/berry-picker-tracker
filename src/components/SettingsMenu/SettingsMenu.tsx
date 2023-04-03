@@ -5,7 +5,8 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import LanguageSelect from "./LanguageSelect";
 import MapSelect from "./MapSelect";
 import UserInformation from "./UserInformation";
-import WaypointFrequencySelect from "./WaypointFrequencySelect";
+import LegalInformation from "./LegalInformation";
+import Legend from "./Legend";
 const SettingsMenu = (): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.settingsMenuVisible);
 	const language = useTypedSelector((state) => state.language);
@@ -22,15 +23,16 @@ const SettingsMenu = (): JSX.Element => {
 				<View style={{ alignItems: "center" }}>
 					<Text style={SettingsMenuStyles.SettingsMenuTitle}>{languages["Settings"][language]}</Text>
 				</View>
-				<View style={SettingsMenuStyles.SettingContainer}>
-					<Text>{languages["Language"][language]}</Text>
-					<LanguageSelect />
-				</View>
+
+				<LanguageSelect />
+
 				<MapSelect />
-				<View style={SettingsMenuStyles.SettingContainer}>
-					<Text style={SettingsMenuStyles.SettingsMenuTitle}>{languages["User information"][language]}</Text>
-					<UserInformation />
-				</View>
+
+				<UserInformation />
+
+				<LegalInformation />
+
+				<Legend />
 			</ScrollView>
 		</View>
 	);
