@@ -47,6 +47,11 @@ export interface MapLocation {
 	};
 }
 
+export interface MasterButtonProps {
+	iconName: string;
+	text: string;
+}
+
 export interface MenuButtonProps {
 	iconName: string;
 	onPress: () => void;
@@ -104,6 +109,10 @@ export interface TrackedUser {
 	routeVisible: boolean;
 	userId: string;
 	username: string;
+}
+
+export interface TrackedUserListProps {
+	users: Array<TrackedUser>;
 }
 
 export type TrackedUsers = {
