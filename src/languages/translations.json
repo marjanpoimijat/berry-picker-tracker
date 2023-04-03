@@ -294,6 +294,11 @@
 		"fi": "Oletusasetusten palautus",
 		"sv": "Återställer inställningar"
 	},
+	"Route": {
+		"en": "Route",
+		"fi": "Reitti",
+		"sv": "Rutt"
+	},
 	"Routes": {
 		"en": "Routes",
 		"fi": "Reitit",
@@ -343,6 +348,11 @@
 		"en": "Share route",
 		"fi": "Jaa reitti",
 		"sv": "Dela rutt"
+	},
+	"Show": {
+		"en": "Show",
+		"fi": "Näytä",
+		"sv": "Visa"
 	},
 	"Show route": {
 		"en": "Show route",
