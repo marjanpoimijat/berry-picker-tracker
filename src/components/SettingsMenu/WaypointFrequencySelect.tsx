@@ -1,12 +1,13 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { changeTrackingInterval } from "../../reducers/user-reducer";
+import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 
-const TrackingFrequencySelect = (): JSX.Element => {
+const FrequencySelect = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
 	const [currTrack] = useTypedSelector((state) => [state.user.trackingInterval]);
 	let index = 0;
@@ -39,15 +40,18 @@ const TrackingFrequencySelect = (): JSX.Element => {
 	];
 
 	return (
-		<ModalSelector
-			cancelText={languages["Cancel"][language].toLowerCase()}
-			data={trackFreq}
-			initValue={currTrack.toString() + " s"}
-			initValueTextStyle={Styles.initValueTextStyle}
-			onChange={async (option: { label: number }) => {
-				await dispatch(changeTrackingInterval(option.label));
-			}}
-		/>
+		<View style={SettingsMenuStyles.SettingContainer}>
+			<Text>{languages["Waypoint tracking frequency"][language]}</Text>
+			<ModalSelector
+				cancelText={languages["Cancel"][language].toLowerCase()}
+				data={trackFreq}
+				initValue={currTrack.toString() + " s"}
+				initValueTextStyle={Styles.initValueTextStyle}
+				onChange={async (option: { label: number }) => {
+					await dispatch(changeTrackingInterval(option.label));
+				}}
+			/>
+		</View>
 	);
 };
 
@@ -73,4 +77,4 @@ const SendingFrequencySelect = (): JSX.Element => {
 	);
 };
 */
-export default TrackingFrequencySelect;
+export default FrequencySelect;
