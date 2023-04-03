@@ -4,13 +4,8 @@ import { useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import getTrackedUsersList from "../../utils/list";
 import MasterButtonsContainer from "./MasterButtonsContainer";
+import NoTrackedUsersText from "./NoTrackedUsersText";
 import TrackedUserList from "./TrackedUserList";
-
-const NoTrackedUsersText = () => (
-	<View style={Styles.noTrackedUsersTextContainer}>
-		<Text style={Styles.noTrackedUsersText}>No tracked users yet.</Text>
-	</View>
-);
 
 /**
  * Menu for tracking tracking other users and their routes.
