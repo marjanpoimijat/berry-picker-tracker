@@ -3,6 +3,7 @@ import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import LanguageSelect from "./LanguageSelect";
+import UserInformation from "./UserInformation";
 const SettingsMenu = (): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.settingsMenuVisible);
 	const language = useTypedSelector((state) => state.language);
@@ -22,6 +23,11 @@ const SettingsMenu = (): JSX.Element => {
 				<View style={SettingsMenuStyles.SettingContainer}>
 					<Text style={SettingsMenuStyles.SettingsMenuTitle}>{languages["Language"][language]}</Text>
 					<LanguageSelect />
+				</View>
+
+				<View style={SettingsMenuStyles.SettingContainer}>
+					<Text style={SettingsMenuStyles.SettingsMenuTitle}>{languages["User information"][language]}</Text>
+					<UserInformation />
 				</View>
 			</ScrollView>
 		</View>

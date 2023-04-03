@@ -21,6 +21,7 @@ import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import { setUsername } from "../reducers/user-reducer";
 import { decrypt, encrypt } from "../utils/crypto";
+import { Language, Map } from "../types";
 
 export const SettingScreen = () => {
 	// Some of the components are old and give unnecessary warnings,

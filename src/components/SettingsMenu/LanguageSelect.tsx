@@ -6,7 +6,7 @@ import { Language } from "../../types";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 
-const languageSelect = (): JSX.Element => {
+const LanguageSelect = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
 	const languageOption = [
 		{ component: <Text>English</Text>, key: 1, label: Language.English },
@@ -26,4 +26,4 @@ const languageSelect = (): JSX.Element => {
 		/>
 	);
 };
-export default languageSelect;
+export default LanguageSelect;
