@@ -31,8 +31,11 @@ const SettingsMenu = (): JSX.Element => {
 				<UserInformation />
 
 				<LegalInformation />
+<<<<<<< HEAD
 
 				<Legend />
+=======
+>>>>>>> 0324c15 (settings menu changes!)
 			</ScrollView>
 		</View>
 	);
