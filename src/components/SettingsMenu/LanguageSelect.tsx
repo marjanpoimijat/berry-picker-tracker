@@ -1,10 +1,11 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { changeLanguage } from "../../reducers/language-reducer";
 import { Language } from "../../types";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
+import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 
 const LanguageSelect = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
@@ -15,15 +16,18 @@ const LanguageSelect = (): JSX.Element => {
 	];
 
 	return (
-		<ModalSelector
-			cancelText={languages["Cancel"][language].toLowerCase()}
-			data={languageOption}
-			initValue={language}
-			initValueTextStyle={Styles.initValueTextStyle}
-			onChange={async (option: { label: Language }) => {
-				await dispatch(changeLanguage(option.label));
-			}}
-		/>
+		<View style={SettingsMenuStyles.SettingContainer}>
+			<Text>{languages["Language"][language]}</Text>
+			<ModalSelector
+				cancelText={languages["Cancel"][language].toLowerCase()}
+				data={languageOption}
+				initValue={language}
+				initValueTextStyle={Styles.initValueTextStyle}
+				onChange={async (option: { label: Language }) => {
+					await dispatch(changeLanguage(option.label));
+				}}
+			/>
+		</View>
 	);
 };
 export default LanguageSelect;
