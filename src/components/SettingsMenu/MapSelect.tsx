@@ -1,10 +1,11 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { Map } from "../../types";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
+import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { changeMap } from "../../reducers/map-reducer";
 
 const MapSelect = (): JSX.Element => {
@@ -33,7 +34,7 @@ const MapSelect = (): JSX.Element => {
 		},
 	];
 	return (
-		<>
+		<View style={SettingsMenuStyles.SettingContainer}>
 			<Text>{languages["Change map type"][language]}</Text>
 			<ModalSelector
 				cancelText={languages["Cancel"][language].toLowerCase()}
@@ -44,7 +45,7 @@ const MapSelect = (): JSX.Element => {
 					await dispatch(changeMap(option.label));
 				}}
 			/>
-		</>
+		</View>
 	);
 };
 export default MapSelect;

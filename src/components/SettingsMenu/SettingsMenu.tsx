@@ -25,9 +25,7 @@ const SettingsMenu = (): JSX.Element => {
 					<Text>{languages["Language"][language]}</Text>
 					<LanguageSelect />
 				</View>
-				<View style={SettingsMenuStyles.SettingContainer}>
-					<MapSelect />
-				</View>
+				<MapSelect />
 				<View style={SettingsMenuStyles.SettingContainer}>
 					<Text style={SettingsMenuStyles.SettingsMenuTitle}>{languages["User information"][language]}</Text>
 					<UserInformation />
