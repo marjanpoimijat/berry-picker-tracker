@@ -26,13 +26,6 @@ const SettingsMenu = (): JSX.Element => {
 					<Text>{languages["Language"][language]}</Text>
 					<LanguageSelect />
 				</View>
-				<View>
-					<Text>{languages["Navigation"][language]}</Text>
-				</View>
-				<View style={SettingsMenuStyles.NavigationContainer}>
-					<Text>{languages["Waypoint tracking frequency"][language]}</Text>
-					<WaypointFrequencySelect />
-				</View>
 				<MapSelect />
 				<View style={SettingsMenuStyles.SettingContainer}>
 					<Text style={SettingsMenuStyles.SettingsMenuTitle}>{languages["User information"][language]}</Text>
