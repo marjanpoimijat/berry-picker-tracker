@@ -111,6 +111,10 @@ export interface TrackedUser {
 	username: string;
 }
 
+export interface TrackedUserListProps {
+	users: Array<TrackedUser>;
+}
+
 export type TrackedUsers = {
 	[key: string]: TrackedUser;
 };
