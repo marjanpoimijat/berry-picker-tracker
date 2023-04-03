@@ -229,6 +229,11 @@
 		"fi": "Ei yhteyttä",
 		"sv": "Ingen täckning"
 	},
+	"No tracked users yet.": {
+		"en": "No tracked users yet.",
+		"fi": "Ei vielä seurattavia käyttäjiä.",
+		"sv": "Inga spårade användare ännu."
+	},
 	"OK": {
 		"en": "OK",
 		"fi": "OK",
