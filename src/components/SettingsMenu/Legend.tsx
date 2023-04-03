@@ -1,16 +1,17 @@
 import { Text, View } from "react-native";
-import { Icon } from "react-native-vector-icons/Icon";
 import { languages } from "../../languages";
+import Icon from "react-native-vector-icons/FontAwesome5";
+
 import { useTypedSelector } from "../../store";
 import { baseUrl } from "../../constants";
 import { Linking } from "react-native";
 
-const Legend = () => {
+const Legend = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
-
+	const text = languages["Download link to National Land Survey of Finland map legend information"][language];
 	return (
 		<View>
-			<Text>{languages["Download link to National Land Survey of Finland map legend information"][language]}</Text>
+			<Text>{text}</Text>
 			<Text>{languages["Map legend"][language]}</Text>
 			<Icon
 				name="chevron-right"
