@@ -4,7 +4,7 @@ import { repoBaseUrl } from "../../constants";
 
 import { languages } from "../../languages";
 
-import { useTypedDispatch, useTypedSelector } from "../../store";
+import { useTypedSelector } from "../../store";
 
 const LegalInformation = (): JSX.Element => {
 	const [language] = useTypedSelector((state) => [state.language]);
