@@ -19,7 +19,6 @@ import {
 } from "../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
-import { deleteTileCacheDirectory, makeTileCacheDirectory } from "../utils/file-system";
 import { Language, Map } from "../types";
 import { setUsername } from "../reducers/user-reducer";
 import { decrypt, encrypt } from "../utils/crypto";
