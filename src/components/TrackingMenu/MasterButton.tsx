@@ -3,10 +3,10 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import Styles from "../../styles";
 import { MasterButtonProps } from "../../types";
 
-const MasterButton = ({ iconName, text }: MasterButtonProps) => {
+const MasterButton = ({ handlePress, iconName, text }: MasterButtonProps) => {
 	return (
 		<View style={Styles.masterButtonContainer}>
-			<TouchableOpacity onPress={() => console.log("")}>
+			<TouchableOpacity onPress={handlePress}>
 				<Icon
 					name={iconName}
 					style={Styles.masterButtonIcon}

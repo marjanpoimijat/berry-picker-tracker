@@ -13,20 +13,17 @@ const trackedUsersSlice = createSlice({
 				[action.payload.userId]: action.payload,
 			};
 		},
+		removeAllTrackedUsers() {
+			return {};
+		},
 		removeTrackedUser(state, action: PayloadAction<string>) {
 			const newState = { ...state };
 			delete newState[action.payload];
 			return newState;
 		},
-		updateTrackedUser(state, action: PayloadAction<TrackedUser>) {
-			const updatedState = Object.assign({}, state, {
-				[action.payload.userId]: action.payload,
-			});
-			return updatedState;
-		},
 	},
 });
 
-export const { addTrackedUser, updateTrackedUser, removeTrackedUser } = trackedUsersSlice.actions;
+export const { addTrackedUser, removeAllTrackedUsers, removeTrackedUser } = trackedUsersSlice.actions;
 
 export default trackedUsersSlice.reducer;

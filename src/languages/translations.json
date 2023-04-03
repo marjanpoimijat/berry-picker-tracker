@@ -64,6 +64,11 @@
 		"fi": "Haluatko varmasti tyhjentää karttaruutujen välimuistin?",
 		"sv": "Är du säker att du vill tömma kartans korttidsminne?"
 	},
+	"Do you really want to remove all users from the list?": {
+		"en": "Do you really want to remove all users from the list?",
+		"fi": "Haluatko varamsti poistaa kaikki käyttäjät listalta?",
+		"sv": "Är du säker att du vill radera alla användare?"
+	},
 	"Do you really want to remove this user from the list?": {
 		"en": "Do you really want to remove this user from the list?",
 		"fi": "Haluatko varmasti poistaa tämän käyttäjän listalta?",
@@ -258,6 +263,11 @@
 		"en": "Removing a tracked user",
 		"fi": "Poistetaan seurattu käyttäjä",
 		"sv": "Radera den spårade användaren"
+	},
+	"Removing all tracked users": {
+		"en": "Removing all tracked users",
+		"fi": "Poistetaan kaikki seuratut käyttäjät",
+		"sv": "Radera alla spårade användare"
 	},
 	"Reset": {
 		"en": "Reset",

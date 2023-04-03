@@ -48,6 +48,7 @@ export interface MapLocation {
 }
 
 export interface MasterButtonProps {
+	handlePress: () => void;
 	iconName: string;
 	text: string;
 }
@@ -89,7 +90,7 @@ export interface RouteButtonProps {
 
 export interface RouteLineProps {
 	id: number;
-	waypoints: Waypoint[];
+	waypoints: Array<Waypoint>;
 }
 
 export interface RouteVisibleButtonProps {
@@ -124,7 +125,7 @@ export interface TrackedUserRouteProps {
 }
 
 export interface TrackedUserRoutesProps {
-	users: TrackedUser[];
+	users: Array<TrackedUser>;
 }
 
 export interface TrackingButtonProps {
