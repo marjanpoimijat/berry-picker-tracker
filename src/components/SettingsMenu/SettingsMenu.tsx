@@ -5,6 +5,7 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import LanguageSelect from "./LanguageSelect";
 import MapSelect from "./MapSelect";
 import UserInformation from "./UserInformation";
+import WaypointFrequencySelect from "./WaypointFrequencySelect";
 const SettingsMenu = (): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.settingsMenuVisible);
 	const language = useTypedSelector((state) => state.language);
@@ -24,6 +25,13 @@ const SettingsMenu = (): JSX.Element => {
 				<View style={SettingsMenuStyles.SettingContainer}>
 					<Text>{languages["Language"][language]}</Text>
 					<LanguageSelect />
+				</View>
+				<View>
+					<Text>{languages["Navigation"][language]}</Text>
+				</View>
+				<View style={SettingsMenuStyles.NavigationContainer}>
+					<Text>{languages["Waypoint tracking frequency"][language]}</Text>
+					<WaypointFrequencySelect />
 				</View>
 				<MapSelect />
 				<View style={SettingsMenuStyles.SettingContainer}>

@@ -5,6 +5,12 @@ import theme from "./theme";
 const navigatorTabHeight = 70;
 
 const SettingsMenuStyles = StyleSheet.create({
+	NavigationContainer: {
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		padding: 10,
+	},
 	SettingContainer: {
 		display: "flex",
 		flexDirection: "row",
