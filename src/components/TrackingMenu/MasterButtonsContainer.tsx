@@ -15,7 +15,7 @@ const MasterButtonsContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const dispatch = useTypedDispatch();
 
-	const handleRemoveButtonPress = () =>
+	const handleRemoveButtonPress = () => {
 		createAlert({
 			cancellable: true,
 			confirmText: languages["Remove"][language],
@@ -23,6 +23,7 @@ const MasterButtonsContainer = (): JSX.Element => {
 			onPress: () => dispatch(removeAllTrackedUsers()),
 			title: languages["Removing all tracked users"][language],
 		});
+	};
 
 	return (
 		<View style={Styles.trackUsersMasterButtonContainer}>

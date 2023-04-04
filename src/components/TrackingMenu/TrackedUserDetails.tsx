@@ -9,6 +9,7 @@ import { getColor } from "../../utils/colors";
 import LocationVisibleButton from "./LocationVisibleButton";
 import RemoveUserButton from "./RemoveUserButton";
 import RouteVisibleButton from "./RouteVisibleButton";
+import { createAlert } from "../../utils/alert";
 
 /**
  * A container that displays a tracked user's name and visibility control buttons.
@@ -67,21 +68,13 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 	};
 
 	const handleRemoveUserButtonPress = () => {
-		Alert.alert(
-			languages["Removing a tracked user"][language],
-			languages["Do you really want to remove this user from the list?"][language],
-			[
-				{
-					text: languages["Cancel"][language],
-				},
-				{
-					onPress: () => {
-						dispatch(removeTrackedUser(userId));
-					},
-					text: languages["Remove"][language],
-				},
-			]
-		);
+		createAlert({
+			cancellable: true,
+			confirmText: languages["Remove"][language],
+			infoText: languages["Do you really want to remove this user from the list?"][language],
+			onPress: () => dispatch(removeTrackedUser(userId)),
+			title: languages["Removing a tracked user"][language],
+		});
 		console.log(JSON.stringify(trackedUsers, null, 2));
 	};
 
