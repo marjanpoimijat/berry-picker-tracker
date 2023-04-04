@@ -11,6 +11,7 @@ export interface AppHeaderProps {
 }
 
 export interface ButtonIconProps {
+	color?: string;
 	disabled: boolean;
 	iconName: string;
 }
@@ -56,10 +57,11 @@ export interface MapLocation {
 }
 
 export interface MasterButtonProps {
-	toggled?: boolean;
+	color?: string;
 	handlePress: () => void;
 	iconName: string;
 	text: string;
+	toggled?: boolean;
 }
 
 export interface MenuButtonProps {
