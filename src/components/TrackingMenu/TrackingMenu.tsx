@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
-import Styles from "../../styles";
+import Styles, { topOffset } from "../../styles";
 import getTrackedUsersList from "../../utils/list";
 import MasterButtonsContainer from "./MasterButtonsContainer";
 import NoTrackedUsersText from "./NoTrackedUsersText";
@@ -19,7 +19,15 @@ const TrackingMenu = (): JSX.Element => {
 	const users = getTrackedUsersList(trackedUsers);
 
 	return (
-		<View style={toggled ? Styles.trackUsersMenuContainer : { ...Styles.trackUsersMenuContainer, display: "none" }}>
+		<View
+			style={
+				toggled
+					? users.length === 0
+						? Styles.trackUsersMenuContainer
+						: { ...Styles.trackUsersMenuContainer, top: topOffset - users.length * 55 }
+					: { ...Styles.trackUsersMenuContainer, display: "none" }
+			}
+		>
 			<View style={Styles.trackUsersMenuContent}>
 				<View style={{ alignItems: "center" }}>
 					<Text style={Styles.trackUsersMenuTitle}>{languages["Tracking"][language]}</Text>

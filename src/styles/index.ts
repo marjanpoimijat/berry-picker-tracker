@@ -4,6 +4,7 @@ import { statusBarHeight } from "../constants";
 import theme from "./theme";
 
 const navigatorTabHeight = 70;
+export const topOffset = 640;
 
 const Styles = StyleSheet.create({
 	buttonText: {
@@ -257,13 +258,13 @@ const Styles = StyleSheet.create({
 		paddingHorizontal: 2,
 		paddingVertical: 4,
 		position: "absolute",
-		top: 72,
+		top: topOffset,
 		width: "90%",
 	},
 	trackUsersMenuContent: {
 		backgroundColor: theme.colors.buttonBackgroundColor,
 		borderRadius: 9,
-		height: "99%",
+		height: "97%",
 		padding: 10,
 		position: "absolute",
 		width: "97%",
