@@ -1,3 +1,11 @@
+export interface AlertObject {
+	cancellable: boolean;
+	confirmText: string;
+	infoText: string;
+	onPress: () => void;
+	title: string;
+}
+
 export interface AppHeaderProps {
 	text: string;
 }

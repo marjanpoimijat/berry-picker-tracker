@@ -1,8 +1,9 @@
-import { Alert, View } from "react-native";
+import { View } from "react-native";
 import { languages } from "../../languages";
 import { startRoute, deactivateRoute, changeShowRoute, shareRoute } from "../../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
+import { createAlert } from "../../utils/alert";
 import RouteButton from "./RouteButton";
 
 /**
@@ -28,21 +29,13 @@ const MyRoutesMenu = (): JSX.Element => {
 	};
 
 	const alertOnEndRoute = () => {
-		Alert.alert(
-			languages["End tracking this route?"][language],
-			languages["Do you really want to end tracking?"][language],
-			[
-				{
-					text: languages["Cancel"][language],
-				},
-				{
-					onPress: () => {
-						changeTracking();
-					},
-					text: languages["OK"][language],
-				},
-			]
-		);
+		createAlert({
+			cancellable: true,
+			confirmText: languages["OK"][language],
+			infoText: languages["Do you really want to end tracking?"][language],
+			onPress: () => changeTracking(),
+			title: languages["End tracking this route"][language],
+		});
 	};
 
 	return (

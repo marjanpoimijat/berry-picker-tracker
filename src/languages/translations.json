@@ -99,9 +99,9 @@
 		"fi": "Lopeta reitti",
 		"sv": "Slutför rutt"
 	},
-	"End tracking this route?": {
-		"en": "End tracking this route?",
-		"fi": "Lopeta reitin seuranta?",
+	"End tracking this route": {
+		"en": "End tracking this route",
+		"fi": "Lopeta reitin seuranta",
 		"sv": "Sluta spårning av denna rutt"
 	},
 	"Find": {

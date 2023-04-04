@@ -1,8 +1,9 @@
-import { Alert, View } from "react-native";
+import { View } from "react-native";
 import { languages } from "../../languages";
 import { removeAllTrackedUsers } from "../../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
+import { createAlert } from "../../utils/alert";
 import MasterButton from "./MasterButton";
 
 /**
@@ -15,21 +16,13 @@ const MasterButtonsContainer = (): JSX.Element => {
 	const dispatch = useTypedDispatch();
 
 	const handleRemoveButtonPress = () => {
-		Alert.alert(
-			languages["Removing all tracked users"][language],
-			languages["Do you really want to remove all users from the list?"][language],
-			[
-				{
-					text: languages["Cancel"][language],
-				},
-				{
-					onPress: () => {
-						dispatch(removeAllTrackedUsers());
-					},
-					text: languages["Remove"][language],
-				},
-			]
-		);
+		createAlert({
+			cancellable: true,
+			confirmText: languages["Remove"][language],
+			infoText: languages["Do you really want to remove all users from the list?"][language],
+			onPress: () => dispatch(removeAllTrackedUsers()),
+			title: languages["Removing all tracked users"][language],
+		});
 	};
 
 	return (
