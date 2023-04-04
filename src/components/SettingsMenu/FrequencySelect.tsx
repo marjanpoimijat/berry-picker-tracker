@@ -7,7 +7,7 @@ import { changeSendingInterval, changeTrackingInterval } from "../../reducers/us
 
 export const TrackingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
-	const [currTrack] = useTypedSelector((state) => [state.user.trackingInterval]);
+	const [currTrack] = useTypedSelector((state) => [state.user.trackingInterval / 1000]);
 	let index = 0;
 	const trackFreq = [
 		{
@@ -54,7 +54,7 @@ export const TrackingFrequency = (): JSX.Element => {
 
 export const SendingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
-	const [currSend] = useTypedSelector((state) => [state.user.trackingInterval]);
+	const [currSend] = useTypedSelector((state) => [state.user.sendingInterval / 1000]);
 
 	let index = 0;
 	const sendFreq = [
