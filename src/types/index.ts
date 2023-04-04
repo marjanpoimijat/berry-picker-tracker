@@ -112,6 +112,10 @@ export interface ShareButtonProps {
 	text: string;
 }
 
+export interface TitleProps {
+	text: string;
+}
+
 export interface TrackedUser {
 	id: number;
 	locationVisible: boolean;
