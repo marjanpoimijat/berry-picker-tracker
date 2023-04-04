@@ -7,7 +7,7 @@ import MapSelect from "./MapSelect";
 import UserInformation from "./UserInformation";
 import LegalInformation from "./LegalInformation";
 import Legend from "./Legend";
-import FrequencySelect from "./WaypointFrequencySelect";
+import { TrackingFrequency, SendingFrequency } from "./FrequencySelect";
 
 const SettingsMenu = (): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.settingsMenuVisible);
@@ -28,7 +28,8 @@ const SettingsMenu = (): JSX.Element => {
 
 				<LanguageSelect />
 
-				<FrequencySelect />
+				<TrackingFrequency />
+				<SendingFrequency />
 
 				<MapSelect />
 
