@@ -5,6 +5,13 @@ import theme from "./theme";
 const navigatorTabHeight = 70;
 
 const SettingsMenuStyles = StyleSheet.create({
+	BlockContainer: {
+		backgroundColor: theme.colors.settingsMenuBackgroundColor,
+		padding: 10,
+	},
+	BlockText: {
+		fontSize: theme.fontSizes.default,
+	},
 	NavigationContainer: {
 		display: "flex",
 		flexDirection: "row",

@@ -16,18 +16,23 @@ const LanguageSelect = (): JSX.Element => {
 	];
 
 	return (
-		<View style={SettingsMenuStyles.SettingContainer}>
-			<Text>{languages["Language"][language]}</Text>
-			<ModalSelector
-				cancelText={languages["Cancel"][language].toLowerCase()}
-				data={languageOption}
-				initValue={language}
-				initValueTextStyle={Styles.initValueTextStyle}
-				onChange={async (option: { label: Language }) => {
-					await dispatch(changeLanguage(option.label));
-				}}
-			/>
-		</View>
+		<>
+			<View style={SettingsMenuStyles.BlockContainer}>
+				<Text style={SettingsMenuStyles.BlockText}>{languages["Language"][language].toUpperCase()}</Text>
+			</View>
+			<View style={SettingsMenuStyles.SettingContainer}>
+				<Text style={SettingsMenuStyles.BlockText}>{languages["Change language"][language]}</Text>
+				<ModalSelector
+					cancelText={languages["Cancel"][language].toLowerCase()}
+					data={languageOption}
+					initValue={language}
+					initValueTextStyle={Styles.initValueTextStyle}
+					onChange={async (option: { label: Language }) => {
+						await dispatch(changeLanguage(option.label));
+					}}
+				/>
+			</View>
+		</>
 	);
 };
 export default LanguageSelect;

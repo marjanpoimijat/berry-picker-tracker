@@ -1,13 +1,12 @@
 import { Text, View } from "react-native";
-
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import { changeTrackingInterval } from "../../reducers/user-reducer";
+import { changeSendingInterval, changeTrackingInterval } from "../../reducers/user-reducer";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 
-const FrequencySelect = (): JSX.Element => {
+export const TrackingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
 	const [currTrack] = useTypedSelector((state) => [state.user.trackingInterval]);
 	let index = 0;
@@ -55,26 +54,53 @@ const FrequencySelect = (): JSX.Element => {
 	);
 };
 
-/*
-const SendingFrequencySelect = (): JSX.Element => {
+export const SendingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
-	const languageOption = [
-		{ component: <Text>English</Text>, key: 1, label: Language.English },
-		{ component: <Text>suomi</Text>, key: 2, label: Language.Finnish },
-		{ component: <Text>svenska</Text>, key: 3, label: Language.Swedish },
+	const [currSend] = useTypedSelector((state) => [state.user.trackingInterval]);
+
+	let index = 0;
+	const sendFreq = [
+		{
+			component: <Text>10 {languages["seconds"][language]}</Text>,
+			key: index++,
+			label: 10000,
+		},
+		{
+			component: <Text>30 {languages["seconds"][language]}</Text>,
+			key: index++,
+			label: 30000,
+		},
+		{
+			component: <Text>1 {languages["minute"][language]}</Text>,
+			key: index++,
+			label: 60000,
+		},
+		{
+			component: <Text>5 {languages["minutes"][language]}</Text>,
+			key: index++,
+			label: 300000,
+		},
+		{
+			component: <Text>10 {languages["minutes"][language]}</Text>,
+			key: index++,
+			label: 600000,
+		},
 	];
 
 	return (
-		<ModalSelector
-			cancelText={languages["Cancel"][language].toLowerCase()}
-			data={languageOption}
-			initValue={language}
-			initValueTextStyle={Styles.initValueTextStyle}
-			onChange={async (option: { label: Language }) => {
-				await dispatch(changeLanguage(option.label));
-			}}
-		/>
+		<View style={SettingsMenuStyles.SettingContainer}>
+			<Text>{languages["Waypoint sending frequency"][language]}</Text>
+			<ModalSelector
+				cancelText={languages["Cancel"][language].toLowerCase()}
+				data={sendFreq}
+				initValue={currSend.toString() + " s"}
+				initValueTextStyle={Styles.initValueTextStyle}
+				onChange={async (option: { label: number }) => {
+					await dispatch(changeSendingInterval(option.label));
+				}}
+			/>
+		</View>
 	);
 };
-*/
-export default FrequencySelect;
+
+export default { SendingFrequency, TrackingFrequency };
