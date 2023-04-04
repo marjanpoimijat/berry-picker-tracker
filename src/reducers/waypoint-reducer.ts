@@ -4,7 +4,7 @@ import * as Location from "expo-location";
 import * as Cellular from "expo-cellular";
 import { sendNewWaypoint } from "../requests";
 import { Waypoint, WaypointState } from "../types";
-import { NetworkConnectionInformation, getNetworkCellularGeneration } from "../netinfo";
+import { NetworkConnectionInformation, getNetworkCellularGeneration, getGenerationString } from "../netinfo";
 
 const initialState: WaypointState = {
 	localWaypoints: [],
@@ -62,7 +62,7 @@ export const storeAndSendWaypoints = () => {
 		const trackingInterval = getState().user.trackingInterval;
 		const location = await Location.getLastKnownPositionAsync({});
 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
-		const netInfo = getNetworkCellularGeneration(await NetworkConnectionInformation());
+		const netInfo = getGenerationString(await getNetworkCellularGeneration(await NetworkConnectionInformation()));
 		const isConnected = (await NetworkConnectionInformation()).isConnected;
 		if (routeId !== null) {
 			console.log(`Storing wp - lat: ${location?.coords.latitude}`);

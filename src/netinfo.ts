@@ -1,26 +1,46 @@
-import NetInfo, { NetInfoState, NetInfoCellularGeneration } from "@react-native-community/netinfo";
+import { getNetworkStateAsync, NetworkState } from "expo-network";
+import { CellularGeneration, getCellularGenerationAsync } from "expo-cellular";
 
 /**
  * Gets network information state and returns it.
  *
- * @returns {Promise} NetInfoState.
+ * @returns {Promise} NetworkState.
  */
-export async function NetworkConnectionInformation(): Promise<NetInfoState> {
-	const state = await NetInfo.fetch();
+export async function NetworkConnectionInformation(): Promise<NetworkState> {
+	const state = await getNetworkStateAsync();
 	return state;
 }
 
 /**
- * Parses the NetInfoState and returns the cellular generation
+ * Parses the NetworkState and returns the cellular generation
  * if phone is connected via cellular type.
  * When using Expo defaults to null because it uses Wi-Fi!
  *
- * @param {NetInfoState} state State.
- * @returns {NetInfoCellularGeneration | null} Cellular generation or null.
+ * @param {NetworkState} state State.
+ * @returns {Promise<CellularGeneration> | null} Cellular generation or null.
  */
-export function getNetworkCellularGeneration(state: NetInfoState): NetInfoCellularGeneration | null {
-	if (state.type === "cellular") {
-		return state.details.cellularGeneration;
+export function getNetworkCellularGeneration(state: NetworkState): Promise<CellularGeneration> | null {
+	if (state.type === "CELLULAR") {
+		const generation = getCellularGenerationAsync();
+		return generation;
 	}
 	return null;
 }
+/**
+ *
+ * @param {number | null} generation The value of CellularGeneration enum or null if connection type is not cellular.
+ * @returns {string | null } Returns connection type as string or null.
+ */
+export const getGenerationString = (generation: number | null) => {
+	switch (generation) {
+	case 1:
+		return "2G";
+	case 2:
+		return "3G";
+	case 3:
+		return "4G";
+	case 4:
+		return "5G";
+	}
+	return null;
+};
