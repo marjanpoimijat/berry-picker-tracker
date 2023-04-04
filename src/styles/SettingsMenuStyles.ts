@@ -26,6 +26,18 @@ const SettingsMenuStyles = StyleSheet.create({
 		backgroundColor: theme.colors.settingsMenuBackgroundColor,
 		padding: 10,
 	},
+	SettingsMenuBlockBottomBorder: {
+		alignItems: "center",
+		backgroundColor: theme.colors.screenBackgroundColor,
+		borderBottomColor: theme.colors.settingsMenuTitleBorderColor,
+		borderBottomWidth: 0.5,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginBottom: 1,
+		padding: 3,
+	},
+
 	SettingsMenuContainer: {
 		alignItems: "center",
 		alignSelf: "center",

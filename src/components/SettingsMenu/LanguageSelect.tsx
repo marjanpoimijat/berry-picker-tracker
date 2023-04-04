@@ -20,7 +20,7 @@ const LanguageSelect = (): JSX.Element => {
 			<View style={SettingsMenuStyles.SettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{languages["Language"][language].toUpperCase()}</Text>
 			</View>
-			<View style={SettingsMenuStyles.SettingContainer}>
+			<View style={SettingsMenuStyles.SettingsMenuBlockBottomBorder}>
 				<Text style={SettingsMenuStyles.BlockText}>{languages["Change language"][language]}</Text>
 				<ModalSelector
 					cancelText={languages["Cancel"][language].toLowerCase()}
