@@ -1,4 +1,4 @@
-import { Alert, View } from "react-native";
+import { View } from "react-native";
 import { languages } from "../../languages";
 import { startRoute, deactivateRoute, changeShowRoute, shareRoute } from "../../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";

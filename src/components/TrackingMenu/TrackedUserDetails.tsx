@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import { DotProps, TrackedUser, UsernameProps } from "../../types";
 import { addTrackedUser, removeTrackedUser } from "../../reducers/tracker-users-reducer";
