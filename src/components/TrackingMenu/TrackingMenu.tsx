@@ -23,14 +23,14 @@ const TrackingMenu = (): JSX.Element => {
 			style={
 				toggled
 					? users.length === 0
-						? Styles.trackUsersMenuContainer
-						: { ...Styles.trackUsersMenuContainer, top: topOffset - users.length * 55 }
-					: { ...Styles.trackUsersMenuContainer, display: "none" }
+						? Styles.trackedUsersListContainer
+						: { ...Styles.trackedUsersListContainer, top: topOffset - users.length * 55 }
+					: { ...Styles.trackedUsersListContainer, display: "none" }
 			}
 		>
-			<View style={Styles.trackUsersMenuContent}>
+			<View style={Styles.trackedUsersListContent}>
 				<View style={{ alignItems: "center" }}>
-					<Text style={Styles.trackUsersMenuTitle}>{languages["Tracking"][language]}</Text>
+					<Text style={Styles.trackedUsersListTitle}>{languages["Tracking"][language]}</Text>
 				</View>
 				{users.length === 0 ? (
 					<NoTrackedUsersText />
