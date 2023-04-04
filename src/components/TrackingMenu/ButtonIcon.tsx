@@ -1,5 +1,6 @@
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { ButtonIconProps } from "../../types";
+import theme from "../../styles/theme";
 
 /**
  * A generic icon button.
@@ -10,7 +11,7 @@ import { ButtonIconProps } from "../../types";
  */
 const ButtonIcon = ({ disabled, iconName }: ButtonIconProps): JSX.Element => (
 	<Icon
-		color={disabled ? "gray" : "black"}
+		color={disabled ? theme.colors.buttonToggledColor : "black"}
 		name={iconName}
 		size={19}
 		style={{ marginLeft: 20 }}

@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { changeLanguage } from "../../reducers/language-reducer";

@@ -2,6 +2,7 @@ const theme = {
 	colors: {
 		buttonBackgroundColor: "#ffffff", // white
 		buttonToggledBackgroundColor: "#ebe4e4", // light grey
+		buttonToggledColor: "#bdb9b9", // light grey
 		buttonUnderlayColor: "#ffffff00", // transparent white
 		primaryBackgroundColor: "#388e3c", // green
 		recordingColor: "#f44336", // red

@@ -2,7 +2,6 @@ import { ScrollView, View, Text } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import LanguageSelect from "./LanguageSelector";
 import MapSelect from "./MapSelect";
 import UserInformation from "./UserInformation";
 import LegalInformation from "./LegalInformation";

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View } from "react-native";
 import { languages } from "../../languages";
 import { removeAllTrackedUsers } from "../../reducers/tracker-users-reducer";
@@ -13,7 +14,12 @@ import MasterButton from "./MasterButton";
  */
 const MasterButtonsContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
+	const [locationVisible, setLocationVisible] = useState<boolean>(true);
 	const dispatch = useTypedDispatch();
+
+	const handleShowButtonPress = () => {
+		setLocationVisible(!locationVisible);
+	};
 
 	const handleRemoveButtonPress = () => {
 		createAlert({
@@ -28,9 +34,10 @@ const MasterButtonsContainer = (): JSX.Element => {
 	return (
 		<View style={Styles.trackUsersMasterButtonContainer}>
 			<MasterButton
-				handlePress={() => console.log("")}
-				iconName={"eye"}
+				handlePress={handleShowButtonPress}
+				iconName={locationVisible ? "eye" : "eye-slash"}
 				text={languages["Show"][language]}
+				toggled={!locationVisible}
 			/>
 			<MasterButton
 				handlePress={() => console.log("")}

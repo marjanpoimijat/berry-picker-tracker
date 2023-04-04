@@ -56,6 +56,7 @@ export interface MapLocation {
 }
 
 export interface MasterButtonProps {
+	toggled?: boolean;
 	handlePress: () => void;
 	iconName: string;
 	text: string;
