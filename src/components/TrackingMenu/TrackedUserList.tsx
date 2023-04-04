@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import Styles from "../../styles";
 import { TrackedUserListProps } from "../../types";
+import Divider from "../Divider";
 import TrackedUserDetails from "./TrackedUserDetails";
 
 const TrackedUserList = ({ users }: TrackedUserListProps) => (
@@ -14,9 +14,7 @@ const TrackedUserList = ({ users }: TrackedUserListProps) => (
 					userId={user.userId}
 					username={user.username}
 				/>
-				<View style={{ alignItems: "center" }}>
-					<View style={Styles.divider} />
-				</View>
+				<Divider />
 			</View>
 		))}
 	</>

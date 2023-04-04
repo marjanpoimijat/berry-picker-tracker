@@ -1,14 +1,14 @@
 import { Alert, View } from "react-native";
 import { languages } from "../../languages";
+import { removeAllTrackedUsers } from "../../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import MasterButton from "./MasterButton";
-import { removeAllTrackedUsers } from "../../reducers/tracker-users-reducer";
 
 /**
- * Master toggle for all users.
+ * Contains master toggle buttons to control all tracked users.
  *
- * @returns {JSX.Element} A new TrackUserMenuToggle component.
+ * @returns {JSX.Element} A new MasterButtonsContainer component.
  */
 const MasterButtonsContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
