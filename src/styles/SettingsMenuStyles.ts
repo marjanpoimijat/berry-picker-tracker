@@ -11,6 +11,7 @@ const SettingsMenuStyles = StyleSheet.create({
 	},
 	BlockText: {
 		fontSize: theme.fontSizes.default,
+		textAlign: "left",
 	},
 	NavigationContainer: {
 		display: "flex",
@@ -49,7 +50,14 @@ const SettingsMenuStyles = StyleSheet.create({
 		width: "97%",
 	},
 	SettingsMenuTitle: {
-		fontSize: 22,
+		fontSize: theme.fontSizes.header,
+	},
+	SettingsMenuTitleBlock: {
+		alignItems: "center",
+		borderBottomColor: theme.colors.settingsMenuTitleBorderColor,
+		borderBottomWidth: 1.4,
+		marginBottom: 1,
+		padding: 5,
 	},
 });
 

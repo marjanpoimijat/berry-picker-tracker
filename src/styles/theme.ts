@@ -7,6 +7,7 @@ const theme = {
 		recordingColor: "#f44336", // red
 		screenBackgroundColor: "white", // white
 		settingsMenuBackgroundColor: "#f7f7f7", //light grey
+		settingsMenuTitleBorderColor: "#d3d3d3", // grey
 		textPrimary: "#4d4949", // dark grey
 		textSecondary: "white", // white
 	},

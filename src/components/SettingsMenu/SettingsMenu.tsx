@@ -22,7 +22,7 @@ const SettingsMenu = (): JSX.Element => {
 			}
 		>
 			<ScrollView style={SettingsMenuStyles.SettingsMenuContent}>
-				<View style={{ alignItems: "center" }}>
+				<View style={SettingsMenuStyles.SettingsMenuTitleBlock}>
 					<Text style={SettingsMenuStyles.SettingsMenuTitle}>{languages["Settings"][language]}</Text>
 				</View>
 
