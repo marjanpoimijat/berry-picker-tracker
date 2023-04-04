@@ -6,6 +6,7 @@ const theme = {
 		primaryBackgroundColor: "#388e3c", // green
 		recordingColor: "#f44336", // red
 		screenBackgroundColor: "white", // white
+		settingsMenuBackgroundColor: "#f7f7f7", //light grey
 		textPrimary: "#4d4949", // dark grey
 		textSecondary: "white", // white
 	},
