@@ -7,8 +7,8 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { getColor } from "../../utils/colors";
 import LocationVisibleButton from "./LocationVisibleButton";
-import RouteVisibleButton from "./RouteVisibleButton";
 import RemoveUserButton from "./RemoveUserButton";
+import RouteVisibleButton from "./RouteVisibleButton";
 
 /**
  * A container that displays a tracked user's name and visibility control buttons.
