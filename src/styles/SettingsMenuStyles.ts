@@ -10,6 +10,21 @@ const SettingsMenuStyles = StyleSheet.create({
 		fontSize: theme.fontSizes.default,
 		textAlign: "left",
 	},
+	GreySettingsMenuBlock: {
+		backgroundColor: theme.colors.settingsMenuBackgroundColor,
+		padding: 10,
+	},
+	GreySettingsMenuBlockBottomBorder: {
+		alignItems: "center",
+		backgroundColor: theme.colors.settingsMenuBackgroundColor,
+		borderBottomColor: theme.colors.settingsMenuLineColor,
+		borderBottomWidth: 0.5,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginBottom: 1,
+		padding: 10,
+	},
 	NavigationContainer: {
 		display: "flex",
 		flexDirection: "row",
@@ -22,14 +37,10 @@ const SettingsMenuStyles = StyleSheet.create({
 		justifyContent: "space-between",
 		padding: 10,
 	},
-	SettingsMenuBlock: {
-		backgroundColor: theme.colors.settingsMenuBackgroundColor,
-		padding: 10,
-	},
-	SettingsMenuBlockBottomBorder: {
+	SettingsMenuBlockTopBorder: {
 		alignItems: "center",
 		backgroundColor: theme.colors.screenBackgroundColor,
-		borderBottomColor: theme.colors.settingsMenuTitleBorderColor,
+		borderBottomColor: theme.colors.settingsMenuLineColor,
 		borderBottomWidth: 0.5,
 		display: "flex",
 		flexDirection: "row",
@@ -37,7 +48,6 @@ const SettingsMenuStyles = StyleSheet.create({
 		marginBottom: 1,
 		padding: 3,
 	},
-
 	SettingsMenuContainer: {
 		alignItems: "center",
 		alignSelf: "center",
@@ -54,7 +64,6 @@ const SettingsMenuStyles = StyleSheet.create({
 		top: 72,
 		width: "90%",
 	},
-
 	SettingsMenuContent: {
 		backgroundColor: theme.colors.buttonBackgroundColor,
 		borderRadius: 9,
@@ -71,10 +80,29 @@ const SettingsMenuStyles = StyleSheet.create({
 
 	SettingsMenuTitleBlock: {
 		alignItems: "center",
-		borderBottomColor: theme.colors.settingsMenuTitleBorderColor,
+		borderBottomColor: theme.colors.settingsMenuLineColor,
 		borderBottomWidth: 1.4,
 		marginBottom: 1,
 		padding: 5,
+	},
+	WhiteSettingsMenuBlock: {
+		alignItems: "center",
+		backgroundColor: theme.colors.screenBackgroundColor,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		padding: 3,
+	},
+	WhiteSettingsMenuBlockBottomBorder: {
+		alignItems: "center",
+		backgroundColor: theme.colors.screenBackgroundColor,
+		borderBottomColor: theme.colors.settingsMenuLineColor,
+		borderBottomWidth: 0.5,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginBottom: 1,
+		padding: 3,
 	},
 });
 

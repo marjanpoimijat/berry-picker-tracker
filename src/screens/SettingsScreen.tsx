@@ -5,7 +5,7 @@ import { SettingsScreen, SettingsData } from "react-native-settings-screen";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { version, baseUrl, repoBaseUrl } from "../constants";
 import AppHeader from "../components/AppHeader";
-import SettingsToggle from "../components/SettingsToggle";
+import SettingsToggle from "../components/SettingsMenu/SettingsToggle";
 import { languages } from "../languages";
 import { changeLanguage } from "../reducers/language-reducer";
 import { changeMap } from "../reducers/map-reducer";
