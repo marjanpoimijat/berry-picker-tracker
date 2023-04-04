@@ -5,11 +5,8 @@ import theme from "./theme";
 const navigatorTabHeight = 70;
 
 const SettingsMenuStyles = StyleSheet.create({
-	BlockContainer: {
-		backgroundColor: theme.colors.settingsMenuBackgroundColor,
-		padding: 10,
-	},
 	BlockText: {
+		color: theme.colors.textPrimary,
 		fontSize: theme.fontSizes.default,
 		textAlign: "left",
 	},
@@ -23,6 +20,10 @@ const SettingsMenuStyles = StyleSheet.create({
 		display: "flex",
 		flexDirection: "row",
 		justifyContent: "space-between",
+		padding: 10,
+	},
+	SettingsMenuBlock: {
+		backgroundColor: theme.colors.settingsMenuBackgroundColor,
 		padding: 10,
 	},
 	SettingsMenuContainer: {
@@ -41,6 +42,7 @@ const SettingsMenuStyles = StyleSheet.create({
 		top: 72,
 		width: "90%",
 	},
+
 	SettingsMenuContent: {
 		backgroundColor: theme.colors.buttonBackgroundColor,
 		borderRadius: 9,
@@ -49,9 +51,12 @@ const SettingsMenuStyles = StyleSheet.create({
 		position: "absolute",
 		width: "97%",
 	},
+
 	SettingsMenuTitle: {
+		color: theme.colors.textPrimary,
 		fontSize: theme.fontSizes.header,
 	},
+
 	SettingsMenuTitleBlock: {
 		alignItems: "center",
 		borderBottomColor: theme.colors.settingsMenuTitleBorderColor,

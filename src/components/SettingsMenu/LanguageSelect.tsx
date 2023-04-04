@@ -17,7 +17,7 @@ const LanguageSelect = (): JSX.Element => {
 
 	return (
 		<>
-			<View style={SettingsMenuStyles.BlockContainer}>
+			<View style={SettingsMenuStyles.SettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{languages["Language"][language].toUpperCase()}</Text>
 			</View>
 			<View style={SettingsMenuStyles.SettingContainer}>
