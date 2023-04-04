@@ -25,6 +25,7 @@
 		}
 	},
 	"rules": {
+		"@typescript-eslint/no-empty-function": "off",
 		"@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
 		"@typescript-eslint/semi": ["error"],
 		"arrow-spacing": ["error", { "before": true, "after": true }],
@@ -32,6 +33,7 @@
 		"indent": ["error", "tab"],
 		"max-len": ["error", { "code": 120, "tabWidth": 4 }],
 		"max-statements-per-line": ["error", { "max": 1 }],
+		"no-empty-function": "off",
 		"no-multi-spaces": "error",
 		"no-trailing-spaces": "error",
 		"no-unneeded-ternary": "error",
