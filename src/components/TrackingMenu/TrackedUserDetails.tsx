@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import { DotProps, TrackedUser, UsernameProps } from "../../types";
@@ -24,6 +24,11 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 	const [localRouteVisible, setLocalRouteVisible] = useState<boolean>(routeVisible);
 
 	const dispatch = useTypedDispatch();
+
+	useEffect(() => {
+		setLocalLocationVisible(trackedUsers[userId].locationVisible);
+		setLocalRouteVisible(trackedUsers[userId].routeVisible);
+	}, [trackedUsers]);
 
 	const handleLocationVisibleChange = () => {
 		if (localLocationVisible) {
