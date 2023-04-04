@@ -5,7 +5,6 @@ import { changeLanguage } from "../../reducers/language-reducer";
 import { Language } from "../../types";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 
 const LanguageSelect = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
@@ -17,21 +16,15 @@ const LanguageSelect = (): JSX.Element => {
 
 	return (
 		<>
-			<View style={SettingsMenuStyles.SettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Language"][language].toUpperCase()}</Text>
-			</View>
-			<View style={SettingsMenuStyles.SettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Change language"][language]}</Text>
-				<ModalSelector
-					cancelText={languages["Cancel"][language].toLowerCase()}
-					data={languageOption}
-					initValue={language}
-					initValueTextStyle={Styles.initValueTextStyle}
-					onChange={async (option: { label: Language }) => {
-						await dispatch(changeLanguage(option.label));
-					}}
-				/>
-			</View>
+			<ModalSelector
+				cancelText={languages["Cancel"][language].toLowerCase()}
+				data={languageOption}
+				initValue={language}
+				initValueTextStyle={Styles.initValueTextStyle}
+				onChange={async (option: { label: Language }) => {
+					await dispatch(changeLanguage(option.label));
+				}}
+			/>
 		</>
 	);
 };

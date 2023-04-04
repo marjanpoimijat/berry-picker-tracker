@@ -1,14 +1,13 @@
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { changeSendingInterval, changeTrackingInterval } from "../../reducers/user-reducer";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 
 export const TrackingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
-	const [currTrack] = useTypedSelector((state) => [state.user.trackingInterval]);
+	const [currTrack] = useTypedSelector((state) => [state.user.trackingInterval / 1000]);
 	let index = 0;
 	const trackFreq = [
 		{
@@ -39,8 +38,7 @@ export const TrackingFrequency = (): JSX.Element => {
 	];
 
 	return (
-		<View style={SettingsMenuStyles.SettingContainer}>
-			<Text>{languages["Waypoint tracking frequency"][language]}</Text>
+		<>
 			<ModalSelector
 				cancelText={languages["Cancel"][language].toLowerCase()}
 				data={trackFreq}
@@ -50,13 +48,13 @@ export const TrackingFrequency = (): JSX.Element => {
 					await dispatch(changeTrackingInterval(option.label));
 				}}
 			/>
-		</View>
+		</>
 	);
 };
 
 export const SendingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
-	const [currSend] = useTypedSelector((state) => [state.user.trackingInterval]);
+	const [currSend] = useTypedSelector((state) => [state.user.sendingInterval / 1000]);
 
 	let index = 0;
 	const sendFreq = [
@@ -88,8 +86,7 @@ export const SendingFrequency = (): JSX.Element => {
 	];
 
 	return (
-		<View style={SettingsMenuStyles.SettingContainer}>
-			<Text>{languages["Waypoint sending frequency"][language]}</Text>
+		<>
 			<ModalSelector
 				cancelText={languages["Cancel"][language].toLowerCase()}
 				data={sendFreq}
@@ -99,7 +96,7 @@ export const SendingFrequency = (): JSX.Element => {
 					await dispatch(changeSendingInterval(option.label));
 				}}
 			/>
-		</View>
+		</>
 	);
 };
 
