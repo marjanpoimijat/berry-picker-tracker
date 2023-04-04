@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View } from "react-native";
 import { languages } from "../../languages";
-import { removeAllTrackedUsers } from "../../reducers/tracker-users-reducer";
+import { removeAllTrackedUsers, updateTrackedUser } from "../../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import theme from "../../styles/theme";
@@ -23,7 +23,15 @@ const MasterButtonsContainer = (): JSX.Element => {
 
 	const handleShowButtonPress = () => {
 		setLocationVisible(!locationVisible);
-		users.map((user) => console.log(user));
+		users.map((user) =>
+			dispatch(
+				updateTrackedUser({
+					locationVisible: !locationVisible,
+					routeVisible: !locationVisible,
+					userId: user.userId,
+				})
+			)
+		);
 	};
 
 	const handleRemoveButtonPress = () => {
