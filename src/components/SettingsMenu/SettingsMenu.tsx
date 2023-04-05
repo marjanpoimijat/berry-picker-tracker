@@ -2,7 +2,7 @@ import { ScrollView, View, Text } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import MapSelect from "./MapSelect";
+import Map from "./Map";
 import UserInformation from "./UserInformation";
 import LegalInformation from "./LegalInformation";
 import Legend from "./Legend";
@@ -27,7 +27,7 @@ const SettingsMenu = (): JSX.Element => {
 				</View>
 				<Language />
 				<Navigation />
-				<MapSelect />
+				<Map />
 				<UserInformation />
 				<LegalInformation />
 

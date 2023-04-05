@@ -34,8 +34,7 @@ const MapSelect = (): JSX.Element => {
 		},
 	];
 	return (
-		<View style={SettingsMenuStyles.SettingContainer}>
-			<Text>{languages["Change map type"][language]}</Text>
+		<>
 			<ModalSelector
 				cancelText={languages["Cancel"][language].toLowerCase()}
 				data={mapOptions}
@@ -45,7 +44,7 @@ const MapSelect = (): JSX.Element => {
 					await dispatch(changeMap(option.label));
 				}}
 			/>
-		</View>
+		</>
 	);
 };
 export default MapSelect;
