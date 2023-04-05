@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TrackedUser, TrackedUsers } from "../types";
+import { TrackedUser, TrackedUsers, UserToUpdate } from "../types";
 
 const initialState: TrackedUsers = {};
 
@@ -21,23 +21,18 @@ const trackedUsersSlice = createSlice({
 			delete newState[action.payload];
 			return newState;
 		},
-		updateTrackedUser(
-			state,
-			action: PayloadAction<{ userId: string; locationVisible?: boolean; routeVisible?: boolean }>
-		) {
-			const { userId, locationVisible, routeVisible } = action.payload;
+		updateTrackedUser(state, action: PayloadAction<UserToUpdate>) {
+			const { locationVisible, routeVisible, userId } = action.payload;
 			const userToUpdate = state[userId];
-			if (userToUpdate) {
-				return {
-					...state,
-					[userId]: {
-						...userToUpdate,
-						locationVisible: locationVisible !== undefined ? locationVisible : userToUpdate.locationVisible,
-						routeVisible: routeVisible !== undefined ? routeVisible : userToUpdate.routeVisible,
-					},
-				};
-			}
-			return state;
+			if (!userToUpdate) return state;
+			return {
+				...state,
+				[userId]: {
+					...userToUpdate,
+					locationVisible: locationVisible ?? userToUpdate.locationVisible,
+					routeVisible: routeVisible ?? userToUpdate.routeVisible,
+				},
+			};
 		},
 	},
 });

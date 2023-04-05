@@ -162,6 +162,12 @@ export interface UsernameProps {
 	username: string;
 }
 
+export interface UserToUpdate {
+	locationVisible?: boolean;
+	routeVisible?: boolean;
+	userId: string;
+}
+
 export interface Waypoint {
 	routeId: string | null;
 	latitude: number;
