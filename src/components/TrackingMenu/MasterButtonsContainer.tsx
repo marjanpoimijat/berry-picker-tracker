@@ -18,16 +18,18 @@ const MasterButtonsContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const users = getTrackedUsersList(trackedUsers);
-	const [locationVisible, setLocationVisible] = useState<boolean>(true);
+	const [locationsVisible, setLocationsVisible] = useState<boolean>(true);
+	const [routesVisible, setRoutesVisible] = useState<boolean>(true);
 	const dispatch = useTypedDispatch();
 
 	const handleShowButtonPress = () => {
-		setLocationVisible(!locationVisible);
+		setLocationsVisible(!locationsVisible);
+		setRoutesVisible(!routesVisible);
 		users.map((user) =>
 			dispatch(
 				updateTrackedUser({
-					locationVisible: !locationVisible,
-					routeVisible: !locationVisible,
+					locationVisible: !locationsVisible,
+					routeVisible: !locationsVisible,
 					userId: user.userId,
 				})
 			)
@@ -48,14 +50,16 @@ const MasterButtonsContainer = (): JSX.Element => {
 		<View style={Styles.trackUsersMasterButtonContainer}>
 			<MasterButton
 				handlePress={handleShowButtonPress}
-				iconName={locationVisible ? "eye" : "eye-slash"}
+				iconName={locationsVisible ? "eye" : "eye-slash"}
 				text={languages["Show"][language]}
-				toggled={!locationVisible}
+				toggled={!locationsVisible}
 			/>
 			<MasterButton
+				disabled={!routesVisible}
 				handlePress={() => console.log("")}
 				iconName={"route"}
 				text={languages["Route"][language]}
+				toggled={!routesVisible}
 			/>
 			<MasterButton
 				color={theme.colors.buttonRemoveColor}

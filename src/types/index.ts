@@ -58,6 +58,7 @@ export interface MapLocation {
 
 export interface MasterButtonProps {
 	color?: string;
+	disabled?: boolean;
 	handlePress: () => void;
 	iconName: string;
 	text: string;

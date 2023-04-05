@@ -55,7 +55,6 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 				})
 			);
 		}
-		console.log(JSON.stringify(trackedUsers, null, 2));
 	};
 
 	const handleRouteVisibleChange = () => {
@@ -69,7 +68,6 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 				username: username,
 			})
 		);
-		console.log(JSON.stringify(trackedUsers, null, 2));
 	};
 
 	const handleRemoveUserButtonPress = () => {
@@ -80,7 +78,6 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 			onPress: () => dispatch(removeTrackedUser(userId)),
 			title: languages["Removing a tracked user"][language],
 		});
-		console.log(JSON.stringify(trackedUsers, null, 2));
 	};
 
 	return (
