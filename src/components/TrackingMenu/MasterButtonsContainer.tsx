@@ -36,6 +36,20 @@ const MasterButtonsContainer = (): JSX.Element => {
 		);
 	};
 
+	const handleRouteButtonPress = () => {
+		setLocationsVisible(true);
+		setRoutesVisible(!routesVisible);
+		users.map((user) =>
+			dispatch(
+				updateTrackedUser({
+					locationVisible: true,
+					routeVisible: !routesVisible,
+					userId: user.userId,
+				})
+			)
+		);
+	};
+
 	const handleRemoveButtonPress = () => {
 		createAlert({
 			cancellable: true,
@@ -55,8 +69,8 @@ const MasterButtonsContainer = (): JSX.Element => {
 				toggled={!locationsVisible}
 			/>
 			<MasterButton
-				disabled={!routesVisible}
-				handlePress={() => console.log("")}
+				disabled={!locationsVisible}
+				handlePress={handleRouteButtonPress}
 				iconName={"route"}
 				text={languages["Route"][language]}
 				toggled={!routesVisible}
