@@ -29,6 +29,9 @@ export const Navigation = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{languages[`${batterySaveText}`][language]}</Text>
 			</View>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
+			</View>
 		</>
 	);
 };
