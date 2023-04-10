@@ -3,6 +3,7 @@ import { Alert, Button, Text, TextInput, View, TouchableOpacity } from "react-na
 import { languages } from "../../languages";
 import { identifyUser, resetUser } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
+import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 
 const UserInformation = (): JSX.Element => {
 	const [username, userId, language, routeActive] = useTypedSelector((state) => [
@@ -43,22 +44,42 @@ const UserInformation = (): JSX.Element => {
 	};
 	const [localUsername, setLocalUsername] = useState<string>(username);
 	return (
-		<View>
-			<TextInput
-				onChangeText={setLocalUsername}
-				placeholder={languages["Type username"][language]}
-				style={{ color: "dimgrey", fontSize: 12, textAlign: "right" }}
-				value={localUsername}
-			/>
-			<TouchableOpacity>
-				<Text style={{ color: "dimgrey", fontSize: 12 }}>{userId}</Text>
+		<>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{languages["User information"][language].toUpperCase()}</Text>
+			</View>
+			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
+				<Text style={SettingsMenuStyles.BlockText}>{languages["Type username"][language]}</Text>
+				<TextInput
+					onChangeText={setLocalUsername}
+					placeholder={languages["Type username"][language]}
+					style={{ color: "dimgrey", fontSize: 12, textAlign: "right" }}
+					value={localUsername}
+				/>
+			</View>
+			<TouchableOpacity style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
+				<Text style={SettingsMenuStyles.BlockText}>UserID</Text>
+				<Text
+					style={{
+						color: "dimgrey",
+						fontSize: 12,
+						height: 40,
+						textAlign: "right",
+						textAlignVertical: "center",
+					}}
+				>
+					{userId}
+				</Text>
 			</TouchableOpacity>
-			<Button
-				color="red"
-				onPress={() => (routeActive ? alertRouteIsActive() : alertUserIDReset())}
-				title={languages["Reset"][language]}
-			/>
-		</View>
+			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
+				<Text style={{ color: "red" }}>{languages["Reset UserID"][language]}</Text>
+				<Button
+					color="red"
+					onPress={() => (routeActive ? alertRouteIsActive() : alertUserIDReset())}
+					title={languages["Reset"][language]}
+				/>
+			</View>
+		</>
 	);
 };
 export default UserInformation;
