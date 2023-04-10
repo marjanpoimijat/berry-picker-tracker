@@ -1,10 +1,11 @@
-import { Text, View, Linking } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import { Text, View } from "react-native";
 import { repoBaseUrl } from "../../constants";
 
 import { languages } from "../../languages";
 
 import { useTypedSelector } from "../../store";
+import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import LinkBox from "./LinkBox";
 
 const LegalInformation = (): JSX.Element => {
 	const [language] = useTypedSelector((state) => [state.language]);
@@ -12,28 +13,30 @@ const LegalInformation = (): JSX.Element => {
 	const frontend = `${repoBaseUrl}/berry-picker-tracker/tree/main/licenses`;
 	const backend = `${repoBaseUrl}/berry-picker-tracker-server/tree/main/licenses`;
 	const privacyPolicy = `${repoBaseUrl}/berry-picker-tracker-docs/blob/main/privacy_policies.md`;
+	const legalInfoUpperCase = languages["Legal information"][language].toUpperCase();
+	const PrivacyLinkInfo = languages["Links to privacy policy and licenses"][language];
 
 	return (
-		<View>
-			<Text>{languages["Links to privacy policy and licenses"][language]}</Text>
-			<Text>{languages["Legal information"][language]}</Text>
-			<Icon
-				name="chevron-right"
-				onPress={() => Linking.openURL(frontend)}
+		<>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{legalInfoUpperCase}</Text>
+			</View>
+			<LinkBox
+				link={frontend}
+				text={languages["Frontend licenses"][language]}
 			/>
-
-			<Text>{languages["Frontend licenses"][language]}</Text>
-			<Icon
-				name="chevron-right"
-				onPress={() => Linking.openURL(backend)}
+			<LinkBox
+				link={backend}
+				text={languages["Backend licenses"][language]}
 			/>
-			<Text>{languages["Backend licenses"][language]}</Text>
-			<Icon
-				name="chevron-right"
-				onPress={() => Linking.openURL(privacyPolicy)}
+			<LinkBox
+				link={privacyPolicy}
+				text={languages["Privacy policy"][language]}
 			/>
-			<Text>{languages["Privacy policy"][language]}</Text>
-		</View>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{PrivacyLinkInfo}</Text>
+			</View>
+		</>
 	);
 };
 export default LegalInformation;
