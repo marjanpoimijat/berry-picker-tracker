@@ -1,24 +1,30 @@
 import { Text, View } from "react-native";
 import { languages } from "../../languages";
-import Icon from "react-native-vector-icons/FontAwesome5";
-
+import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { useTypedSelector } from "../../store";
 import { baseUrl } from "../../constants";
-import { Linking } from "react-native";
+import LinkBox from "./LinkBox";
 
 const Legend = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
-	const text = languages["Download link to National Land Survey of Finland map legend information"][language];
+	const legendInfo = languages["Download link to National Land Survey of Finland map legend information"][language];
+	const legendTitle = languages["Map legend"][language].toUpperCase();
 	return (
-		<View>
-			<Text>{text}</Text>
-			<Text>{languages["Map legend"][language]}</Text>
-			<Icon
-				name="chevron-right"
-				onPress={() => Linking.openURL(`${baseUrl}/get-legend/`)}
+		<>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{legendTitle}</Text>
+			</View>
+			<LinkBox
+				link={`${baseUrl}/get-legend/`}
+				text={languages["Download map legend"][language]}
 			/>
-			<Text>{languages["Download map legend"][language]}</Text>
-		</View>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{legendInfo}</Text>
+			</View>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
+			</View>
+		</>
 	);
 };
 export default Legend;

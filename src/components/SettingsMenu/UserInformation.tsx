@@ -43,10 +43,11 @@ const UserInformation = (): JSX.Element => {
 		);
 	};
 	const [localUsername, setLocalUsername] = useState<string>(username);
+	const userInfo = languages["User information"][language].toUpperCase();
 	return (
 		<>
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["User information"][language].toUpperCase()}</Text>
+				<Text style={SettingsMenuStyles.BlockText}>{userInfo}</Text>
 			</View>
 			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
 				<Text style={SettingsMenuStyles.BlockText}>{languages["Type username"][language]}</Text>
