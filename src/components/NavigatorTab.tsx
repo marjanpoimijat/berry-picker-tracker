@@ -59,11 +59,6 @@ const NavigatorTab = (): JSX.Element => {
 				text={languages["Settings"][language]}
 				visible={visibleSettingsMenu}
 			/>
-			<NavigatorButton
-				iconName="cog"
-				path="/settings"
-				text={languages["Settings"][language]}
-			/>
 		</View>
 	);
 };

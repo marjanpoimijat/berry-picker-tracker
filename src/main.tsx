@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useTypedDispatch } from "./store";
 import { identifyUser } from "./reducers/user-reducer";
 import MapScreen from "./screens/MapScreen";
-import SettingsScreen from "./screens/SettingsScreen";
 import NavigatorTab from "./components/NavigatorTab";
 
 import { defineBackgroundLocationTask, requestPermissions } from "./utils/location-tracking";
@@ -33,10 +32,6 @@ const Main = () => {
 				<Route
 					element={<MapScreen />}
 					path="/"
-				/>
-				<Route
-					element={<SettingsScreen />}
-					path="/settings"
 				/>
 				<Route
 					element={
