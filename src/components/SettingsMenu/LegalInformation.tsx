@@ -36,6 +36,9 @@ const LegalInformation = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{PrivacyLinkInfo}</Text>
 			</View>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
+			</View>
 		</>
 	);
 };
