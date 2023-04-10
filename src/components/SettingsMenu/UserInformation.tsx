@@ -82,6 +82,9 @@ const UserInformation = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{languages["Tap your UserID to copy it"][language]}</Text>
 			</View>
+			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
+				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
+			</View>
 		</>
 	);
 };
