@@ -8,7 +8,7 @@ import LegalInformation from "./LegalInformation";
 import Legend from "./Legend";
 import Navigation from "./Navigation";
 import Language from "./Language";
-import ResetSettings from "./ResetSettings";
+import DefaultSettings from "./DefaultSettings";
 
 const SettingsMenu = (): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.settingsMenuVisible);
@@ -31,7 +31,7 @@ const SettingsMenu = (): JSX.Element => {
 				<Map />
 				<UserInformation />
 				<LegalInformation />
-				<ResetSettings />
+				<DefaultSettings />
 				<Legend />
 			</ScrollView>
 		</View>

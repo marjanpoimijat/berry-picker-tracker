@@ -4,9 +4,11 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { useTypedSelector, useTypedDispatch } from "../../store";
 import { changeDefaultSettings } from "../../reducers/user-reducer";
 
-const ResetSettings = (): JSX.Element => {
+const DefaultSettings = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
 	const dispatch = useTypedDispatch();
+
+	const defaultSettings = languages["Default settings"][language].toUpperCase();
 
 	const alertSettingsReset = () => {
 		Alert.alert(
@@ -29,7 +31,7 @@ const ResetSettings = (): JSX.Element => {
 	return (
 		<>
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Default settings"][language]}</Text>
+				<Text style={SettingsMenuStyles.BlockText}>{defaultSettings}</Text>
 			</View>
 			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
 				<Text style={{ color: "red" }}>{languages["Reset settings to default"][language]}</Text>
@@ -45,4 +47,4 @@ const ResetSettings = (): JSX.Element => {
 		</>
 	);
 };
-export default ResetSettings;
+export default DefaultSettings;
