@@ -1,11 +1,15 @@
 import { View } from "react-native";
 import { connect } from "react-redux";
 import { languages } from "../languages";
-import { setMyRoutesMenuVisible, setTrackingMenuVisible, setSettingsMenuVisible } from "../reducers/ui-reducer";
+import {
+	setMapMenuVisible,
+	setMyRoutesMenuVisible,
+	setTrackingMenuVisible,
+	setSettingsMenuVisible,
+} from "../reducers/ui-reducer";
 import { useTypedDispatch, useTypedSelector } from "../store";
 import Styles from "../styles";
 import MenuButton from "./MenuButton";
-import NavigatorButton from "./NavigatorButton";
 
 /**
  * Navigator tab located at the bottom of the screen which contains
@@ -15,11 +19,16 @@ import NavigatorButton from "./NavigatorButton";
  */
 const NavigatorTab = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
+	const visibleMapMenu = useTypedSelector((state) => state.ui.mapMenuVisible);
 	const visibleMyRoutesMenu = useTypedSelector((state) => state.ui.myRoutesMenuVisible);
 	const visibleTrackingMenu = useTypedSelector((state) => state.ui.trackingMenuVisible);
 	const visibleSettingsMenu = useTypedSelector((state) => state.ui.settingsMenuVisible);
 	const routeActive = useTypedSelector((state) => state.route.active);
 	const dispatch = useTypedDispatch();
+
+	const toggleMapMenu = () => {
+		dispatch(setMapMenuVisible(!visibleMapMenu));
+	};
 
 	const toggleMyRoutesMenu = () => {
 		dispatch(setMyRoutesMenuVisible(!visibleMyRoutesMenu));
@@ -35,6 +44,12 @@ const NavigatorTab = (): JSX.Element => {
 
 	return (
 		<View style={Styles.navigatorTab}>
+			<MenuButton
+				iconName="map"
+				onPress={toggleMapMenu}
+				text={languages["Map"][language]}
+				visible={visibleMapMenu}
+			/>
 			<MenuButton
 				iconName="route"
 				onPress={toggleMyRoutesMenu}
