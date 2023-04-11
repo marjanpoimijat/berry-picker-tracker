@@ -16,6 +16,11 @@ export interface ButtonIconProps {
 	iconName: string;
 }
 
+export interface ButtonProps {
+	onPress: () => void;
+	text: string;
+}
+
 export interface Coordinate {
 	latitude: number;
 	longitude: number;
@@ -95,11 +100,6 @@ export interface Route {
 	active: boolean;
 }
 
-export interface RouteButtonProps {
-	onPress: () => void;
-	text: string;
-}
-
 export interface RouteLineProps {
 	id: number;
 	waypoints: Array<Waypoint>;
@@ -109,11 +109,6 @@ export interface RouteVisibleButtonProps {
 	locationVisible: boolean;
 	routeVisible: boolean;
 	handleRouteVisibleChange: () => void;
-}
-
-export interface ShareButtonProps {
-	onPress: () => void;
-	text: string;
 }
 
 export interface TitleProps {
