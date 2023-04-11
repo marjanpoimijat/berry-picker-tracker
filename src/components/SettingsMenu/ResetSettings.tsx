@@ -1,29 +1,24 @@
-import { Text, View, Button, Alert } from "react-native";
+import { Text, View, Button } from "react-native";
 import { languages } from "../../languages";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { useTypedSelector, useTypedDispatch } from "../../store";
 import { changeDefaultSettings } from "../../reducers/user-reducer";
+import { createAlert } from "../../utils/alert";
 
 const ResetSettings = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
 	const dispatch = useTypedDispatch();
 
 	const alertSettingsReset = () => {
-		Alert.alert(
-			languages["Resetting the settings"][language],
-			languages["Do you really want to reset the settings?"][language],
-			[
-				{
-					text: languages["Cancel"][language],
-				},
-				{
-					onPress: async () => {
-						await dispatch(changeDefaultSettings());
-					},
-					text: languages["Reset settings"][language],
-				},
-			]
-		);
+		createAlert({
+			cancellable: true,
+			confirmText: languages["Reset settings"][language],
+			infoText: languages["Do you really want to reset the settings?"][language],
+			onPress: async () => {
+				await dispatch(changeDefaultSettings());
+			},
+			title: languages["Resetting the settings"][language],
+		});
 	};
 
 	return (

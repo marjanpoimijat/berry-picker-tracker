@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Alert, Button, Text, TextInput, View, TouchableOpacity } from "react-native";
+import { Button, Text, TextInput, View, TouchableOpacity } from "react-native";
 import { languages } from "../../languages";
 import { identifyUser, resetUser } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import { createAlert } from "../../utils/alert";
 
 const UserInformation = (): JSX.Element => {
 	const [username, userId, language, routeActive] = useTypedSelector((state) => [
@@ -12,36 +13,31 @@ const UserInformation = (): JSX.Element => {
 		state.language,
 		state.route.active,
 	]);
+	const resetWhileRouteActive = "UserID can not be reset while route is active. End route route first and try again";
 	const alertRouteIsActive = () => {
-		Alert.alert(
-			languages["Route is currently active"][language],
-			languages["UserID can not be reset while route is active. End route route first and try again"][language],
-			[
-				{
-					text: languages["OK"][language],
-				},
-			]
-		);
+		createAlert({
+			cancellable: false,
+			confirmText: languages["OK"][language],
+			// eslint-disable-next-line max-len
+			infoText: languages[`${resetWhileRouteActive}`][language],
+			onPress: () => null,
+			title: languages["Route is currently active"][language],
+		});
 	};
 	const dispatch = useTypedDispatch();
 	const alertUserIDReset = () => {
-		Alert.alert(
-			languages["Resetting the userID"][language],
-			languages["Do you really want to reset the userID?"][language],
-			[
-				{
-					text: languages["Cancel"][language],
-				},
-				{
-					onPress: async () => {
-						await dispatch(resetUser());
-						await dispatch(identifyUser());
-					},
-					text: languages["Reset"][language],
-				},
-			]
-		);
+		createAlert({
+			cancellable: true,
+			confirmText: languages["Reset"][language],
+			infoText: languages["Do you really want to reset the userID?"][language],
+			onPress: async () => {
+				await dispatch(resetUser());
+				await dispatch(identifyUser());
+			},
+			title: languages["Resetting the userID"][language],
+		});
 	};
+
 	const [localUsername, setLocalUsername] = useState<string>(username);
 	const userInfo = languages["User information"][language].toUpperCase();
 	return (
