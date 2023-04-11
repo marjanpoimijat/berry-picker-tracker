@@ -18,7 +18,6 @@ const UserInformation = (): JSX.Element => {
 		createAlert({
 			cancellable: false,
 			confirmText: languages["OK"][language],
-			// eslint-disable-next-line max-len
 			infoText: languages[`${resetWhileRouteActive}`][language],
 			onPress: () => null,
 			title: languages["Route is currently active"][language],
