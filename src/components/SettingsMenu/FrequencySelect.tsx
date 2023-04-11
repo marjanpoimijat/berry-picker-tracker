@@ -5,6 +5,10 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { changeSendingInterval, changeTrackingInterval } from "../../reducers/user-reducer";
 
+/**
+ * Renders the selector for changing the tracking frequency
+ * @returns {JSX.Element}  A new TrackingFrequency component
+ */
 export const TrackingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
 	const [currTrack] = useTypedSelector((state) => [state.user.trackingInterval / 1000]);
@@ -52,6 +56,10 @@ export const TrackingFrequency = (): JSX.Element => {
 	);
 };
 
+/**
+ * Renders the selector for changing the sending frequency
+ * @returns {JSX.Element}  A new SendingFrequency component
+ */
 export const SendingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
 	const [currSend] = useTypedSelector((state) => [state.user.sendingInterval / 1000]);

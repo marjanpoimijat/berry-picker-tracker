@@ -6,6 +6,11 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { createAlert } from "../../utils/alert";
 
+/**
+ * Renders the settings menu block for changing the user information
+ *
+ * @returns {JSX.Element}  A new UserInformation component
+ */
 const UserInformation = (): JSX.Element => {
 	const [username, userId, language, routeActive] = useTypedSelector((state) => [
 		state.user.username,

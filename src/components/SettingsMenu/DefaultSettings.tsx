@@ -5,6 +5,11 @@ import { useTypedSelector, useTypedDispatch } from "../../store";
 import { changeDefaultSettings } from "../../reducers/user-reducer";
 import { createAlert } from "../../utils/alert";
 
+/**
+ * Renders settings menu block for resetting settings to default
+ *
+ * @returns {JSX.Element}  A new DefaultSettings component
+ */
 const DefaultSettings = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
 	const dispatch = useTypedDispatch();

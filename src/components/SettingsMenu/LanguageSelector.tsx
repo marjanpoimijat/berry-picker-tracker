@@ -5,7 +5,11 @@ import { changeLanguage } from "../../reducers/language-reducer";
 import { Language } from "../../types";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-
+/**
+ * Renders ModalSelector for resetting settings to default
+ *
+ * @returns {JSX.Element}  A new Language component
+ */
 const LanguageSelect = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
 	const languageOption = [

@@ -7,6 +7,11 @@ import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import LinkBlock from "./LinkBlock";
 
+/**
+ * Renders settings menu block to legal information
+ *
+ * @returns {JSX.Element}  A new LegalInformation component
+ */
 const LegalInformation = (): JSX.Element => {
 	const [language] = useTypedSelector((state) => [state.language]);
 

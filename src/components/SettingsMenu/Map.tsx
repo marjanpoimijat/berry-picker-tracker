@@ -4,6 +4,11 @@ import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import MapSelect from "./MapSelector";
 
+/**
+ * Renders the settings menu block for changing the map
+ *
+ * @returns {JSX.Element}  A new Map component
+ */
 export const Map = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 

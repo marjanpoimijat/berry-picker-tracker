@@ -5,6 +5,11 @@ import { useTypedSelector } from "../../store";
 import { legendLink } from "../../constants";
 import LinkBlock from "./LinkBlock";
 
+/**
+ * Renders settings menu block to map legend
+ *
+ * @returns {JSX.Element}  A new Legend component
+ */
 const Legend = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
 	const legendInfo = languages["Download link to National Land Survey of Finland map legend information"][language];
