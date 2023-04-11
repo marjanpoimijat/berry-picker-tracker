@@ -1,9 +1,10 @@
 import { View } from "react-native";
 import { languages } from "../../languages";
-import { changeShowRoute } from "../../reducers/route-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import MapSelectionButton from "./MapSelectionButton";
+import { Map } from "../../types";
+import { changeMap } from "../../reducers/map-reducer";
 
 /**
  * Route button container component which contains buttons to
@@ -20,19 +21,19 @@ const MapMenu = (): JSX.Element => {
 	return (
 		<View style={toggled ? Styles.routeButtonContainer : { ...Styles.routeButtonContainer, display: "none" }}>
 			<MapSelectionButton
-				onPress={() => dispatch(changeShowRoute())}
+				onPress={() => dispatch(changeMap(Map.nlsTopographic))}
 				text={languages["National Land Survey of Finland"][language]}
 			/>
 			<MapSelectionButton
-				onPress={() => dispatch(changeShowRoute())}
+				onPress={() => dispatch(changeMap(Map.openStreetMap))}
 				text={"Open Street Map"}
 			/>
 			<MapSelectionButton
-				onPress={() => dispatch(changeShowRoute())}
+				onPress={() => dispatch(changeMap(Map.nlsPlain))}
 				text={languages["Plain map"][language]}
 			/>
 			<MapSelectionButton
-				onPress={() => dispatch(changeShowRoute())}
+				onPress={() => dispatch(changeMap(Map.nlsAerial))}
 				text={languages["Aerial image"][language]}
 			/>
 		</View>
