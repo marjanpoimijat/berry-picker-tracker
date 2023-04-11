@@ -3,7 +3,7 @@ import { languages } from "../../languages";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { useTypedSelector } from "../../store";
 import { baseUrl } from "../../constants";
-import LinkBox from "./LinkBox";
+import LinkBlock from "./LinkBlock";
 
 const Legend = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
@@ -14,7 +14,7 @@ const Legend = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{legendTitle}</Text>
 			</View>
-			<LinkBox
+			<LinkBlock
 				link={`${baseUrl}/get-legend/`}
 				text={languages["Download map legend"][language]}
 			/>

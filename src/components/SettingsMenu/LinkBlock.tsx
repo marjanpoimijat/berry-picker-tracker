@@ -7,7 +7,7 @@ interface Props {
 	link: string;
 }
 
-export const LinkBox = ({ text, link }: Props): JSX.Element => {
+export const LinkBlock = ({ text, link }: Props): JSX.Element => {
 	return (
 		<>
 			<TouchableOpacity
@@ -20,4 +20,4 @@ export const LinkBox = ({ text, link }: Props): JSX.Element => {
 		</>
 	);
 };
-export default LinkBox;
+export default LinkBlock;
