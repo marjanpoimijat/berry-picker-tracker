@@ -54,23 +54,13 @@ const UserInformation = (): JSX.Element => {
 				<TextInput
 					onChangeText={setLocalUsername}
 					placeholder={languages["Type username"][language]}
-					style={{ color: "dimgrey", fontSize: 12, textAlign: "right" }}
+					style={{ color: "dimgrey", fontSize: 12, height: 40, textAlign: "right" }}
 					value={localUsername}
 				/>
 			</View>
 			<TouchableOpacity style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>UserID</Text>
-				<Text
-					style={{
-						color: "dimgrey",
-						fontSize: 12,
-						height: 40,
-						textAlign: "right",
-						textAlignVertical: "center",
-					}}
-				>
-					{userId}
-				</Text>
+				<Text style={SettingsMenuStyles.UserInformation}>UserID</Text>
+				<Text style={SettingsMenuStyles.UserInformation}>{userId}</Text>
 			</TouchableOpacity>
 			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
 				<Text style={{ color: "red" }}>{languages["Reset UserID"][language]}</Text>

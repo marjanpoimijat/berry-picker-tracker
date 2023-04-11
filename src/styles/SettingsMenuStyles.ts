@@ -85,6 +85,13 @@ const SettingsMenuStyles = StyleSheet.create({
 		marginBottom: 1,
 		padding: 5,
 	},
+	UserInformation: {
+		color: "dimgrey",
+		fontSize: 12,
+		height: 40,
+		textAlign: "right",
+		textAlignVertical: "center",
+	},
 	WhiteSettingsMenuBlock: {
 		alignItems: "center",
 		backgroundColor: theme.colors.screenBackgroundColor,
