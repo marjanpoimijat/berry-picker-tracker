@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { useTypedSelector } from "../../store";
-import { baseUrl } from "../../constants";
+import { legendLink } from "../../constants";
 import LinkBlock from "./LinkBlock";
 
 const Legend = (): JSX.Element => {
@@ -15,7 +15,7 @@ const Legend = (): JSX.Element => {
 				<Text style={SettingsMenuStyles.BlockText}>{legendTitle}</Text>
 			</View>
 			<LinkBlock
-				link={`${baseUrl}/get-legend/`}
+				link={legendLink}
 				text={languages["Download map legend"][language]}
 			/>
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
