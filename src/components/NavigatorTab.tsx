@@ -35,11 +35,6 @@ const NavigatorTab = (): JSX.Element => {
 
 	return (
 		<View style={Styles.navigatorTab}>
-			<NavigatorButton
-				iconName="map"
-				path="/"
-				text={languages["Map"][language]}
-			/>
 			<MenuButton
 				iconName="route"
 				onPress={toggleMyRoutesMenu}
