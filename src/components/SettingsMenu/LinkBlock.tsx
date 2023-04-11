@@ -6,8 +6,14 @@ interface Props {
 	text: string;
 	link: string;
 }
-
-export const LinkBox = ({ text, link }: Props): JSX.Element => {
+/**
+ * Renders a linkblock that when pressed opens a link
+ *
+ * @param {string} text The text that explains what the link is
+ * @param {string} link The link which the component will open when clicked
+ * @returns {JSX.Element}  A new LinkBlock component
+ */
+export const LinkBlock = ({ text, link }: Props): JSX.Element => {
 	return (
 		<>
 			<TouchableOpacity
@@ -20,4 +26,4 @@ export const LinkBox = ({ text, link }: Props): JSX.Element => {
 		</>
 	);
 };
-export default LinkBox;
+export default LinkBlock;

@@ -5,6 +5,11 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { SendingFrequency, TrackingFrequency } from "./FrequencySelect";
 import SettingsToggle from "./SettingsToggle";
 
+/**
+ * Renders the settings for changing the navigation settings
+ *
+ * @returns {JSX.Element}  A new Navigation component
+ */
 export const Navigation = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const batterySaveText = "Decrease frequencies to save battery life";

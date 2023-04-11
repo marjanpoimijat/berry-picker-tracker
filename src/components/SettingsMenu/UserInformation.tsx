@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { Alert, Button, Text, TextInput, View, TouchableOpacity } from "react-native";
+import { Button, Text, TextInput, View, TouchableOpacity } from "react-native";
 import { languages } from "../../languages";
 import { identifyUser, resetUser } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import { createAlert } from "../../utils/alert";
 
+/**
+ * Renders the settings menu block for changing the user information
+ *
+ * @returns {JSX.Element}  A new UserInformation component
+ */
 const UserInformation = (): JSX.Element => {
 	const [username, userId, language, routeActive] = useTypedSelector((state) => [
 		state.user.username,
@@ -12,36 +18,30 @@ const UserInformation = (): JSX.Element => {
 		state.language,
 		state.route.active,
 	]);
+	const resetWhileRouteActive = "UserID can not be reset while route is active. End route route first and try again";
 	const alertRouteIsActive = () => {
-		Alert.alert(
-			languages["Route is currently active"][language],
-			languages["UserID can not be reset while route is active. End route route first and try again"][language],
-			[
-				{
-					text: languages["OK"][language],
-				},
-			]
-		);
+		createAlert({
+			cancellable: false,
+			confirmText: languages["OK"][language],
+			infoText: languages[`${resetWhileRouteActive}`][language],
+			onPress: () => null,
+			title: languages["Route is currently active"][language],
+		});
 	};
 	const dispatch = useTypedDispatch();
 	const alertUserIDReset = () => {
-		Alert.alert(
-			languages["Resetting the userID"][language],
-			languages["Do you really want to reset the userID?"][language],
-			[
-				{
-					text: languages["Cancel"][language],
-				},
-				{
-					onPress: async () => {
-						await dispatch(resetUser());
-						await dispatch(identifyUser());
-					},
-					text: languages["Reset"][language],
-				},
-			]
-		);
+		createAlert({
+			cancellable: true,
+			confirmText: languages["Reset"][language],
+			infoText: languages["Do you really want to reset the userID?"][language],
+			onPress: async () => {
+				await dispatch(resetUser());
+				await dispatch(identifyUser());
+			},
+			title: languages["Resetting the userID"][language],
+		});
 	};
+
 	const [localUsername, setLocalUsername] = useState<string>(username);
 	const userInfo = languages["User information"][language].toUpperCase();
 	return (
@@ -54,23 +54,13 @@ const UserInformation = (): JSX.Element => {
 				<TextInput
 					onChangeText={setLocalUsername}
 					placeholder={languages["Type username"][language]}
-					style={{ color: "dimgrey", fontSize: 12, textAlign: "right" }}
+					style={{ color: "dimgrey", fontSize: 12, height: 40, textAlign: "right" }}
 					value={localUsername}
 				/>
 			</View>
 			<TouchableOpacity style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>UserID</Text>
-				<Text
-					style={{
-						color: "dimgrey",
-						fontSize: 12,
-						height: 40,
-						textAlign: "right",
-						textAlignVertical: "center",
-					}}
-				>
-					{userId}
-				</Text>
+				<Text style={SettingsMenuStyles.UserInformation}>UserID</Text>
+				<Text style={SettingsMenuStyles.UserInformation}>{userId}</Text>
 			</TouchableOpacity>
 			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
 				<Text style={{ color: "red" }}>{languages["Reset UserID"][language]}</Text>

@@ -2,9 +2,14 @@ import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { useTypedSelector } from "../../store";
-import { baseUrl } from "../../constants";
-import LinkBox from "./LinkBox";
+import { legendLink } from "../../constants";
+import LinkBlock from "./LinkBlock";
 
+/**
+ * Renders settings menu block to map legend
+ *
+ * @returns {JSX.Element}  A new Legend component
+ */
 const Legend = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
 	const legendInfo = languages["Download link to National Land Survey of Finland map legend information"][language];
@@ -14,8 +19,8 @@ const Legend = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{legendTitle}</Text>
 			</View>
-			<LinkBox
-				link={`${baseUrl}/get-legend/`}
+			<LinkBlock
+				link={legendLink}
 				text={languages["Download map legend"][language]}
 			/>
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>

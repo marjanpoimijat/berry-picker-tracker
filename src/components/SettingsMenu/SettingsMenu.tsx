@@ -8,8 +8,13 @@ import LegalInformation from "./LegalInformation";
 import Legend from "./Legend";
 import Navigation from "./Navigation";
 import Language from "./Language";
-import ResetSettings from "./ResetSettings";
+import DefaultSettings from "./DefaultSettings";
 
+/**
+ * Renders the Settings menu which contains all the application settings
+ *
+ * @returns {JSX.Element}  A new SettingsMenu component
+ */
 const SettingsMenu = (): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.settingsMenuVisible);
 	const language = useTypedSelector((state) => state.language);
@@ -31,7 +36,7 @@ const SettingsMenu = (): JSX.Element => {
 				<Map />
 				<UserInformation />
 				<LegalInformation />
-				<ResetSettings />
+				<DefaultSettings />
 				<Legend />
 			</ScrollView>
 		</View>

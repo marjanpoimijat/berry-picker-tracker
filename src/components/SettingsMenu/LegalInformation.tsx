@@ -5,8 +5,13 @@ import { languages } from "../../languages";
 
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import LinkBox from "./LinkBox";
+import LinkBlock from "./LinkBlock";
 
+/**
+ * Renders settings menu block to legal information
+ *
+ * @returns {JSX.Element}  A new LegalInformation component
+ */
 const LegalInformation = (): JSX.Element => {
 	const [language] = useTypedSelector((state) => [state.language]);
 
@@ -21,15 +26,15 @@ const LegalInformation = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{legalInfoUpperCase}</Text>
 			</View>
-			<LinkBox
+			<LinkBlock
 				link={frontend}
 				text={languages["Frontend licenses"][language]}
 			/>
-			<LinkBox
+			<LinkBlock
 				link={backend}
 				text={languages["Backend licenses"][language]}
 			/>
-			<LinkBox
+			<LinkBlock
 				link={privacyPolicy}
 				text={languages["Privacy policy"][language]}
 			/>

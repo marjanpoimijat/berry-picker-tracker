@@ -7,6 +7,11 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { changeMap } from "../../reducers/map-reducer";
 
+/**
+ * Renders the selector for changing the map
+ *
+ * @returns {JSX.Element}  A new MapSelect component
+ */
 const MapSelect = (): JSX.Element => {
 	const [language, currMap] = useTypedSelector((state) => [state.language, state.map]);
 	const dispatch = useTypedDispatch();
