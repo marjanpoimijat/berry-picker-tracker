@@ -6,7 +6,7 @@ import { SendingFrequency, TrackingFrequency } from "./FrequencySelect";
 import SettingsToggle from "./SettingsToggle";
 
 /**
- * Renders the settings for changing the navigation settings
+ * Renders the settings menu block for changing the navigation settings
  *
  * @returns {JSX.Element}  A new Navigation component
  */

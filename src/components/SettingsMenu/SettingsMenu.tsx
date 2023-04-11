@@ -11,7 +11,7 @@ import Language from "./Language";
 import DefaultSettings from "./DefaultSettings";
 
 /**
- * Renders the Settings menu which contains all the application settings
+ * Renders the settings menu which contains all the application settings
  *
  * @returns {JSX.Element}  A new SettingsMenu component
  */
