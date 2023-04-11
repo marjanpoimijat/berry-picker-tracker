@@ -14,7 +14,8 @@ const uiSlice = createSlice({
 		setMapMenuVisible(state, action: PayloadAction<boolean>) {
 			return {
 				...state,
-				myRoutesMenuVisible: action.payload,
+				mapMenuVisible: action.payload,
+				myRoutesMenuVisible: false,
 				settingsMenuVisible: false,
 				trackingMenuVisible: false,
 			};
@@ -22,6 +23,7 @@ const uiSlice = createSlice({
 		setMyRoutesMenuVisible(state, action: PayloadAction<boolean>) {
 			return {
 				...state,
+				mapMenuVisible: false,
 				myRoutesMenuVisible: action.payload,
 				settingsMenuVisible: false,
 				trackingMenuVisible: false,
@@ -30,6 +32,7 @@ const uiSlice = createSlice({
 		setSettingsMenuVisible(state, action: PayloadAction<boolean>) {
 			return {
 				...state,
+				mapMenuVisible: false,
 				myRoutesMenuVisible: false,
 				settingsMenuVisible: action.payload,
 				trackingMenuVisible: false,
@@ -38,6 +41,7 @@ const uiSlice = createSlice({
 		setTrackingMenuVisible(state, action: PayloadAction<boolean>) {
 			return {
 				...state,
+				mapMenuVisible: false,
 				myRoutesMenuVisible: false,
 				settingsMenuVisible: false,
 				trackingMenuVisible: action.payload,
