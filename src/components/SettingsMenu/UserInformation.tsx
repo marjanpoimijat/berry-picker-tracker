@@ -5,6 +5,7 @@ import { identifyUser, resetUser } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { createAlert } from "../../utils/alert";
+import theme from "../../styles/theme";
 
 /**
  * Renders the settings menu block for changing the user information
@@ -63,9 +64,9 @@ const UserInformation = (): JSX.Element => {
 				<Text style={SettingsMenuStyles.UserInformation}>{userId}</Text>
 			</TouchableOpacity>
 			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={{ color: "red" }}>{languages["Reset UserID"][language]}</Text>
+				<Text style={SettingsMenuStyles.AttentionText}>{languages["Reset UserID"][language]}</Text>
 				<Button
-					color="red"
+					color={theme.colors.attentionColor}
 					onPress={() => (routeActive ? alertRouteIsActive() : alertUserIDReset())}
 					title={languages["Reset"][language]}
 				/>
