@@ -3,7 +3,7 @@ import { ButtonProps } from "../../types";
 import Styles from "../../styles";
 
 /**
- * MapSelection button which selects which map should be used.
+ * MapSelection button which selects which map should be used in the app.
  *
  * @param {function} onPress A function to handle the button being pressed.
  * @param {string} text Text to be displayed on the butotn.
