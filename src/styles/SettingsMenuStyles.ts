@@ -5,6 +5,11 @@ import theme from "./theme";
 const navigatorTabHeight = 70;
 
 const SettingsMenuStyles = StyleSheet.create({
+	AttentionText: {
+		color: theme.colors.attentionColor,
+		fontSize: theme.fontSizes.default,
+		textAlign: "left",
+	},
 	BlockText: {
 		color: theme.colors.textPrimary,
 		fontSize: theme.fontSizes.default,
