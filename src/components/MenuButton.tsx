@@ -16,7 +16,7 @@ import { MenuButtonProps } from "../types";
  * @returns {JSX.Element} A new MenuButton component.
  */
 const MenuButton = ({ iconName, onPress, routeActive, text, visible }: MenuButtonProps): JSX.Element => {
-	const recordingColor = theme.colors.recordingColor;
+	const recordingColor = theme.colors.attentionColor;
 	const toggledColor = theme.colors.buttonToggledBackgroundColor;
 
 	return (
