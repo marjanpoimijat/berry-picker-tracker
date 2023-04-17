@@ -1,6 +1,6 @@
 {
-	"Aerial image": {
-		"en": "Aerial image",
+	"Satelite": {
+		"en": "Satelite",
 		"fi": "Ilmakuva",
 		"sv": "Flygfoto"
 	},
@@ -249,8 +249,8 @@
 		"fi": "Offline-tila",
 		"sv": "Offline-läge"
 	},
-	"Plain map": {
-		"en": "Plain map",
+	"Plain": {
+		"en": "Plain",
 		"fi": "Selkokartta",
 		"sv": "Lättläst karta"
 	},

@@ -26,15 +26,15 @@ const MapMenu = (): JSX.Element => {
 			/>
 			<MapSelectionButton
 				onPress={() => dispatch(changeMap(Map.openStreetMap))}
-				text={"Open Street Map"}
+				text={"Open Street"}
 			/>
 			<MapSelectionButton
 				onPress={() => dispatch(changeMap(Map.nlsPlain))}
-				text={languages["Plain map"][language]}
+				text={languages["Plain"][language]}
 			/>
 			<MapSelectionButton
 				onPress={() => dispatch(changeMap(Map.nlsAerial))}
-				text={languages["Aerial image"][language]}
+				text={languages["Satelite"][language]}
 			/>
 		</View>
 	);

@@ -17,7 +17,7 @@ const MapSelect = (): JSX.Element => {
 	const dispatch = useTypedDispatch();
 	const mapOptions = [
 		{
-			component: <Text>{languages["National Land Survey of Finland"][language]}</Text>,
+			component: <Text>{languages["Topographic"][language]}</Text>,
 			key: 1,
 			label: Map.nlsTopographic,
 		},
@@ -27,12 +27,12 @@ const MapSelect = (): JSX.Element => {
 			label: Map.openStreetMap,
 		},
 		{
-			component: <Text>{languages["Plain map"][language]}</Text>,
+			component: <Text>{languages["Plain"][language]}</Text>,
 			key: 3,
 			label: Map.nlsPlain,
 		},
 		{
-			component: <Text>{languages["Aerial image"][language]}</Text>,
+			component: <Text>{languages["Satelite"][language]}</Text>,
 			key: 4,
 			label: Map.nlsAerial,
 		},
