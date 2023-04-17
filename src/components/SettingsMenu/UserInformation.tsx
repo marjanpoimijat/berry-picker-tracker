@@ -54,7 +54,7 @@ const UserInformation = (): JSX.Element => {
 				<TextInput
 					onChangeText={setLocalUsername}
 					placeholder={languages["Type username"][language]}
-					style={{ color: "dimgrey", fontSize: 12, height: 40, textAlign: "right" }}
+					style={SettingsMenuStyles.UserInformation}
 					value={localUsername}
 				/>
 			</View>
