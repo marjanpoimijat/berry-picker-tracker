@@ -25,18 +25,6 @@ const SettingsMenuStyles = StyleSheet.create({
 		marginBottom: 1,
 		padding: 10,
 	},
-	NavigationContainer: {
-		display: "flex",
-		flexDirection: "row",
-		justifyContent: "space-between",
-		padding: 10,
-	},
-	SettingContainer: {
-		display: "flex",
-		flexDirection: "row",
-		justifyContent: "space-between",
-		padding: 10,
-	},
 	SettingsMenuBlockTopBorder: {
 		alignItems: "center",
 		backgroundColor: theme.colors.screenBackgroundColor,
