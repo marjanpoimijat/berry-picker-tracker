@@ -1,5 +1,8 @@
 import { Waypoint, WaypointFromServer } from "./types";
 import { baseUrl } from "./constants";
+import { decryptWaypoint, encryptWaypoint } from "./utils/crypto";
+import { secureStoreGetCryptoKey } from "./utils/secure-store";
+import { secureStoreGetTrackedUser } from "./utils/secure-store";
 
 export const createNewUser = async () => {
 	const url = `${baseUrl}/new-user`;
@@ -41,10 +44,12 @@ export const startNewRoute = async (userId: string) => {
 
 export const sendNewWaypoint = async (pendingWaypoints: Array<Waypoint>) => {
 	const url = `${baseUrl}/create-waypoint`;
+	const keyString = (await secureStoreGetCryptoKey()) ?? "";
 	const waypoints = pendingWaypoints.map((waypoint) => {
+		const encryptedWaypoint = encryptWaypoint(waypoint, keyString);
 		return {
-			route_id: waypoint.routeId,
-			...waypoint,
+			route_id: encryptedWaypoint.routeId,
+			...encryptedWaypoint,
 		};
 	});
 	const settings = {
@@ -98,7 +103,12 @@ export const getUsersLatestRoute = async (userId: string) => {
 		const routeId: string = data[0];
 		const active: boolean = data[1];
 		const waypoints: WaypointFromServer[] = data[2];
-		return { active, routeId, waypoints };
+		const trackedUser = await secureStoreGetTrackedUser(userId);
+		const decryptedWaypoints = waypoints.map((waypoint) => {
+			const decryptedWaypoint = decryptWaypoint(waypoint, trackedUser.cryptoKey);
+			return decryptedWaypoint;
+		});
+		return { active, decryptedWaypoints, routeId };
 	} catch (error) {
 		console.log(error);
 	}

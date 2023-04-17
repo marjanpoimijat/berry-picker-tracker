@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Marker } from "react-native-maps";
 import { getUsersLatestRoute } from "../../requests";
 import Styles from "../../styles";
-import { TrackedUserRouteProps, Waypoint, WaypointFromServer } from "../../types";
+import { DecryptedWaypointFromServer, TrackedUserRouteProps, Waypoint } from "../../types";
 import { getColor } from "../../utils/colors";
 import RouteLine from "./RouteLine";
 
@@ -20,7 +20,7 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 		setUsersWaypoints(null);
 		const data = await getUsersLatestRoute(user.userId);
 		if (!data) return <></>;
-		const waypoints: Waypoint[] = data.waypoints.map((waypoint: WaypointFromServer) => {
+		const waypoints: Waypoint[] = data.decryptedWaypoints.map((waypoint: DecryptedWaypointFromServer) => {
 			return {
 				...waypoint,
 				routeId: waypoint.route_id,
@@ -28,7 +28,7 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 		});
 		setUsersWaypoints(waypoints);
 		console.log(`...Users route ID: ${data.routeId} found.`);
-		console.log(`Route is: ${data.active}. Number of waypoints stored: ${data.waypoints.length}`);
+		console.log(`Route is: ${data.active}. Number of waypoints stored: ${data.decryptedWaypoints.length}`);
 	};
 
 	useEffect(() => {

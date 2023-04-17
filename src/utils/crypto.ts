@@ -1,6 +1,6 @@
 import CryptoES from "crypto-es";
 import * as Crypto from "expo-crypto";
-import { EncryptedWaypoint, Waypoint } from "../types";
+import { DecryptedWaypointFromServer, EncryptedWaypoint, Waypoint, WaypointFromServer } from "../types";
 
 /**
  * Generates a random key in string form. First gets random bytes using the expo-crypto library.
@@ -99,7 +99,7 @@ export const encryptWaypoint = (waypoint: Waypoint, keyString: string) => {
  *
  * @returns {Waypoint} A decrypted waypoint object
  */
-export const decryptWaypoint = (encryptedWaypoint: EncryptedWaypoint, keyString: string) => {
+export const decryptWaypoint = (encryptedWaypoint: WaypointFromServer, keyString: string) => {
 	const keyWordArray = CryptoES.enc.Base64.parse(keyString);
 	const encryptedLongitudeString = encryptedWaypoint.longitude.slice(0, -24);
 	const encryptedLatitudeString = encryptedWaypoint.latitude.slice(0, -24);
@@ -115,7 +115,7 @@ export const decryptWaypoint = (encryptedWaypoint: EncryptedWaypoint, keyString:
 	const decryptedLatitudeString = CryptoES.enc.Utf8.stringify(decryptedLatitudeData);
 	const decryptedLongitudeNumber = parseFloat(decryptedLongitudeString);
 	const decryptedLatitudeNumber = parseFloat(decryptedLatitudeString);
-	const waypoint: Waypoint = {
+	const waypoint: DecryptedWaypointFromServer = {
 		...encryptedWaypoint,
 		latitude: decryptedLatitudeNumber,
 		longitude: decryptedLongitudeNumber,

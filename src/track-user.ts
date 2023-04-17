@@ -3,7 +3,7 @@ import { increment } from "./reducers/id-reducer";
 import { addTrackedUser } from "./reducers/tracker-users-reducer";
 import { getUsersLatestRoute } from "./requests";
 import { store } from "./store";
-import { secureStoreAddTracked, secureStoreGetTrackedUser } from "./utils/secure-store";
+import { secureStoreAddTracked } from "./utils/secure-store";
 
 export const addSharedUser = async () => {
 	const url = Linking.useURL();
@@ -24,6 +24,7 @@ export const addSharedUser = async () => {
 	if (typeof cryptoKey !== "string") {
 		return;
 	}
+	await secureStoreAddTracked(userId, cryptoKey);
 	const data = await getUsersLatestRoute(userId);
 	if (!data || data.routeId === undefined) {
 		console.log(`shared userId: ${userId} is not found`);
@@ -40,8 +41,4 @@ export const addSharedUser = async () => {
 	};
 	store.dispatch(increment());
 	store.dispatch(addTrackedUser(trackedObject));
-	await secureStoreAddTracked(userId, cryptoKey);
-	const savedUser = await secureStoreGetTrackedUser(userId);
-	const savedUserString = JSON.stringify(savedUser);
-	console.log(savedUserString);
 };

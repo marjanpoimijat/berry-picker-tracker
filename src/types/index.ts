@@ -189,6 +189,15 @@ export interface EncryptedWaypoint {
 
 export interface WaypointFromServer {
 	route_id: string | null;
+	latitude: string;
+	longitude: string;
+	mnc: string | null;
+	connection: string | null;
+	ts: number;
+}
+
+export interface DecryptedWaypointFromServer {
+	route_id: string | null;
 	latitude: number;
 	longitude: number;
 	mnc: string | null;
