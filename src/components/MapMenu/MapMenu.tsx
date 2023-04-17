@@ -22,7 +22,7 @@ const MapMenu = (): JSX.Element => {
 		<View style={toggled ? Styles.routeButtonContainer : { ...Styles.routeButtonContainer, display: "none" }}>
 			<MapSelectionButton
 				onPress={() => dispatch(changeMap(Map.nlsTopographic))}
-				text={languages["National Land Survey of Finland"][language]}
+				text={languages["Topographic"][language]}
 			/>
 			<MapSelectionButton
 				onPress={() => dispatch(changeMap(Map.openStreetMap))}

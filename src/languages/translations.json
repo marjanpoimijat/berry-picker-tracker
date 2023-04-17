@@ -219,6 +219,11 @@
 		"fi": "Maanmittauslaitos",
 		"sv": "Lantmäteriverket"
 	},
+	"Topographic": {
+		"en": "Topographic",
+		"fi": "Maastokartta",
+		"sv": "Terrängkarta"
+	},
 	"Navigation": {
 		"en": "Navigation",
 		"fi": "Seuranta",
