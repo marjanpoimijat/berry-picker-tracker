@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 import MapView, { UrlTile } from "react-native-maps";
-import { baseUrl } from "../../constants";
+import { baseUrl, tileCacheDirectory } from "../../constants";
 import { setMapLocation } from "../../reducers/map-location-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
@@ -40,7 +40,6 @@ const MapViewContainer = (): JSX.Element => {
 		const { coordinate } = event.nativeEvent;
 		setCoordinates(coordinate);
 	};
-
 	return (
 		<View>
 			<MapView
@@ -50,6 +49,7 @@ const MapViewContainer = (): JSX.Element => {
 					longitude: mapLocation.coords.longitude,
 					longitudeDelta: mapLocation.coords.longitudeDelta,
 				}}
+				key={currentMap}
 				mapType={"none"}
 				onPress={handleMapPress}
 				onRegionChangeComplete={(region) => dispatch(setMapLocation({ coords: region }))}
@@ -60,13 +60,7 @@ const MapViewContainer = (): JSX.Element => {
 					maximumZ={19}
 					offlineMode={false}
 					tileCacheMaxAge={mapLifetime * 3600}
-					tileCachePath={
-						"/data/user/0/host.exp.exponent/cache/ExperienceData/" +
-						"%40anonymous%2Fberry-picker-tracker-71573e14-92d4-46c9-a00b-" +
-						"6e8cda3340f5/tiles/" +
-						currentMap +
-						"tiles/"
-					}
+					tileCachePath={tileCacheDirectory + currentMap + "tiles/"}
 					tileSize={256}
 					urlTemplate={`${baseUrl}/${currentMap}/{z}/{y}/{x}`}
 					zIndex={-3}
