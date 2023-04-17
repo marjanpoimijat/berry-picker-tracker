@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { View } from "react-native";
 import MapView, { UrlTile } from "react-native-maps";
 import { baseUrl, tileCacheDirectory } from "../../constants";
