@@ -1,6 +1,6 @@
 import { Polyline } from "react-native-maps";
 import { RouteLineProps } from "../../types";
-import { getColor } from "../../utils/colors";
+import { getColor } from "../../utils/user-colors";
 
 /**
  * Draws a user's route on the map as a line.
