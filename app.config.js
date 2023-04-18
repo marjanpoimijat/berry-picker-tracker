@@ -43,11 +43,6 @@ export default {
 				backgroundColor: "#FFFFFF",
 				foregroundImage: "./assets/adaptive-icon.png",
 			},
-			config: {
-				googleMaps: {
-					apiKey: 1234,
-				},
-			},
 			package: "com.berryPickerTracker",
 			softwareKeyboardLayoutMode: "pan",
 			versionCode: 18,
