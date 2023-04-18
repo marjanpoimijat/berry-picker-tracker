@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { Alert, Button, Text, TextInput, View, TouchableOpacity } from "react-native";
+import { useEffect, useState } from "react";
+import { Button, Text, TextInput, View, TouchableOpacity, Alert } from "react-native";
 import { languages } from "../../languages";
 import { identifyUser, resetUser } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import theme from "../../styles/theme";
+import { setUsername } from "../../reducers/user-reducer";
 
 const UserInformation = (): JSX.Element => {
 	const [username, userId, language, routeActive] = useTypedSelector((state) => [
@@ -45,6 +46,12 @@ const UserInformation = (): JSX.Element => {
 	};
 	const [localUsername, setLocalUsername] = useState<string>(username);
 	const userInfo = languages["User information"][language].toUpperCase();
+
+	useEffect(() => {
+		dispatch(setUsername(localUsername));
+		console.log([localUsername]);
+	}, [localUsername]);
+
 	return (
 		<>
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
