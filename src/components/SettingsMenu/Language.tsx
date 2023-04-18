@@ -5,7 +5,7 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import LanguageSelect from "./LanguageSelector";
 
 /**
- * Renders settings for changing the language
+ * Renders settings menu block for changing the language
  *
  * @returns {JSX.Element}  A new Language component
  */
