@@ -4,6 +4,7 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { useTypedSelector, useTypedDispatch } from "../../store";
 import { changeDefaultSettings } from "../../reducers/user-reducer";
 import { createAlert } from "../../utils/alert";
+import theme from "../../styles/theme";
 
 /**
  * Renders settings menu block for resetting settings to default
@@ -34,9 +35,9 @@ const DefaultSettings = (): JSX.Element => {
 				<Text style={SettingsMenuStyles.BlockText}>{defaultSettings}</Text>
 			</View>
 			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={{ color: "red" }}>{languages["Reset settings to default"][language]}</Text>
+				<Text style={SettingsMenuStyles.AttentionText}>{languages["Reset settings to default"][language]}</Text>
 				<Button
-					color="red"
+					color={theme.colors.attentionColor}
 					onPress={() => alertSettingsReset()}
 					title={languages["Reset settings"][language]}
 				/>

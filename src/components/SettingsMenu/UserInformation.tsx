@@ -4,6 +4,7 @@ import { languages } from "../../languages";
 import { identifyUser, resetUser } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import theme from "../../styles/theme";
 
 const UserInformation = (): JSX.Element => {
 	const [username, userId, language, routeActive] = useTypedSelector((state) => [
@@ -54,7 +55,7 @@ const UserInformation = (): JSX.Element => {
 				<TextInput
 					onChangeText={setLocalUsername}
 					placeholder={languages["Type username"][language]}
-					style={{ color: "dimgrey", fontSize: 12, textAlign: "right" }}
+					style={SettingsMenuStyles.UserInformation}
 					value={localUsername}
 				/>
 			</View>
@@ -73,9 +74,9 @@ const UserInformation = (): JSX.Element => {
 				</Text>
 			</TouchableOpacity>
 			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={{ color: "red" }}>{languages["Reset UserID"][language]}</Text>
+				<Text style={SettingsMenuStyles.AttentionText}>{languages["Reset UserID"][language]}</Text>
 				<Button
-					color="red"
+					color={theme.colors.attentionColor}
 					onPress={() => (routeActive ? alertRouteIsActive() : alertUserIDReset())}
 					title={languages["Reset"][language]}
 				/>

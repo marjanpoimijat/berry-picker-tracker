@@ -5,7 +5,7 @@ import { DotProps, TrackedUser, UsernameProps } from "../../types";
 import { addTrackedUser, removeTrackedUser } from "../../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import { getColor } from "../../utils/colors";
+import { getColor } from "../../utils/user-colors";
 import LocationVisibleButton from "./LocationVisibleButton";
 import RemoveUserButton from "./RemoveUserButton";
 import RouteVisibleButton from "./RouteVisibleButton";

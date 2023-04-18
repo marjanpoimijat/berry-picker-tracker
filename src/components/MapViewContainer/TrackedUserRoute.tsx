@@ -4,7 +4,7 @@ import { Marker } from "react-native-maps";
 import { getUsersLatestRoute } from "../../requests";
 import Styles from "../../styles";
 import { DecryptedWaypointFromServer, TrackedUserRouteProps, Waypoint } from "../../types";
-import { getColor } from "../../utils/colors";
+import { getColor } from "../../utils/user-colors";
 import RouteLine from "./RouteLine";
 
 /**

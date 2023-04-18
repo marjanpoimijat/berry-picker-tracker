@@ -1,6 +1,6 @@
 {
-	"Aerial image": {
-		"en": "Aerial image",
+	"Satelite": {
+		"en": "Satelite",
 		"fi": "Ilmakuva",
 		"sv": "Flygfoto"
 	},
@@ -219,6 +219,11 @@
 		"fi": "Maanmittauslaitos",
 		"sv": "Lantmäteriverket"
 	},
+	"Topographic": {
+		"en": "Topographic",
+		"fi": "Maastokartta",
+		"sv": "Terrängkarta"
+	},
 	"Navigation": {
 		"en": "Navigation",
 		"fi": "Seuranta",
@@ -244,8 +249,8 @@
 		"fi": "Offline-tila",
 		"sv": "Offline-läge"
 	},
-	"Plain map": {
-		"en": "Plain map",
+	"Plain": {
+		"en": "Plain",
 		"fi": "Selkokartta",
 		"sv": "Lättläst karta"
 	},
