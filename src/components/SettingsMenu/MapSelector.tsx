@@ -32,7 +32,7 @@ const MapSelect = (): JSX.Element => {
 			label: Map.nlsPlain,
 		},
 		{
-			component: <Text>{languages["Satelite"][language]}</Text>,
+			component: <Text>{languages["Satellite"][language]}</Text>,
 			key: 4,
 			label: Map.nlsAerial,
 		},

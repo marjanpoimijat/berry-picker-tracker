@@ -1,6 +1,6 @@
 import { Polyline } from "react-native-maps";
 import { RouteLineProps } from "../../types";
-import { getColor } from "../../utils/user-colors";
+import { getLineColor } from "../../utils/user-colors";
 
 /**
  * Draws a user's route on the map as a line.
@@ -13,7 +13,7 @@ const RouteLine = ({ id, waypoints }: RouteLineProps): JSX.Element => (
 	<>
 		<Polyline
 			coordinates={waypoints}
-			strokeColor={id === -1 ? "#4285f4" : getColor(id)}
+			strokeColor={id === -1 ? "#4285f4" : getLineColor(id)}
 			strokeWidth={4}
 			zIndex={2}
 		/>

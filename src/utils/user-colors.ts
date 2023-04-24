@@ -1,5 +1,22 @@
+/**
+ * Returns a hex color code based on a user identifier.
+ *
+ * @param {number} id User identifier.
+ * @returns {string} Hex color code.
+ */
 export const getColor = (id: number): string => {
 	return colors[id % colors.length];
+};
+
+/**
+ * Returns a lighter hex color code based on a user identifier.
+ *
+ * @param {number} id User identifier.
+ * @returns {string} Hex color code.
+ */
+export const getLineColor = (id: number): string => {
+	const hexColor = colors[id % colors.length];
+	return getLightColor(hexColor);
 };
 
 const colors: string[] = [
@@ -23,3 +40,25 @@ const colors: string[] = [
 	"#0074D9", // Blue
 	"#E74C3C", // Brick red
 ];
+
+/**
+ * Converts a given hex color code into a lighter version.
+ *
+ * @param {string} hexColor Original color code.
+ * @returns {string} A hex color code.
+ */
+const getLightColor = (hexColor: string) => {
+	const r = parseInt(hexColor.slice(1, 3), 16);
+	const g = parseInt(hexColor.slice(3, 5), 16);
+	const b = parseInt(hexColor.slice(5, 7), 16);
+
+	const multiplier = 0.25;
+
+	const rLighter = Math.floor((255 - r) * multiplier) + r;
+	const gLighter = Math.floor((255 - g) * multiplier) + g;
+	const bLighter = Math.floor((255 - b) * multiplier) + b;
+
+	const hexLighter = `#${rLighter.toString(16)}${gLighter.toString(16)}${bLighter.toString(16)}`;
+
+	return hexLighter;
+};
