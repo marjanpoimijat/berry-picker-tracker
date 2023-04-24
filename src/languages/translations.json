@@ -1,9 +1,4 @@
 {
-	"Satelite": {
-		"en": "Satelite",
-		"fi": "Ilmakuva",
-		"sv": "Flygfoto"
-	},
 	"Backend licenses": {
 		"en": "Backend licenses",
 		"fi": "Palvelimen lisenssit",
@@ -328,6 +323,11 @@
 		"en": "Route is currently active",
 		"fi": "Reitti on aktiivinen",
 		"sv": "Rutten är aktiv"
+	},
+	"Satellite": {
+		"en": "Satellite",
+		"fi": "Ilmakuva",
+		"sv": "Flygfoto"
 	},
 	"Search": {
 		"en": "Search",

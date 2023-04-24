@@ -34,7 +34,7 @@ const MapMenu = (): JSX.Element => {
 			/>
 			<MapSelectionButton
 				onPress={() => dispatch(changeMap(Map.nlsAerial))}
-				text={languages["Satelite"][language]}
+				text={languages["Satellite"][language]}
 			/>
 		</View>
 	);
