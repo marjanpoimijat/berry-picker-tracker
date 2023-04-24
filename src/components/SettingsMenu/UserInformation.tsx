@@ -49,7 +49,6 @@ const UserInformation = (): JSX.Element => {
 
 	useEffect(() => {
 		dispatch(setUsername(localUsername));
-		console.log([localUsername]);
 	}, [localUsername]);
 
 	return (

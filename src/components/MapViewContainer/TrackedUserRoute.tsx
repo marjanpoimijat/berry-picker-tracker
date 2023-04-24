@@ -35,7 +35,7 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 		findUserRoute();
 	}, []);
 
-	if (!waypoints) return <></>;
+	if (!waypoints || !waypoints[waypoints.length - 1]) return <></>;
 
 	const coordinate = {
 		latitude: waypoints[waypoints.length - 1].latitude ?? 60.204662,

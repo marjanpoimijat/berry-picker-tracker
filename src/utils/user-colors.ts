@@ -16,11 +16,9 @@ const colors: string[] = [
 	"#FFC0CB", // Pink
 	"#F012BE", // Magenta
 	"#3D9970", // Olive
-	"#111111", // Black
 	"#FFD700", // Gold
 	"#9B59B6", // Amethyst
 	"#F7DC6F", // Khaki
-	"#34495E", // Slate gray
 	"#2C3E50", // Midnight blue
 	"#0074D9", // Blue
 	"#E74C3C", // Brick red
