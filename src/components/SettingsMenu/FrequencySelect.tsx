@@ -3,7 +3,7 @@ import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import { changeSendingInterval, changeTrackingInterval } from "../../reducers/user-reducer";
+import { changeRefreshingFrequency, changeSendingInterval, changeTrackingInterval } from "../../reducers/user-reducer";
 
 /**
  * Renders the selector for changing the tracking frequency
@@ -108,4 +108,41 @@ export const SendingFrequency = (): JSX.Element => {
 	);
 };
 
-export default { SendingFrequency, TrackingFrequency };
+export const RefreshingFrequency = (): JSX.Element => {
+	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
+	const [refTrack] = useTypedSelector((state) => [state.user.refreshingFrequency / 1000]);
+	let index = 0;
+	const refreshFreq = [
+		{
+			component: <Text>10 {languages["second"][language]}</Text>,
+			key: index++,
+			label: 10000,
+		},
+		{
+			component: <Text>30 {languages["seconds"][language]}</Text>,
+			key: index++,
+			label: 30000,
+		},
+		{
+			component: <Text>1 {languages["minute"][language]}</Text>,
+			key: index++,
+			label: 60000,
+		},
+	];
+
+	return (
+		<>
+			<ModalSelector
+				cancelText={languages["Cancel"][language].toLowerCase()}
+				data={refreshFreq}
+				initValue={refTrack.toString() + " s"}
+				initValueTextStyle={Styles.initValueTextStyle}
+				onChange={async (option: { label: number }) => {
+					await dispatch(changeRefreshingFrequency(option.label));
+				}}
+			/>
+		</>
+	);
+};
+
+export default { RefreshingFrequency, SendingFrequency, TrackingFrequency };

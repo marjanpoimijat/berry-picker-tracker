@@ -9,6 +9,7 @@ import { secureStoreAddCryptoKey, secureStoreDeleteCryptoKey } from "../utils/se
 const initialState: User = {
 	mapLifetime: 48,
 	offlineMode: false,
+	refreshingFrequency: 10000,
 	sendingInterval: 15000,
 	trackingInterval: 5000,
 	userId: null,
@@ -24,6 +25,9 @@ const userSlice = createSlice({
 		},
 		setMapLifetime(state, action: PayloadAction<number>) {
 			return { ...state, mapLifetime: action.payload };
+		},
+		setRefreshingFrequency(state, action: PayloadAction<number>) {
+			return { ...state, refreshingFrequency: action.payload };
 		},
 		setSendingInterval(state, action: PayloadAction<number>) {
 			console.log("Setting new sendingInterval to", action.payload);
@@ -41,8 +45,15 @@ const userSlice = createSlice({
 	},
 });
 
-export const { setUser, setUsername, setTrackingInterval, setSendingInterval, setMapLifetime, setDefaultSettings } =
-	userSlice.actions;
+export const {
+	setUser,
+	setUsername,
+	setRefreshingFrequency,
+	setTrackingInterval,
+	setSendingInterval,
+	setMapLifetime,
+	setDefaultSettings,
+} = userSlice.actions;
 
 /**
  * Function to identify user. Creates new user by using http request unless
@@ -81,6 +92,19 @@ export const resetUser = () => {
 			//deleteUser(userId);
 			await secureStoreDeleteCryptoKey();
 		}
+	};
+};
+
+/**
+ * Changing routes refreshing interval in the settings menu.
+ *
+ * @param {number} newInterval New tracking interval in seconds.
+ * @returns {AppDispatch} Dispatch method to update tracking interval.
+ */
+export const changeRefreshingFrequency = (newInterval: number) => {
+	return async (dispatch: AppDispatch) => {
+		console.log(`\nSetting new refresingInterval to ${newInterval / 1000} s`);
+		dispatch(setRefreshingFrequency(newInterval));
 	};
 };
 
