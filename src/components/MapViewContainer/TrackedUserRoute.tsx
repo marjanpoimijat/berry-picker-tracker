@@ -17,7 +17,6 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 	const [waypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
 
 	const findUserRoute = async () => {
-		setUsersWaypoints(null);
 		const data = await getUsersLatestRoute(user.userId);
 		if (!data) return <></>;
 		const waypoints: Waypoint[] = data.decryptedWaypoints.map((waypoint: DecryptedWaypointFromServer) => {
@@ -32,7 +31,10 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 	};
 
 	useEffect(() => {
-		findUserRoute();
+		const intervalId = setInterval(() => {
+			findUserRoute();
+		}, 5000);
+		return () => clearInterval(intervalId);
 	}, []);
 
 	if (!waypoints || !waypoints[waypoints.length - 1]) return <></>;
