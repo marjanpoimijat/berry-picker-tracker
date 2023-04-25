@@ -5,6 +5,7 @@ import { useTypedSelector, useTypedDispatch } from "../../store";
 import { changeDefaultSettings } from "../../reducers/user-reducer";
 import { createAlert } from "../../utils/alert";
 import theme from "../../styles/theme";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 
 /**
  * Renders settings menu block for resetting settings to default
@@ -42,9 +43,7 @@ const DefaultSettings = (): JSX.Element => {
 					title={languages["Reset settings"][language]}
 				/>
 			</View>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
-			</View>
+			<EmptyMenuBlock />
 		</>
 	);
 };

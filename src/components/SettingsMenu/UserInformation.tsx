@@ -6,6 +6,7 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import theme from "../../styles/theme";
 import { setUsername } from "../../reducers/user-reducer";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 
 const UserInformation = (): JSX.Element => {
 	const [username, userId, language, routeActive] = useTypedSelector((state) => [
@@ -90,9 +91,7 @@ const UserInformation = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{languages["Tap your UserID to copy it"][language]}</Text>
 			</View>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
-			</View>
+			<EmptyMenuBlock />
 		</>
 	);
 };

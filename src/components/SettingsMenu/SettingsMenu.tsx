@@ -5,7 +5,7 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import DefaultSettings from "./DefaultSettings";
 import Language from "./Language";
 import LegalInformation from "./LegalInformation";
-import Legend from "./Legend";
+import MapLegend from "./MapLegend";
 import Navigation from "./Navigation";
 import UserInformation from "./UserInformation";
 
@@ -35,7 +35,7 @@ const SettingsMenu = (): JSX.Element => {
 				<UserInformation />
 				<LegalInformation />
 				<DefaultSettings />
-				<Legend />
+				<MapLegend />
 			</ScrollView>
 		</View>
 	);

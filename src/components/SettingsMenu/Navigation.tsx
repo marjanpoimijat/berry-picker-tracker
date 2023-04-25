@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 import { RefreshingFrequency, SendingFrequency, TrackingFrequency } from "./FrequencySelect";
 import SettingsToggle from "./SettingsToggle";
 
@@ -38,9 +39,7 @@ export const Navigation = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{languages[`${batterySaveText}`][language]}</Text>
 			</View>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
-			</View>
+			<EmptyMenuBlock />
 		</>
 	);
 };

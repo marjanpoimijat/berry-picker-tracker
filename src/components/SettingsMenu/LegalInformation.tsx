@@ -6,6 +6,7 @@ import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import LinkBlock from "./LinkBlock";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 
 /**
  * Renders settings menu block to legal information
@@ -41,9 +42,7 @@ const LegalInformation = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{PrivacyLinkInfo}</Text>
 			</View>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
-			</View>
+			<EmptyMenuBlock />
 		</>
 	);
 };

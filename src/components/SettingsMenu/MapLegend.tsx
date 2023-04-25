@@ -4,13 +4,14 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { useTypedSelector } from "../../store";
 import { legendLink } from "../../constants";
 import LinkBlock from "./LinkBlock";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 
 /**
  * Renders settings menu block to map legend
  *
  * @returns {JSX.Element}  A new Legend component
  */
-const Legend = (): JSX.Element => {
+const MapLegend = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
 	const legendInfo = languages["Download link to National Land Survey of Finland map legend information"][language];
 	const legendTitle = languages["Map legend"][language].toUpperCase();
@@ -26,10 +27,8 @@ const Legend = (): JSX.Element => {
 			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
 				<Text style={SettingsMenuStyles.BlockText}>{legendInfo}</Text>
 			</View>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
-			</View>
+			<EmptyMenuBlock />
 		</>
 	);
 };
-export default Legend;
+export default MapLegend;

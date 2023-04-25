@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 import LanguageSelect from "./LanguageSelector";
 
 /**
@@ -21,9 +22,7 @@ export const Language = (): JSX.Element => {
 				<Text style={SettingsMenuStyles.BlockText}>{languages["Change language"][language]}</Text>
 				<LanguageSelect />
 			</View>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{null}</Text>
-			</View>
+			<EmptyMenuBlock />
 		</>
 	);
 };
