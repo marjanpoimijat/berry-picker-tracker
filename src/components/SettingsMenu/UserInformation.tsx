@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button, Text, TextInput, View, TouchableOpacity, Alert } from "react-native";
 import { languages } from "../../languages";
-import { identifyUser, resetUser } from "../../reducers/user-reducer";
+import { identifyUser, resetUser, setUsername } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import theme from "../../styles/theme";
-import { setUsername } from "../../reducers/user-reducer";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
 const UserInformation = (): JSX.Element => {
@@ -95,4 +94,5 @@ const UserInformation = (): JSX.Element => {
 		</>
 	);
 };
+
 export default UserInformation;

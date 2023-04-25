@@ -44,6 +44,11 @@ export enum Language {
 	Swedish = "sv",
 }
 
+export interface LinkBlockProps {
+	link: string;
+	text: string;
+}
+
 export interface LocationVisibleButtonProps {
 	locationVisible: boolean;
 	handleLocationVisibleChange: () => void;

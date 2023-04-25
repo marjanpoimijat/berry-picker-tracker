@@ -46,17 +46,15 @@ export const TrackingFrequency = (): JSX.Element => {
 	];
 
 	return (
-		<>
-			<ModalSelector
-				cancelText={languages["Cancel"][language].toLowerCase()}
-				data={trackFreq}
-				initValue={currTrack.toString() + " s"}
-				initValueTextStyle={Styles.initValueTextStyle}
-				onChange={async (option: { label: number }) => {
-					await dispatch(changeTrackingFrequency(option.label));
-				}}
-			/>
-		</>
+		<ModalSelector
+			cancelText={languages["Cancel"][language].toLowerCase()}
+			data={trackFreq}
+			initValue={currTrack.toString() + " s"}
+			initValueTextStyle={Styles.initValueTextStyle}
+			onChange={async (option: { label: number }) => {
+				await dispatch(changeTrackingFrequency(option.label));
+			}}
+		/>
 	);
 };
 
@@ -98,17 +96,15 @@ export const SendingFrequency = (): JSX.Element => {
 	];
 
 	return (
-		<>
-			<ModalSelector
-				cancelText={languages["Cancel"][language].toLowerCase()}
-				data={sendFreq}
-				initValue={currSend.toString() + " s"}
-				initValueTextStyle={Styles.initValueTextStyle}
-				onChange={async (option: { label: number }) => {
-					await dispatch(changeSendingFrequency(option.label));
-				}}
-			/>
-		</>
+		<ModalSelector
+			cancelText={languages["Cancel"][language].toLowerCase()}
+			data={sendFreq}
+			initValue={currSend.toString() + " s"}
+			initValueTextStyle={Styles.initValueTextStyle}
+			onChange={async (option: { label: number }) => {
+				await dispatch(changeSendingFrequency(option.label));
+			}}
+		/>
 	);
 };
 
@@ -140,17 +136,15 @@ export const RefreshingFrequency = (): JSX.Element => {
 	];
 
 	return (
-		<>
-			<ModalSelector
-				cancelText={languages["Cancel"][language].toLowerCase()}
-				data={refreshFreq}
-				initValue={refTrack.toString() + " s"}
-				initValueTextStyle={Styles.initValueTextStyle}
-				onChange={async (option: { label: number }) => {
-					await dispatch(changeRefreshingFrequency(option.label));
-				}}
-			/>
-		</>
+		<ModalSelector
+			cancelText={languages["Cancel"][language].toLowerCase()}
+			data={refreshFreq}
+			initValue={refTrack.toString() + " s"}
+			initValueTextStyle={Styles.initValueTextStyle}
+			onChange={async (option: { label: number }) => {
+				await dispatch(changeRefreshingFrequency(option.label));
+			}}
+		/>
 	);
 };
 
