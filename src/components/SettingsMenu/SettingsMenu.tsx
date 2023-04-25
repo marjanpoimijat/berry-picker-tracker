@@ -2,13 +2,12 @@ import { ScrollView, View, Text } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import Map from "./Map";
-import UserInformation from "./UserInformation";
+import DefaultSettings from "./DefaultSettings";
+import Language from "./Language";
 import LegalInformation from "./LegalInformation";
 import Legend from "./Legend";
 import Navigation from "./Navigation";
-import Language from "./Language";
-import DefaultSettings from "./DefaultSettings";
+import UserInformation from "./UserInformation";
 
 /**
  * Renders the settings menu which contains all the application settings
@@ -33,7 +32,6 @@ const SettingsMenu = (): JSX.Element => {
 				</View>
 				<Language />
 				<Navigation />
-				<Map />
 				<UserInformation />
 				<LegalInformation />
 				<DefaultSettings />
