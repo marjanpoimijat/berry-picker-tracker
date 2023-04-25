@@ -245,7 +245,7 @@ const Styles = StyleSheet.create({
 		alignItems: "center",
 		backgroundColor: theme.colors.buttonBackgroundColor,
 		borderRadius: 5,
-		height: 40,
+		height: 60,
 		justifyContent: "center",
 		marginHorizontal: 2,
 		width: 90,
@@ -261,6 +261,12 @@ const Styles = StyleSheet.create({
 		paddingHorizontal: 2,
 		paddingVertical: 4,
 		position: "absolute",
+	},
+	routeButtonIcon: {
+		color: theme.colors.textPrimary,
+		fontSize: 18,
+		marginBottom: 5,
+		textAlign: "center",
 	},
 	screenContainer: {
 		height: Dimensions.get("window").height - navigatorTabHeight,

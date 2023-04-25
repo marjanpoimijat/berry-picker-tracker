@@ -104,6 +104,12 @@ export interface Route {
 	active: boolean;
 }
 
+export interface RouteButtonProps {
+	iconName: string;
+	onPress: () => void;
+	text: string;
+}
+
 export interface RouteLineProps {
 	id: number;
 	waypoints: Array<Waypoint>;

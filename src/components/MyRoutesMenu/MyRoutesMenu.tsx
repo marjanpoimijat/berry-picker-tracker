@@ -41,14 +41,17 @@ const MyRoutesMenu = (): JSX.Element => {
 	return (
 		<View style={toggled ? Styles.routeButtonContainer : { ...Styles.routeButtonContainer, display: "none" }}>
 			<RouteButton
+				iconName={routeInfo.active ? "stop" : "play"}
 				onPress={routeInfo.active ? alertOnEndRoute : changeTracking}
 				text={routeInfo.active ? languages["End route"][language] : languages["Start route"][language]}
 			/>
 			<RouteButton
+				iconName={routeInfo.showRoute ? "eye-slash" : "eye"}
 				onPress={() => dispatch(changeShowRoute())}
 				text={routeInfo.showRoute ? languages["Hide route"][language] : languages["Show route"][language]}
 			/>
 			<RouteButton
+				iconName="share"
 				onPress={async () => dispatch(await shareRoute(user))}
 				text={languages["Share route"][language]}
 			/>
