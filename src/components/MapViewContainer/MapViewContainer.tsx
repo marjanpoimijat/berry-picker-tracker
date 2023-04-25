@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View } from "react-native";
 import MapView, { UrlTile } from "react-native-maps";
-import { baseUrl, tileCacheDirectory } from "../../constants";
+import { baseUrl } from "../../constants";
 import { setMapLocation } from "../../reducers/map-location-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
@@ -21,7 +21,7 @@ import Waypoints from "./Waypoints";
 const MapViewContainer = (): JSX.Element => {
 	const mapLocation = useTypedSelector((state) => state.mapLocation);
 	const routeInfo = useTypedSelector((state) => state.route);
-	const mapLifetime = useTypedSelector((state) => state.user.mapLifetime);
+
 	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const localWaypoints = useTypedSelector((state) => state.waypoints.localWaypoints);
 	const currentMap = useTypedSelector((state) => state.map);
@@ -59,8 +59,6 @@ const MapViewContainer = (): JSX.Element => {
 				<UrlTile
 					maximumZ={19}
 					offlineMode={false}
-					tileCacheMaxAge={mapLifetime * 3600}
-					tileCachePath={tileCacheDirectory + currentMap + "tiles/"}
 					tileSize={256}
 					urlTemplate={`${baseUrl}/${currentMap}/{z}/{y}/{x}`}
 					zIndex={-3}

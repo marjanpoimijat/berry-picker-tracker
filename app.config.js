@@ -7,9 +7,39 @@ export default {
 			eas: {
 				projectId: "f0827f42-783e-481b-b19f-54993674d70c",
 			},
-			uri: process.env.URI,
+			uri: "https://ohtup-staging.cs.helsinki.fi/bpt-stage",
 		},
+		android: {
+			adaptiveIcon: {
+				backgroundColor: "#FFFFFF",
+				foregroundImage: "./assets/adaptive-icon.png",
+			},
+			config: {
+				googleMaps: {
+					apiKey: process.env.MAPS_API,
+				},
+			},
+			package: "com.berrypickertracker",
+			softwareKeyboardLayoutMode: "pan",
+			versionCode: 18,
+		},
+		androidStatusBar: {
+			backgroundColor: "#388e3c",
+			barStyle: "light-content",
+		},
+		assetBundlePatterns: ["**/*"],
+
 		icon: "./assets/icon.png",
+		ios: {
+			buildNumber: "18",
+			bundleIdentifier: "com.berryPickerTracker",
+			infoPlist: {
+				LSApplicationQueriesSchemes: ["bpt"],
+				NSLocationAlwaysAndWhenInUseUsageDescription: "App requires geolocation",
+				UIBackgroundModes: ["location", "fetch"],
+			},
+			supportsTablet: true,
+		},
 		name: "Berry picker tracker",
 		orientation: "portrait",
 		plugins: [
@@ -41,19 +71,5 @@ export default {
 		web: {
 			favicon: "./assets/favicon.png",
 		},
-		android: {
-			adaptiveIcon: {
-				backgroundColor: "#FFFFFF",
-				foregroundImage: "./assets/adaptive-icon.png",
-			},
-			package: "com.berryPickerTracker",
-			softwareKeyboardLayoutMode: "pan",
-			versionCode: 18,
-		},
-		androidStatusBar: {
-			backgroundColor: "#388e3c",
-			barStyle: "light-content",
-		},
-		assetBundlePatterns: ["**/*"],
 	},
 };
