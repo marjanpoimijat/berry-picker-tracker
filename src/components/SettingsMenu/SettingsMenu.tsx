@@ -7,6 +7,7 @@ import Language from "./Language";
 import LegalInformation from "./LegalInformation";
 import MapLegend from "./MapLegend";
 import Navigation from "./Navigation";
+import BatteryUse from "./BatteryUse";
 import UserInformation from "./UserInformation";
 
 /**
@@ -32,6 +33,7 @@ const SettingsMenu = (): JSX.Element => {
 				</View>
 				<Language />
 				<Navigation />
+				<BatteryUse />
 				<UserInformation />
 				<LegalInformation />
 				<DefaultSettings />

@@ -27,6 +27,7 @@ const userSlice = createSlice({
 			return { ...state, mapLifetime: action.payload };
 		},
 		setRefreshingFrequency(state, action: PayloadAction<number>) {
+			console.log("Setting new RefreshingFrequency to", action.payload);
 			return { ...state, refreshingFrequency: action.payload };
 		},
 		setSendingFrequency(state, action: PayloadAction<number>) {
@@ -34,6 +35,7 @@ const userSlice = createSlice({
 			return { ...state, sendingFrequency: action.payload };
 		},
 		setTrackingFrequency(state, action: PayloadAction<number>) {
+			console.log("Setting new TrackingFrequency to", action.payload);
 			return { ...state, trackingFrequency: action.payload };
 		},
 		setUser(state, action: PayloadAction<string | null>) {
@@ -92,6 +94,22 @@ export const resetUser = () => {
 			//deleteUser(userId);
 			await secureStoreDeleteCryptoKey();
 		}
+	};
+};
+
+export const changeBatteryMode = (newMode: string) => {
+	return async (dispatch: AppDispatch) => {
+		console.log(`\nChanging battery mode to ${newMode}`);
+		let mode = 5 * 1000;
+		if (newMode === "Normal battery usage") {
+			mode = 5 * 1000;
+		}
+		if (newMode === "Battery saving mode") {
+			mode = 60 * 1000;
+		}
+		dispatch(setRefreshingFrequency(mode));
+		dispatch(setSendingFrequency(mode));
+		dispatch(setTrackingFrequency(mode));
 	};
 };
 

@@ -25,6 +25,11 @@ export interface ButtonProps {
 	text: string;
 }
 
+export enum BatteryMode {
+	Normal = "normal",
+	BatterySavingMode = "Battery saving mode",
+}
+
 export interface Coordinate {
 	latitude: number;
 	longitude: number;

@@ -4,6 +4,21 @@
 		"fi": "Palvelimen lisenssit",
 		"sv": "Server licens"
 	},
+	"Battery use": {
+		"en": "Battery use",
+		"fi": "Akun käyttö",
+		"sv": "Batteri använding"
+	},
+	"Battery saving mode": {
+		"en": "Battery saving mode",
+		"fi": "Virran säästö tila",
+		"sv": "Batterisparningsläge"
+	},
+	"Change battery use": {
+		"en": "Change battery use",
+		"fi": "Vaihda akun kulutus",
+		"sv": "Ändra batteri användning"
+	},
 	"Cancel": {
 		"en": "Cancel",
 		"fi": "Peruuta",
@@ -228,6 +243,16 @@
 		"en": "No network",
 		"fi": "Ei yhteyttä",
 		"sv": "Ingen täckning"
+	},
+	"Normal": {
+		"en": "normal",
+		"fi": "perus",
+		"sv": "normal"
+	},
+	"Normal mode": {
+		"en": "Normal mode",
+		"fi": "Perus tila",
+		"sv": "Normalt läge"
 	},
 	"No tracked users yet.": {
 		"en": "No tracked users yet.",
