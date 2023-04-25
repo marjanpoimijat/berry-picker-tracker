@@ -21,6 +21,7 @@ export interface ButtonIconProps {
 export interface ButtonProps {
 	imageFile: ImageSourcePropType;
 	onPress: () => void;
+	selected: boolean;
 	text: string;
 }
 

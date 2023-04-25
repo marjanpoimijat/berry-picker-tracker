@@ -144,6 +144,7 @@ const Styles = StyleSheet.create({
 		borderRadius: 4,
 		borderWidth: 1.5,
 		height: 50,
+		marginBottom: 5,
 		width: 50,
 	},
 	mapView: {
