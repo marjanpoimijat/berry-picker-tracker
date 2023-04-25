@@ -7,10 +7,11 @@ import Styles from "../../styles";
  *
  * @param {ImageSourcePropType} imageFile The image to be displayed on the button.
  * @param {function} onPress A function to handle the button being pressed.
+ * @param {boolean} selected Selected status of the map button.
  * @param {string} text Text to be displayed on the butotn.
  * @returns {JSX.Element} A new MapSelectionButton component.
  */
-const MapSelectionButton = ({ imageFile, onPress, text }: ButtonProps): JSX.Element => (
+const MapSelectionButton = ({ imageFile, onPress, selected, text }: ButtonProps): JSX.Element => (
 	<View style={Styles.mapSelectionButton}>
 		<TouchableOpacity
 			onPress={onPress}
@@ -18,7 +19,11 @@ const MapSelectionButton = ({ imageFile, onPress, text }: ButtonProps): JSX.Elem
 		>
 			<Image
 				source={imageFile}
-				style={Styles.mapSelectionButtonImage}
+				style={
+					selected
+						? { ...Styles.mapSelectionButtonImage, borderColor: "blue", borderWidth: 1.7 }
+						: Styles.mapSelectionButtonImage
+				}
 			/>
 			<Text style={Styles.buttonText}>{text}</Text>
 		</TouchableOpacity>
