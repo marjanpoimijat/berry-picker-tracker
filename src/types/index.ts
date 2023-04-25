@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export interface AlertObject {
 	cancellable: boolean;
 	confirmText: string;
@@ -17,6 +19,7 @@ export interface ButtonIconProps {
 }
 
 export interface ButtonProps {
+	imageFile: ImageSourcePropType;
 	onPress: () => void;
 	text: string;
 }

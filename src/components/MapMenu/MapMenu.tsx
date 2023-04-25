@@ -17,22 +17,27 @@ const MapMenu = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const toggled = useTypedSelector((state) => state.ui.mapMenuVisible);
 	const dispatch = useTypedDispatch();
+	const source = "../../../assets/maps";
 
 	return (
 		<View style={toggled ? Styles.routeButtonContainer : { ...Styles.routeButtonContainer, display: "none" }}>
 			<MapSelectionButton
+				imageFile={require(`${source}/topo.png`)}
 				onPress={() => dispatch(changeMap(Map.nlsTopographic))}
 				text={languages["Topographic"][language]}
 			/>
 			<MapSelectionButton
+				imageFile={require(`${source}/osm.png`)}
 				onPress={() => dispatch(changeMap(Map.openStreetMap))}
 				text={"Open Street"}
 			/>
 			<MapSelectionButton
+				imageFile={require(`${source}/plain.png`)}
 				onPress={() => dispatch(changeMap(Map.nlsPlain))}
 				text={languages["Plain"][language]}
 			/>
 			<MapSelectionButton
+				imageFile={require(`${source}/satellite.png`)}
 				onPress={() => dispatch(changeMap(Map.nlsAerial))}
 				text={languages["Satellite"][language]}
 			/>

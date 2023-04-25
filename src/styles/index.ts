@@ -130,6 +130,22 @@ const Styles = StyleSheet.create({
 		backgroundColor: theme.colors.screenBackgroundColor,
 		flex: 1,
 	},
+	mapSelectionButton: {
+		alignItems: "center",
+		backgroundColor: theme.colors.buttonBackgroundColor,
+		borderRadius: 5,
+		height: 90,
+		justifyContent: "center",
+		marginHorizontal: 2,
+		width: 90,
+	},
+	mapSelectionButtonImage: {
+		borderColor: "gray",
+		borderRadius: 4,
+		borderWidth: 1.5,
+		height: 50,
+		width: 50,
+	},
 	mapView: {
 		flex: 1,
 		height: Dimensions.get("window").height,
