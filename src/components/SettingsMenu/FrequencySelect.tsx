@@ -118,6 +118,11 @@ export const RefreshingFrequency = (): JSX.Element => {
 	let index = 0;
 	const refreshFreq = [
 		{
+			component: <Text>1 {languages["second"][language]}</Text>,
+			key: index++,
+			label: 1000,
+		},
+		{
 			component: <Text>10 {languages["second"][language]}</Text>,
 			key: index++,
 			label: 10000,
