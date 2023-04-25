@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { useTypedDispatch } from "./store";
 import { identifyUser } from "./reducers/user-reducer";
-import MapScreen from "./screens/MapScreen";
+import Screen from "./components/Screen";
 import NavigatorTab from "./components/NavigatorTab";
 
 import { defineBackgroundLocationTask, requestPermissions } from "./utils/location-tracking";
@@ -30,7 +30,7 @@ const Main = () => {
 		<View style={Styles.mainContainer}>
 			<Routes>
 				<Route
-					element={<MapScreen />}
+					element={<Screen />}
 					path="/"
 				/>
 				<Route
