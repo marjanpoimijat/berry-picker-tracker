@@ -4,6 +4,7 @@ import { changeMap } from "../../reducers/map-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { Map } from "../../types";
+import Title from "../Title";
 import MapSelectionButton from "./MapSelectionButton";
 
 /**
@@ -18,34 +19,39 @@ const MapMenu = (): JSX.Element => {
 	const dispatch = useTypedDispatch();
 	const source = "../../../assets/maps";
 
-	console.log(currentMap);
-
 	return (
-		<View style={toggled ? Styles.routeButtonContainer : { ...Styles.routeButtonContainer, display: "none" }}>
-			<MapSelectionButton
-				imageFile={require(`${source}/topo.png`)}
-				onPress={() => dispatch(changeMap(Map.nlsTopographic))}
-				selected={currentMap === Map.nlsTopographic}
-				text={languages["Topographic"][language]}
-			/>
-			<MapSelectionButton
-				imageFile={require(`${source}/osm.png`)}
-				onPress={() => dispatch(changeMap(Map.openStreetMap))}
-				selected={currentMap === Map.openStreetMap}
-				text={"OSM"}
-			/>
-			<MapSelectionButton
-				imageFile={require(`${source}/plain.png`)}
-				onPress={() => dispatch(changeMap(Map.nlsPlain))}
-				selected={currentMap === Map.nlsPlain}
-				text={languages["Plain"][language]}
-			/>
-			<MapSelectionButton
-				imageFile={require(`${source}/satellite.png`)}
-				onPress={() => dispatch(changeMap(Map.nlsAerial))}
-				selected={currentMap === Map.nlsAerial}
-				text={languages["Satellite"][language]}
-			/>
+		<View style={toggled ? Styles.mapMenuContainer : { ...Styles.mapMenuContainer, display: "none" }}>
+			<View style={Styles.mapSelectionButtonContainer}>
+				<Title text={languages["Map"][language]} />
+				<View style={Styles.mapSelectionButtonRow}>
+					<MapSelectionButton
+						imageFile={require(`${source}/topo.png`)}
+						onPress={() => dispatch(changeMap(Map.nlsTopographic))}
+						selected={currentMap === Map.nlsTopographic}
+						text={languages["Topographic"][language]}
+					/>
+					<MapSelectionButton
+						imageFile={require(`${source}/osm.png`)}
+						onPress={() => dispatch(changeMap(Map.openStreetMap))}
+						selected={currentMap === Map.openStreetMap}
+						text={"OSM"}
+					/>
+				</View>
+				<View style={Styles.mapSelectionButtonRow}>
+					<MapSelectionButton
+						imageFile={require(`${source}/plain.png`)}
+						onPress={() => dispatch(changeMap(Map.nlsPlain))}
+						selected={currentMap === Map.nlsPlain}
+						text={languages["Plain"][language]}
+					/>
+					<MapSelectionButton
+						imageFile={require(`${source}/satellite.png`)}
+						onPress={() => dispatch(changeMap(Map.nlsAerial))}
+						selected={currentMap === Map.nlsAerial}
+						text={languages["Satellite"][language]}
+					/>
+				</View>
+			</View>
 		</View>
 	);
 };

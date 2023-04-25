@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
-import Styles from "../../styles";
-import { TitleProps } from "../../types";
+import Styles from "../styles";
+import { TitleProps } from "../types";
 
 /**
  * Displays a title at the top of a Menu.
@@ -10,7 +10,7 @@ import { TitleProps } from "../../types";
  */
 const Title = ({ text }: TitleProps): JSX.Element => (
 	<View style={{ alignItems: "center" }}>
-		<Text style={Styles.trackedUsersListTitle}>{text}</Text>
+		<Text style={Styles.title}>{text}</Text>
 	</View>
 );
 

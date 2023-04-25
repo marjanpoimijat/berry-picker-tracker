@@ -5,7 +5,7 @@ import Styles, { topOffset } from "../../styles";
 import getTrackedUsersList from "../../utils/list";
 import MasterButtonsContainer from "./MasterButtonsContainer";
 import NoTrackedUsersText from "./NoTrackedUsersText";
-import Title from "./Title";
+import Title from "../Title";
 import TrackedUserList from "./TrackedUserList";
 
 /**
