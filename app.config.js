@@ -1,5 +1,6 @@
 import "dotenv/config";
-
+// build with
+//eas build -p android -e apk
 export default {
 	expo: {
 		extra: {
