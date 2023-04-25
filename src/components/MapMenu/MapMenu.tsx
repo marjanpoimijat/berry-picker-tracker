@@ -34,7 +34,7 @@ const MapMenu = (): JSX.Element => {
 						imageFile={require(`${source}/osm.png`)}
 						onPress={() => dispatch(changeMap(Map.openStreetMap))}
 						selected={currentMap === Map.openStreetMap}
-						text={"OSM"}
+						text={"OpenStreetMap"}
 					/>
 				</View>
 				<View style={Styles.mapSelectionButtonRow}>

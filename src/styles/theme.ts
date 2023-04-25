@@ -6,6 +6,7 @@ const theme = {
 		buttonToggledBackgroundColor: "#ebe4e4", // light grey
 		buttonToggledColor: "#bdb9b9", // light grey
 		buttonUnderlayColor: "#ffffff00", // transparent white
+		mapSelectedColor: "#2012e0", // blue
 		primaryBackgroundColor: "#388e3c", // green
 		screenBackgroundColor: "white", // white
 		settingsMenuBackgroundColor: "#f7f7f7", // light grey

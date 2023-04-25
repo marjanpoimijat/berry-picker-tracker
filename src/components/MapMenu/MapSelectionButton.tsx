@@ -1,6 +1,7 @@
 import { Image, Text, View, TouchableOpacity } from "react-native";
 import { ButtonProps } from "../../types";
 import Styles from "../../styles";
+import theme from "../../styles/theme";
 
 /**
  * MapSelection button which selects which map should be used in the app.
@@ -17,15 +18,15 @@ const MapSelectionButton = ({ imageFile, onPress, selected, text }: ButtonProps)
 			onPress={onPress}
 			style={{ alignItems: "center" }}
 		>
-			<Image
-				source={imageFile}
-				style={
-					selected
-						? { ...Styles.mapSelectionButtonImage, borderColor: "blue", borderWidth: 1.7 }
-						: Styles.mapSelectionButtonImage
-				}
-			/>
-			<Text style={Styles.buttonText}>{text}</Text>
+			<View style={selected ? Styles.mapSelectedBorder : { ...Styles.mapSelectedBorder, borderColor: "white" }}>
+				<Image
+					source={imageFile}
+					style={Styles.mapSelectionButtonImage}
+				/>
+			</View>
+			<Text style={selected ? { ...Styles.buttonText, color: theme.colors.mapSelectedColor } : Styles.buttonText}>
+				{text}
+			</Text>
 		</TouchableOpacity>
 	</View>
 );

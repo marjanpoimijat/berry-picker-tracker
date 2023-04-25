@@ -146,6 +146,12 @@ const Styles = StyleSheet.create({
 		position: "absolute",
 		width: "75%",
 	},
+	mapSelectedBorder: {
+		borderColor: theme.colors.mapSelectedColor,
+		borderRadius: 12,
+		borderWidth: 2.5,
+		padding: 2,
+	},
 	mapSelectionButton: {
 		alignItems: "center",
 		backgroundColor: theme.colors.buttonBackgroundColor,
@@ -165,10 +171,9 @@ const Styles = StyleSheet.create({
 	},
 	mapSelectionButtonImage: {
 		borderColor: "gray",
-		borderRadius: 4,
+		borderRadius: 8,
 		borderWidth: 1.5,
 		height: 90,
-		marginBottom: 5,
 		width: 90,
 	},
 	mapSelectionButtonRow: {
