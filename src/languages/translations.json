@@ -324,6 +324,11 @@
 		"fi": "Reitti on aktiivinen",
 		"sv": "Rutten är aktiv"
 	},
+	"Routes refreshing frequency": {
+		"en": "Routes refreshing frequency",
+		"fi": "Reitin päivitys tiheys ",
+		"sv": "Frekvens av rutten"
+	},
 	"Satellite": {
 		"en": "Satellite",
 		"fi": "Ilmakuva",

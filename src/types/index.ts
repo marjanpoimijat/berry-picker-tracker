@@ -151,6 +151,7 @@ export interface TrackingButtonProps {
 export interface User {
 	userId: string | null;
 	username: string;
+	refreshingFrequency: number;
 	trackingInterval: number;
 	sendingInterval: number;
 	mapLifetime: number;

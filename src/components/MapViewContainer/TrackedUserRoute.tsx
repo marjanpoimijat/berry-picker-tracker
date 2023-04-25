@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { Marker } from "react-native-maps";
 import { getUsersLatestRoute } from "../../requests";
+import { useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { DecryptedWaypointFromServer, TrackedUserRouteProps, Waypoint } from "../../types";
 import { getColor } from "../../utils/user-colors";
@@ -15,6 +16,7 @@ import RouteLine from "./RouteLine";
  */
 const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 	const [waypoints, setUsersWaypoints] = useState<null | Waypoint[]>(null);
+	const refreshingFrequency = useTypedSelector((state) => state.user.refreshingFrequency);
 
 	const findUserRoute = async () => {
 		const data = await getUsersLatestRoute(user.userId);
@@ -33,9 +35,9 @@ const TrackedUserRoute = ({ user }: TrackedUserRouteProps): JSX.Element => {
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			findUserRoute();
-		}, 5000);
+		}, refreshingFrequency);
 		return () => clearInterval(intervalId);
-	}, []);
+	}, [refreshingFrequency]);
 
 	if (!waypoints || !waypoints[waypoints.length - 1]) return <></>;
 
