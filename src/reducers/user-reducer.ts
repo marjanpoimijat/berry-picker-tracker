@@ -10,7 +10,7 @@ const initialState: User = {
 	mapLifetime: 48,
 	offlineMode: false,
 	refreshingFrequency: 10000,
-	sendingInterval: 15000,
+	sendingFrequency: 15000,
 	trackingFrequency: 5000,
 	userId: null,
 	username: "",
@@ -29,9 +29,9 @@ const userSlice = createSlice({
 		setRefreshingFrequency(state, action: PayloadAction<number>) {
 			return { ...state, refreshingFrequency: action.payload };
 		},
-		setSendingInterval(state, action: PayloadAction<number>) {
-			console.log("Setting new sendingInterval to", action.payload);
-			return { ...state, sendingInterval: action.payload };
+		setSendingFrequency(state, action: PayloadAction<number>) {
+			console.log("Setting new sendingFrequency to", action.payload);
+			return { ...state, sendingFrequency: action.payload };
 		},
 		setTrackingFrequency(state, action: PayloadAction<number>) {
 			return { ...state, trackingFrequency: action.payload };
@@ -50,7 +50,7 @@ export const {
 	setUsername,
 	setRefreshingFrequency,
 	setTrackingFrequency: setTrackingFrequency,
-	setSendingInterval,
+	setSendingFrequency: setSendingFrequency,
 	setMapLifetime,
 	setDefaultSettings,
 } = userSlice.actions;
@@ -128,10 +128,10 @@ export const changeTrackingFrequency = (newInterval: number) => {
  * @param {number} newInterval New sending interval in seconds.
  * @returns {AppDispatch} Dispatch method to update sending interval.
  */
-export const changeSendingInterval = (newInterval: number) => {
+export const changeSendingFrequency = (newInterval: number) => {
 	return async (dispatch: AppDispatch) => {
-		console.log(`\nSetting new sendingInterval to ${newInterval / 1000} s\n`);
-		dispatch(setSendingInterval(newInterval));
+		console.log(`\nSetting new sendingFrequency to ${newInterval / 1000} s\n`);
+		dispatch(setSendingFrequency(newInterval));
 	};
 };
 

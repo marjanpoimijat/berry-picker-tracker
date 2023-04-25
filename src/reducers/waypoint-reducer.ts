@@ -58,7 +58,7 @@ export const storeAndSendWaypoints = () => {
 	return async (dispatch: AppDispatch, getState: () => ReduxState) => {
 		const routeId = getState().waypoints.routeId;
 		const pendingWaypoints = getState().waypoints.pendingWaypoints;
-		const sendingInterval = getState().user.sendingInterval;
+		const sendingInterval = getState().user.sendingFrequency;
 		const trackingFrequency = getState().user.trackingFrequency;
 		const location = await Location.getLastKnownPositionAsync({});
 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
