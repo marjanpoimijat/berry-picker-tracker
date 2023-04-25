@@ -152,7 +152,7 @@ export interface User {
 	userId: string | null;
 	username: string;
 	refreshingFrequency: number;
-	trackingInterval: number;
+	trackingFrequency: number;
 	sendingInterval: number;
 	mapLifetime: number;
 	offlineMode: boolean;

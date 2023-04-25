@@ -59,7 +59,7 @@ export const storeAndSendWaypoints = () => {
 		const routeId = getState().waypoints.routeId;
 		const pendingWaypoints = getState().waypoints.pendingWaypoints;
 		const sendingInterval = getState().user.sendingInterval;
-		const trackingInterval = getState().user.trackingInterval;
+		const trackingFrequency = getState().user.trackingFrequency;
 		const location = await Location.getLastKnownPositionAsync({});
 		const networkCode = await Cellular.getMobileNetworkCodeAsync();
 		const netInfo = getGenerationString(await getNetworkCellularGeneration(await NetworkConnectionInformation()));
@@ -83,7 +83,7 @@ export const storeAndSendWaypoints = () => {
 
 		if (
 			isConnected &&
-			(pendingWaypoints.length > ~~(sendingInterval / trackingInterval) + 0.5 * sendTicker ** 1.4 || wasOffline)
+			(pendingWaypoints.length > ~~(sendingInterval / trackingFrequency) + 0.5 * sendTicker ** 1.4 || wasOffline)
 		) {
 			const response: Response = (await sendNewWaypoint(pendingWaypoints)) as Response;
 			if (response.status === 200) {

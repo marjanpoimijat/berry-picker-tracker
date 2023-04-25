@@ -11,7 +11,7 @@ const initialState: User = {
 	offlineMode: false,
 	refreshingFrequency: 10000,
 	sendingInterval: 15000,
-	trackingInterval: 5000,
+	trackingFrequency: 5000,
 	userId: null,
 	username: "",
 };
@@ -33,8 +33,8 @@ const userSlice = createSlice({
 			console.log("Setting new sendingInterval to", action.payload);
 			return { ...state, sendingInterval: action.payload };
 		},
-		setTrackingInterval(state, action: PayloadAction<number>) {
-			return { ...state, trackingInterval: action.payload };
+		setTrackingFrequency(state, action: PayloadAction<number>) {
+			return { ...state, trackingFrequency: action.payload };
 		},
 		setUser(state, action: PayloadAction<string | null>) {
 			return { ...state, userId: action.payload };
@@ -49,7 +49,7 @@ export const {
 	setUser,
 	setUsername,
 	setRefreshingFrequency,
-	setTrackingInterval,
+	setTrackingFrequency: setTrackingFrequency,
 	setSendingInterval,
 	setMapLifetime,
 	setDefaultSettings,
@@ -114,10 +114,10 @@ export const changeRefreshingFrequency = (newInterval: number) => {
  * @param {number} newInterval New tracking interval in seconds.
  * @returns {AppDispatch} Dispatch method to update tracking interval.
  */
-export const changeTrackingInterval = (newInterval: number) => {
+export const changeTrackingFrequency = (newInterval: number) => {
 	return async (dispatch: AppDispatch) => {
-		console.log(`\nSetting new trackingInterval to ${newInterval / 1000} s`);
-		dispatch(setTrackingInterval(newInterval));
+		console.log(`\nSetting new trackingFrequency to ${newInterval / 1000} s`);
+		dispatch(setTrackingFrequency(newInterval));
 		restartBackgroundUpdate(newInterval);
 	};
 };
@@ -159,8 +159,8 @@ export const changeDefaultSettings = () => {
 		const userId = getState().user.userId;
 		console.log("Setting reset to default");
 		dispatch(setDefaultSettings(userId));
-		const trackingInterval = getState().user.trackingInterval;
-		restartBackgroundUpdate(trackingInterval);
+		const trackingFrequency = getState().user.trackingFrequency;
+		restartBackgroundUpdate(trackingFrequency);
 	};
 };
 

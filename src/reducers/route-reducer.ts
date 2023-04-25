@@ -54,7 +54,7 @@ export const startRoute = (user: User) => {
 			};
 			dispatch(setRoute(updatedRoute));
 			dispatch(setRouteId(data.id));
-			startBackgroundUpdate(user.trackingInterval);
+			startBackgroundUpdate(user.trackingFrequency);
 			console.log(" ");
 		}
 	};

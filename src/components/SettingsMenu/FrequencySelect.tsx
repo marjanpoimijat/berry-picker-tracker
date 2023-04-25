@@ -3,7 +3,7 @@ import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import { changeRefreshingFrequency, changeSendingInterval, changeTrackingInterval } from "../../reducers/user-reducer";
+import { changeRefreshingFrequency, changeSendingInterval, changeTrackingFrequency } from "../../reducers/user-reducer";
 
 /**
  * Renders the selector for changing the tracking frequency
@@ -11,7 +11,7 @@ import { changeRefreshingFrequency, changeSendingInterval, changeTrackingInterva
  */
 export const TrackingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
-	const [currTrack] = useTypedSelector((state) => [state.user.trackingInterval / 1000]);
+	const [currTrack] = useTypedSelector((state) => [state.user.trackingFrequency / 1000]);
 	let index = 0;
 	const trackFreq = [
 		{
@@ -49,7 +49,7 @@ export const TrackingFrequency = (): JSX.Element => {
 				initValue={currTrack.toString() + " s"}
 				initValueTextStyle={Styles.initValueTextStyle}
 				onChange={async (option: { label: number }) => {
-					await dispatch(changeTrackingInterval(option.label));
+					await dispatch(changeTrackingFrequency(option.label));
 				}}
 			/>
 		</>
