@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
-import { languages } from "../../languages";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import { useTypedSelector } from "../../store";
 import { legendLink } from "../../constants";
-import LinkBlock from "./LinkBlock";
+import { languages } from "../../languages";
+import { useTypedSelector } from "../../store";
+import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import EmptyMenuBlock from "./EmptyMenuBlock";
+import LinkBlock from "./LinkBlock";
 
 /**
  * Renders settings menu block to map legend

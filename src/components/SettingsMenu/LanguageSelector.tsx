@@ -2,9 +2,10 @@ import { Text } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { changeLanguage } from "../../reducers/language-reducer";
-import { Language } from "../../types";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
+import { Language } from "../../types";
+
 /**
  * Renders selector for resetting settings to default
  *
@@ -19,17 +20,16 @@ const LanguageSelect = (): JSX.Element => {
 	];
 
 	return (
-		<>
-			<ModalSelector
-				cancelText={languages["Cancel"][language].toLowerCase()}
-				data={languageOption}
-				initValue={language}
-				initValueTextStyle={Styles.initValueTextStyle}
-				onChange={async (option: { label: Language }) => {
-					await dispatch(changeLanguage(option.label));
-				}}
-			/>
-		</>
+		<ModalSelector
+			cancelText={languages["Cancel"][language].toLowerCase()}
+			data={languageOption}
+			initValue={language}
+			initValueTextStyle={Styles.initValueTextStyle}
+			onChange={async (option: { label: Language }) => {
+				await dispatch(changeLanguage(option.label));
+			}}
+		/>
 	);
 };
+
 export default LanguageSelect;
