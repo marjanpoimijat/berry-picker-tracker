@@ -17,15 +17,13 @@
 
 # Application
 
-<div align="center">
-  <img
-    alt="Screenshot of various menus of the application"
-    height="50%"
-    src="https://raw.githubusercontent.com/marjanpoimijat/berry-picker-tracker-docs/main/docs/images/screenshots/screenshot.png"
-    title="Various menus of the application"
-    width="50%"
-  />
-</div>
+<img
+  alt="Screenshot of various menus of the application"
+  height="75%"
+  src="https://raw.githubusercontent.com/marjanpoimijat/berry-picker-tracker-docs/main/docs/images/screenshots/screenshot.png"
+  title="Various menus of the application"
+  width="75%"
+/>
 
 ## Installation
 
