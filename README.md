@@ -25,6 +25,8 @@
   width="75%"
 />
 
+The Berry Picker Tracker application running on a Pixel 6 Pro device.
+
 ## Installation
 
 ### Installation Script
