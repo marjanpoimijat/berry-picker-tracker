@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import { DotProps, TrackedUser, UsernameProps } from "../../types";
-import { addTrackedUser, removeTrackedUser } from "../../reducers/tracker-users-reducer";
+import { removeTrackedUser, updateTrackedUser } from "../../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
+import { createAlert } from "../../utils/alert";
 import { getColor } from "../../utils/user-colors";
 import LocationVisibleButton from "./LocationVisibleButton";
 import RemoveUserButton from "./RemoveUserButton";
 import RouteVisibleButton from "./RouteVisibleButton";
-import { createAlert } from "../../utils/alert";
 
 /**
  * A container that displays a tracked user's name and visibility control buttons.
@@ -35,23 +35,19 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 			setLocalLocationVisible(false);
 			setLocalRouteVisible(false);
 			dispatch(
-				addTrackedUser({
-					id: id,
+				updateTrackedUser({
 					locationVisible: false,
 					routeVisible: false,
 					userId: userId,
-					username: username,
 				})
 			);
 		} else {
 			setLocalLocationVisible(true);
 			dispatch(
-				addTrackedUser({
-					id: id,
+				updateTrackedUser({
 					locationVisible: true,
 					routeVisible: localRouteVisible,
 					userId: userId,
-					username: username,
 				})
 			);
 		}
@@ -60,12 +56,10 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 	const handleRouteVisibleChange = () => {
 		setLocalRouteVisible(!localRouteVisible);
 		dispatch(
-			addTrackedUser({
-				id: id,
+			updateTrackedUser({
 				locationVisible: localLocationVisible,
 				routeVisible: !localRouteVisible,
 				userId: userId,
-				username: username,
 			})
 		);
 	};
@@ -102,7 +96,13 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 	);
 };
 
-const Dot = ({ id }: DotProps) => (
+/**
+ * A colored dot associated with each user.
+ *
+ * @param {string} id The userID
+ * @returns {JSX.Element} A new Dot component.
+ */
+const Dot = ({ id }: DotProps): JSX.Element => (
 	<View style={Styles.trackedUserDetailsDotContainer}>
 		<View
 			style={{
@@ -113,6 +113,14 @@ const Dot = ({ id }: DotProps) => (
 	</View>
 );
 
-const Username = ({ username }: UsernameProps) => <Text style={Styles.trackedUserDetailsUsername}>{username}</Text>;
+/**
+ * A styled username of a tracked user.
+ *
+ * @param {string} username Username of the user.
+ * @returns {JSX.Element} A new Username component.
+ */
+const Username = ({ username }: UsernameProps): JSX.Element => (
+	<Text style={Styles.trackedUserDetailsUsername}>{username}</Text>
+);
 
 export default TrackedUserDetails;
