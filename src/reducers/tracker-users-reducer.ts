@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TrackedUser, TrackedUsers, UserToUpdate } from "../types";
 
-const initialState: TrackedUsers = {};
+const emptyUserList: TrackedUsers = {};
 
 const trackedUsersSlice = createSlice({
-	initialState: initialState,
+	initialState: emptyUserList,
 	name: "trackedUsers",
 	reducers: {
 		addTrackedUser(state, action: PayloadAction<TrackedUser>) {
@@ -14,7 +14,7 @@ const trackedUsersSlice = createSlice({
 			};
 		},
 		removeAllTrackedUsers() {
-			return {};
+			return emptyUserList;
 		},
 		removeTrackedUser(state, action: PayloadAction<string>) {
 			const newState = { ...state };
