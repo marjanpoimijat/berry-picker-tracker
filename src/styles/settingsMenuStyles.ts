@@ -80,6 +80,17 @@ const settingsMenuStyles = StyleSheet.create({
 		justifyContent: "space-between",
 		padding: 3,
 	},
+	whiteSettingsMenuBlockBottomBorder: {
+		alignItems: "center",
+		backgroundColor: theme.colors.screenBackgroundColor,
+		borderBottomColor: theme.colors.settingsMenuLineColor,
+		borderBottomWidth: 0.5,
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginBottom: 1,
+		padding: 3,
+	},
 });
 
 export default settingsMenuStyles;
