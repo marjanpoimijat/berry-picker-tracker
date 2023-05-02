@@ -99,7 +99,7 @@ export const changeShowRoute = () => {
 
 export const shareRoute = async (user: User) => {
 	const cryptoKey = await secureStoreGetCryptoKey();
-	const redirectUrl = Linking.createURL("/", {
+	const redirectUrl = Linking.createURL("", {
 		queryParams: {
 			cryptoKey: `${cryptoKey}`,
 			userId: `${user.userId}`,
