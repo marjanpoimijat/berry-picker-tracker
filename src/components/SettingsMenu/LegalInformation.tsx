@@ -1,17 +1,15 @@
 import { Text, View } from "react-native";
 import { repoBaseUrl } from "../../constants";
-
 import { languages } from "../../languages";
-
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import LinkBlock from "./LinkBlock";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
 /**
- * Renders settings menu block to legal information
+ * A settings menu block for legal information.
  *
- * @returns {JSX.Element}  A new LegalInformation component
+ * @returns {JSX.Element} A new LegalInformation component.
  */
 const LegalInformation = (): JSX.Element => {
 	const [language] = useTypedSelector((state) => [state.language]);
@@ -46,4 +44,5 @@ const LegalInformation = (): JSX.Element => {
 		</>
 	);
 };
+
 export default LegalInformation;

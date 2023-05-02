@@ -2,7 +2,12 @@ import { Circle } from "react-native-maps";
 import { useTypedSelector } from "../../store";
 import getCircleColor from "../../utils/circle";
 
-const Waypoints = () => {
+/**
+ * Draws waypoints as circles on the map.
+ *
+ * @returns {JSX.Element} A new Waypoints component.
+ */
+const Waypoints = (): JSX.Element => {
 	const localWaypoints = useTypedSelector((state) => state.waypoints.localWaypoints);
 
 	return (

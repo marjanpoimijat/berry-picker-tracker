@@ -7,7 +7,13 @@ import RouteButtonContainer from "./MyRoutesMenu";
 import SettingsMenu from "./SettingsMenu";
 import TrackingMenu from "./TrackingMenu";
 
-const Screen = () => (
+/**
+ * The main screen of the application, contains all other menus
+ * and subcomponents.
+ *
+ * @returns {JSX.Element} A new Screen component.
+ */
+const Screen = (): JSX.Element => (
 	<View>
 		<MapViewContainer />
 		<RouteButtonContainer />

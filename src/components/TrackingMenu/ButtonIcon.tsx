@@ -5,10 +5,10 @@ import theme from "../../styles/theme";
 /**
  * A generic icon button.
  *
- * @param {string} color The color of the button as a hex code(optional).
+ * @param {string} color The color of the button as a hex code (optional).
  * @param {boolean} disabled Button disabled status.
  * @param {string} iconName The name of the FontAwesome5 icon to be used.
- * @returns {JSX.Element} A new Button component.
+ * @returns {JSX.Element} A new ButtonIcon component.
  */
 const ButtonIcon = ({ color, disabled, iconName }: ButtonIconProps): JSX.Element => (
 	<Icon

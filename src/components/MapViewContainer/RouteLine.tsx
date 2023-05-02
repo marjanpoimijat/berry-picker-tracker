@@ -3,7 +3,7 @@ import { RouteLineProps } from "../../types";
 import { getLineColor } from "../../utils/user-colors";
 
 /**
- * Draws a user's route on the map as a line.
+ * Draws a user's route as a line on the map.
  * The line consists of a primary color and a black or white outline.
  *
  * @param {number} id The unique identifier of a user, determines the color. Value -1 refers to the local user.

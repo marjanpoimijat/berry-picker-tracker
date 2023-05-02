@@ -1,14 +1,14 @@
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import EmptyMenuBlock from "./EmptyMenuBlock";
 import BatteryUseSelector from "./BatteryUseSelector";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 
 /**
- * Renders settings menu block for changing the language
+ * A settings menu block for changing the battery use.
  *
- * @returns {JSX.Element}  A new Language component
+ * @returns {JSX.Element} A new BatteryUse component.
  */
 export const BatteryUse = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
@@ -26,4 +26,5 @@ export const BatteryUse = (): JSX.Element => {
 		</>
 	);
 };
+
 export default BatteryUse;

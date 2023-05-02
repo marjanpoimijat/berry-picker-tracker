@@ -13,8 +13,7 @@ import TrackedUserRoutes from "./TrackedUserRoutes";
 import Waypoints from "./Waypoints";
 
 /**
- * Visualizes topomap using map tiles and draws a route between
- * route coordinate points if show route state has been set to true.
+ * Displays the background map. The map type can be selected in the MapMenu.
  *
  * @returns {JSX.Element} A new MapViewContainer component.
  */

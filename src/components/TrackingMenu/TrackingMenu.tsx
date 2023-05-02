@@ -3,9 +3,9 @@ import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import Styles, { topOffset } from "../../styles";
 import getTrackedUsersList from "../../utils/list";
+import Title from "../Title";
 import MasterButtonsContainer from "./MasterButtonsContainer";
 import NoTrackedUsersText from "./NoTrackedUsersText";
-import Title from "../Title";
 import TrackedUserList from "./TrackedUserList";
 
 /**
