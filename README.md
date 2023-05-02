@@ -31,7 +31,7 @@ The Berry Picker Tracker application running on a Pixel 6 Pro device.
 
 ### Installation Script
 
-There is a script for automating the installation process for both the frontend and the backend. You can find the [instructions](https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/README.md#installation) in the official Berry Picker Tracker documentation.
+There is a [script](https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/docs/scripts/install.sh) for automating the installation process for both the frontend and the backend. You can find the [instructions](https://github.com/marjanpoimijat/berry-picker-tracker-docs/blob/main/docs/installation.md) in the official Berry Picker Tracker documentation.
 
 ### Manual Set-up
 
