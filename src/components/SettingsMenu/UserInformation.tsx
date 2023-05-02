@@ -7,6 +7,11 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import theme from "../../styles/theme";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
+/**
+ * A settings menu block for user information.
+ *
+ * @returns {JSX.Element} A new UserInformation component.
+ */
 const UserInformation = (): JSX.Element => {
 	const [username, userId, language, routeActive] = useTypedSelector((state) => [
 		state.user.username,

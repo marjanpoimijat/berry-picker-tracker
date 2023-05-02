@@ -7,9 +7,12 @@ import { createAlert } from "../../utils/alert";
 import RouteButton from "./RouteButton";
 
 /**
- * Route button container component which contains buttons to
- * start / end route tracking and to toggle route visibility on / off.
- * Just preliminary styling and location on a screen.
+ * A menu for controlling the user's own route.
+ *
+ * The menu consists of three buttons:
+ * - Start/stop route
+ * - Show/hide route
+ * - Share route
  *
  * @returns {JSX.Element} A new MyRoutesMenu component.
  */

@@ -4,13 +4,13 @@ import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import { LinkBlockProps } from "../../types";
 
 /**
- * Renders a linkblock that when pressed opens a link
+ * A block that opens a link when pressed.
  *
- * @param {string} text The text that explains what the link is
- * @param {string} link The link which the component will open when clicked
- * @returns {JSX.Element}  A new LinkBlock component
+ * @param {string} link The link which the component will open when clicked.
+ * @param {string} text The text that explains what the link is.
+ * @returns {JSX.Element} A new LinkBlock component.
  */
-export const LinkBlock = ({ text, link }: LinkBlockProps): JSX.Element => (
+export const LinkBlock = ({ link, text }: LinkBlockProps): JSX.Element => (
 	<TouchableOpacity
 		onPress={() => Linking.openURL(link)}
 		style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}

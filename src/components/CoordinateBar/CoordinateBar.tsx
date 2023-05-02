@@ -8,7 +8,10 @@ import { useTypedDispatch, useTypedSelector } from "../../store";
 import { parseLatitude, parseLongitude } from "../../utils/coordinates";
 
 /**
- * Component that displays the user's current coordinates.
+ * A bar that displays the user's current coordinates.
+ * The accuracy is five decimal points.
+ *
+ * Example coordinates: 60.20457 °N, 24.96120 °E.
  *
  * @returns {JSX.Element} A new CoordinateBar component.
  */

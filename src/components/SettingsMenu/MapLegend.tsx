@@ -3,13 +3,13 @@ import { legendLink } from "../../constants";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import EmptyMenuBlock from "./EmptyMenuBlock";
 import LinkBlock from "./LinkBlock";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 
 /**
- * Renders settings menu block to map legend
+ * A settings menu block for the map legend.
  *
- * @returns {JSX.Element}  A new Legend component
+ * @returns {JSX.Element} A new MapLegend component.
  */
 const MapLegend = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
@@ -31,4 +31,5 @@ const MapLegend = (): JSX.Element => {
 		</>
 	);
 };
+
 export default MapLegend;

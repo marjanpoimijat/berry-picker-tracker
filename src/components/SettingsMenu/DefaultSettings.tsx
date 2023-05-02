@@ -1,16 +1,16 @@
 import { Text, View, Button } from "react-native";
 import { languages } from "../../languages";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import { useTypedSelector, useTypedDispatch } from "../../store";
 import { changeDefaultSettings } from "../../reducers/user-reducer";
-import { createAlert } from "../../utils/alert";
+import { useTypedSelector, useTypedDispatch } from "../../store";
+import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
 import theme from "../../styles/theme";
+import { createAlert } from "../../utils/alert";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
 /**
- * Renders settings menu block for resetting settings to default
+ * A settings menu block for reverting back to the default settings.
  *
- * @returns {JSX.Element}  A new DefaultSettings component
+ * @returns {JSX.Element} A new DefaultSettings component.
  */
 const DefaultSettings = (): JSX.Element => {
 	const [language] = [useTypedSelector((state) => state.language)];
@@ -47,4 +47,5 @@ const DefaultSettings = (): JSX.Element => {
 		</>
 	);
 };
+
 export default DefaultSettings;

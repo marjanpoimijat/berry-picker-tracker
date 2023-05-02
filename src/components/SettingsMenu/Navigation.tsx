@@ -7,9 +7,9 @@ import { RefreshingFrequency, SendingFrequency, TrackingFrequency } from "./Freq
 import SettingsToggle from "./SettingsToggle";
 
 /**
- * Renders the settings menu block for changing the navigation settings
+ * A settings menu block for changing the navigation settings.
  *
- * @returns {JSX.Element}  A new Navigation component
+ * @returns {JSX.Element} A new Navigation component.
  */
 export const Navigation = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);

@@ -1,13 +1,15 @@
 import { Text } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
-import { BatteryMode } from "../../types";
+import { changeBatteryMode } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
-import { changeBatteryMode } from "../../reducers/user-reducer";
+import { BatteryMode } from "../../types";
+
 /**
+ * A selector for selecting the battery use.
  *
- * @returns {JSX.Element}  A new BatteryMode component
+ * @returns {JSX.Element} A new BatteryUseSelector component.
  */
 const BatteryUseSelector = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
@@ -31,4 +33,5 @@ const BatteryUseSelector = (): JSX.Element => {
 		</>
 	);
 };
+
 export default BatteryUseSelector;

@@ -3,7 +3,7 @@ import { LocationVisibleButtonProps } from "../../types";
 import ButtonIcon from "./ButtonIcon";
 
 /**
- * Description placeholder
+ * A button for toggling the visibility of a user's location.
  *
  * @param {boolean} locationVisible Location visibility status.
  * @param {function} handleLocationVisibleChange A function to change the visibility when the button is pressed.

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Switch } from "react-native";
 
 /**
- * Toggles a setting on or off in the Settings view.
+ * A toggle for toggling a setting on or off in the settings menu.
  *
  * @returns {JSX.Element} A new SettingsToggle component.
  */

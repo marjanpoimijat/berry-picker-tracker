@@ -2,13 +2,13 @@ import { View, Text } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
 import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
-import EmptyMenuBlock from "./EmptyMenuBlock";
 import LanguageSelect from "./LanguageSelector";
+import EmptyMenuBlock from "./EmptyMenuBlock";
 
 /**
- * Renders settings menu block for changing the language
+ * A settings menu block for changing the language.
  *
- * @returns {JSX.Element}  A new Language component
+ * @returns {JSX.Element} A new Language component.
  */
 export const Language = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
@@ -26,4 +26,5 @@ export const Language = (): JSX.Element => {
 		</>
 	);
 };
+
 export default Language;

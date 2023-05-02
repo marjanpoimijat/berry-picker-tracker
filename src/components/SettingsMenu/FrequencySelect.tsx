@@ -1,17 +1,18 @@
 import { Text } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
-import { useTypedDispatch, useTypedSelector } from "../../store";
-import Styles from "../../styles";
 import {
 	changeRefreshingFrequency,
 	changeSendingFrequency,
 	changeTrackingFrequency,
 } from "../../reducers/user-reducer";
+import { useTypedDispatch, useTypedSelector } from "../../store";
+import Styles from "../../styles";
 
 /**
- * Renders the selector for changing the tracking frequency
- * @returns {JSX.Element}  A new TrackingFrequency component
+ * A settings menu block for changing the tracking frequency.
+ *
+ * @returns {JSX.Element} A new TrackingFrequency component.
  */
 export const TrackingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
@@ -59,8 +60,9 @@ export const TrackingFrequency = (): JSX.Element => {
 };
 
 /**
- * Renders the selector for changing the sending frequency
- * @returns {JSX.Element}  A new SendingFrequency component
+ * A selector for changing the sending frequency.
+ *
+ * @returns {JSX.Element} A new SendingFrequency component.
  */
 export const SendingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
@@ -108,9 +110,15 @@ export const SendingFrequency = (): JSX.Element => {
 	);
 };
 
+/**
+ * A selector for changing the refreshing frequency.
+ *
+ * @returns {JSX.Element} A new RefreshingFrequency component.
+ */
 export const RefreshingFrequency = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
 	const [refTrack] = useTypedSelector((state) => [state.user.refreshingFrequency / 1000]);
+
 	let index = 0;
 	const refreshFreq = [
 		{

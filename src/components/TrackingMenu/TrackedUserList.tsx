@@ -3,7 +3,13 @@ import { TrackedUserListProps } from "../../types";
 import Divider from "../Divider";
 import TrackedUserDetails from "./TrackedUserDetails";
 
-const TrackedUserList = ({ users }: TrackedUserListProps) => (
+/**
+ * A list of tracked users in the Tracking menu.
+ *
+ * @param {Array<TrackedUser>} users A list of tracked users.
+ * @returns {JSX.Element} A new TrackeduserList component.
+ */
+const TrackedUserList = ({ users }: TrackedUserListProps): JSX.Element => (
 	<>
 		{users.map((user, index) => (
 			<View key={index}>

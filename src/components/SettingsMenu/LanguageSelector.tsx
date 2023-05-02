@@ -2,14 +2,14 @@ import { Text } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { languages } from "../../languages";
 import { changeLanguage } from "../../reducers/language-reducer";
-import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
+import { useTypedDispatch, useTypedSelector } from "../../store";
 import { Language } from "../../types";
 
 /**
- * Renders selector for resetting settings to default
+ * A selector for application language.
  *
- * @returns {JSX.Element}  A new Language component
+ * @returns {JSX.Element} A new LanguageSelect component.
  */
 const LanguageSelect = (): JSX.Element => {
 	const [language, dispatch] = [useTypedSelector((state) => state.language), useTypedDispatch()];
