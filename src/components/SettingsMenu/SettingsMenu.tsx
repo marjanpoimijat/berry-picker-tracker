@@ -1,5 +1,4 @@
-import { ScrollView, View, Text } from "react-native";
-import { languages } from "../../languages";
+import { ScrollView, View } from "react-native";
 import { useTypedSelector } from "../../store";
 import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import BatteryUse from "./BatteryUse";
@@ -8,6 +7,7 @@ import Language from "./Language";
 import LegalInformation from "./LegalInformation";
 import MapLegend from "./MapLegend";
 import Navigation from "./Navigation";
+import SettingsMenuTitle from "./SettingsMenuTitle";
 import UserInformation from "./UserInformation";
 
 /**
@@ -17,7 +17,6 @@ import UserInformation from "./UserInformation";
  */
 const SettingsMenu = (): JSX.Element => {
 	const toggled = useTypedSelector((state) => state.ui.settingsMenuVisible);
-	const language = useTypedSelector((state) => state.language);
 
 	return (
 		<View
@@ -28,9 +27,7 @@ const SettingsMenu = (): JSX.Element => {
 			}
 		>
 			<ScrollView style={settingsMenuStyles.settingsMenuContent}>
-				<View style={settingsMenuStyles.settingsMenuTitleBlock}>
-					<Text style={settingsMenuStyles.settingsMenuTitle}>{languages["Settings"][language]}</Text>
-				</View>
+				<SettingsMenuTitle />
 				<Language />
 				<Navigation />
 				<BatteryUse />
