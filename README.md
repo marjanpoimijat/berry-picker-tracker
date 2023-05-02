@@ -45,7 +45,7 @@ Create a .env-file to the project root with following:
 URI=<server-address>
 ```
 
-e.g. `URI="https://berry-picker-tracker.cs.helsinki.fi"` / `URI="http://10.0.2.2:8000"` (address for Android emulator)
+e.g. `URI="https://ohtup-staging.cs.helsinki.fi/bpt-stage"` / `URI="http://10.0.2.2:8008"` (address for Android emulator)
 
 ### Requirements
 
