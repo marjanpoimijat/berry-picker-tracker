@@ -11,12 +11,12 @@
 	},
 	"Battery saving mode": {
 		"en": "Battery saving mode",
-		"fi": "Virran säästö tila",
+		"fi": "Virransäästötila",
 		"sv": "Batterisparningsläge"
 	},
 	"Change battery use": {
 		"en": "Change battery use",
-		"fi": "Vaihda akun kulutus",
+		"fi": "Säädä akun käyttöä",
 		"sv": "Ändra batteri användning"
 	},
 	"Cancel": {
@@ -76,7 +76,7 @@
 	},
 	"Do you really want to remove all users from the list?": {
 		"en": "Do you really want to remove all users from the list?",
-		"fi": "Haluatko varamsti poistaa kaikki käyttäjät listalta?",
+		"fi": "Haluatko varmasti poistaa kaikki käyttäjät listalta?",
 		"sv": "Är du säker att du vill radera alla användare?"
 	},
 	"Do you really want to remove this user from the list?": {
@@ -96,7 +96,7 @@
 	},
 	"Download link to National Land Survey of Finland map legend information": {
 		"en": "Download map legend information from the National Land Survey of Finland",
-		"fi": "Lataa linkki Maanmittauslaitoksen kartan merkkiselitteeseen",
+		"fi": "Latauslinkki Maanmittauslaitoksen kartan merkkiselitteeseen",
 		"sv": "Nedladnings link för Landsmäteriverkets kartlegend"
 	},
 	"Download map legend": {
@@ -246,12 +246,12 @@
 	},
 	"Normal": {
 		"en": "normal",
-		"fi": "perus",
+		"fi": "normaali",
 		"sv": "normal"
 	},
 	"Normal mode": {
 		"en": "Normal mode",
-		"fi": "Perus tila",
+		"fi": "Normaali tila",
 		"sv": "Normalt läge"
 	},
 	"No tracked users yet.": {
@@ -351,7 +351,7 @@
 	},
 	"Routes refreshing frequency": {
 		"en": "Routes refreshing frequency",
-		"fi": "Reitin päivitys tiheys ",
+		"fi": "Reitin päivitystiheys",
 		"sv": "Frekvens av rutten"
 	},
 	"Satellite": {

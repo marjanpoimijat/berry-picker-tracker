@@ -1,13 +1,13 @@
 import "dotenv/config";
 // build with
-//eas build -p android -e apk
+// eas build -p android -e apk
 export default {
 	expo: {
 		extra: {
 			eas: {
-				projectId: "f0827f42-783e-481b-b19f-54993674d70c",
+				projectId: process.env.PROJECT_ID,
 			},
-			uri: "https://ohtup-staging.cs.helsinki.fi/bpt-stage",
+			uri: process.env.URI,
 		},
 		android: {
 			adaptiveIcon: {

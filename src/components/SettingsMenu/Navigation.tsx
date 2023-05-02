@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 import { RefreshingFrequency, SendingFrequency, TrackingFrequency } from "./FrequencySelect";
 import SettingsToggle from "./SettingsToggle";
@@ -17,27 +17,27 @@ export const Navigation = (): JSX.Element => {
 
 	return (
 		<>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Navigation"][language].toUpperCase()}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Navigation"][language].toUpperCase()}</Text>
 			</View>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Waypoint tracking frequency"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Waypoint tracking frequency"][language]}</Text>
 				<TrackingFrequency />
 			</View>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Waypoint sending frequency"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Waypoint sending frequency"][language]}</Text>
 				<SendingFrequency />
 			</View>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Routes refreshing frequency"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Routes refreshing frequency"][language]}</Text>
 				<RefreshingFrequency />
 			</View>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Offline mode"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Offline mode"][language]}</Text>
 				<SettingsToggle />
 			</View>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages[`${batterySaveText}`][language]}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{languages[`${batterySaveText}`][language]}</Text>
 			</View>
 			<EmptyMenuBlock />
 		</>

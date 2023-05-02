@@ -4,22 +4,22 @@ import theme from "./theme";
 
 const navigatorTabHeight = 70;
 
-const SettingsMenuStyles = StyleSheet.create({
-	AttentionText: {
+const settingsMenuStyles = StyleSheet.create({
+	attentionText: {
 		color: theme.colors.attentionColor,
 		fontSize: theme.fontSizes.default,
 		textAlign: "left",
 	},
-	BlockText: {
+	blockText: {
 		color: theme.colors.textPrimary,
 		fontSize: theme.fontSizes.default,
 		textAlign: "left",
 	},
-	GreySettingsMenuBlock: {
+	greySettingsMenuBlock: {
 		backgroundColor: theme.colors.settingsMenuBackgroundColor,
 		padding: 10,
 	},
-	GreySettingsMenuBlockBottomBorder: {
+	greySettingsMenuBlockBottomBorder: {
 		alignItems: "center",
 		backgroundColor: theme.colors.settingsMenuBackgroundColor,
 		borderBottomColor: theme.colors.settingsMenuLineColor,
@@ -30,7 +30,7 @@ const SettingsMenuStyles = StyleSheet.create({
 		marginBottom: 1,
 		padding: 10,
 	},
-	SettingsMenuContainer: {
+	settingsMenuContainer: {
 		alignItems: "center",
 		alignSelf: "center",
 		backgroundColor: theme.colors.primaryBackgroundColor,
@@ -46,7 +46,7 @@ const SettingsMenuStyles = StyleSheet.create({
 		top: 72,
 		width: "90%",
 	},
-	SettingsMenuContent: {
+	settingsMenuContent: {
 		backgroundColor: theme.colors.buttonBackgroundColor,
 		borderRadius: 9,
 		height: "99%",
@@ -54,27 +54,25 @@ const SettingsMenuStyles = StyleSheet.create({
 		position: "absolute",
 		width: "97%",
 	},
-
-	SettingsMenuTitle: {
+	settingsMenuTitle: {
 		color: theme.colors.textPrimary,
 		fontSize: theme.fontSizes.header,
 	},
-
-	SettingsMenuTitleBlock: {
+	settingsMenuTitleBlock: {
 		alignItems: "center",
 		borderBottomColor: theme.colors.settingsMenuLineColor,
 		borderBottomWidth: 1.4,
 		marginBottom: 1,
 		padding: 5,
 	},
-	UserInformation: {
+	userInformation: {
 		color: "dimgrey",
 		fontSize: 12,
 		height: 40,
 		textAlign: "right",
 		textAlignVertical: "center",
 	},
-	WhiteSettingsMenuBlock: {
+	whiteSettingsMenuBlock: {
 		alignItems: "center",
 		backgroundColor: theme.colors.screenBackgroundColor,
 		display: "flex",
@@ -82,7 +80,7 @@ const SettingsMenuStyles = StyleSheet.create({
 		justifyContent: "space-between",
 		padding: 3,
 	},
-	WhiteSettingsMenuBlockBottomBorder: {
+	whiteSettingsMenuBlockBottomBorder: {
 		alignItems: "center",
 		backgroundColor: theme.colors.screenBackgroundColor,
 		borderBottomColor: theme.colors.settingsMenuLineColor,
@@ -95,4 +93,4 @@ const SettingsMenuStyles = StyleSheet.create({
 	},
 });
 
-export default SettingsMenuStyles;
+export default settingsMenuStyles;

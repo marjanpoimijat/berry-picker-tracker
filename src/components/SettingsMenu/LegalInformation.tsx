@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { repoBaseUrl } from "../../constants";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import LinkBlock from "./LinkBlock";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
@@ -22,8 +22,8 @@ const LegalInformation = (): JSX.Element => {
 
 	return (
 		<>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{legalInfoUpperCase}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{legalInfoUpperCase}</Text>
 			</View>
 			<LinkBlock
 				link={frontend}
@@ -37,8 +37,8 @@ const LegalInformation = (): JSX.Element => {
 				link={privacyPolicy}
 				text={languages["Privacy policy"][language]}
 			/>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{PrivacyLinkInfo}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{PrivacyLinkInfo}</Text>
 			</View>
 			<EmptyMenuBlock />
 		</>

@@ -3,7 +3,7 @@ import { Button, Text, TextInput, View, TouchableOpacity, Alert } from "react-na
 import { languages } from "../../languages";
 import { identifyUser, resetUser, setUsername } from "../../reducers/user-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import theme from "../../styles/theme";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
@@ -58,20 +58,20 @@ const UserInformation = (): JSX.Element => {
 
 	return (
 		<>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{userInfo}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{userInfo}</Text>
 			</View>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Type username"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Type username"][language]}</Text>
 				<TextInput
 					onChangeText={setLocalUsername}
 					placeholder={languages["Type username"][language]}
-					style={SettingsMenuStyles.UserInformation}
+					style={settingsMenuStyles.userInformation}
 					value={localUsername}
 				/>
 			</View>
-			<TouchableOpacity style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>UserID</Text>
+			<TouchableOpacity style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.blockText}>UserID</Text>
 				<Text
 					style={{
 						color: "dimgrey",
@@ -84,16 +84,16 @@ const UserInformation = (): JSX.Element => {
 					{userId}
 				</Text>
 			</TouchableOpacity>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.AttentionText}>{languages["Reset UserID"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.attentionText}>{languages["Reset UserID"][language]}</Text>
 				<Button
 					color={theme.colors.attentionColor}
 					onPress={() => (routeActive ? alertRouteIsActive() : alertUserIDReset())}
 					title={languages["Reset"][language]}
 				/>
 			</View>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Tap your UserID to copy it"][language]}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Tap your UserID to copy it"][language]}</Text>
 			</View>
 			<EmptyMenuBlock />
 		</>
