@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { languages } from "../../languages";
-import { DotProps, TrackedUser, UsernameProps } from "../../types";
+import { TrackedUser } from "../../types";
 import { removeTrackedUser, updateTrackedUser } from "../../reducers/tracker-users-reducer";
 import { useTypedDispatch, useTypedSelector } from "../../store";
 import Styles from "../../styles";
 import { createAlert } from "../../utils/alert";
-import { getColor } from "../../utils/user-colors";
+import Dot from "./Dot";
 import LocationVisibleButton from "./LocationVisibleButton";
 import RemoveUserButton from "./RemoveUserButton";
 import RouteVisibleButton from "./RouteVisibleButton";
+import Username from "./Username";
 
 /**
  * A container that displays a tracked user's name and visibility control buttons.
@@ -95,32 +96,5 @@ const TrackedUserDetails = ({ id, locationVisible, routeVisible, userId, usernam
 		</View>
 	);
 };
-
-/**
- * A colored dot associated with each user.
- *
- * @param {string} id The userID
- * @returns {JSX.Element} A new Dot component.
- */
-const Dot = ({ id }: DotProps): JSX.Element => (
-	<View style={Styles.trackedUserDetailsDotContainer}>
-		<View
-			style={{
-				...Styles.trackedUserDetailsDot,
-				backgroundColor: getColor(id),
-			}}
-		/>
-	</View>
-);
-
-/**
- * A styled username of a tracked user.
- *
- * @param {string} username Username of the user.
- * @returns {JSX.Element} A new Username component.
- */
-const Username = ({ username }: UsernameProps): JSX.Element => (
-	<Text style={Styles.trackedUserDetailsUsername}>{username}</Text>
-);
 
 export default TrackedUserDetails;

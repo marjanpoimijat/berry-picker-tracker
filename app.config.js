@@ -3,12 +3,6 @@ import "dotenv/config";
 // eas build -p android -e apk
 export default {
 	expo: {
-		extra: {
-			eas: {
-				projectId: process.env.PROJECT_ID,
-			},
-			uri: process.env.URI,
-		},
 		android: {
 			adaptiveIcon: {
 				backgroundColor: "#FFFFFF",
@@ -28,7 +22,12 @@ export default {
 			barStyle: "light-content",
 		},
 		assetBundlePatterns: ["**/*"],
-
+		extra: {
+			eas: {
+				projectId: process.env.PROJECT_ID,
+			},
+			uri: process.env.URI,
+		},
 		icon: "./assets/icon.png",
 		ios: {
 			buildNumber: "18",
