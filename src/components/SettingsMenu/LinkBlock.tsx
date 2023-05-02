@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, Linking } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import { LinkBlockProps } from "../../types";
 
 /**
@@ -13,9 +13,9 @@ import { LinkBlockProps } from "../../types";
 export const LinkBlock = ({ link, text }: LinkBlockProps): JSX.Element => (
 	<TouchableOpacity
 		onPress={() => Linking.openURL(link)}
-		style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}
+		style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}
 	>
-		<Text style={{ ...SettingsMenuStyles.BlockText, height: 40, textAlignVertical: "center" }}>{text}</Text>
+		<Text style={{ ...settingsMenuStyles.blockText, height: 40, textAlignVertical: "center" }}>{text}</Text>
 		<Icon name="chevron-right" />
 	</TouchableOpacity>
 );

@@ -2,7 +2,7 @@ import { Text, View, Button } from "react-native";
 import { languages } from "../../languages";
 import { changeDefaultSettings } from "../../reducers/user-reducer";
 import { useTypedSelector, useTypedDispatch } from "../../store";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import theme from "../../styles/theme";
 import { createAlert } from "../../utils/alert";
 import EmptyMenuBlock from "./EmptyMenuBlock";
@@ -32,11 +32,11 @@ const DefaultSettings = (): JSX.Element => {
 
 	return (
 		<>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{defaultSettings}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{defaultSettings}</Text>
 			</View>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.AttentionText}>{languages["Reset settings to default"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.attentionText}>{languages["Reset settings to default"][language]}</Text>
 				<Button
 					color={theme.colors.attentionColor}
 					onPress={() => alertSettingsReset()}

@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import LanguageSelect from "./LanguageSelector";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
@@ -15,11 +15,11 @@ export const Language = (): JSX.Element => {
 
 	return (
 		<>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Language"][language].toUpperCase()}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Language"][language].toUpperCase()}</Text>
 			</View>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Change language"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Change language"][language]}</Text>
 				<LanguageSelect />
 			</View>
 			<EmptyMenuBlock />

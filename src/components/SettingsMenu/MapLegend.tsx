@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { legendLink } from "../../constants";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import LinkBlock from "./LinkBlock";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
@@ -17,15 +17,15 @@ const MapLegend = (): JSX.Element => {
 	const legendTitle = languages["Map legend"][language].toUpperCase();
 	return (
 		<>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{legendTitle}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{legendTitle}</Text>
 			</View>
 			<LinkBlock
 				link={legendLink}
 				text={languages["Download map legend"][language]}
 			/>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{legendInfo}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{legendInfo}</Text>
 			</View>
 			<EmptyMenuBlock />
 		</>

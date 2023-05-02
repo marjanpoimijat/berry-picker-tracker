@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { languages } from "../../languages";
 import { useTypedSelector } from "../../store";
-import SettingsMenuStyles from "../../styles/SettingsMenuStyles";
+import settingsMenuStyles from "../../styles/settingsMenuStyles";
 import BatteryUseSelector from "./BatteryUseSelector";
 import EmptyMenuBlock from "./EmptyMenuBlock";
 
@@ -15,11 +15,11 @@ export const BatteryUse = (): JSX.Element => {
 
 	return (
 		<>
-			<View style={SettingsMenuStyles.GreySettingsMenuBlock}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Battery use"][language].toUpperCase()}</Text>
+			<View style={settingsMenuStyles.greySettingsMenuBlock}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Battery use"][language].toUpperCase()}</Text>
 			</View>
-			<View style={SettingsMenuStyles.WhiteSettingsMenuBlockBottomBorder}>
-				<Text style={SettingsMenuStyles.BlockText}>{languages["Change battery use"][language]}</Text>
+			<View style={settingsMenuStyles.whiteSettingsMenuBlockBottomBorder}>
+				<Text style={settingsMenuStyles.blockText}>{languages["Change battery use"][language]}</Text>
 				<BatteryUseSelector />
 			</View>
 			<EmptyMenuBlock />
