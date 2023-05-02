@@ -3,7 +3,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState = {
 	mapMenuVisible: false,
 	myRoutesMenuVisible: false,
+	routeButtonToggled: true,
 	settingsMenuVisible: false,
+	showButtonToggled: true,
 	trackingMenuVisible: false,
 };
 
@@ -47,10 +49,28 @@ const uiSlice = createSlice({
 				trackingMenuVisible: action.payload,
 			};
 		},
+		toggleRouteMasterButton(state, action: PayloadAction<boolean>) {
+			return {
+				...state,
+				routeButtonToggled: action.payload,
+			};
+		},
+		toggleShowMasterButton(state, action: PayloadAction<boolean>) {
+			return {
+				...state,
+				showButtonToggled: action.payload,
+			};
+		},
 	},
 });
 
-export const { setMapMenuVisible, setMyRoutesMenuVisible, setTrackingMenuVisible, setSettingsMenuVisible } =
-	uiSlice.actions;
+export const {
+	setMapMenuVisible,
+	setMyRoutesMenuVisible,
+	setTrackingMenuVisible,
+	setSettingsMenuVisible,
+	toggleRouteMasterButton,
+	toggleShowMasterButton,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;

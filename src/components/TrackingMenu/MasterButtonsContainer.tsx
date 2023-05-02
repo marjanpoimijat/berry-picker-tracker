@@ -8,6 +8,7 @@ import theme from "../../styles/theme";
 import { createAlert } from "../../utils/alert";
 import getTrackedUsersList from "../../utils/list";
 import MasterButton from "./MasterButton";
+import { toggleRouteMasterButton, toggleShowMasterButton } from "../../reducers/ui-reducer";
 
 /**
  * Contains master toggle buttons to control all tracked users.
@@ -18,32 +19,49 @@ const MasterButtonsContainer = (): JSX.Element => {
 	const language = useTypedSelector((state) => state.language);
 	const trackedUsers = useTypedSelector((state) => state.trackedUsers);
 	const users = getTrackedUsersList(trackedUsers);
-	const [locationsVisible, setLocationsVisible] = useState<boolean>(true);
-	const [routesVisible, setRoutesVisible] = useState<boolean>(true);
+	const showButtonToggled = useTypedSelector((state) => state.ui.showButtonToggled);
+	const routeButtonToggled = useTypedSelector((state) => state.ui.routeButtonToggled);
+	const [allLocationsVisible, setAllLocationsVisible] = useState<boolean>(showButtonToggled);
+	const [allRoutesVisible, setAllRoutesVisible] = useState<boolean>(routeButtonToggled);
 	const dispatch = useTypedDispatch();
 
 	const handleShowButtonPress = () => {
-		setLocationsVisible(!locationsVisible);
-		setRoutesVisible(!routesVisible);
-		users.map((user) =>
-			dispatch(
-				updateTrackedUser({
-					locationVisible: !locationsVisible,
-					routeVisible: !locationsVisible,
-					userId: user.userId,
-				})
-			)
-		);
+		setAllLocationsVisible(!allLocationsVisible);
+		dispatch(toggleShowMasterButton(!showButtonToggled));
+		if (allLocationsVisible) {
+			setAllRoutesVisible(false);
+			dispatch(toggleRouteMasterButton(false));
+			users.map((user) =>
+				dispatch(
+					updateTrackedUser({
+						locationVisible: false,
+						routeVisible: false,
+						userId: user.userId,
+					})
+				)
+			);
+		} else {
+			users.map((user) =>
+				dispatch(
+					updateTrackedUser({
+						locationVisible: !allLocationsVisible,
+						routeVisible: allRoutesVisible,
+						userId: user.userId,
+					})
+				)
+			);
+		}
 	};
 
 	const handleRouteButtonPress = () => {
-		setLocationsVisible(true);
-		setRoutesVisible(!routesVisible);
+		setAllLocationsVisible(true);
+		setAllRoutesVisible(!allRoutesVisible);
+		dispatch(toggleRouteMasterButton(!routeButtonToggled));
 		users.map((user) =>
 			dispatch(
 				updateTrackedUser({
 					locationVisible: true,
-					routeVisible: !routesVisible,
+					routeVisible: !allRoutesVisible,
 					userId: user.userId,
 				})
 			)
@@ -64,16 +82,16 @@ const MasterButtonsContainer = (): JSX.Element => {
 		<View style={Styles.trackUsersMasterButtonContainer}>
 			<MasterButton
 				handlePress={handleShowButtonPress}
-				iconName={locationsVisible ? "eye" : "eye-slash"}
+				iconName={allLocationsVisible ? "eye" : "eye-slash"}
 				text={languages["Show"][language]}
-				toggled={!locationsVisible}
+				toggled={!allLocationsVisible}
 			/>
 			<MasterButton
-				disabled={!locationsVisible}
+				disabled={!allLocationsVisible}
 				handlePress={handleRouteButtonPress}
 				iconName={"route"}
 				text={languages["Route"][language]}
-				toggled={!routesVisible}
+				toggled={!allRoutesVisible}
 			/>
 			<MasterButton
 				color={theme.colors.buttonRemoveColor}
